@@ -73,7 +73,14 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #222222;
+  background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  body,
+  html {
+    background-color: #222222;
+  }
 }
 
 body {
@@ -91,18 +98,30 @@ input {
 }
 
 .age-label {
-  color: #494949;
+  color: #b0b5b9;
   font-size: 1.2rem;
   line-height: 1;
   margin: 0 0 0 2px;
 }
 
+@media (prefers-color-scheme: dark) {
+  .age-label {
+    color: #494949;
+  }
+}
+
 .count {
-  color: #b0b5b9;
+  color: #494949;
   margin: 0;
   font-size: 6rem;
   line-height: 1;
   font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .count {
+    color: #b0b5b9;
+  }
 }
 
 .count sup {
