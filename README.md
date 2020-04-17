@@ -6,9 +6,13 @@ A Chrome extension that shows a live counter of your age to motivate you to live
 
 ![Screenshot Dark Theme](/listing/screenshot_chrome_dark.png?raw=true)
 
-## Download
+## Install
 
-[![Available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_340x96.png)](https://chrome.google.com/webstore/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh)
+<a href="https://chrome.google.com/webstore/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" width="50px"/> Add to Chrome</a>
+
+<a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg" width="50px"/> Add to FireFox</a>
+
+<a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg" width="50px"/> Add to Edge</a>
 
 ## Credits
 
