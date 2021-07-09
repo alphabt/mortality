@@ -25,7 +25,7 @@ const config = {
     rules: [
       {
         test: /\.vue$/,
-        loaders: 'vue-loader',
+        loader: 'vue-loader',
       },
       {
         test: /\.js$/,
@@ -72,24 +72,32 @@ const config = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new CopyPlugin([
-      { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
-      { from: 'tab/tab.html', to: 'tab/tab.html', transform: transformHtml },
-      {
-        from: 'manifest.json',
-        to: 'manifest.json',
-        transform: content => {
-          const jsonContent = JSON.parse(content);
-          jsonContent.version = version;
-
-          if (config.mode === 'development') {
-            jsonContent.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'";
-          }
-
-          return JSON.stringify(jsonContent, null, 2);
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'icons',
+          to: 'icons',
+          globOptions: {
+            ignore: ['icon.xcf'],
+          },
         },
-      },
-    ]),
+        { from: 'tab/tab.html', to: 'tab/tab.html', transform: transformHtml },
+        {
+          from: 'manifest.json',
+          to: 'manifest.json',
+          transform: (content) => {
+            const jsonContent = JSON.parse(content);
+            jsonContent.version = version;
+
+            if (config.mode === 'development') {
+              jsonContent.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            }
+
+            return JSON.stringify(jsonContent, null, 2);
+          },
+        },
+      ],
+    }),
   ],
 };
 
