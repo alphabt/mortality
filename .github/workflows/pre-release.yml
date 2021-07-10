@@ -30,4 +30,4 @@ jobs:
           prerelease: true
           title: "Development Build"
           files: |
-            mortality-*.zip
+            web-ext-artifacts/mortality-*.zip
