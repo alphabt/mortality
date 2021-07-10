@@ -14,6 +14,14 @@ A Chrome extension that shows a live counter of your age to motivate you to live
 
 <a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="https://upload.wikimedia.org/wikipedia/en/9/98/Microsoft_Edge_logo_%282019%29.svg" width="50px"/> Add to Edge</a>
 
+## Build
+
+1. `yarn install --frozen-lockfile`
+1. `yarn build`
+1. `yarn package`
+
+You will find the built package under `web-ext-artifacts` folder.
+
 ## Credits
 
 - Inspired by [Motivation Chrome extension](https://chrome.google.com/webstore/detail/motivation/ofdgfpchbidcgncgfpdlpclnpaemakoj)
