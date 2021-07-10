@@ -23,19 +23,16 @@
 export default {
   name: 'App',
   methods: {
-    save: function() {
+    save: function () {
       localStorage.dob = this.dob;
       this.isDobSet = true;
       this.renderAge();
     },
-    renderAge: function() {
+    renderAge: function () {
       const now = new Date();
       const duration = now - new Date(this.dob);
       const years = duration / 31556900000;
-      const majorMinor = years
-        .toFixed(9)
-        .toString()
-        .split('.');
+      const majorMinor = years.toFixed(9).toString().split('.');
 
       this.year = majorMinor[0];
       this.milliseconds = majorMinor[1];
@@ -43,7 +40,7 @@ export default {
       setTimeout(this.renderAge, 100);
     },
   },
-  mounted: function() {
+  mounted: function () {
     if (localStorage.dob) {
       this.dob = localStorage.dob;
       this.isDobSet = true;
