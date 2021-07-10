@@ -16,7 +16,8 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  pre-release:
+    name: "Pre Release"
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -32,3 +33,12 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: yarn package
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            *.zip
