@@ -2,10 +2,8 @@ name: "tagged-release"
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch:
+    tags:
+      - "v*"
 
 jobs:
   tagged-release:
