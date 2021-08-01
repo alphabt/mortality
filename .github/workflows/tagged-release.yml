@@ -12,11 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
-          cache: 'yarn'
+          node-version: "14"
+          cache: "yarn"
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn package
@@ -26,4 +26,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            web-ext-artifacts/mortality-*.zip
+            artifacts/mortality-*.zip
