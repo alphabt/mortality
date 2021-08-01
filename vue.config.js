@@ -10,6 +10,7 @@ module.exports = {
   pluginOptions: {
     browserExtension: {
       componentOptions: {},
+      artifactFilename: ({ name, version }) => `${name}-v${version}.zip`,
     },
   },
 };
