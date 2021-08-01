@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name."
+  },
+  "extDescription": {
+    "message": "Replace new tab page with a counter of your age",
+    "description": "Extension description."
+  }
+}
