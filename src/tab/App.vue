@@ -123,7 +123,6 @@ input {
 
 .count sup {
   font-size: 2.4rem;
-  margin-left: -20px;
 }
 
 label {
