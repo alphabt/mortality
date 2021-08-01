@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
   methods: {
     save: function () {
       localStorage.dob = this.dob;
@@ -32,7 +32,7 @@ export default {
       const now = new Date();
       const duration = now - new Date(this.dob);
       const years = duration / 31556900000;
-      const majorMinor = years.toFixed(9).toString().split('.');
+      const majorMinor = years.toFixed(9).toString().split(".");
 
       this.year = majorMinor[0];
       this.milliseconds = majorMinor[1];
@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      dob: '',
+      dob: "",
       isDobSet: false,
       year: 0,
       milliseconds: 0,
@@ -91,7 +91,7 @@ body {
 body,
 input {
   display: -webkit-flex;
-  font-family: 'Avenir', 'helvetica neue', helvetica, arial, sans-serif;
+  font-family: "Avenir", "helvetica neue", helvetica, arial, sans-serif;
 }
 
 .age-label {
@@ -123,7 +123,6 @@ input {
 
 .count sup {
   font-size: 2.4rem;
-  margin-left: -20px;
 }
 
 label {
