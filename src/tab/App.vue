@@ -31,7 +31,7 @@ export default {
     renderAge: function () {
       const now = new Date();
       const duration = now - new Date(this.dob);
-      const years = duration / 31556900000;
+      const years = duration / 31558149540;
       const majorMinor = years.toFixed(9).toString().split(".");
 
       this.year = majorMinor[0];
@@ -74,6 +74,7 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
+
   body,
   html {
     background-color: #222222;
