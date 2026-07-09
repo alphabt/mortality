@@ -3,7 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>New Tab</title>
+    <!--
+      Critical background, inlined so the correct backdrop paints before tab.css
+      loads. Without this the browser flashes its default (white) new-tab canvas
+      in dark mode (see issue #18). Values mirror :root in tab.css.
+    -->
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #222222;
+        }
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background-color: var(--bg);
+      }
+    </style>
     <link rel="stylesheet" href="tab.css" />
   </head>
 
