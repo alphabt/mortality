@@ -187,11 +187,25 @@ export function renderSetup(app, { start }, current, savedZone) {
 }
 
 /** Live age counter. Returns the elements the ticker updates. */
-export function renderCounter(app, { openSettings, onCycle }, { born }) {
+export function renderCounter(
+  app,
+  { openSettings, onCycle, openWeeks },
+  { born },
+) {
   const gear = el(
     "button",
     { class: "gear", id: "gear", title: "Settings", "aria-label": "Settings" },
     gearIcon(),
+  );
+  const weeksBtn = el(
+    "button",
+    {
+      class: "gear corner-left",
+      id: "weeks-btn",
+      title: "Life in weeks",
+      "aria-label": "Life in weeks",
+    },
+    "\u25a6",
   );
   const label = el("h1", { class: "age-label", id: "unit-label" }, "Age");
   const count = el("p", {
@@ -224,9 +238,10 @@ export function renderCounter(app, { openSettings, onCycle }, { born }) {
       ]),
     ]),
   ]);
-  app.replaceChildren(gear, counter);
+  app.replaceChildren(weeksBtn, gear, counter);
 
   gear.addEventListener("click", openSettings);
+  weeksBtn.addEventListener("click", openWeeks);
   count.addEventListener("click", onCycle);
   count.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -380,4 +395,63 @@ export function renderSettings(app, actions, { theme, expectancy }) {
 
   refreshWarnings();
   refreshActive();
+}
+
+/**
+ * Life-in-weeks grid: every row is a year of the expectancy, every cell a week —
+ * lived weeks filled, the current week accented, the rest dim. Static per open;
+ * the grid is decorative (aria-hidden) and the subtitle carries the real counts.
+ */
+export function renderWeeks(
+  app,
+  { back, openSettings },
+  { born, lived, total, expectancy },
+) {
+  const backBtn = el(
+    "button",
+    {
+      class: "gear corner-left",
+      id: "weeks-back",
+      title: "Back",
+      "aria-label": "Back",
+    },
+    "\u2190",
+  );
+  const gear = el(
+    "button",
+    { class: "gear", id: "gear", title: "Settings", "aria-label": "Settings" },
+    gearIcon(),
+  );
+
+  const grid = el("div", { class: "weeks-grid", "aria-hidden": "true" });
+  const cells = document.createDocumentFragment();
+  for (let i = 0; i < total; i++) {
+    const cls = i < lived ? "lived" : i === lived ? "now" : "future";
+    cells.append(el("i", { class: cls }));
+  }
+  grid.append(cells);
+
+  const wrap = el("div", { class: "weeks-wrap" }, [
+    el("div", { class: "weeks-head" }, [
+      el("h1", { class: "age-label" }, "Life in weeks"),
+      el(
+        "p",
+        { class: "hint" },
+        `${lived.toLocaleString()} weeks lived \u00b7 ${(
+          total - lived
+        ).toLocaleString()} ahead \u00b7 ${expectancy} yrs`,
+      ),
+    ]),
+    grid,
+    el("div", { class: "weeks-legend" }, [
+      el("span", {}, [el("i", { class: "lived" }), " Lived"]),
+      el("span", {}, [el("i", { class: "now" }), " This week"]),
+      el("span", {}, [el("i", { class: "future" }), " Ahead"]),
+    ]),
+  ]);
+
+  app.replaceChildren(backBtn, gear, wrap);
+
+  backBtn.addEventListener("click", back);
+  gear.addEventListener("click", openSettings);
 }

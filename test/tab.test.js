@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { clampExpectancy, formatBorn } from "../src/tab.js";
+import { clampExpectancy, formatBorn, lifeWeeks } from "../src/tab.js";
 
 describe("clampExpectancy", () => {
   it("keeps in-range integers", () => {
@@ -41,5 +41,32 @@ describe("formatBorn", () => {
   it("returns an empty string for an unparseable value", () => {
     expect(formatBorn("not-a-date")).toBe("");
     expect(formatBorn("")).toBe("");
+  });
+});
+
+const WEEK_MS = 7 * 86400000;
+
+describe("lifeWeeks", () => {
+  it("has zero lived weeks and expectancy*52 total at birth", () => {
+    expect(lifeWeeks(0, 80)).toEqual({ lived: 0, total: 4160 });
+  });
+
+  it("counts whole weeks elapsed", () => {
+    expect(lifeWeeks(WEEK_MS * 10, 80).lived).toBe(10);
+  });
+
+  it("clamps negative elapsed time to zero lived weeks", () => {
+    expect(lifeWeeks(-WEEK_MS * 5, 80).lived).toBe(0);
+  });
+
+  it("never lets lived exceed the total number of cells", () => {
+    const { lived, total } = lifeWeeks(Number.MAX_SAFE_INTEGER, 80);
+    expect(total).toBe(4160);
+    expect(lived).toBe(total);
+  });
+
+  it("scales the total with the clamped expectancy", () => {
+    expect(lifeWeeks(0, 200).total).toBe(150 * 52);
+    expect(lifeWeeks(0, "abc").total).toBe(80 * 52);
   });
 });
