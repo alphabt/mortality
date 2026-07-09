@@ -20,13 +20,14 @@ function splitBirth(value) {
 export function renderSetup(app, { start }, current) {
   app.innerHTML = `
     <form>
-      <h1 class="age-label">When were you born?</h1>
+      <h1 class="screen-title">When were you born?</h1>
       <footer>
-        <input type="date" id="birth-date" />
-        <input type="time" id="birth-time" />
+        <input type="date" id="birth-date" aria-label="Date of birth" autocomplete="bday" required />
+        <input type="time" id="birth-time" aria-label="Time of birth (optional)" />
         <button id="start">Start</button>
       </footer>
     </form>`;
+  const form = app.querySelector("form");
   const dateEl = app.querySelector("#birth-date");
   const timeEl = app.querySelector("#birth-time");
   if (current) {
@@ -34,11 +35,25 @@ export function renderSetup(app, { start }, current) {
     dateEl.value = date;
     if (time) timeEl.value = time;
   }
-  app.querySelector("#start").addEventListener("click", (event) => {
-    event.preventDefault();
-    if (!dateEl.value) return;
+  function submitBirth() {
+    if (!dateEl.value) {
+      dateEl.reportValidity();
+      return;
+    }
     start(`${dateEl.value}T${timeEl.value || "00:00"}`);
+  }
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submitBirth();
   });
+  [dateEl, timeEl].forEach((el) =>
+    el.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitBirth();
+      }
+    }),
+  );
   dateEl.focus();
 }
 
@@ -46,8 +61,8 @@ export function renderSetup(app, { start }, current) {
 export function renderCounter(app, { openSettings }) {
   app.innerHTML = `
     <button class="gear" id="gear" title="Settings" aria-label="Settings">&#9881;</button>
-    <h1 class="age-label">AGE</h1>
-    <h2 class="count"><span id="year">0</span><sup>.<span id="ms">0</span></sup></h2>`;
+    <h1 class="age-label">Age</h1>
+    <p class="count"><span id="year">0</span><span class="fraction" aria-hidden="true">.<span id="ms">0</span></span></p>`;
   app.querySelector("#gear").addEventListener("click", openSettings);
   return {
     year: app.querySelector("#year"),
@@ -69,7 +84,7 @@ export function renderSettings(app, actions, theme) {
 
   app.innerHTML = `
     <div class="settings">
-      <h1 class="age-label">Settings</h1>
+      <h1 class="screen-title">Settings</h1>
       ${rows}
       <div class="actions">
         <button id="reset-birthday" class="btn-secondary">Change birthday</button>
