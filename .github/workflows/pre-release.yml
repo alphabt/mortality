@@ -27,10 +27,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Download packaged extension
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: mortality-zip
           path: artifacts
