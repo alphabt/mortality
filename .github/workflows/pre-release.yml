@@ -1,27 +1,41 @@
 name: "pre-release"
 
+# Rolling development build. Every push to master runs the full quality gate and,
+# if green, refreshes the single "latest" pre-release with the freshly packaged
+# extension. Pull requests are covered by ci.yml, so this only runs post-merge.
+
 on:
   push:
-    branches: [master]
-  pull_request:
     branches: [master]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: pre-release
+  cancel-in-progress: true
 
 jobs:
-  pre-release:
-    name: "Pre Release"
-    runs-on: ubuntu-latest
+  ci:
+    uses: ./.github/workflows/ci.yml
 
+  publish-latest:
+    name: "Rolling pre-release"
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
 
-      - run: bash scripts/pack.sh
+      - name: Download packaged extension
+        uses: actions/download-artifact@v4
+        with:
+          name: mortality-zip
+          path: artifacts
 
       - name: Publish rolling pre-release
-        if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

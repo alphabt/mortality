@@ -1,66 +1,35 @@
 name: "publish-stores"
 
-# Publishes a tagged release to the Chrome, Edge, and Firefox stores.
-#
-# Runs automatically when a v* tag is pushed (i.e. a real release, never the
-# rolling "latest" pre-release), and can also be run on demand from the Actions
-# tab. Credentials come entirely from repo secrets — see
+# Manual store publishing: re-publish a released tag, ship a subset of stores, or
+# recover a single store that failed mid-release. The automatic tag pipeline lives
+# in release.yml — this is the on-demand escape hatch that shares its engine
+# (publish.yml). Credentials come entirely from repo secrets; see
 # .github/skills/publish-to-stores/SKILL.md for the full list and how to get them.
 
 on:
-  push:
-    tags: ["v*"]
   workflow_dispatch:
     inputs:
       stores:
         description: "Stores to publish: 'all', or a space-separated subset of 'chrome edge firefox'"
         default: "all"
         required: true
+      tag:
+        description: "Release tag whose built asset to publish (e.g. v1.4.0). Recommended for re-publishing a release."
+        default: ""
+        required: false
       ref:
-        description: "Tag or branch to build & publish (default: the ref this run was triggered on)"
+        description: "Branch/tag to build a fresh zip from (used only when 'tag' is blank)."
         default: ""
         required: false
 
 permissions:
   contents: read
 
-concurrency:
-  group: publish-stores
-  cancel-in-progress: false
-
 jobs:
   publish:
-    name: "Publish to stores"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.inputs.ref || github.ref }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Publish to the stores
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Chrome Web Store
-          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
-          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
-          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
-          CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
-          CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
-          # Microsoft Edge Add-ons
-          EDGE_PRODUCT_ID: ${{ secrets.EDGE_PRODUCT_ID }}
-          EDGE_CLIENT_ID: ${{ secrets.EDGE_CLIENT_ID }}
-          EDGE_API_KEY: ${{ secrets.EDGE_API_KEY }}
-          # Firefox (addons.mozilla.org)
-          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
-          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
-          FIREFOX_ADDON_ID: ${{ secrets.FIREFOX_ADDON_ID }}
-        run: |
-          stores="${{ github.event.inputs.stores || 'all' }}"
-          if [ "$stores" = "all" ]; then stores=""; fi
-          # Build the package from the checked-out tag so we publish exactly the
-          # released source. Any store without secrets is skipped automatically.
-          bash scripts/publish.sh $stores --source
+    uses: ./.github/workflows/publish.yml
+    with:
+      stores: ${{ inputs.stores }}
+      tag: ${{ inputs.tag }}
+      ref: ${{ inputs.ref }}
+    secrets: inherit

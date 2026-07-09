@@ -11,12 +11,15 @@ license: MIT
 
 # Publish to the Chrome, Edge, and Firefox stores
 
-Ships a tagged release to all three extension stores through the
-`publish-stores` GitHub Actions workflow. All credentials live in **repo
-secrets** — never a developer's login, only scoped, revocable API keys.
+Ships a tagged release to all three extension stores. All credentials live in
+**repo secrets** — never a developer's login, only scoped, revocable API keys.
 
-- Workflow: [`.github/workflows/publish-stores.yml`](../../workflows/publish-stores.yml)
-- Engine: [`scripts/publish.sh`](../../../scripts/publish.sh)
+- Automatic pipeline: [`.github/workflows/release.yml`](../../workflows/release.yml)
+  — on a `v*` tag it runs the CI gate, packages once, publishes the GitHub
+  Release, then ships that asset to the stores.
+- Manual / subset runs: [`.github/workflows/publish-stores.yml`](../../workflows/publish-stores.yml)
+- Shared engine: [`.github/workflows/publish.yml`](../../workflows/publish.yml)
+  wrapping [`scripts/publish.sh`](../../../scripts/publish.sh)
 
 ## How publishing works
 
@@ -66,23 +69,28 @@ passwords.
 
 ## Publishing a release
 
-**Automatic (recommended).** Pushing a `v*` tag runs both `tagged-release`
-(creates the GitHub Release) and `publish-stores` (builds from the tag and
-publishes). Bump `src/manifest.json` `version`, then:
+**Automatic (recommended).** Pushing a `v*` tag runs the
+[`release`](../../workflows/release.yml) workflow end to end: CI gate → package
+once → GitHub Release → publish to the stores. The tag must match the version in
+**both** `src/manifest.json` and `package.json`, or the release job fails fast.
+Bump all three in lockstep, then:
 
 ```bash
 git tag v1.5.0 && git push origin v1.5.0
 ```
 
-**On demand.** Re-publish a tag, or ship a subset of stores, from the Actions
+**On demand.** Re-publish a release, or ship a subset of stores, from the Actions
 tab or the CLI:
 
 ```bash
-# all stores, from tag v1.4.0
-gh workflow run publish-stores.yml -f stores=all -f ref=v1.4.0
+# all stores, from the asset attached to release v1.4.0
+gh workflow run publish-stores.yml -f stores=all -f tag=v1.4.0
 
 # just one or two stores
-gh workflow run publish-stores.yml -f stores="edge firefox" -f ref=v1.4.0
+gh workflow run publish-stores.yml -f stores="edge firefox" -f tag=v1.4.0
+
+# build a fresh zip from a branch instead of a released asset
+gh workflow run publish-stores.yml -f stores=all -f ref=my-branch
 ```
 
 ## Agent playbook
@@ -93,12 +101,15 @@ When asked to publish a release to the stores:
 2. **Check secrets** exist: `gh secret list --repo alphabt/mortality`. If a
    store's secrets are missing, walk the user through the setup table above —
    do not attempt to fabricate credentials.
-3. **Verify the version** in `src/manifest.json` is newer than what's live
-   (all three stores reject re-uploads of an existing version).
-4. **Trigger** the workflow: `gh workflow run publish-stores.yml -f stores=all
--f ref=<tag>` (or instruct the user to push the tag).
-5. **Watch**: `gh run watch $(gh run list --workflow=publish-stores.yml -L1 \
---json databaseId -q '.[0].databaseId')` and report per-store results.
+3. **Verify the version** in `src/manifest.json` and `package.json` match and are
+   newer than what's live (all three stores reject re-uploads of an existing
+   version; the `release` job also fails if the tag and both files disagree).
+4. **Trigger** publishing. For a fresh release, have the user push the `v*` tag
+   (the `release` workflow packs, releases, and publishes). To re-publish or ship
+   a subset: `gh workflow run publish-stores.yml -f stores=all -f tag=<tag>`.
+5. **Watch**: `gh run watch $(gh run list --workflow=release.yml -L1 \
+--json databaseId -q '.[0].databaseId')` (use `publish-stores.yml` for a
+   manual run) and report per-store results.
 6. **Report** that each store has been _submitted for review_ and note that
    going live depends on each store's approval.
 
@@ -107,7 +118,7 @@ When asked to publish a release to the stores:
 - **A store was skipped** — its secrets aren't set. Add them, or name the store
   explicitly to force a hard failure that shows which are missing.
 - **`version` already exists / not increased** — bump `version` in
-  `src/manifest.json` and re-tag.
+  `src/manifest.json` **and** `package.json` (they must match) and re-tag.
 - **Chrome publish rejected** — publish once manually in the dashboard to
   confirm visibility, then retry.
 - **Firefox "add-on not found" / creates a new listing** — set

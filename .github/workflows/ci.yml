@@ -1,0 +1,51 @@
+name: "ci"
+
+# The quality gate. Runs on every pull request, and is reused (workflow_call) by
+# pre-release.yml and release.yml so nothing is packaged, released, or published
+# without a green format + test + pack run on the exact ref being shipped.
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    name: "Prettier"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+
+  test:
+    name: "Vitest"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  pack:
+    name: "Pack"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: bash scripts/pack.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mortality-zip
+          path: artifacts/mortality-*.zip
+          if-no-files-found: error
+          retention-days: 7

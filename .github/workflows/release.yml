@@ -1,0 +1,63 @@
+name: "release"
+
+# The automatic release pipeline. Pushing a v* tag runs the full quality gate,
+# packages the extension exactly once, publishes a GitHub Release, then ships that
+# same asset to the Chrome, Edge, and Firefox stores.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  release:
+    name: "GitHub Release"
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Guard tag matches manifest and package.json versions
+        run: |
+          manifest_ver=$(grep -m1 '"version"' src/manifest.json \
+            | sed -E 's/.*"version"[[:space:]]*:[[:space:]]*"([^"]+)".*/\1/')
+          pkg_ver=$(grep -m1 '"version"' package.json \
+            | sed -E 's/.*"version"[[:space:]]*:[[:space:]]*"([^"]+)".*/\1/')
+          echo "tag=$GITHUB_REF_NAME manifest=$manifest_ver package.json=$pkg_ver"
+          if [ "$GITHUB_REF_NAME" != "v$manifest_ver" ] || [ "$manifest_ver" != "$pkg_ver" ]; then
+            echo "::error::Version mismatch — tag '$GITHUB_REF_NAME' must equal 'v$manifest_ver' (src/manifest.json) and package.json must match ($pkg_ver). Bump all three in lockstep before tagging."
+            exit 1
+          fi
+
+      - name: Download packaged extension
+        uses: actions/download-artifact@v4
+        with:
+          name: mortality-zip
+          path: artifacts
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" artifacts/mortality-*.zip \
+            --title "$GITHUB_REF_NAME" --generate-notes
+
+  publish:
+    name: "Stores"
+    needs: release
+    uses: ./.github/workflows/publish.yml
+    with:
+      stores: "all"
+      tag: ${{ github.ref_name }}
+    secrets: inherit
