@@ -130,6 +130,7 @@ describe("save / load with the localStorage fallback", () => {
     await expect(load()).resolves.toEqual({
       version: 1,
       birth: null,
+      birthZone: null,
       theme: null,
       expectancy: 80,
       mode: "years",
@@ -140,6 +141,7 @@ describe("save / load with the localStorage fallback", () => {
     const state = {
       version: 1,
       birth: "2000-01-01T06:30",
+      birthZone: "America/New_York",
       theme: { bg: "#111111", label: "#aaa", count: "#fff", accent: "#f00" },
       expectancy: 70,
       mode: "days",
@@ -149,13 +151,32 @@ describe("save / load with the localStorage fallback", () => {
   });
 
   it("merges stored partial state over the defaults", async () => {
-    await save({ birth: "1990-05-15T00:00" });
+    await save({ birth: "1990-05-15T00:00", birthZone: "Asia/Tokyo" });
     await expect(load()).resolves.toEqual({
       version: 1,
       birth: "1990-05-15T00:00",
+      birthZone: "Asia/Tokyo",
       theme: null,
       expectancy: 80,
       mode: "years",
+    });
+  });
+
+  it("backfills birthZone with the detected zone for pre-zone records", async () => {
+    const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    await save({ birth: "1990-05-15T00:00" });
+    const result = await load();
+    expect(result.birthZone).toBe(detected);
+    // The backfill is persisted, so it stays stable on subsequent loads.
+    await expect(load()).resolves.toMatchObject({ birthZone: detected });
+  });
+
+  it("leaves birthZone null when there is no birth to anchor", async () => {
+    await save({ expectancy: 66 });
+    await expect(load()).resolves.toMatchObject({
+      birth: null,
+      birthZone: null,
+      expectancy: 66,
     });
   });
 
@@ -175,6 +196,7 @@ describe("save / load with the localStorage fallback", () => {
     await expect(load()).resolves.toEqual({
       version: 1,
       birth: null,
+      birthZone: null,
       theme: null,
       expectancy: 80,
       mode: "years",
@@ -195,6 +217,7 @@ describe("save / load with the localStorage fallback", () => {
     await expect(load()).resolves.toEqual({
       version: 1,
       birth: null,
+      birthZone: null,
       theme: null,
       expectancy: 80,
       mode: "years",
@@ -232,7 +255,11 @@ describe("save / load against extension storage", () => {
 
   it("load reads existing state from extension storage", async () => {
     storageMock.get.mockResolvedValue({
-      mortality: { birth: "1999-09-09T00:00", expectancy: 95 },
+      mortality: {
+        birth: "1999-09-09T00:00",
+        birthZone: "Europe/London",
+        expectancy: 95,
+      },
     });
     const store = await importFreshStore();
     const result = await store.load();
@@ -240,6 +267,7 @@ describe("save / load against extension storage", () => {
     expect(result).toEqual({
       version: 1,
       birth: "1999-09-09T00:00",
+      birthZone: "Europe/London",
       theme: null,
       expectancy: 95,
       mode: "years",
@@ -275,6 +303,7 @@ describe("save / load against extension storage", () => {
     await expect(store.load()).resolves.toEqual({
       version: 1,
       birth: null,
+      birthZone: null,
       theme: null,
       expectancy: 80,
       mode: "years",

@@ -10,6 +10,7 @@ import {
   PRESETS,
 } from "./store.js";
 import { renderSetup, renderCounter, renderSettings } from "./views.js";
+import { birthInstantMs, detectZone, parseBirthParts } from "./time.js";
 import { el } from "./dom.js";
 
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
@@ -51,16 +52,20 @@ export function clampExpectancy(value) {
 }
 
 export function formatBorn(birth) {
-  const date = new Date(birth);
-  if (Number.isNaN(date.getTime())) return "";
+  const parts = parseBirthParts(birth);
+  if (!parts) return "";
   try {
+    // Format the wall-clock date exactly as entered by pinning it to UTC, so the
+    // "Born …" line never slips a day when the viewer's zone differs from the
+    // birth zone.
     return (
       "Born " +
       new Intl.DateTimeFormat(undefined, {
         day: "numeric",
         month: "long",
         year: "numeric",
-      }).format(date)
+        timeZone: "UTC",
+      }).format(Date.UTC(parts.year, parts.month - 1, parts.day))
     );
   } catch {
     return "";
@@ -70,11 +75,12 @@ export function formatBorn(birth) {
 function showSetup() {
   stopTimer();
   setScreen("setup");
-  renderSetup(app, { start }, state.birth);
+  renderSetup(app, { start }, state.birth, state.birthZone);
 }
 
-function start(birth) {
+function start(birth, zone) {
   state.birth = birth;
+  state.birthZone = zone || detectZone();
   save(state);
   showCounter();
 }
@@ -83,7 +89,9 @@ function showCounter() {
   stopTimer();
   setScreen("counter");
 
-  const bornMs = new Date(state.birth).getTime();
+  // Anchor the birth instant to the zone the user was born in (falling back to
+  // the device zone), so age is a fixed point that never shifts when they move.
+  const bornMs = birthInstantMs(state.birth, state.birthZone || detectZone());
   const expectancy = clampExpectancy(state.expectancy);
   let mode = MODES.includes(state.mode) ? state.mode : "years";
 

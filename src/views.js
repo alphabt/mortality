@@ -2,6 +2,7 @@
 // callbacks provided by the controller (tab.js).
 
 import { THEME_KEYS, cssDefault, PRESETS } from "./store.js";
+import { listTimeZones, detectZone } from "./time.js";
 import { el } from "./dom.js";
 
 const COLOR_LABELS = {
@@ -17,8 +18,8 @@ function splitBirth(value) {
   return [date, time.slice(0, 5)];
 }
 
-/** Birthday entry screen. `current` pre-fills the fields when editing. */
-export function renderSetup(app, { start }, current) {
+/** Birthday entry screen. `current`/`savedZone` pre-fill the fields when editing. */
+export function renderSetup(app, { start }, current, savedZone) {
   const dateEl = el("input", {
     type: "date",
     id: "birth-date",
@@ -31,10 +32,34 @@ export function renderSetup(app, { start }, current) {
     id: "birth-time",
     "aria-label": "Time of birth (optional)",
   });
+  const detected = detectZone();
+  const selectedZone = savedZone || detected;
+  const zoneEl = el(
+    "select",
+    { id: "birth-zone" },
+    listTimeZones(selectedZone, detected).map((zone) =>
+      el("option", { value: zone }, zone),
+    ),
+  );
+  zoneEl.value = selectedZone;
   const startBtn = el("button", { id: "start" }, "Start");
   const form = el("form", {}, [
     el("h1", { class: "screen-title" }, "When were you born?"),
-    el("footer", {}, [dateEl, timeEl, startBtn]),
+    el("div", { class: "setup-row" }, [dateEl, timeEl]),
+    el("div", { class: "setup-field" }, [
+      el(
+        "label",
+        { class: "setup-label", for: "birth-zone" },
+        "Where were you born?",
+      ),
+      zoneEl,
+      el(
+        "p",
+        { class: "hint" },
+        "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+      ),
+    ]),
+    el("footer", {}, [startBtn]),
   ]);
   app.replaceChildren(form);
 
@@ -48,13 +73,13 @@ export function renderSetup(app, { start }, current) {
       dateEl.reportValidity();
       return;
     }
-    start(`${dateEl.value}T${timeEl.value || "00:00"}`);
+    start(`${dateEl.value}T${timeEl.value || "00:00"}`, zoneEl.value);
   }
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     submitBirth();
   });
-  [dateEl, timeEl].forEach((input) =>
+  [dateEl, timeEl, zoneEl].forEach((input) =>
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();

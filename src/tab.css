@@ -253,7 +253,7 @@ button:active {
   filter: brightness(0.92);
 }
 
-:where(button, input):focus-visible {
+:where(button, input, select):focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
@@ -263,6 +263,52 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+/* Setup: the birthplace time-zone picker sits under the date/time row so the
+   birth instant is anchored to where you were born, not where you are now. */
+.setup-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.setup-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 22rem;
+  margin: 1rem auto 0;
+  text-align: left;
+}
+
+.setup-label {
+  color: var(--label);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.setup-field select {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.hint {
+  margin: 0;
+  color: var(--label);
+  font-size: 0.8rem;
+  line-height: 1.45;
 }
 
 /* Settings */
