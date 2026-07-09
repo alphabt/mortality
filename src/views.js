@@ -1,7 +1,7 @@
 // Pure render functions for each screen. They write markup and wire events
 // to the callbacks provided by the controller (tab.js).
 
-import { THEME_KEYS, cssDefault } from "./store.js";
+import { THEME_KEYS, cssDefault, PRESETS } from "./store.js";
 
 const COLOR_LABELS = {
   bg: "Background",
@@ -57,23 +57,41 @@ export function renderSetup(app, { start }, current) {
   dateEl.focus();
 }
 
-/** Live age counter. Returns the two elements the ticker updates. */
-export function renderCounter(app, { openSettings }) {
+/** Live age counter. Returns the elements the ticker updates. */
+export function renderCounter(app, { openSettings, onCycle }, { born }) {
   app.innerHTML = `
     <button class="gear" id="gear" title="Settings" aria-label="Settings">&#9881;</button>
     <div class="counter">
-      <h1 class="age-label">Age</h1>
-      <p class="count"><span id="year">0</span><span class="fraction" aria-hidden="true">.<span id="ms">0</span></span></p>
+      <h1 class="age-label" id="unit-label">Age</h1>
+      <p class="count" id="count" role="button" tabindex="0"
+         aria-label="Change units" title="Click to change units"></p>
+      <div class="meta">
+        <div class="progress" aria-hidden="true"><span class="progress-fill" id="progress-fill"></span></div>
+        <div class="meta-row">
+          <span class="born">${born}</span>
+          <span class="pct" id="pct"></span>
+        </div>
+      </div>
     </div>`;
   app.querySelector("#gear").addEventListener("click", openSettings);
+  const count = app.querySelector("#count");
+  count.addEventListener("click", onCycle);
+  count.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onCycle();
+    }
+  });
   return {
-    year: app.querySelector("#year"),
-    ms: app.querySelector("#ms"),
+    label: app.querySelector("#unit-label"),
+    count,
+    progressFill: app.querySelector("#progress-fill"),
+    pct: app.querySelector("#pct"),
   };
 }
 
-/** Settings screen: colour pickers + birthday reset. */
-export function renderSettings(app, actions, theme) {
+/** Settings screen: presets + colour pickers + life expectancy + resets. */
+export function renderSettings(app, actions, { theme, expectancy }) {
   const rows = THEME_KEYS.map(
     (key) => `
       <div class="row">
@@ -84,10 +102,28 @@ export function renderSettings(app, actions, theme) {
       </div>`,
   ).join("");
 
+  const swatches = Object.entries(PRESETS)
+    .map(
+      ([name, preset]) => `
+      <button type="button" class="preset" data-preset="${name}"
+              title="${name}" aria-label="${name} theme" style="background:${preset.bg}">
+        <i style="background:${preset.count}"></i><i style="background:${preset.accent}"></i>
+      </button>`,
+    )
+    .join("");
+
   app.innerHTML = `
     <div class="settings">
       <h1 class="screen-title">Settings</h1>
+      <p class="settings-label">Presets</p>
+      <div class="presets">${swatches}</div>
+      <p class="settings-label">Colors</p>
       ${rows}
+      <p class="settings-label">Memento mori</p>
+      <div class="row">
+        <label for="expectancy">Life expectancy (years)</label>
+        <input type="number" id="expectancy" min="1" max="150" step="1" value="${expectancy}" />
+      </div>
       <div class="actions">
         <button id="reset-birthday" class="btn-secondary">Change birthday</button>
         <button id="reset-colors" class="btn-secondary">Reset colors</button>
@@ -104,6 +140,16 @@ export function renderSettings(app, actions, theme) {
         actions.setColor(key, event.target.value),
       );
   });
+  app.querySelectorAll(".preset").forEach((btn) => {
+    btn.addEventListener("click", () =>
+      actions.applyPreset(btn.dataset.preset),
+    );
+  });
+  app
+    .querySelector("#expectancy")
+    .addEventListener("input", (event) =>
+      actions.setExpectancy(event.target.value),
+    );
   app
     .querySelector("#reset-birthday")
     .addEventListener("click", actions.resetBirthday);

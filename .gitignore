@@ -28,3 +28,6 @@ pnpm-debug.log*
 *.pub
 *.zip
 /artifacts
+
+# impeccable design-skill local cache
+.impeccable/

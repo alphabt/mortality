@@ -45,15 +45,57 @@ body {
   font-family: "Avenir", "helvetica neue", helvetica, arial, sans-serif;
 }
 
+/* Time-of-day ambient light: a soft radial glow whose colour, intensity and
+   position drift with the real hour. Rendered on a <canvas> (see updateAmbient)
+   with the pixels dithered, so it stays ring-free in every engine. */
+#ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
 #app {
+  position: relative;
+  z-index: 1;
   text-align: center;
   max-width: 100%;
   padding: 1.5rem;
 }
 
+/* Counter screen: break dead-centre for an editorial lower-left composition.
+   Setup and settings keep the default centred layout. */
+body.screen-counter {
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+body.screen-counter #app {
+  width: 100%;
+  text-align: left;
+  padding: clamp(1.5rem, 6vw, 5rem) clamp(1.5rem, 8vw, 7rem)
+    clamp(2.5rem, 13vh, 8rem);
+}
+
 .counter {
   display: inline-block;
   text-align: left;
+  animation: rise 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .age-label {
@@ -94,11 +136,82 @@ body {
   font-size: clamp(2.75rem, 13vw, 6rem);
   line-height: 1;
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.5rem;
+  transition: opacity 0.15s ease;
+}
+
+.count:hover {
+  opacity: 0.9;
+}
+
+.count:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 8px;
+}
+
+.count .sep {
+  color: var(--accent);
 }
 
 .count .fraction {
+  font-family:
+    ui-monospace, "SF Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
   font-size: 0.4em;
-  vertical-align: 0.9em;
+  font-weight: 500;
+  vertical-align: 0.82em;
+  letter-spacing: 0.01em;
+  color: color-mix(in srgb, var(--count) 68%, var(--bg));
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0 60%,
+    rgba(0, 0, 0, 0.28) 100%
+  );
+  mask-image: linear-gradient(90deg, #000 0 60%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+/* Life-elapsed meter + editorial anchor line under the number. */
+.meta {
+  margin-top: 1.15rem;
+}
+
+.progress {
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--label) 28%, transparent);
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: var(--accent);
+  border-radius: inherit;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 0.55rem;
+  color: var(--label);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.meta-row .pct {
+  text-align: right;
+  white-space: nowrap;
 }
 
 label {
@@ -213,6 +326,58 @@ footer {
   border-radius: 0.25rem;
   background: none;
   cursor: pointer;
+}
+
+.row input[type="number"] {
+  width: 5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  text-align: right;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.settings-label {
+  margin: 0.4rem 0 0;
+  color: var(--label);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.preset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.22rem;
+  width: 3.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
+}
+
+.preset:hover {
+  transform: translateY(-1px);
+}
+
+.preset i {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
 }
 
 .actions {
