@@ -1,33 +1,14 @@
 <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
   <!--
     Mortality — extension icon (editable master).
-    A life-elapsed gauge on the "void": a faint full-life track, an accent arc
-    for the years lived, closing on the counter's signature luminous decimal
-    dot (the "now"). Colors derive from the redesign's --accent (#007ea6),
-    brightened to read on near-black. Rasterize to the sizes in src/icons/ and
-    images/ (16/32/48/128 for the manifest, 64/300 for listings).
+    A bold, transparent life ring: the deep-teal stroke is a full lifespan
+    (dark enough to hold on light chrome), the brighter arc is the years
+    lived, and the brightest dot is the "now" — the counter's signature
+    accent point. Rasterize to the sizes in src/icons/ (16/32/48/128 for the
+    manifest) and images/ (64/300 for listings). No background box.
+    Colors derive from the redesign's --accent (#007ea6).
   -->
-  <defs>
-    <radialGradient id="ambient" cx="65%" cy="77.3%" r="62%">
-      <stop offset="0%" stop-color="#63c6ec" stop-opacity="0.26" />
-      <stop offset="55%" stop-color="#63c6ec" stop-opacity="0.05" />
-      <stop offset="100%" stop-color="#63c6ec" stop-opacity="0" />
-    </radialGradient>
-    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="3.84" />
-    </filter>
-  </defs>
-
-  <rect width="128" height="128" rx="28.8" fill="#0e1116" />
-  <rect width="128" height="128" rx="28.8" fill="url(#ambient)" />
-
-  <!-- full lifespan -->
-  <circle cx="64" cy="64" r="39.94" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="9.22" />
-
-  <!-- the "now", glowing -->
-  <circle cx="83.24" cy="99" r="22.3" fill="#63c6ec" opacity="0.24" filter="url(#soft)" />
-
-  <!-- years lived -->
-  <path d="M 64 24.06 A 39.94 39.94 0 0 1 83.24 99" fill="none" stroke="#2f9fce" stroke-width="9.22" stroke-linecap="round" />
-  <circle cx="83.24" cy="99" r="10.62" fill="#63c6ec" />
+  <circle cx="64" cy="64" r="44.8" fill="none" stroke="#0b83ab" stroke-width="17.28" />
+  <path d="M 64 19.2 A 44.8 44.8 0 0 1 85.58 103.26" fill="none" stroke="#39afdd" stroke-width="17.28" />
+  <circle cx="85.58" cy="103.26" r="15.36" fill="#5cc2ea" />
 </svg>
