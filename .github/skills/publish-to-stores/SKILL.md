@@ -112,5 +112,9 @@ When asked to publish a release to the stores:
   confirm visibility, then retry.
 - **Firefox "add-on not found" / creates a new listing** — set
   `FIREFOX_ADDON_ID` to the existing add-on's id so the update targets it.
+- **Firefox run hangs / times out "waiting for approval"** — listed versions
+  need Mozilla's human review (days), so the workflow passes
+  `--approval-timeout=0`: `web-ext sign` returns as soon as the version is
+  submitted. The signed XPI appears on the add-on's Versions page once approved.
 - **Dry run** — locally, `bash scripts/publish.sh <store> --zip <file>
 --dry-run` authenticates and uploads without the final publish.
