@@ -8,7 +8,7 @@ const KEY = "mortality";
 export const THEME_KEYS = ["bg", "label", "count", "accent"];
 
 // Counter display units, cycled by clicking the number.
-export const MODES = ["years", "days", "weeks", "weeksLeft"];
+export const MODES = ["years", "calendar", "days", "weeks", "weeksLeft"];
 
 // Curated full-theme presets. Every set is contrast-checked (count & label ≥4.5:1
 // on bg, accent ≥3:1). Applying one writes all four THEME_KEYS at once.
