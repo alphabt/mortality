@@ -1,4 +1,6 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   THEME_KEYS,
   MODES,
@@ -67,6 +69,42 @@ describe("PRESETS accessibility invariants", () => {
       expect(contrast(preset.accent, preset.bg)).toBeGreaterThanOrEqual(3);
     });
   }
+});
+
+describe("Light and Dark presets mirror the stylesheet defaults", () => {
+  // These two presets duplicate the tab.css defaults so the shipped light and
+  // dark looks are selectable. This fails if either drifts out of sync.
+  const css = readFileSync(resolve(process.cwd(), "src/tab.css"), "utf8");
+
+  function parseVars(body) {
+    const vars = {};
+    for (const m of body.matchAll(/--([\w-]+):\s*([^;]+);/g)) {
+      vars[m[1]] = m[2].trim().toLowerCase();
+    }
+    return vars;
+  }
+
+  const rootVars = parseVars(css.match(/:root\s*\{([^}]*)\}/)[1]);
+  const darkVars = parseVars(
+    css.match(
+      /@media \(prefers-color-scheme: dark\)\s*\{\s*:root\s*\{([^}]*)\}/,
+    )[1],
+  );
+
+  it("Light matches the base :root theme keys", () => {
+    for (const key of THEME_KEYS) {
+      expect(PRESETS.Light[key].toLowerCase()).toBe(rootVars[key]);
+    }
+  });
+
+  it("Dark matches the prefers-color-scheme: dark theme keys", () => {
+    for (const key of THEME_KEYS) {
+      // Dark inherits any key it doesn't override from :root (e.g. accent).
+      expect(PRESETS.Dark[key].toLowerCase()).toBe(
+        darkVars[key] ?? rootVars[key],
+      );
+    }
+  });
 });
 
 describe("bestOnColor", () => {

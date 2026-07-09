@@ -105,7 +105,7 @@ the number to carry the weight.
 The surface is deliberately empty. An editorial lower-left composition leaves most of the
 new tab as open space, and depth comes not from shadows or cards but from a single
 time-of-day ambient glow that drifts across the background with the real hour — the light
-in the room, not a UI chrome. Personalization (four-color themes, five curated presets,
+in the room, not a UI chrome. Personalization (four-color themes, seven curated presets,
 adjustable life expectancy) lets the instrument be re-cased without changing what it is.
 
 This system explicitly rejects the loud grammar of productivity software. No gamified
@@ -119,7 +119,7 @@ through restraint and arithmetic, never through props.
 - Editorial stillness — lower-left composition, generous negative space, no cards.
 - Ambient depth, not shadows — a single time-of-day glow is the only atmosphere.
 - Precision typography — tabular figures, a monospace fraction, a single accent point.
-- Calm, contrast-checked color that recolors cleanly across light, dark, and five presets.
+- Calm, contrast-checked color that recolors cleanly across light, dark, and seven presets.
 
 ## 2. Colors
 
@@ -148,10 +148,13 @@ both light and dark and across every user preset.
 
 ### Presets (full alternate cases)
 
-Five contrast-checked themes ship in `store.js`, each setting bg / label / count / accent
-together: **Paper** (`#fafaf8` / oxblood `#b23a2e`), **Void** (`#0a0a0a` / sky `#5cc2ea`),
-**Terminal** (`#0a0f0a` / green `#4ee08a`), **Blueprint** (`#0e1b2a` / blue `#5a9be0`),
-**Amber** (`#1a1512` / amber `#e0a24e`).
+Seven contrast-checked themes ship in `store.js`, each setting bg / label / count / accent
+together. Five are full alternate cases: **Paper** (`#fafaf8` / oxblood `#b23a2e`),
+**Void** (`#0a0a0a` / sky `#5cc2ea`), **Terminal** (`#0a0f0a` / green `#4ee08a`),
+**Blueprint** (`#0e1b2a` / blue `#5a9be0`), **Amber** (`#1a1512` / amber `#e0a24e`). Two
+more — **Light** (`#ffffff` / `#007ea6`) and **Dark** (`#222222` / `#007ea6`) — mirror the
+stylesheet defaults so the shipped light and dark looks are selectable presets, giving
+people a one-tap way back to the baseline.
 
 ### Named Rules
 
