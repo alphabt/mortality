@@ -14,26 +14,28 @@ A Chrome extension that shows a live counter of your age to motivate you to live
 
 <a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="./images/edge_logo.svg" width="50px"/> Add to Edge</a>
 
-## Project setup
-```
-yarn install --frozen-lockfile
-```
+## Development
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+This extension has **no build step and no dependencies** — the files in
+[`src/`](src/) _are_ the extension.
 
-### Compiles and minifies for production
-```
-yarn build
-```
-Built package will be created under `artifacts` folder.
+### Run it locally
 
-### Lints and fixes files
+Load the `src/` folder as an unpacked extension:
+
+- **Chrome / Edge:** open `chrome://extensions`, enable _Developer mode_, click
+  _Load unpacked_, and select the `src/` folder.
+- **Firefox:** open `about:debugging` → _This Firefox_ → _Load Temporary Add-on_
+  and pick `src/manifest.json`.
+
+Edit a file, then reload the extension to see the change.
+
+### Package for the stores
 ```
-yarn lint
+npm run zip
 ```
+Produces `artifacts/mortality-v<version>.zip`, with the version read from
+`src/manifest.json`.
 
 ## Credits
 

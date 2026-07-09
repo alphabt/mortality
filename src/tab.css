@@ -1,0 +1,169 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --label: #b0b5b9;
+  --count: #494949;
+  --accent: #00bbee;
+  --border: #cccccc;
+  --input-bg: #ffffff;
+  --input-text: #494949;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #222222;
+    --label: #494949;
+    --count: #b0b5b9;
+    --border: #444444;
+    --input-bg: #2b2b2b;
+    --input-text: #b0b5b9;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Avenir", "helvetica neue", helvetica, arial, sans-serif;
+}
+
+#app {
+  text-align: center;
+}
+
+.age-label {
+  color: var(--label);
+  font-size: 1.2rem;
+  line-height: 1;
+  margin: 0 0 0 2px;
+}
+
+.count {
+  color: var(--count);
+  margin: 0;
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.count sup {
+  font-size: 2.4rem;
+}
+
+label {
+  display: block;
+}
+
+input,
+button {
+  padding: 0.375rem 0.75rem;
+  font-size: 1.5rem;
+  appearance: none;
+}
+
+input[type="date"],
+input[type="time"] {
+  margin-right: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+button {
+  outline: none;
+  display: block;
+  cursor: pointer;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: var(--accent);
+}
+
+footer {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* Settings */
+.gear {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--label);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 260px;
+  text-align: left;
+}
+
+.settings h1 {
+  text-align: center;
+  margin: 0 0 0.5rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.row label {
+  color: var(--label);
+  font-size: 1rem;
+}
+
+.row input[type="color"] {
+  width: 2.5rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background: none;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.actions button {
+  font-size: 1rem;
+}
+
+.btn-secondary {
+  color: var(--label);
+  background: transparent;
+  border: 1px solid var(--border);
+}
