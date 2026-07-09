@@ -23,11 +23,8 @@ const LABELS = {
 };
 
 const app = document.getElementById("app");
-let state = load();
+let state;
 let timer = null;
-
-applyTheme(state.theme);
-setupAmbient();
 
 function stopTimer() {
   if (timer) {
@@ -337,5 +334,12 @@ function updateAmbient() {
   cv.style.opacity = "1";
 }
 
-if (state.birth) showCounter();
-else showSetup();
+async function init() {
+  state = await load();
+  applyTheme(state.theme);
+  setupAmbient();
+  if (state.birth) showCounter();
+  else showSetup();
+}
+
+init();
