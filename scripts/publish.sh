@@ -209,7 +209,9 @@ PY
   fi
 
   log "Firefox: uploading & submitting to the listed channel"
-  npx --yes web-ext@8 sign --channel=listed "${args[@]}"
+  # --approval-timeout=0: return as soon as the version is submitted instead of
+  # blocking until Mozilla's human review approves it (which takes days).
+  npx --yes web-ext@8 sign --channel=listed --approval-timeout=0 "${args[@]}"
   rm -rf "$src"
   ok "Firefox: submitted $VERSION (review pending)"
 }
