@@ -10,6 +10,7 @@ import {
   PRESETS,
 } from "./store.js";
 import { renderSetup, renderCounter, renderSettings } from "./views.js";
+import { el } from "./dom.js";
 
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
 const DAY_MS = 86400000;
@@ -100,12 +101,18 @@ function showCounter() {
 
   function layout() {
     els.label.textContent = LABELS[mode];
-    els.count.innerHTML =
-      mode === "years"
-        ? '<span class="int">0</span><span class="sep">.</span><span class="fraction" aria-hidden="true">0</span>'
-        : '<span class="int">0</span>';
-    intEl = els.count.querySelector(".int");
-    fracEl = els.count.querySelector(".fraction");
+    intEl = el("span", { class: "int" }, "0");
+    if (mode === "years") {
+      fracEl = el("span", { class: "fraction", "aria-hidden": "true" }, "0");
+      els.count.replaceChildren(
+        intEl,
+        el("span", { class: "sep" }, "."),
+        fracEl,
+      );
+    } else {
+      fracEl = null;
+      els.count.replaceChildren(intEl);
+    }
     lastInt = null;
   }
 
