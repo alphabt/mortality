@@ -1,0 +1,6 @@
+# Code owners for alphabt/mortality
+#
+# Every pull request that changes a matched path requires an approving review
+# from a listed owner. "*" matches everything, so all changes need @alphabt's
+# review once "Require review from Code Owners" is enabled in branch protection.
+* @alphabt
