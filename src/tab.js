@@ -28,6 +28,8 @@ const LABELS = {
   calendar: "Calendar age",
   days: "Days lived",
   weeks: "Weeks lived",
+  yearsLeft: "Years left",
+  daysLeft: "Days left",
   weeksLeft: "Weeks left",
 };
 
@@ -126,7 +128,7 @@ function showCounter() {
       els.count.replaceChildren();
     } else {
       intEl = el("span", { class: "int" }, "0");
-      if (mode === "years") {
+      if (mode === "years" || mode === "yearsLeft") {
         fracEl = el("span", { class: "fraction", "aria-hidden": "true" }, "0");
         els.count.replaceChildren(
           intEl,
@@ -180,8 +182,9 @@ function showCounter() {
     const elapsed = now - bornMs;
     const years = elapsed / YEAR_MS;
 
-    if (mode === "years") {
-      const [whole, fraction] = years.toFixed(9).split(".");
+    if (mode === "years" || mode === "yearsLeft") {
+      const shown = mode === "years" ? years : Math.max(0, expectancy - years);
+      const [whole, fraction] = shown.toFixed(9).split(".");
       if (whole !== lastInt) {
         intEl.textContent = whole;
         lastInt = whole;
@@ -209,6 +212,11 @@ function showCounter() {
       let value;
       if (mode === "days") value = Math.floor(elapsed / DAY_MS);
       else if (mode === "weeks") value = Math.floor(elapsed / WEEK_MS);
+      else if (mode === "daysLeft")
+        value = Math.max(
+          0,
+          Math.round((expectancy * YEAR_MS - elapsed) / DAY_MS),
+        );
       else
         value = Math.max(
           0,

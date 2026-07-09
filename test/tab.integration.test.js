@@ -161,6 +161,61 @@ describe("counter interactions", () => {
     expect(document.querySelector("#count .int").textContent).toBe(expected);
   });
 
+  it("renders the years-left countdown as a live fraction", async () => {
+    seed({ birth: "2000-01-01T00:00", mode: "yearsLeft", expectancy: 80 });
+    await boot();
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Years left",
+    );
+
+    const whole = document.querySelector("#count .int").textContent;
+    const fraction = document.querySelector("#count .fraction").textContent;
+    const value = Number(`${whole}.${fraction}`);
+
+    // Counts down toward zero: never negative, never past the full expectancy,
+    // and strictly below it because the birth is in the past.
+    expect(value).toBeGreaterThanOrEqual(0);
+    expect(value).toBeLessThanOrEqual(80);
+    expect(value).toBeLessThan(80);
+
+    // Mirrors the implementation exactly: (expectancy - lived years) to 9 dp.
+    const bornMs = new Date("2000-01-01T00:00").getTime();
+    const [expWhole, expFraction] = Math.max(
+      0,
+      80 - (Date.now() - bornMs) / YEAR_MS,
+    )
+      .toFixed(9)
+      .split(".");
+    expect(whole).toBe(expWhole);
+    expect(fraction).toBe(expFraction);
+
+    // Advancing the clock shrinks the remaining time.
+    vi.setSystemTime(new Date("2020-01-02T00:00:00"));
+    await vi.advanceTimersByTimeAsync(150);
+    const later = Number(
+      `${document.querySelector("#count .int").textContent}.${
+        document.querySelector("#count .fraction").textContent
+      }`,
+    );
+    expect(later).toBeLessThan(value);
+  });
+
+  it("renders the days-left countdown from life expectancy", async () => {
+    seed({ birth: "2000-01-01T00:00", mode: "daysLeft", expectancy: 80 });
+    await boot();
+    expect(document.querySelector("#unit-label").textContent).toBe("Days left");
+
+    const bornMs = new Date("2000-01-01T00:00").getTime();
+    const elapsed = Date.now() - bornMs;
+    const expected = Math.max(0, Math.round((80 * YEAR_MS - elapsed) / DAY_MS));
+    expect(document.querySelector("#count .int").textContent).toBe(
+      expected.toLocaleString(),
+    );
+    // A normal past birth leaves a positive whole number of days remaining.
+    expect(expected).toBeGreaterThan(0);
+    expect(Number.isInteger(expected)).toBe(true);
+  });
+
   it("renders the calendar-age breakdown as number + unit spans", async () => {
     // System clock is 2020-01-01 and the birth is 2000-01-01 (same wall-clock
     // date twenty years apart), so the breakdown is exactly 20yr 0mo 0d.
