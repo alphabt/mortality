@@ -6,10 +6,8 @@ import { renderSetup, renderCounter, renderSettings } from "./views.js";
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
 
 const app = document.getElementById("app");
-let state = load();
+let state;
 let timer = null;
-
-applyTheme(state.theme);
 
 function stopTimer() {
   if (timer) {
@@ -76,5 +74,11 @@ function showSettings() {
   );
 }
 
-if (state.birth) showCounter();
-else showSetup();
+async function init() {
+  state = await load();
+  applyTheme(state.theme);
+  if (state.birth) showCounter();
+  else showSetup();
+}
+
+init();
