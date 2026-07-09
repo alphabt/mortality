@@ -98,6 +98,39 @@ describe("renderSetup", () => {
     renderSetup(app, { start: vi.fn() }, "1990-05-15T00:00", "Asia/Tokyo");
     expect(app.querySelector("#birth-zone").value).toBe("Asia/Tokyo");
   });
+
+  it("caps the birth date at today", () => {
+    renderSetup(app, { start: vi.fn() }, null);
+    expect(app.querySelector("#birth-date").getAttribute("max")).toMatch(
+      /^\d{4}-\d{2}-\d{2}$/,
+    );
+  });
+
+  it("rejects a future birth date and surfaces an error", () => {
+    const start = vi.fn();
+    renderSetup(app, { start }, null);
+    app.querySelector("#birth-date").value = "2999-01-01";
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(start).not.toHaveBeenCalled();
+    const error = app.querySelector("#birth-error");
+    expect(error.hidden).toBe(false);
+    expect(error.textContent.length).toBeGreaterThan(0);
+  });
+
+  it("clears the future-date error once the field is edited", () => {
+    renderSetup(app, { start: vi.fn() }, null);
+    const dateEl = app.querySelector("#birth-date");
+    dateEl.value = "2999-01-01";
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(app.querySelector("#birth-error").hidden).toBe(false);
+    dateEl.value = "1990-01-01";
+    dateEl.dispatchEvent(new Event("input", { bubbles: true }));
+    expect(app.querySelector("#birth-error").hidden).toBe(true);
+  });
 });
 
 describe("renderCounter", () => {
@@ -144,6 +177,18 @@ describe("renderCounter", () => {
     keydown(count, " ");
     keydown(count, "a");
     expect(onCycle).toHaveBeenCalledTimes(2);
+  });
+
+  it("renders an SVG gear icon and a decorative unit hint", () => {
+    renderCounter(
+      app,
+      { openSettings: vi.fn(), onCycle: vi.fn() },
+      { born: "" },
+    );
+    expect(app.querySelector("#gear svg")).not.toBeNull();
+    const hint = app.querySelector(".unit-hint");
+    expect(hint).not.toBeNull();
+    expect(hint.getAttribute("aria-hidden")).toBe("true");
   });
 });
 
@@ -229,5 +274,36 @@ describe("renderSettings", () => {
     expect(a.resetBirthday).toHaveBeenCalledOnce();
     expect(a.resetColors).toHaveBeenCalledOnce();
     expect(a.closeSettings).toHaveBeenCalledOnce();
+  });
+
+  it("marks the preset matching the current colors as active", () => {
+    renderSettings(app, actions(), { theme: PRESETS.Void, expectancy: 80 });
+    const active = app.querySelector(".preset.is-active");
+    expect(active).not.toBeNull();
+    expect(active.dataset.preset).toBe("Void");
+    expect(active.getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("warns when a guarded color fails contrast on the background", () => {
+    renderSettings(app, actions(), {
+      theme: {
+        bg: "#ffffff",
+        label: "#000000",
+        count: "#f2f2f2",
+        accent: "#000000",
+      },
+      expectancy: 80,
+    });
+    const note = app.querySelector("#warn-count");
+    expect(note).not.toBeNull();
+    expect(note.hidden).toBe(false);
+    expect(
+      app.querySelector("#color-count").getAttribute("aria-describedby"),
+    ).toBe("warn-count");
+  });
+
+  it("keeps contrast warnings hidden when colors pass", () => {
+    renderSettings(app, actions(), { theme: PRESETS.Void, expectancy: 80 });
+    expect(app.querySelector("#warn-count").hidden).toBe(true);
   });
 });

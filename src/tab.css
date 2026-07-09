@@ -153,6 +153,28 @@ body.screen-counter #app {
   outline-offset: 8px;
 }
 
+/* Discoverability hint for the click-to-cycle affordance: hidden until the
+   number is hovered or focused, so it never competes with the count itself. */
+.unit-hint {
+  margin: 0.4rem 0 0;
+  color: var(--label);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.count:hover ~ .unit-hint,
+.count:focus-visible ~ .unit-hint {
+  opacity: 1;
+}
+
+.unit-hint + .meta {
+  margin-top: 0.6rem;
+}
+
 .count .sep {
   color: var(--accent);
 }
@@ -332,6 +354,28 @@ footer {
   line-height: 1.45;
 }
 
+.screen-subtitle {
+  margin: -0.5rem 0 1.25rem;
+  color: var(--label);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.setup-hint {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.field-error {
+  margin: 0.5rem 0 0;
+  color: var(--count);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
 /* Settings */
 .gear {
   position: fixed;
@@ -358,6 +402,10 @@ footer {
 .gear:hover {
   color: var(--count);
   background-color: color-mix(in srgb, var(--label) 20%, transparent);
+}
+
+.gear svg {
+  display: block;
 }
 
 .settings {
@@ -441,10 +489,36 @@ footer {
   transform: translateY(-1px);
 }
 
+/* The active preset carries a persistent ring; keyboard focus overrides it
+   (equal specificity, later rule wins) so focus is never masked. */
+.preset.is-active {
+  outline: 2px solid var(--count);
+  outline-offset: 2px;
+}
+
+.preset:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
 .preset i {
   width: 0.6rem;
   height: 0.6rem;
   border-radius: 50%;
+}
+
+.settings-hint {
+  margin: -0.35rem 0 0;
+  color: var(--label);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.contrast-note {
+  margin: -0.35rem 0 0;
+  color: var(--count);
+  font-size: 0.78rem;
+  line-height: 1.4;
 }
 
 .actions {
