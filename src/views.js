@@ -61,8 +61,10 @@ export function renderSetup(app, { start }, current) {
 export function renderCounter(app, { openSettings }) {
   app.innerHTML = `
     <button class="gear" id="gear" title="Settings" aria-label="Settings">&#9881;</button>
-    <h1 class="age-label">Age</h1>
-    <p class="count"><span id="year">0</span><span class="fraction" aria-hidden="true">.<span id="ms">0</span></span></p>`;
+    <div class="counter">
+      <h1 class="age-label">Age</h1>
+      <p class="count"><span id="year">0</span><span class="fraction" aria-hidden="true">.<span id="ms">0</span></span></p>
+    </div>`;
   app.querySelector("#gear").addEventListener("click", openSettings);
   return {
     year: app.querySelector("#year"),

@@ -1,7 +1,7 @@
 :root {
   color-scheme: light dark;
   --bg: #ffffff;
-  --label: #6a6f74;
+  --label: #6f747a;
   --count: #494949;
   --accent: #007ea6;
   --border: #8b9096;
@@ -14,7 +14,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #222222;
-    --label: #9ea4ab;
+    --label: #898f97;
     --count: #b0b5b9;
     --border: #6b7176;
     --input-bg: #2b2b2b;
@@ -51,13 +51,18 @@ body {
   padding: 1.5rem;
 }
 
+.counter {
+  display: inline-block;
+  text-align: left;
+}
+
 .age-label {
   color: var(--label);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.18em;
   line-height: 1;
-  margin: 0 0 0.35rem 2px;
+  margin: 0 0 0.35rem;
   text-transform: uppercase;
 }
 
