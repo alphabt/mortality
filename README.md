@@ -16,8 +16,9 @@ A Chrome extension that shows a live counter of your age to motivate you to live
 
 ## Development
 
-This extension has **no build step and no dependencies** — the files in
-[`src/`](src/) _are_ the extension.
+The shipped extension has **no build step and no runtime dependencies** — the
+files in [`src/`](src/) _are_ the extension. Development tooling (formatting and
+tests) runs through npm and never ships; `npm run zip` only packages `src/`.
 
 ### Run it locally
 
@@ -29,6 +30,22 @@ Load the `src/` folder as an unpacked extension:
   and pick `src/manifest.json`.
 
 Edit a file, then reload the extension to see the change.
+
+### Tests
+
+The `src/` modules are covered by a [Vitest](https://vitest.dev/) suite that runs
+against a jsdom DOM (unit tests for storage/theming and the view renderers, plus
+integration tests that drive the full setup → counter → settings flow). Install
+the dev dependencies once with `npm install`, then:
+
+```
+npm test              # run the suite once
+npm run test:watch    # re-run on change
+npm run test:coverage # run with a coverage report
+```
+
+CI runs `npm test` on every push and pull request via the
+[`test`](.github/workflows/test.yml) workflow.
 
 ### Package for the stores
 

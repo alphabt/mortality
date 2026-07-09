@@ -1,4 +1,6 @@
 artifacts/
 images/
 src/icons/
+coverage/
+package-lock.json
 *.zip
