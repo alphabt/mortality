@@ -192,7 +192,7 @@ function luminance(hex) {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
-function contrast(a, b) {
+export function contrast(a, b) {
   const la = luminance(a),
     lb = luminance(b);
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
