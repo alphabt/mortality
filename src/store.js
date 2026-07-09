@@ -24,7 +24,22 @@ export const MODES = [
 
 // Curated full-theme presets. Every set is contrast-checked (count & label ≥4.5:1
 // on bg, accent ≥3:1). Applying one writes all four THEME_KEYS at once.
+// Light and Dark mirror the stylesheet defaults in tab.css (:root and the
+// prefers-color-scheme: dark block) so the shipped looks are selectable presets,
+// letting anyone return to them after trying another preset or custom colors.
 export const PRESETS = {
+  Light: {
+    bg: "#ffffff",
+    label: "#6f747a",
+    count: "#494949",
+    accent: "#007ea6",
+  },
+  Dark: {
+    bg: "#222222",
+    label: "#898f97",
+    count: "#b0b5b9",
+    accent: "#007ea6",
+  },
   Paper: {
     bg: "#fafaf8",
     label: "#5f6469",
