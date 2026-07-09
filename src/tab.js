@@ -263,7 +263,7 @@ function updateAmbient() {
     cv.id = "ambient";
     document.body.prepend(cv);
   }
-  const ctx = cv.getContext("2d");
+  const ctx = cv.getContext("2d", { willReadFrequently: true });
   if (!ctx) return;
 
   // Render at device resolution so the glow stays crisp on Retina.
