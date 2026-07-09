@@ -65,6 +65,81 @@ export function zoneOffsetMsAt(utcMs, timeZone) {
 }
 
 /**
+ * Wall-clock calendar parts of a UTC instant as seen in `timeZone`. Reads the
+ * components straight from the Intl database (DST and historical offsets
+ * included) so the values match what a clock on the wall in that zone shows.
+ * @param {number} utcMs Absolute time (ms since epoch).
+ * @param {string} timeZone IANA zone id, e.g. "Asia/Tokyo".
+ * @returns {{year:number,month:number,day:number,hour:number,minute:number,second:number}}
+ */
+export function zonedParts(utcMs, timeZone) {
+  const dtf = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    hourCycle: "h23",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  const p = Object.fromEntries(
+    dtf.formatToParts(new Date(utcMs)).map((x) => [x.type, x.value]),
+  );
+  return {
+    year: +p.year,
+    month: +p.month,
+    day: +p.day,
+    hour: +p.hour,
+    minute: +p.minute,
+    second: +p.second,
+  };
+}
+
+/** Number of days in a 1-based month, wrapping month 0 to the prior December. */
+function daysInMonth(year, month) {
+  return new Date(Date.UTC(year, month, 0)).getUTCDate();
+}
+
+/**
+ * True calendar age between two instants as whole years, months and days (e.g.
+ * `{y:36, m:3, d:24}`). BOTH instants are read in `timeZone` so the anniversary
+ * lines up with the birthplace and stays stable wherever the viewer sits.
+ *
+ * Borrow-based subtraction: when the day component is short of the birthday, we
+ * borrow the real length of the month preceding `nowMs`; when months go
+ * negative we borrow a year. The birth day is clamped into the (possibly
+ * shorter) borrowed month, so a birth on the 29th–31st can never push the day
+ * count negative when that month is short — e.g. born the 31st with February in
+ * between resolves to 1 day, not a negative.
+ * @param {number} birthInstantMs Absolute birth instant (ms since epoch).
+ * @param {number} nowMs Absolute current instant (ms since epoch).
+ * @param {string} timeZone IANA zone id the breakdown is evaluated in.
+ * @returns {{y:number,m:number,d:number}}
+ */
+export function calendarAge(birthInstantMs, nowMs, timeZone) {
+  const b = zonedParts(birthInstantMs, timeZone);
+  const n = zonedParts(nowMs, timeZone);
+
+  let y = n.year - b.year;
+  let m = n.month - b.month;
+  let d = n.day - b.day;
+
+  if (d < 0) {
+    m -= 1;
+    const prevMonthLen = daysInMonth(n.year, n.month - 1);
+    // Days elapsed since the birthday anniversary in that previous month, with
+    // the birth day clamped to the month's real length.
+    d = prevMonthLen - Math.min(b.day, prevMonthLen) + n.day;
+  }
+  if (m < 0) {
+    m += 12;
+    y -= 1;
+  }
+  return { y, m, d };
+}
+
+/**
  * Absolute UTC instant (ms) for a wall-clock date/time interpreted *in*
  * `timeZone`. Two-pass: guess with a naive UTC assembly, correct by the zone's
  * real offset, then re-check in case that correction crossed a DST boundary.

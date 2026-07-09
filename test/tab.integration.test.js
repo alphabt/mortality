@@ -95,8 +95,15 @@ describe("counter interactions", () => {
     seed({ birth: "2000-01-01T00:00", mode: "years" });
     await boot();
 
+    // years -> calendar (the new mode inserted after years).
     document.querySelector("#count").click();
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Calendar age",
+    );
+    expect(stored().mode).toBe("calendar");
 
+    // calendar -> days.
+    document.querySelector("#count").click();
     expect(document.querySelector("#unit-label").textContent).toBe(
       "Days lived",
     );
@@ -152,6 +159,28 @@ describe("counter interactions", () => {
       Math.round((80 * YEAR_MS - elapsed) / (7 * DAY_MS)),
     ).toLocaleString();
     expect(document.querySelector("#count .int").textContent).toBe(expected);
+  });
+
+  it("renders the calendar-age breakdown as number + unit spans", async () => {
+    // System clock is 2020-01-01 and the birth is 2000-01-01 (same wall-clock
+    // date twenty years apart), so the breakdown is exactly 20yr 0mo 0d.
+    seed({ birth: "2000-01-01T00:00", mode: "calendar" });
+    await boot();
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Calendar age",
+    );
+
+    const nums = [...document.querySelectorAll("#count .cal-num")].map(
+      (n) => n.textContent,
+    );
+    const units = [...document.querySelectorAll("#count .cal-unit")].map(
+      (n) => n.textContent,
+    );
+    expect(nums).toEqual(["20", "0", "0"]);
+    expect(units).toEqual(["yr", "mo", "d"]);
+    expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
+      "Calendar age 20 years 0 months 0 days. Activate to change units.",
+    );
   });
 });
 

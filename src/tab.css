@@ -173,6 +173,27 @@ body.screen-counter #app {
   mask-image: linear-gradient(90deg, #000 0 60%, rgba(0, 0, 0, 0.28) 100%);
 }
 
+/* Calendar-age breakdown: full-size figures with small superscript units
+   (36 yr 3 mo 24 d), matching the counter's precise, tabular aesthetic. */
+.count .cal-num {
+  color: var(--count);
+}
+
+.count .cal-unit {
+  font-size: 0.32em;
+  font-weight: 500;
+  vertical-align: 0.95em;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--label);
+  margin-left: 0.08em;
+  margin-right: 0.3em;
+}
+
+.count .cal-unit:last-child {
+  margin-right: 0;
+}
+
 /* Life-elapsed meter + editorial anchor line under the number. */
 .meta {
   margin-top: 1.15rem;

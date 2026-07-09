@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import {
   zoneOffsetMsAt,
   zonedWallClockToUtcMs,
+  zonedParts,
+  calendarAge,
   parseBirthParts,
   birthInstantMs,
   isValidZone,
@@ -23,6 +25,79 @@ describe("zoneOffsetMsAt", () => {
     const summer = Date.UTC(2021, 6, 1, 12, 0, 0);
     expect(zoneOffsetMsAt(winter, "America/New_York")).toBe(-5 * HOUR_MS);
     expect(zoneOffsetMsAt(summer, "America/New_York")).toBe(-4 * HOUR_MS);
+  });
+});
+
+describe("zonedParts", () => {
+  it("reads a UTC instant's wall-clock parts in the given zone", () => {
+    const utcMs = Date.UTC(2021, 0, 1, 0, 30, 0); // 2021-01-01T00:30Z
+    expect(zonedParts(utcMs, "UTC")).toEqual({
+      year: 2021,
+      month: 1,
+      day: 1,
+      hour: 0,
+      minute: 30,
+      second: 0,
+    });
+    // Tokyo is +9h, so the same instant is 09:30 the same calendar day.
+    expect(zonedParts(utcMs, "Asia/Tokyo")).toMatchObject({
+      year: 2021,
+      month: 1,
+      day: 1,
+      hour: 9,
+      minute: 30,
+    });
+  });
+});
+
+describe("calendarAge", () => {
+  const at = (y, mo, d, h = 0, mi = 0) => Date.UTC(y, mo - 1, d, h, mi);
+
+  it("is whole years with zero months and days on a birthday", () => {
+    const birth = at(1990, 3, 15, 9, 0);
+    const now = at(2020, 3, 15, 9, 0);
+    expect(calendarAge(birth, now, "UTC")).toEqual({ y: 30, m: 0, d: 0 });
+  });
+
+  it("ignores the time of day within the anniversary date", () => {
+    const birth = at(1990, 3, 15, 9, 0);
+    // Earlier in the day than the birth time, but the same calendar date.
+    const now = at(2020, 3, 15, 1, 0);
+    expect(calendarAge(birth, now, "UTC")).toEqual({ y: 30, m: 0, d: 0 });
+  });
+
+  it("borrows from the previous month when the day is short", () => {
+    const birth = at(1990, 1, 20);
+    const now = at(2020, 3, 10);
+    // 30y to 2020-01-20, +1mo to 2020-02-20, then 9 days to end of Feb (leap,
+    // 29) + 10 into March = 19 days.
+    expect(calendarAge(birth, now, "UTC")).toEqual({ y: 30, m: 1, d: 19 });
+  });
+
+  it("borrows a year when the month is short", () => {
+    const birth = at(2000, 11, 10);
+    const now = at(2020, 2, 10);
+    expect(calendarAge(birth, now, "UTC")).toEqual({ y: 19, m: 3, d: 0 });
+  });
+
+  it("never yields a negative day for a 31st birth over a short month", () => {
+    const birth = at(2000, 1, 31);
+    const now = at(2021, 3, 1);
+    // Feb has no 31st: the clamp keeps this at 1 day, not a negative.
+    expect(calendarAge(birth, now, "UTC")).toEqual({ y: 21, m: 1, d: 1 });
+  });
+
+  it("evaluates both instants in the given zone", () => {
+    // Same two absolute instants, read in two zones. In Los Angeles (UTC-8) the
+    // "now" instant falls on the previous calendar day, so the breakdown differs.
+    const birth = Date.UTC(2000, 0, 1, 12, 0);
+    const now = Date.UTC(2020, 0, 1, 5, 0);
+    expect(calendarAge(birth, now, "UTC")).toEqual({ y: 20, m: 0, d: 0 });
+    expect(calendarAge(birth, now, "America/Los_Angeles")).toEqual({
+      y: 19,
+      m: 11,
+      d: 30,
+    });
   });
 });
 

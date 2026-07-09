@@ -10,7 +10,13 @@ import {
   PRESETS,
 } from "./store.js";
 import { renderSetup, renderCounter, renderSettings } from "./views.js";
-import { birthInstantMs, detectZone, parseBirthParts } from "./time.js";
+import {
+  birthInstantMs,
+  calendarAge,
+  detectZone,
+  isValidZone,
+  parseBirthParts,
+} from "./time.js";
 import { el } from "./dom.js";
 
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
@@ -19,6 +25,7 @@ const WEEK_MS = 7 * DAY_MS;
 
 const LABELS = {
   years: "Age",
+  calendar: "Calendar age",
   days: "Days lived",
   weeks: "Weeks lived",
   weeksLeft: "Weeks left",
@@ -91,7 +98,9 @@ function showCounter() {
 
   // Anchor the birth instant to the zone the user was born in (falling back to
   // the device zone), so age is a fixed point that never shifts when they move.
-  const bornMs = birthInstantMs(state.birth, state.birthZone || detectZone());
+  // The same effective zone drives the calendar-age breakdown below.
+  const zone = isValidZone(state.birthZone) ? state.birthZone : detectZone();
+  const bornMs = birthInstantMs(state.birth, zone);
   const expectancy = clampExpectancy(state.expectancy);
   let mode = MODES.includes(state.mode) ? state.mode : "years";
 
@@ -106,22 +115,31 @@ function showCounter() {
   let lastInt = null;
   let lastPct = null;
   let lastFrac = -1;
+  let lastCal = null;
 
   function layout() {
     els.label.textContent = LABELS[mode];
-    intEl = el("span", { class: "int" }, "0");
-    if (mode === "years") {
-      fracEl = el("span", { class: "fraction", "aria-hidden": "true" }, "0");
-      els.count.replaceChildren(
-        intEl,
-        el("span", { class: "sep" }, "."),
-        fracEl,
-      );
-    } else {
+    if (mode === "calendar") {
+      intEl = null;
       fracEl = null;
-      els.count.replaceChildren(intEl);
+      // The y/m/d spans are (re)built in tick() whenever the value changes.
+      els.count.replaceChildren();
+    } else {
+      intEl = el("span", { class: "int" }, "0");
+      if (mode === "years") {
+        fracEl = el("span", { class: "fraction", "aria-hidden": "true" }, "0");
+        els.count.replaceChildren(
+          intEl,
+          el("span", { class: "sep" }, "."),
+          fracEl,
+        );
+      } else {
+        fracEl = null;
+        els.count.replaceChildren(intEl);
+      }
     }
     lastInt = null;
+    lastCal = null;
   }
 
   function cycle() {
@@ -158,7 +176,8 @@ function showCounter() {
   }
 
   function tick() {
-    const elapsed = Date.now() - bornMs;
+    const now = Date.now();
+    const elapsed = now - bornMs;
     const years = elapsed / YEAR_MS;
 
     if (mode === "years") {
@@ -169,6 +188,23 @@ function showCounter() {
         updateAria(whole + " years");
       }
       fracEl.textContent = fraction;
+    } else if (mode === "calendar") {
+      const { y, m, d } = calendarAge(bornMs, now, zone);
+      const key = `${y}|${m}|${d}`;
+      // Only rewrite the DOM when the y/m/d actually changes (days tick over at
+      // most once a day), so the node isn't rebuilt every 100ms.
+      if (key !== lastCal) {
+        els.count.replaceChildren(
+          el("span", { class: "cal-num" }, String(y)),
+          el("span", { class: "cal-unit" }, "yr"),
+          el("span", { class: "cal-num" }, String(m)),
+          el("span", { class: "cal-unit" }, "mo"),
+          el("span", { class: "cal-num" }, String(d)),
+          el("span", { class: "cal-unit" }, "d"),
+        );
+        lastCal = key;
+        updateAria(`${y} years ${m} months ${d} days`);
+      }
     } else {
       let value;
       if (mode === "days") value = Math.floor(elapsed / DAY_MS);

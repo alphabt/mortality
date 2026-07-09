@@ -34,7 +34,7 @@ describe("constants", () => {
   });
 
   it("exposes the counter display modes", () => {
-    expect(MODES).toEqual(["years", "days", "weeks", "weeksLeft"]);
+    expect(MODES).toEqual(["years", "calendar", "days", "weeks", "weeksLeft"]);
   });
 
   it("every preset defines a hex value for every theme key", () => {
