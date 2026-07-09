@@ -136,6 +136,7 @@ body.screen-counter #app {
   font-size: clamp(2.75rem, 13vw, 6rem);
   line-height: 1;
   font-weight: 600;
+  font-family: var(--num-font, inherit);
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
   cursor: pointer;
@@ -255,6 +256,16 @@ body.screen-counter #app {
 .meta-row .pct {
   text-align: right;
   white-space: nowrap;
+}
+
+/* Optional editorial line under the meter (Settings → Display → Reflection). */
+.reflection {
+  margin-top: 1.1rem;
+  color: color-mix(in srgb, var(--label) 82%, transparent);
+  font-size: 0.82rem;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  max-width: 24rem;
 }
 
 label {
@@ -552,6 +563,71 @@ footer {
   filter: none;
   color: var(--count);
   border-color: var(--count);
+}
+
+/* Display section: segmented numeral-typeface control + a reflection toggle. */
+.segment {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+
+.segment button {
+  font-size: 0.9rem;
+  padding: 0.3rem 0.7rem;
+  color: var(--label);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.segment button[aria-pressed="true"] {
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+.segment button.mono {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+.segment button.grotesk {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+.switch {
+  position: relative;
+  width: 2.6rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--label) 18%, transparent);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease;
+}
+
+.switch[aria-checked="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0.18rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
+  transition: left 0.15s ease;
+}
+
+.switch[aria-checked="true"]::after {
+  left: calc(100% - 1.23rem);
 }
 
 /* Life in weeks: a full-screen calendar where each row is a year and each cell a

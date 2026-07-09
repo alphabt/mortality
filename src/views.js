@@ -18,6 +18,14 @@ const COLOR_LABELS = {
   accent: "Accent",
 };
 
+// Numeral typeface choices for the Display segmented control:
+// [value, button label, optional class that previews the font on the button].
+const TYPEFACE_OPTIONS = [
+  ["system", "System", null],
+  ["grotesk", "Grotesk", "grotesk"],
+  ["mono", "Mono", "mono"],
+];
+
 // Guarded colours and their minimum WCAG contrast ratio against the background.
 const CONTRAST_MIN = { count: 4.5, label: 4.5, accent: 3 };
 
@@ -190,7 +198,7 @@ export function renderSetup(app, { start }, current, savedZone) {
 export function renderCounter(
   app,
   { openSettings, onCycle, openWeeks },
-  { born },
+  { born, reflection },
 ) {
   const gear = el(
     "button",
@@ -238,6 +246,10 @@ export function renderCounter(
       ]),
     ]),
   ]);
+  // An optional editorial line under the meter, on only when the user asks for it.
+  if (reflection) {
+    counter.append(el("p", { class: "reflection" }, reflection));
+  }
   app.replaceChildren(weeksBtn, gear, counter);
 
   gear.addEventListener("click", openSettings);
@@ -253,7 +265,11 @@ export function renderCounter(
 }
 
 /** Settings screen: presets + colour pickers + life expectancy + resets. */
-export function renderSettings(app, actions, { theme, expectancy }) {
+export function renderSettings(
+  app,
+  actions,
+  { theme, expectancy, typeface, reflection, birthZone },
+) {
   const colorInputs = {};
   const notes = {};
   const rows = THEME_KEYS.flatMap((key) => {
@@ -306,6 +322,66 @@ export function renderSettings(app, actions, { theme, expectancy }) {
     step: "1",
     value: expectancy,
   });
+
+  // Display: numeral typeface (segmented control) + reflection-line toggle.
+  const numeralsLabel = el("label", { id: "numerals-label" }, "Numerals");
+  const typefaceButtons = TYPEFACE_OPTIONS.map(([value, text, cls]) => {
+    const btn = el(
+      "button",
+      {
+        type: "button",
+        class: cls,
+        "data-typeface": value,
+        "aria-pressed": String(typeface === value),
+      },
+      text,
+    );
+    btn.addEventListener("click", () => actions.setTypeface(value));
+    return btn;
+  });
+  const typefaceSegment = el(
+    "div",
+    { class: "segment", role: "group", "aria-labelledby": "numerals-label" },
+    typefaceButtons,
+  );
+  const reflectionSwitch = el("button", {
+    type: "button",
+    class: "switch",
+    id: "reflection-switch",
+    role: "switch",
+    "aria-checked": String(Boolean(reflection)),
+  });
+  reflectionSwitch.addEventListener("click", actions.toggleReflection);
+
+  // Time zone: re-anchor the birth instant to a different zone after setup.
+  const detected = detectZone();
+  const selectedZone = birthZone || detected;
+  const zoneSelect = el(
+    "select",
+    { id: "settings-zone" },
+    listTimeZones(selectedZone, detected).map((zone) =>
+      el("option", { value: zone }, zone),
+    ),
+  );
+  zoneSelect.value = selectedZone;
+  zoneSelect.addEventListener("change", (event) =>
+    actions.setZone(event.target.value),
+  );
+
+  // Data: export the whole state as JSON, or import a previously saved file.
+  const exportBtn = el(
+    "button",
+    { type: "button", id: "export-data", class: "btn-secondary" },
+    "Export\u2026",
+  );
+  const importBtn = el(
+    "button",
+    { type: "button", id: "import-data", class: "btn-secondary" },
+    "Import\u2026",
+  );
+  exportBtn.addEventListener("click", actions.exportData);
+  importBtn.addEventListener("click", actions.importData);
+
   const resetBirthdayBtn = el(
     "button",
     { id: "reset-birthday", class: "btn-secondary" },
@@ -329,11 +405,33 @@ export function renderSettings(app, actions, { theme, expectancy }) {
     ),
     el("p", { class: "settings-label" }, "Colors"),
     ...rows,
+    el("p", { class: "settings-label" }, "Display"),
+    el("div", { class: "row" }, [numeralsLabel, typefaceSegment]),
+    el("div", { class: "row" }, [
+      el(
+        "label",
+        { for: "reflection-switch" },
+        "Reflection line under the counter",
+      ),
+      reflectionSwitch,
+    ]),
     el("p", { class: "settings-label" }, "Life expectancy"),
     el("div", { class: "row" }, [
       el("label", { for: "expectancy" }, "Years"),
       expectancyInput,
     ]),
+    el("p", { class: "settings-label" }, "Time zone"),
+    el("div", { class: "setup-field" }, [
+      el("label", { class: "setup-label", for: "settings-zone" }, "Born in"),
+      zoneSelect,
+      el(
+        "p",
+        { class: "hint" },
+        "Anchors your birthday to a fixed instant, so your age stays exact when you travel.",
+      ),
+    ]),
+    el("p", { class: "settings-label" }, "Data"),
+    el("div", { class: "actions" }, [exportBtn, importBtn]),
     el("div", { class: "actions" }, [resetBirthdayBtn, resetColorsBtn]),
     el("div", { class: "actions" }, [doneBtn]),
   ]);

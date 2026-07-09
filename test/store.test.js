@@ -3,11 +3,13 @@ import {
   THEME_KEYS,
   MODES,
   PRESETS,
+  TYPEFACES,
   load,
   save,
   cssDefault,
   bestOnColor,
   applyTheme,
+  applyTypeface,
 } from "../src/store.js";
 
 // Independent WCAG contrast implementation, used to verify the PRESETS meet the
@@ -43,6 +45,10 @@ describe("constants", () => {
       "daysLeft",
       "weeksLeft",
     ]);
+  });
+
+  it("exposes the selectable numeral typefaces", () => {
+    expect(TYPEFACES).toEqual(["system", "grotesk", "mono"]);
   });
 
   it("every preset defines a hex value for every theme key", () => {
@@ -133,6 +139,38 @@ describe("applyTheme", () => {
   });
 });
 
+describe("applyTypeface", () => {
+  it("sets a monospace stack for the mono typeface", () => {
+    applyTypeface("mono");
+    expect(
+      document.documentElement.style.getPropertyValue("--num-font"),
+    ).toContain("ui-monospace");
+  });
+
+  it("sets a grotesk stack for the grotesk typeface", () => {
+    applyTypeface("grotesk");
+    expect(
+      document.documentElement.style.getPropertyValue("--num-font"),
+    ).toContain("Avenir Next");
+  });
+
+  it("removes the property for the system typeface", () => {
+    applyTypeface("mono");
+    applyTypeface("system");
+    expect(document.documentElement.style.getPropertyValue("--num-font")).toBe(
+      "",
+    );
+  });
+
+  it("removes the property for any unknown typeface", () => {
+    applyTypeface("grotesk");
+    applyTypeface("wingdings");
+    expect(document.documentElement.style.getPropertyValue("--num-font")).toBe(
+      "",
+    );
+  });
+});
+
 describe("save / load with the localStorage fallback", () => {
   it("returns defaults when nothing is stored", async () => {
     await expect(load()).resolves.toEqual({
@@ -142,6 +180,8 @@ describe("save / load with the localStorage fallback", () => {
       theme: null,
       expectancy: 80,
       mode: "years",
+      typeface: "system",
+      reflection: false,
     });
   });
 
@@ -153,6 +193,8 @@ describe("save / load with the localStorage fallback", () => {
       theme: { bg: "#111111", label: "#aaa", count: "#fff", accent: "#f00" },
       expectancy: 70,
       mode: "days",
+      typeface: "mono",
+      reflection: true,
     };
     await save(state);
     await expect(load()).resolves.toEqual(state);
@@ -167,6 +209,8 @@ describe("save / load with the localStorage fallback", () => {
       theme: null,
       expectancy: 80,
       mode: "years",
+      typeface: "system",
+      reflection: false,
     });
   });
 
@@ -208,6 +252,8 @@ describe("save / load with the localStorage fallback", () => {
       theme: null,
       expectancy: 80,
       mode: "years",
+      typeface: "system",
+      reflection: false,
     });
   });
 
@@ -229,6 +275,8 @@ describe("save / load with the localStorage fallback", () => {
       theme: null,
       expectancy: 80,
       mode: "years",
+      typeface: "system",
+      reflection: false,
     });
   });
 });
@@ -279,6 +327,8 @@ describe("save / load against extension storage", () => {
       theme: null,
       expectancy: 95,
       mode: "years",
+      typeface: "system",
+      reflection: false,
     });
   });
 
@@ -315,6 +365,8 @@ describe("save / load against extension storage", () => {
       theme: null,
       expectancy: 80,
       mode: "years",
+      typeface: "system",
+      reflection: false,
     });
   });
 });

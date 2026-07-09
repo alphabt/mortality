@@ -200,6 +200,20 @@ describe("renderSettings", () => {
     resetColors: vi.fn(),
     resetBirthday: vi.fn(),
     closeSettings: vi.fn(),
+    setTypeface: vi.fn(),
+    toggleReflection: vi.fn(),
+    setZone: vi.fn(),
+    exportData: vi.fn(),
+    importData: vi.fn(),
+  });
+
+  const data = (over = {}) => ({
+    theme: null,
+    expectancy: 80,
+    typeface: "system",
+    reflection: false,
+    birthZone: null,
+    ...over,
   });
 
   it("renders one color input per theme key", () => {
@@ -305,5 +319,57 @@ describe("renderSettings", () => {
   it("keeps contrast warnings hidden when colors pass", () => {
     renderSettings(app, actions(), { theme: PRESETS.Void, expectancy: 80 });
     expect(app.querySelector("#warn-count").hidden).toBe(true);
+  });
+
+  it("renders the numeral typeface segment with the active one pressed", () => {
+    renderSettings(app, actions(), data({ typeface: "mono" }));
+    expect(app.querySelector(".segment")).not.toBeNull();
+    expect(
+      app.querySelector('[data-typeface="mono"]').getAttribute("aria-pressed"),
+    ).toBe("true");
+    expect(
+      app
+        .querySelector('[data-typeface="system"]')
+        .getAttribute("aria-pressed"),
+    ).toBe("false");
+  });
+
+  it("reports typeface changes when a segment button is clicked", () => {
+    const a = actions();
+    renderSettings(app, a, data());
+    app.querySelector('[data-typeface="grotesk"]').click();
+    expect(a.setTypeface).toHaveBeenCalledWith("grotesk");
+  });
+
+  it("reflects the reflection setting on the switch and toggles it", () => {
+    const a = actions();
+    renderSettings(app, a, data({ reflection: true }));
+    const sw = app.querySelector("#reflection-switch");
+    expect(sw.getAttribute("role")).toBe("switch");
+    expect(sw.getAttribute("aria-checked")).toBe("true");
+    sw.click();
+    expect(a.toggleReflection).toHaveBeenCalledOnce();
+  });
+
+  it("preselects the birth zone and reports zone changes", () => {
+    const a = actions();
+    renderSettings(app, a, data({ birthZone: "Asia/Tokyo" }));
+    const zone = app.querySelector("#settings-zone");
+    expect(zone.value).toBe("Asia/Tokyo");
+    const other = [...zone.options]
+      .map((o) => o.value)
+      .find((v) => v !== zone.value);
+    zone.value = other;
+    zone.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(a.setZone).toHaveBeenCalledWith(other);
+  });
+
+  it("wires the data export and import buttons", () => {
+    const a = actions();
+    renderSettings(app, a, data());
+    app.querySelector("#export-data").click();
+    app.querySelector("#import-data").click();
+    expect(a.exportData).toHaveBeenCalledOnce();
+    expect(a.importData).toHaveBeenCalledOnce();
   });
 });
