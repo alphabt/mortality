@@ -39,6 +39,14 @@ npm run zip
 Produces `artifacts/mortality-v<version>.zip`, with the version read from
 `src/manifest.json`.
 
+### Publish to the stores
+
+Pushing a `v*` tag builds the package and submits it to the Chrome, Edge, and
+Firefox stores via the [`publish-stores`](.github/workflows/publish-stores.yml)
+workflow. It authenticates entirely with scoped store **API keys** kept in repo
+secrets — never a login. Setup, the full secret list, and manual runs are
+documented in the [publish-to-stores skill](.github/skills/publish-to-stores/SKILL.md).
+
 ## Credits
 
 - Inspired by [Motivation Chrome extension](https://chrome.google.com/webstore/detail/motivation/ofdgfpchbidcgncgfpdlpclnpaemakoj)
