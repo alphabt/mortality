@@ -43,13 +43,13 @@ function setScreen(name) {
   document.body.className = name ? `screen-${name}` : "";
 }
 
-function clampExpectancy(value) {
+export function clampExpectancy(value) {
   const n = parseInt(value, 10);
   if (!Number.isFinite(n)) return 80;
   return Math.min(150, Math.max(1, n));
 }
 
-function formatBorn(birth) {
+export function formatBorn(birth) {
   const date = new Date(birth);
   if (Number.isNaN(date.getTime())) return "";
   try {
@@ -343,4 +343,7 @@ async function init() {
   else showSetup();
 }
 
-init();
+// Auto-start only when loaded as the new-tab page (the #app host exists). Import
+// under test (without that host) stays inert so unit tests can exercise the
+// exported helpers without launching the ticker or ambient canvas.
+if (app) init();

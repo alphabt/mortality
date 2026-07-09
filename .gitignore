@@ -12,6 +12,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Test coverage output
+/coverage
+
 # Editor directories and files
 .idea
 .vscode/*
