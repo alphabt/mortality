@@ -310,6 +310,67 @@ describe("settings routing and edits", () => {
   });
 });
 
+describe("settings: display, reflection, and zone", () => {
+  beforeEach(() => {
+    seed({ birth: "2000-01-01T00:00" });
+  });
+
+  it("activates a numeral typeface, persisting it and setting --num-font", async () => {
+    await boot();
+    document.querySelector("#gear").click();
+    document.querySelector('[data-typeface="mono"]').click();
+
+    expect(stored().typeface).toBe("mono");
+    expect(
+      document.documentElement.style.getPropertyValue("--num-font"),
+    ).toContain("ui-monospace");
+
+    // The re-rendered segment marks the active choice via aria-pressed.
+    expect(
+      document
+        .querySelector('[data-typeface="mono"]')
+        .getAttribute("aria-pressed"),
+    ).toBe("true");
+    expect(
+      document
+        .querySelector('[data-typeface="system"]')
+        .getAttribute("aria-pressed"),
+    ).toBe("false");
+  });
+
+  it("toggles the reflection line on and renders it on the counter", async () => {
+    await boot();
+    document.querySelector("#gear").click();
+
+    const sw = document.querySelector("#reflection-switch");
+    expect(sw.getAttribute("aria-checked")).toBe("false");
+    sw.click();
+
+    expect(stored().reflection).toBe(true);
+    expect(
+      document.querySelector("#reflection-switch").getAttribute("aria-checked"),
+    ).toBe("true");
+
+    document.querySelector("#done").click();
+    expect(document.body.className).toBe("screen-counter");
+    expect(document.querySelector(".reflection")).not.toBeNull();
+  });
+
+  it("leaves the counter free of a reflection line when the toggle is off", async () => {
+    await boot();
+    expect(document.querySelector(".reflection")).toBeNull();
+  });
+
+  it("persists a changed birth time zone from settings", async () => {
+    await boot();
+    document.querySelector("#gear").click();
+    const zone = document.querySelector("#settings-zone");
+    zone.value = "Asia/Tokyo";
+    zone.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(stored().birthZone).toBe("Asia/Tokyo");
+  });
+});
+
 describe("reduced motion", () => {
   it("skips the count fade animation when the user prefers reduced motion", async () => {
     window.matchMedia = vi.fn((query) => ({

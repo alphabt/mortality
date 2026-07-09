@@ -7,6 +7,10 @@ const KEY = "mortality";
 // Colors the user can customise. Each maps to a CSS custom property (--<key>).
 export const THEME_KEYS = ["bg", "label", "count", "accent"];
 
+// Numeral typefaces for the big count, chosen in Settings. Each maps to a
+// --num-font value applied by applyTypeface (see below); "system" clears it.
+export const TYPEFACES = ["system", "grotesk", "mono"];
+
 // Counter display units, cycled by clicking the number.
 export const MODES = [
   "years",
@@ -60,6 +64,8 @@ const DEFAULTS = {
   theme: null,
   expectancy: 80,
   mode: "years",
+  typeface: "system",
+  reflection: false,
 };
 
 // Extension storage.local persists across the privacy/history clearing that can
@@ -140,7 +146,7 @@ function backfillZone(state) {
  * that predate timezone support get their birthZone backfilled with the
  * detected zone (see backfillZone) so the birth instant is anchored going
  * forward without changing the age shown today.
- * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, mode: string }>}
+ * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, mode: string, typeface: string, reflection: boolean }>}
  */
 export async function load() {
   let stored;
@@ -218,4 +224,27 @@ export function applyTheme(theme) {
     else root.removeProperty(`--${key}`);
   });
   root.setProperty("--on-accent", bestOnColor(cssDefault("accent")));
+}
+
+/**
+ * Set the numeral typeface for the big count as an inline custom property, so it
+ * survives setScreen() rewriting body.className (a body class would not). "mono"
+ * and "grotesk" pick a font stack; anything else clears the override and the
+ * number inherits the page font (see the `.count` rule's var(--num-font)).
+ */
+export function applyTypeface(typeface) {
+  const root = document.documentElement.style;
+  if (typeface === "mono") {
+    root.setProperty(
+      "--num-font",
+      'ui-monospace, "SF Mono", Menlo, Consolas, monospace',
+    );
+  } else if (typeface === "grotesk") {
+    root.setProperty(
+      "--num-font",
+      '"Avenir Next", "Helvetica Neue", Arial, sans-serif',
+    );
+  } else {
+    root.removeProperty("--num-font");
+  }
 }

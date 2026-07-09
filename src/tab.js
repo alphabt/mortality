@@ -4,9 +4,11 @@ import {
   load,
   save,
   applyTheme,
+  applyTypeface,
   cssDefault,
   THEME_KEYS,
   MODES,
+  TYPEFACES,
   PRESETS,
 } from "./store.js";
 import {
@@ -94,6 +96,34 @@ export function lifeWeeks(elapsedMs, expectancy) {
   return { lived: Math.min(lived, total), total };
 }
 
+// The optional editorial line under the counter: whole years lived vs. years
+// remaining against the expectancy (never negative). Number-based and pure so it
+// is deterministic and unit-testable; recomputed once per counter show.
+export function reflectionLine(bornMs, nowMs, expectancy) {
+  const lived = Math.max(0, Math.floor((nowMs - bornMs) / YEAR_MS));
+  const ahead = Math.max(0, expectancy - lived);
+  return `${lived} years behind you \u00b7 ${ahead} ahead, if the tables hold.`;
+}
+
+// Fold an imported settings blob onto the current state, copying ONLY known keys
+// and sanitising each so a hand-edited or foreign file can't inject junk. Unknown
+// keys are ignored; a key the import omits keeps its current value. Pure.
+export function mergeImported(current, imported) {
+  const src = imported && typeof imported === "object" ? imported : {};
+  const known = {};
+  if ("version" in src) known.version = src.version;
+  if ("birth" in src)
+    known.birth = typeof src.birth === "string" ? src.birth : null;
+  if ("birthZone" in src) known.birthZone = src.birthZone;
+  if ("theme" in src) known.theme = src.theme;
+  if ("expectancy" in src) known.expectancy = clampExpectancy(src.expectancy);
+  if ("mode" in src && MODES.includes(src.mode)) known.mode = src.mode;
+  if ("typeface" in src)
+    known.typeface = TYPEFACES.includes(src.typeface) ? src.typeface : "system";
+  if ("reflection" in src) known.reflection = Boolean(src.reflection);
+  return { ...current, ...known };
+}
+
 function showSetup() {
   stopTimer();
   setScreen("setup");
@@ -119,10 +149,16 @@ function showCounter() {
   const expectancy = clampExpectancy(state.expectancy);
   let mode = MODES.includes(state.mode) ? state.mode : "years";
 
+  // The reflection line changes at most once a year, so compute it once on show
+  // and hand it to the renderer — the ticker never has to touch it.
+  const reflection = state.reflection
+    ? reflectionLine(bornMs, Date.now(), expectancy)
+    : null;
+
   const els = renderCounter(
     app,
     { openSettings: showSettings, onCycle: cycle, openWeeks: showWeeks },
-    { born: formatBorn(state.birth) },
+    { born: formatBorn(state.birth), reflection },
   );
 
   let intEl = null;
@@ -316,11 +352,72 @@ function showSettings() {
       resetBirthday() {
         showSetup();
       },
+      setTypeface(value) {
+        state.typeface = value;
+        save(state);
+        applyTypeface(value);
+        showSettings();
+      },
+      toggleReflection() {
+        state.reflection = !state.reflection;
+        save(state);
+        showSettings();
+      },
+      setZone(value) {
+        state.birthZone = value;
+        save(state);
+      },
+      exportData() {
+        const blob = new Blob([JSON.stringify(state, null, 2)], {
+          type: "application/json",
+        });
+        const a = el("a", {
+          href: URL.createObjectURL(blob),
+          download: "mortality-settings.json",
+        });
+        document.body.append(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(a.href);
+      },
+      importData() {
+        const input = el("input", {
+          type: "file",
+          accept: "application/json",
+          hidden: true,
+        });
+        input.addEventListener("change", async () => {
+          const file = input.files && input.files[0];
+          input.remove();
+          if (!file) return;
+          let parsed;
+          try {
+            parsed = JSON.parse(await file.text());
+          } catch (err) {
+            console.warn("Mortality: could not read imported settings", err);
+            return;
+          }
+          state = mergeImported(state, parsed);
+          save(state);
+          applyTheme(state.theme);
+          applyTypeface(state.typeface);
+          if (state.birth) showCounter();
+          else showSetup();
+        });
+        document.body.append(input);
+        input.click();
+      },
       closeSettings() {
         showCounter();
       },
     },
-    { theme: state.theme, expectancy: clampExpectancy(state.expectancy) },
+    {
+      theme: state.theme,
+      expectancy: clampExpectancy(state.expectancy),
+      typeface: state.typeface,
+      reflection: state.reflection,
+      birthZone: state.birthZone,
+    },
   );
 }
 
@@ -445,6 +542,7 @@ function updateAmbient() {
 async function init() {
   state = await load();
   applyTheme(state.theme);
+  applyTypeface(state.typeface);
   setupAmbient();
   if (state.birth) showCounter();
   else showSetup();
