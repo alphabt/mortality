@@ -31,9 +31,11 @@ Load the `src/` folder as an unpacked extension:
 Edit a file, then reload the extension to see the change.
 
 ### Package for the stores
+
 ```
 npm run zip
 ```
+
 Produces `artifacts/mortality-v<version>.zip`, with the version read from
 `src/manifest.json`.
 

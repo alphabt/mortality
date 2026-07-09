@@ -4,6 +4,8 @@
   "private": true,
   "description": "A browser extension that replaces the new tab page with a live counter of your age.",
   "scripts": {
-    "zip": "bash scripts/pack.sh"
+    "zip": "bash scripts/pack.sh",
+    "format": "npx --yes prettier@3.9.4 --write .",
+    "format:check": "npx --yes prettier@3.9.4 --check ."
   }
 }

@@ -64,7 +64,7 @@ export function renderSettings(app, actions, theme) {
         <input type="color" id="color-${key}" value="${
           (theme && theme[key]) || cssDefault(key)
         }" />
-      </div>`
+      </div>`,
   ).join("");
 
   app.innerHTML = `
@@ -83,9 +83,15 @@ export function renderSettings(app, actions, theme) {
   THEME_KEYS.forEach((key) => {
     app
       .querySelector(`#color-${key}`)
-      .addEventListener("input", (event) => actions.setColor(key, event.target.value));
+      .addEventListener("input", (event) =>
+        actions.setColor(key, event.target.value),
+      );
   });
-  app.querySelector("#reset-birthday").addEventListener("click", actions.resetBirthday);
-  app.querySelector("#reset-colors").addEventListener("click", actions.resetColors);
+  app
+    .querySelector("#reset-birthday")
+    .addEventListener("click", actions.resetBirthday);
+  app
+    .querySelector("#reset-colors")
+    .addEventListener("click", actions.resetColors);
   app.querySelector("#done").addEventListener("click", actions.closeSettings);
 }

@@ -1,0 +1,15 @@
+name: "format"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  prettier:
+    name: "Prettier"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: npx --yes prettier@3.9.4 --check .

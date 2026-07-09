@@ -40,7 +40,9 @@ function showCounter() {
   const els = renderCounter(app, { openSettings: showSettings });
   const born = new Date(state.birth);
   (function tick() {
-    const [year, fraction] = ((Date.now() - born) / YEAR_MS).toFixed(9).split(".");
+    const [year, fraction] = ((Date.now() - born) / YEAR_MS)
+      .toFixed(9)
+      .split(".");
     els.year.textContent = year;
     els.ms.textContent = fraction;
     timer = setTimeout(tick, 100);
@@ -70,7 +72,7 @@ function showSettings() {
         showCounter();
       },
     },
-    state.theme
+    state.theme,
   );
 }
 
