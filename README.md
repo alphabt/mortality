@@ -1,16 +1,32 @@
 # Mortality
 
-A Chrome extension that shows a live counter of your age to motivate you to live life to the fullest.
+A browser extension that replaces your new tab page with a live counter of your age — a quiet, recurring reminder that time is passing.
 
 ![Screenshot Light Theme](/images/screenshot_light.png?raw=true)
 
 ![Screenshot Dark Theme](/images/screenshot_dark.png?raw=true)
 
+## Features
+
+- **Live age counter** — ticks in real time, down to fractional years.
+- **Multiple units** — switch between age, days lived, weeks lived, weeks left, and
+  percent of an expected lifetime elapsed.
+- **Personalization** — light and dark themes that follow your system, color presets
+  and custom colors, and an adjustable life expectancy.
+- **Accessible and calm** — WCAG 2.1 AA, a `prefers-reduced-motion` path, and full
+  keyboard support.
+
+## Privacy
+
+Mortality has no accounts, servers, or analytics. It requests a single permission —
+`storage` — to save your settings locally, and collects no data. Everything stays in
+your browser.
+
 ## Install
 
 <a href="https://chrome.google.com/webstore/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="./images/chrome_logo.svg" width="50px"/> Add to Chrome</a>
 
-<a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_logo.svg" width="50px"/> Add to FireFox</a>
+<a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_logo.svg" width="50px"/> Add to Firefox</a>
 
 <a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="./images/edge_logo.svg" width="50px"/> Add to Edge</a>
 
@@ -68,3 +84,7 @@ documented in the [publish-to-stores skill](.github/skills/publish-to-stores/SKI
 
 - Inspired by [Motivation Chrome extension](https://chrome.google.com/webstore/detail/motivation/ofdgfpchbidcgncgfpdlpclnpaemakoj)
 - Icon: original mark — a life-elapsed gauge closing on the counter's signature accent dot
+
+## License
+
+[MIT](LICENSE) © alphabt
