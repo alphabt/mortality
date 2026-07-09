@@ -60,8 +60,9 @@ npm run test:watch    # re-run on change
 npm run test:coverage # run with a coverage report
 ```
 
-CI runs `npm test` on every push and pull request via the
-[`test`](.github/workflows/test.yml) workflow.
+CI runs formatting, the test suite, and a packaging smoke test on every pull
+request via the [`ci`](.github/workflows/ci.yml) workflow, which the release
+pipelines reuse so nothing ships without a green run.
 
 ### Package for the stores
 
@@ -74,11 +75,14 @@ Produces `artifacts/mortality-v<version>.zip`, with the version read from
 
 ### Publish to the stores
 
-Pushing a `v*` tag builds the package and submits it to the Chrome, Edge, and
-Firefox stores via the [`publish-stores`](.github/workflows/publish-stores.yml)
-workflow. It authenticates entirely with scoped store **API keys** kept in repo
-secrets — never a login. Setup, the full secret list, and manual runs are
-documented in the [publish-to-stores skill](.github/skills/publish-to-stores/SKILL.md).
+Pushing a `v*` tag runs the [`release`](.github/workflows/release.yml) workflow:
+it runs the CI gate, packages the extension once, publishes a GitHub Release, and
+submits that exact asset to the Chrome, Edge, and Firefox stores. It authenticates
+entirely with scoped store **API keys** kept in repo secrets — never a login.
+Manual and subset publishes go through
+[`publish-stores`](.github/workflows/publish-stores.yml). Setup, the full secret
+list, and manual runs are documented in the
+[publish-to-stores skill](.github/skills/publish-to-stores/SKILL.md).
 
 ## Credits
 

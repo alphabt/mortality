@@ -1,0 +1,78 @@
+name: "publish"
+
+# Reusable store-publish engine. Wraps scripts/publish.sh and owns the store
+# credential block in exactly one place, so both the automatic release pipeline
+# (release.yml) and the manual dispatcher (publish-stores.yml) share it.
+#
+# Callers must forward secrets with `secrets: inherit`. A store whose secrets are
+# absent is skipped by publish.sh, so stores can be rolled out one at a time.
+
+on:
+  workflow_call:
+    inputs:
+      stores:
+        description: "'all' or a space-separated subset of 'chrome edge firefox'"
+        type: string
+        default: "all"
+      tag:
+        description: "Publish this release's uploaded asset (mutually exclusive with ref)"
+        type: string
+        default: ""
+      ref:
+        description: "Check out this ref and build a fresh zip from src/ (--source)"
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-stores
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "Publish to stores"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.ref || inputs.tag || github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Publish to the stores
+        env:
+          STORES: ${{ inputs.stores }}
+          TAG: ${{ inputs.tag }}
+          REF: ${{ inputs.ref }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Chrome Web Store
+          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
+          CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+          # Microsoft Edge Add-ons
+          EDGE_PRODUCT_ID: ${{ secrets.EDGE_PRODUCT_ID }}
+          EDGE_CLIENT_ID: ${{ secrets.EDGE_CLIENT_ID }}
+          EDGE_API_KEY: ${{ secrets.EDGE_API_KEY }}
+          # Firefox (addons.mozilla.org)
+          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
+          FIREFOX_ADDON_ID: ${{ secrets.FIREFOX_ADDON_ID }}
+        run: |
+          stores="$STORES"
+          if [ "$stores" = "all" ]; then stores=""; fi
+          if [ -n "$TAG" ]; then
+            # Publish the exact asset attached to that release (identical bytes).
+            bash scripts/publish.sh $stores --tag "$TAG"
+          elif [ -n "$REF" ]; then
+            # Build a fresh zip from the checked-out ref.
+            bash scripts/publish.sh $stores --source
+          else
+            # No tag or ref given: publish the latest release's asset.
+            bash scripts/publish.sh $stores
+          fi
