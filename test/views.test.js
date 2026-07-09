@@ -43,20 +43,22 @@ describe("renderSetup", () => {
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "2000-03-04";
     app.querySelector("#birth-time").value = "09:15";
+    const zone = app.querySelector("#birth-zone").value;
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2000-03-04T09:15");
+    expect(start).toHaveBeenCalledWith("2000-03-04T09:15", zone);
   });
 
   it("defaults an empty time to midnight", () => {
     const start = vi.fn();
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "2010-10-10";
+    const zone = app.querySelector("#birth-zone").value;
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2010-10-10T00:00");
+    expect(start).toHaveBeenCalledWith("2010-10-10T00:00", zone);
   });
 
   it("blocks submission and reports validity when the date is empty", () => {
@@ -75,8 +77,26 @@ describe("renderSetup", () => {
     const start = vi.fn();
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "1975-12-25";
+    const zone = app.querySelector("#birth-zone").value;
     keydown(app.querySelector("#birth-date"), "Enter");
-    expect(start).toHaveBeenCalledWith("1975-12-25T00:00");
+    expect(start).toHaveBeenCalledWith("1975-12-25T00:00", zone);
+  });
+
+  it("renders a birthplace time-zone select defaulting to the device zone", () => {
+    renderSetup(app, { start: vi.fn() }, null);
+    const zone = app.querySelector("#birth-zone");
+    expect(zone).not.toBeNull();
+    expect(zone.tagName).toBe("SELECT");
+    expect(zone.value).toBe(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    // The visible label is associated with the control for accessibility.
+    const label = app.querySelector('label[for="birth-zone"]');
+    expect(label).not.toBeNull();
+    expect(label.textContent).toBe("Where were you born?");
+  });
+
+  it("pre-selects the saved birth zone when editing", () => {
+    renderSetup(app, { start: vi.fn() }, "1990-05-15T00:00", "Asia/Tokyo");
+    expect(app.querySelector("#birth-zone").value).toBe("Asia/Tokyo");
   });
 });
 

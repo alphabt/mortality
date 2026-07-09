@@ -1,5 +1,7 @@
 // Persistence + theming. No dependencies, runs directly in the browser.
 
+import { detectZone } from "./time.js";
+
 const KEY = "mortality";
 
 // Colors the user can customise. Each maps to a CSS custom property (--<key>).
@@ -46,6 +48,7 @@ export const PRESETS = {
 const DEFAULTS = {
   version: 1,
   birth: null,
+  birthZone: null,
   theme: null,
   expectancy: 80,
   mode: "years",
@@ -109,9 +112,27 @@ function clearLegacy() {
 }
 
 /**
+ * Lock the birth INSTANT for records saved before timezone support. Their birth
+ * was a bare wall-clock string whose age was computed by parsing it in the
+ * device's *current* local zone, so backfilling birthZone with the detected
+ * zone keeps today's displayed age identical while anchoring the instant — from
+ * now on it can't drift if the user travels. Returns the state unchanged (same
+ * reference) when there is nothing to backfill.
+ */
+function backfillZone(state) {
+  if (state.birth && !state.birthZone) {
+    return { ...state, birthZone: detectZone() };
+  }
+  return state;
+}
+
+/**
  * Load persisted state, applying defaults and migrating older localStorage data
- * (the "mortality" JSON blob or the legacy "dob" string) on first run.
- * @returns {Promise<{ version: number, birth: string|null, theme: Record<string,string>|null }>}
+ * (the "mortality" JSON blob or the legacy "dob" string) on first run. Records
+ * that predate timezone support get their birthZone backfilled with the
+ * detected zone (see backfillZone) so the birth instant is anchored going
+ * forward without changing the age shown today.
+ * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, mode: string }>}
  */
 export async function load() {
   let stored;
@@ -124,7 +145,7 @@ export async function load() {
   if (!stored) {
     const legacy = readLegacy();
     if (legacy) {
-      const migrated = { ...DEFAULTS, ...legacy };
+      const migrated = backfillZone({ ...DEFAULTS, ...legacy });
       await save(migrated);
       // Only clear localStorage when a real extension store now owns the data;
       // under the localStorage shim, KEY *is* the store we just wrote to.
@@ -133,7 +154,10 @@ export async function load() {
     }
   }
 
-  return { ...DEFAULTS, ...(stored || {}) };
+  const state = { ...DEFAULTS, ...(stored || {}) };
+  const backfilled = backfillZone(state);
+  if (backfilled !== state) await save(backfilled);
+  return backfilled;
 }
 
 /** Persist state. */
