@@ -254,7 +254,10 @@ function scheduleAmbient() {
 }
 
 function setupAmbient() {
-  updateAmbient();
+  // Paint the glow after the first frame so the number — the product — never
+  // waits on the canvas work. The #ambient layer fades in from opacity 0, so a
+  // one-frame delay is invisible.
+  requestAnimationFrame(() => requestAnimationFrame(updateAmbient));
   setInterval(updateAmbient, 60000);
   window.addEventListener("resize", scheduleAmbient, { passive: true });
   // The baked-in background means the canvas must repaint when the OS flips
@@ -282,10 +285,22 @@ function updateAmbient() {
   const ctx = cv.getContext("2d", { willReadFrequently: true });
   if (!ctx) return;
 
-  // Render at device resolution so the glow stays crisp on Retina.
+  // The glow is a soft, low-frequency gradient, so a full device-resolution
+  // backing store is wasteful: the getImageData + per-pixel dither pass below
+  // scales with pixel count and blocked the main thread for 100-385ms per tab
+  // on 4K/5K/Retina displays. Cap the longest side — CSS stretches the canvas
+  // to fill the viewport either way — so every repaint stays well under a
+  // frame while looking identical at this softness.
   const dpr = window.devicePixelRatio || 1;
-  const w = Math.max(1, Math.round(window.innerWidth * dpr));
-  const h = Math.max(1, Math.round(window.innerHeight * dpr));
+  const MAX_SIDE = 1600;
+  let w = Math.max(1, Math.round(window.innerWidth * dpr));
+  let h = Math.max(1, Math.round(window.innerHeight * dpr));
+  const longest = Math.max(w, h);
+  if (longest > MAX_SIDE) {
+    const k = MAX_SIDE / longest;
+    w = Math.max(1, Math.round(w * k));
+    h = Math.max(1, Math.round(h * k));
+  }
   if (cv.width !== w || cv.height !== h) {
     cv.width = w;
     cv.height = h;
