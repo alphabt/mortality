@@ -115,6 +115,7 @@ function showCounter() {
     save(state);
     layout();
     fadeCount();
+    stopTimer(); // cancel the in-flight tick so loops don't stack up per click
     tick();
   }
 
