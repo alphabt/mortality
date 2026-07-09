@@ -2,9 +2,9 @@
 
 A Chrome extension that shows a live counter of your age to motivate you to live life to the fullest.
 
-![Screenshot Light Theme](/images/screenshot_chrome_light.png?raw=true)
+![Screenshot Light Theme](/images/screenshot_light.png?raw=true)
 
-![Screenshot Dark Theme](/images/screenshot_chrome_dark.png?raw=true)
+![Screenshot Dark Theme](/images/screenshot_dark.png?raw=true)
 
 ## Install
 
