@@ -331,3 +331,28 @@ describe("reduced motion", () => {
     expect(animateSpy).not.toHaveBeenCalled();
   });
 });
+
+describe("life in weeks", () => {
+  it("opens the weeks grid from the counter and returns via back", async () => {
+    seed({ birth: "2000-01-01T00:00", expectancy: 80 });
+    await boot();
+    expect(document.body.className).toBe("screen-counter");
+
+    document.querySelector('[aria-label="Life in weeks"]').click();
+    expect(document.body.className).toBe("screen-weeks");
+
+    const WEEK_MS = 7 * DAY_MS;
+    const total = 80 * 52;
+    const bornMs = new Date("2000-01-01T00:00").getTime();
+    const lived = Math.floor((Date.now() - bornMs) / WEEK_MS);
+
+    const grid = document.querySelector(".weeks-grid");
+    expect(grid.querySelectorAll("i").length).toBe(total);
+    expect(grid.querySelectorAll("i.lived").length).toBe(lived);
+    expect(grid.querySelectorAll("i.now").length).toBe(1);
+    expect(grid.querySelectorAll("i.future").length).toBe(total - lived - 1);
+
+    document.querySelector('[aria-label="Back"]').click();
+    expect(document.body.className).toBe("screen-counter");
+  });
+});

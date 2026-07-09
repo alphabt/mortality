@@ -408,6 +408,13 @@ footer {
   display: block;
 }
 
+/* Second corner button (life-in-weeks entry, weeks-view back): reuses every
+   .gear rule, just mirrored to the top-left. */
+.gear.corner-left {
+  right: auto;
+  left: 0.75rem;
+}
+
 .settings {
   display: flex;
   flex-direction: column;
@@ -545,6 +552,91 @@ footer {
   filter: none;
   color: var(--count);
   border-color: var(--count);
+}
+
+/* Life in weeks: a full-screen calendar where each row is a year and each cell a
+   week. Taller than the viewport, so the screen scrolls from the top instead of
+   the base centred layout (which would clip the grid). */
+body.screen-weeks {
+  justify-content: flex-start;
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+  padding: 2.5rem 0;
+}
+
+.weeks-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.25rem;
+}
+
+.weeks-head {
+  text-align: center;
+}
+
+.weeks-head .age-label {
+  text-align: center;
+}
+
+.weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(52, 1fr);
+  gap: 2px;
+  width: min(92vw, 620px);
+}
+
+.weeks-grid i {
+  aspect-ratio: 1/1;
+  border-radius: 1px;
+}
+
+.weeks-grid i.lived {
+  background: color-mix(in srgb, var(--count) 62%, var(--bg));
+}
+
+.weeks-grid i.now {
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.weeks-grid i.future {
+  background: color-mix(in srgb, var(--label) 20%, transparent);
+}
+
+.weeks-legend {
+  display: flex;
+  gap: 1.2rem;
+  color: var(--label);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.weeks-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.weeks-legend i {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 1px;
+}
+
+.weeks-legend i.lived {
+  background: color-mix(in srgb, var(--count) 62%, var(--bg));
+}
+
+.weeks-legend i.now {
+  background: var(--accent);
+}
+
+.weeks-legend i.future {
+  background: color-mix(in srgb, var(--label) 20%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

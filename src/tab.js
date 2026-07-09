@@ -9,7 +9,12 @@ import {
   MODES,
   PRESETS,
 } from "./store.js";
-import { renderSetup, renderCounter, renderSettings } from "./views.js";
+import {
+  renderSetup,
+  renderCounter,
+  renderSettings,
+  renderWeeks,
+} from "./views.js";
 import {
   birthInstantMs,
   calendarAge,
@@ -81,6 +86,14 @@ export function formatBorn(birth) {
   }
 }
 
+// Split a life into week cells: `total` = expectancy years × 52, `lived` = whole
+// weeks elapsed (clamped to [0, total]). Pure so the grid maths is unit-testable.
+export function lifeWeeks(elapsedMs, expectancy) {
+  const total = clampExpectancy(expectancy) * 52;
+  const lived = Math.max(0, Math.floor(elapsedMs / WEEK_MS));
+  return { lived: Math.min(lived, total), total };
+}
+
 function showSetup() {
   stopTimer();
   setScreen("setup");
@@ -108,7 +121,7 @@ function showCounter() {
 
   const els = renderCounter(
     app,
-    { openSettings: showSettings, onCycle: cycle },
+    { openSettings: showSettings, onCycle: cycle, openWeeks: showWeeks },
     { born: formatBorn(state.birth) },
   );
 
@@ -246,6 +259,26 @@ function showCounter() {
 
   layout();
   tick();
+}
+
+// Full-screen life calendar: one row per year, one cell per week. Static per
+// open (no ticker) — stopTimer() cancels the counter loop before we switch.
+function showWeeks() {
+  stopTimer();
+  setScreen("weeks");
+  const zone = isValidZone(state.birthZone) ? state.birthZone : detectZone();
+  const bornMs = birthInstantMs(state.birth, zone);
+  const { lived, total } = lifeWeeks(Date.now() - bornMs, state.expectancy);
+  renderWeeks(
+    app,
+    { back: showCounter, openSettings: showSettings },
+    {
+      born: formatBorn(state.birth),
+      lived,
+      total,
+      expectancy: clampExpectancy(state.expectancy),
+    },
+  );
 }
 
 function showSettings() {
