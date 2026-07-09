@@ -5,19 +5,22 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   tagged-release:
     name: "Tagged Release"
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - run: bash scripts/pack.sh
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
-            artifacts/mortality-*.zip
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" artifacts/mortality-*.zip \
+            --title "${GITHUB_REF_NAME}"
