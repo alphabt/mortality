@@ -1,0 +1,14 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    Mortality — extension icon (editable master).
+    A bold, transparent life ring: the deep-teal stroke is a full lifespan
+    (dark enough to hold on light chrome), the brighter arc is the years
+    lived, and the brightest dot is the "now" — the counter's signature
+    accent point. Rasterize to the sizes in src/icons/ (16/32/48/128 for the
+    manifest) and images/ (64/300 for listings). No background box.
+    Colors derive from the redesign's --accent (#007ea6).
+  -->
+  <circle cx="64" cy="64" r="44.8" fill="none" stroke="#0b83ab" stroke-width="17.28" />
+  <path d="M 64 19.2 A 44.8 44.8 0 0 1 85.58 103.26" fill="none" stroke="#39afdd" stroke-width="17.28" />
+  <circle cx="85.58" cy="103.26" r="15.36" fill="#5cc2ea" />
+</svg>

@@ -2,9 +2,9 @@
 
 A Chrome extension that shows a live counter of your age to motivate you to live life to the fullest.
 
-![Screenshot Light Theme](/images/screenshot_chrome_light.png?raw=true)
+![Screenshot Light Theme](/images/screenshot_light.png?raw=true)
 
-![Screenshot Dark Theme](/images/screenshot_chrome_dark.png?raw=true)
+![Screenshot Dark Theme](/images/screenshot_dark.png?raw=true)
 
 ## Install
 
@@ -42,4 +42,4 @@ Produces `artifacts/mortality-v<version>.zip`, with the version read from
 ## Credits
 
 - Inspired by [Motivation Chrome extension](https://chrome.google.com/webstore/detail/motivation/ofdgfpchbidcgncgfpdlpclnpaemakoj)
-- Icon from <https://icons8.com/>
+- Icon: original mark — a life-elapsed gauge closing on the counter's signature accent dot
