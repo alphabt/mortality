@@ -67,6 +67,24 @@
     "message": "అమెరికా — SSA 2023",
     "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
+  "lifeTableCountry": {
+    "message": "$COUNTRY$ — ఐరాస 2023",
+    "description": "Template for a localized UN country or area data-source name.",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "Japan"
+      }
+    }
+  },
+  "searchCountriesAreas": {
+    "message": "దేశాలు మరియు ప్రాంతాలను వెతకండి",
+    "description": "Placeholder for the searchable country and area data-source picker."
+  },
+  "noCountriesAreas": {
+    "message": "సరిపోలే దేశాలు లేదా ప్రాంతాలు లేవు",
+    "description": "Empty state when the country and area search has no matches."
+  },
   "baselineSettingsHint": {
     "message": "మీ టైమ్ జోన్ డేటా మూలాన్ని ఎప్పుడూ మార్చదు. పుట్టుక సమయంలో లింగం ఐచ్ఛికం.",
     "description": "Privacy explanation below the life-expectancy estimate settings."

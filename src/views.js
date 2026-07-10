@@ -9,11 +9,8 @@ import {
   bestOnColor,
 } from "./store.js";
 import { buildTimeZoneOptions, detectZone } from "./time.js";
-import {
-  DEFAULT_LIFE_TABLE,
-  LIFE_TABLE_OPTIONS,
-  normalizeLifeTable,
-} from "./lifetable.js";
+import { DEFAULT_LIFE_TABLE, normalizeLifeTable } from "./lifetable.js";
+import { buildLifeTableOptions } from "./life-table-options.js";
 import { el } from "./dom.js";
 import {
   AUTOMATIC_LANGUAGE,
@@ -125,17 +122,16 @@ function sexSelect(id, current) {
   return select;
 }
 
-/** An explicit actuarial-baseline picker; never inferred from time zone. */
-function lifeTableSelect(id, current) {
-  const select = el(
-    "select",
-    { id },
-    LIFE_TABLE_OPTIONS.map(({ value, messageKey }) =>
-      el("option", { value }, msg(messageKey)),
-    ),
-  );
-  select.value = normalizeLifeTable(current || DEFAULT_LIFE_TABLE);
-  return select;
+/** An explicit searchable data-source picker; never inferred from time zone. */
+function lifeTableSelect(id, current, onSelect) {
+  return createSearchSelect({
+    id,
+    options: buildLifeTableOptions(),
+    currentValue: normalizeLifeTable(current || DEFAULT_LIFE_TABLE),
+    placeholder: msg("searchCountriesAreas"),
+    noResults: msg("noCountriesAreas"),
+    onSelect,
+  });
 }
 
 /** A language picker whose choices identify themselves in their own language. */
@@ -208,7 +204,7 @@ export function renderSetup(
     inputDir: "ltr",
   });
   const sexEl = sexSelect("birth-sex", savedSex);
-  const lifeTableEl = lifeTableSelect("birth-life-table", savedLifeTable);
+  const lifeTableControl = lifeTableSelect("birth-life-table", savedLifeTable);
   const languageEl = languageSelect("setup-language", savedLanguage);
   const startBtn = el("button", { id: "start" }, msg("start"));
   const errorEl = el("p", {
@@ -246,7 +242,7 @@ export function renderSetup(
         { class: "setup-label", for: "birth-life-table" },
         msg("actuarialBaseline"),
       ),
-      lifeTableEl,
+      lifeTableControl.element,
       el("p", { class: "hint" }, msg("baselineSetupHint")),
     ]),
     el("div", { class: "setup-field" }, [
@@ -261,7 +257,10 @@ export function renderSetup(
     el("footer", {}, [startBtn]),
   ]);
   app.replaceChildren(form);
-  viewCleanups.set(app, () => zoneControl.destroy());
+  viewCleanups.set(app, () => {
+    zoneControl.destroy();
+    lifeTableControl.destroy();
+  });
 
   if (current) {
     const [date, time] = splitBirth(current);
@@ -281,8 +280,14 @@ export function renderSetup(
       return;
     }
     zoneControl.restore();
+    lifeTableControl.restore();
     errorEl.hidden = true;
-    start(birth, zoneControl.value, sexEl.value || null, lifeTableEl.value);
+    start(
+      birth,
+      zoneControl.value,
+      sexEl.value || null,
+      lifeTableControl.value,
+    );
   }
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -298,14 +303,15 @@ export function renderSetup(
       ? `${dateEl.value}T${timeEl.value || "00:00"}`
       : null;
     zoneControl.restore();
+    lifeTableControl.restore();
     setLanguage(languageEl.value, {
       birth,
       birthZone: zoneControl.value,
       sex: sexEl.value || null,
-      lifeTable: lifeTableEl.value,
+      lifeTable: lifeTableControl.value,
     });
   });
-  [dateEl, timeEl, lifeTableEl, sexEl].forEach((input) =>
+  [dateEl, timeEl, sexEl].forEach((input) =>
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -519,14 +525,19 @@ export function renderSettings(
     el("label", { for: "expectancy" }, msg("years")),
     expectancyInput,
   ]);
-  const lifeTableEl = lifeTableSelect("settings-life-table", lifeTable);
-  lifeTableEl.addEventListener("change", () =>
-    actions.setLifeTable(lifeTableEl.value),
-  );
-  const lifeTableRow = el("div", { class: "row" }, [
-    el("label", { for: "settings-life-table" }, msg("baseline")),
-    lifeTableEl,
-  ]);
+  const lifeTableControl = useEstimate
+    ? lifeTableSelect("settings-life-table", lifeTable, actions.setLifeTable)
+    : null;
+  const lifeTableRow = lifeTableControl
+    ? el("div", { class: "setup-field life-table-field" }, [
+        el(
+          "label",
+          { class: "setup-label", for: "settings-life-table" },
+          msg("baseline"),
+        ),
+        lifeTableControl.element,
+      ])
+    : null;
   const sexEl = sexSelect("settings-sex", sex);
   sexEl.addEventListener("change", () => actions.setSex(sexEl.value || null));
   const sexRow = el("div", { class: "row" }, [
@@ -649,7 +660,10 @@ export function renderSettings(
     el("div", { class: "actions" }, [doneBtn]),
   ]);
   app.replaceChildren(settings);
-  viewCleanups.set(app, () => zoneControl.destroy());
+  viewCleanups.set(app, () => {
+    zoneControl.destroy();
+    lifeTableControl?.destroy();
+  });
 
   function activePreset() {
     return (

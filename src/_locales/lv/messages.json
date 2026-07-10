@@ -67,6 +67,24 @@
     "message": "Amerikas Savienotās Valstis — SSA 2023",
     "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
+  "lifeTableCountry": {
+    "message": "$COUNTRY$ — ANO 2023",
+    "description": "Template for a localized UN country or area data-source name.",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "Japan"
+      }
+    }
+  },
+  "searchCountriesAreas": {
+    "message": "Meklēt valstis un teritorijas",
+    "description": "Placeholder for the searchable country and area data-source picker."
+  },
+  "noCountriesAreas": {
+    "message": "Nav atbilstošu valstu vai teritoriju",
+    "description": "Empty state when the country and area search has no matches."
+  },
   "baselineSettingsHint": {
     "message": "Jūsu laika zona nekad nemaina datu avotu. Dzimums pie dzimšanas ir neobligāts.",
     "description": "Privacy explanation below the life-expectancy estimate settings."
