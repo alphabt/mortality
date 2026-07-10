@@ -47,6 +47,30 @@
     "message": "デフォルトでは現在のタイムゾーンが使われます。引っ越した後も年齢が正確に表示されるよう、出生地に設定してください。",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "保険数理の基準",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "デフォルトは世界です。明示的に選択され、タイムゾーンから推測されることはありません。",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "基準",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "世界 — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "アメリカ合衆国 — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "基準はタイムゾーンから推測されることはありません。出生時の性別は任意です。",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "出生時の性別",
     "description": "Label for the optional sex-at-birth selector."

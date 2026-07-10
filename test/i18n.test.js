@@ -311,6 +311,10 @@ describe("localized rendering", () => {
       timeHint: "Die Zeitangabe ist optional.",
       birthplaceLabel: "Wo wurden Sie geboren?",
       birthplaceHint: "Standardmäßig wird Ihre aktuelle Zeitzone verwendet.",
+      actuarialBaseline: "Versicherungsmathematische Grundlage",
+      baselineSetupHint: "Standardmäßig weltweit.",
+      lifeTableWorld: "Welt — UN 2023",
+      lifeTableUS: "Vereinigte Staaten — SSA 2023",
       sexAtBirth: "Bei der Geburt zugewiesenes Geschlecht",
       sexHint: "Optional für eine genauere Schätzung.",
       sexUnspecified: "Keine Angabe",
@@ -324,5 +328,6 @@ describe("localized rendering", () => {
     );
     expect(app.textContent).not.toContain("When were you born?");
     expect(app.textContent).not.toContain("Where were you born?");
+    expect(app.textContent).not.toContain("Actuarial baseline");
   });
 });

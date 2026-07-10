@@ -47,6 +47,30 @@
     "message": "በነባሪነት የአሁኑን የጊዜ ዞን ይጠቀማል። ቢዘዋወሩም ዕድሜዎ ትክክለኛ እንዲሆን ወደ ትውልድ ቦታዎ ያዘጋጁት።",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "አክቱሪያል መነሻ",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "በነባሪነት ዓለም። በግልጽ የተመረጠ — ከሰዓት ክልልዎ በፍጹም አይገመትም።",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "መነሻ",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "ዓለም — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "አሜሪካ — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "መነሻው ከሰዓት ክልልዎ በፍጹም አይገመትም። በትውልድ ጊዜ ጾታ አማራጭ ነው።",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "በትውልድ ጊዜ ጾታ",
     "description": "Label for the optional sex-at-birth selector."

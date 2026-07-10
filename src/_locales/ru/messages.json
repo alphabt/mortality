@@ -47,6 +47,30 @@
     "message": "По умолчанию используется ваш текущий часовой пояс. Установите его по месту рождения, чтобы возраст оставался точным при переезде.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Актуарная база",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "По умолчанию — мир. Выбирается явно — никогда не определяется по вашему часовому поясу.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "База",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Мир — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "США — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "База никогда не определяется по вашему часовому поясу. Пол при рождении необязателен.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Пол при рождении",
     "description": "Label for the optional sex-at-birth selector."

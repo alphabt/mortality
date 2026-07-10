@@ -116,8 +116,8 @@ function lifeTableSelect(id, current) {
   const select = el(
     "select",
     { id },
-    LIFE_TABLE_OPTIONS.map(({ value, label }) =>
-      el("option", { value }, label),
+    LIFE_TABLE_OPTIONS.map(({ value, messageKey }) =>
+      el("option", { value }, msg(messageKey)),
     ),
   );
   select.value = normalizeLifeTable(current || DEFAULT_LIFE_TABLE);
@@ -198,14 +198,10 @@ export function renderSetup(
       el(
         "label",
         { class: "setup-label", for: "birth-life-table" },
-        "Life expectancy data source",
+        msg("actuarialBaseline"),
       ),
       lifeTableEl,
-      el(
-        "p",
-        { class: "hint" },
-        "World data by default. Your time zone never changes this choice.",
-      ),
+      el("p", { class: "hint" }, msg("baselineSetupHint")),
     ]),
     el("div", { class: "setup-field" }, [
       el(
@@ -461,7 +457,7 @@ export function renderSettings(
     actions.setLifeTable(lifeTableEl.value),
   );
   const lifeTableRow = el("div", { class: "row" }, [
-    el("label", { for: "settings-life-table" }, "Data source"),
+    el("label", { for: "settings-life-table" }, msg("baseline")),
     lifeTableEl,
   ]);
   const sexEl = sexSelect("settings-sex", sex);
@@ -565,11 +561,7 @@ export function renderSettings(
           lifeTableRow,
           estimateLine,
           sexRow,
-          el(
-            "p",
-            { class: "settings-hint" },
-            "Your time zone never changes the data source. Sex at birth is optional.",
-          ),
+          el("p", { class: "settings-hint" }, msg("baselineSettingsHint")),
         ]
       : [customRow]),
     el("p", { class: "settings-label" }, msg("sectionTimeZone")),

@@ -47,6 +47,30 @@
     "message": "Výchozí je vaše aktuální časové pásmo. Nastavte ho na místo narození, aby váš věk zůstal přesný, když se přestěhujete.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Pojistně-matematický základ",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Výchozí je svět. Vybráno explicitně — nikdy neodvozeno z vašeho časového pásma.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Základ",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Svět — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Spojené státy — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Základ se nikdy neodvozuje z vašeho časového pásma. Pohlaví při narození je nepovinné.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Pohlaví při narození",
     "description": "Label for the optional sex-at-birth selector."

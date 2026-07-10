@@ -47,6 +47,30 @@
     "message": "כברירת מחדל נעשה שימוש באזור הזמן הנוכחי שלך. הגדר אותו למקום הלידה שלך כדי שהגיל שלך יישאר מדויק אם תעבור.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "קו בסיס אקטוארי",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "כברירת מחדל, העולם. נבחר באופן מפורש — לעולם לא נגזר מאזור הזמן שלך.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "קו בסיס",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "העולם — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "ארצות הברית — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "קו הבסיס לעולם לא נגזר מאזור הזמן שלך. מגדר בלידה הוא אופציונלי.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "מגדר בלידה",
     "description": "Label for the optional sex-at-birth selector."

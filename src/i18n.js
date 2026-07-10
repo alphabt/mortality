@@ -14,6 +14,14 @@ export const EN_MESSAGES = {
   birthplaceLabel: "Where were you born?",
   birthplaceHint:
     "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+  actuarialBaseline: "Actuarial baseline",
+  baselineSetupHint:
+    "World by default. Chosen explicitly — never inferred from your time zone.",
+  baseline: "Baseline",
+  lifeTableWorld: "World — UN 2023",
+  lifeTableUS: "United States — SSA 2023",
+  baselineSettingsHint:
+    "Baseline is never inferred from your time zone. Sex at birth is optional.",
   sexAtBirth: "Sex at birth",
   sexHint: "Optional — sharpens the life-expectancy estimate.",
   sexUnspecified: "Prefer not to say",

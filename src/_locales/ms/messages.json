@@ -47,6 +47,30 @@
     "message": "Secara lalai menggunakan zon waktu semasa anda. Tetapkan kepada tempat lahir anda supaya usia anda kekal tepat jika anda berpindah.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Garis dasar aktuari",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Dunia secara lalai. Dipilih secara jelas — tidak pernah disimpulkan daripada zon waktu anda.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Garis dasar",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Dunia — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Amerika Syarikat — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Garis dasar tidak pernah disimpulkan daripada zon waktu anda. Jantina semasa lahir adalah pilihan.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Jantina semasa lahir",
     "description": "Label for the optional sex-at-birth selector."

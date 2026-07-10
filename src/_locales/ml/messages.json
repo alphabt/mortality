@@ -47,6 +47,30 @@
     "message": "സ്ഥിരസ്ഥിതിയായി നിങ്ങളുടെ നിലവിലെ ടൈം സോൺ ഉപയോഗിക്കുന്നു. നിങ്ങൾ മാറിയാലും പ്രായം കൃത്യമായി നിലനിൽക്കാൻ ഇത് നിങ്ങളുടെ ജനനസ്ഥലത്തേക്ക് സജ്ജമാക്കുക.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "ആക്ച്വേറിയൽ അടിസ്ഥാനരേഖ",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "സ്ഥിരസ്ഥിതിയായി ലോകം. വ്യക്തമായി തിരഞ്ഞെടുത്തത് — നിങ്ങളുടെ ടൈം സോണിൽ നിന്ന് ഒരിക്കലും ഊഹിക്കുന്നില്ല.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "അടിസ്ഥാനരേഖ",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "ലോകം — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "അമേരിക്ക — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "അടിസ്ഥാനരേഖ നിങ്ങളുടെ ടൈം സോണിൽ നിന്ന് ഒരിക്കലും ഊഹിക്കുന്നില്ല. ജനന സമയത്തെ ലിംഗം ഓപ്ഷണൽ ആണ്.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "ജനന സമയത്തെ ലിംഗം",
     "description": "Label for the optional sex-at-birth selector."

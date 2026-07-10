@@ -47,6 +47,30 @@
     "message": "به‌طور پیش‌فرض از منطقه‌ی زمانی فعلی شما استفاده می‌شود. آن را روی محل تولدتان تنظیم کنید تا سن شما هنگام نقل مکان دقیق بماند.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "خط پایه بیمه‌سنجی",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "پیش‌فرض جهان است. به‌صورت صریح انتخاب می‌شود — هرگز از منطقهٔ زمانی شما استنباط نمی‌شود.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "خط پایه",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "جهان — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "ایالات متحده — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "خط پایه هرگز از منطقهٔ زمانی شما استنباط نمی‌شود. جنسیت هنگام تولد اختیاری است.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "جنسیت هنگام تولد",
     "description": "Label for the optional sex-at-birth selector."

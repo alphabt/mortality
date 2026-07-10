@@ -47,6 +47,30 @@
     "message": "ডিফল্টভাবে আপনার বর্তমান টাইম জোন ব্যবহৃত হয়। স্থানান্তরিত হলে আপনার বয়স নির্ভুল রাখতে এটি আপনার জন্মস্থানে সেট করুন।",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "অ্যাকচুয়ারিয়াল ভিত্তি",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "ডিফল্টভাবে বিশ্ব। স্পষ্টভাবে নির্বাচিত — আপনার টাইম জোন থেকে কখনও অনুমান করা হয় না।",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "ভিত্তি",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "বিশ্ব — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "যুক্তরাষ্ট্র — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "ভিত্তি আপনার টাইম জোন থেকে কখনও অনুমান করা হয় না। জন্মের সময় লিঙ্গ ঐচ্ছিক।",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "জন্মের সময় লিঙ্গ",
     "description": "Label for the optional sex-at-birth selector."

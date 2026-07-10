@@ -47,6 +47,30 @@
     "message": "डीफॉल्टनुसार तुमचा सध्याचा टाइम झोन वापरला जातो. तुम्ही स्थलांतरित झालात तरी वय अचूक राहावे यासाठी तो तुमच्या जन्मस्थळावर सेट करा.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "अ‍ॅक्च्युरिअल आधाररेखा",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "डीफॉल्टनुसार जग. स्पष्टपणे निवडलेले — तुमच्या टाइम झोनवरून कधीही अंदाजित नाही.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "आधाररेखा",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "जग — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "अमेरिका — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "आधाररेखा तुमच्या टाइम झोनवरून कधीही अंदाजित केली जात नाही. जन्मावेळचे लिंग ऐच्छिक आहे.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "जन्मावेळचे लिंग",
     "description": "Label for the optional sex-at-birth selector."

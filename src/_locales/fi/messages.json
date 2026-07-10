@@ -47,6 +47,30 @@
     "message": "Oletuksena käytetään nykyistä aikavyöhykettäsi. Aseta se syntymäpaikkaasi, jotta ikäsi pysyy tarkkana, jos muutat.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Vakuutusmatemaattinen lähtötaso",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Oletuksena maailma. Valittu nimenomaisesti — ei koskaan pääteltynä aikavyöhykkeestäsi.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Lähtötaso",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Maailma — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Yhdysvallat — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Lähtötasoa ei koskaan päätellä aikavyöhykkeestäsi. Sukupuoli syntymässä on valinnainen.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Sukupuoli syntymässä",
     "description": "Label for the optional sex-at-birth selector."

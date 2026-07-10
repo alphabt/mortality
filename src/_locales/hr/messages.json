@@ -47,6 +47,30 @@
     "message": "Zadano se koristi vaša trenutna vremenska zona. Postavite je na mjesto rođenja da vaša dob ostane točna ako se preselite.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Aktuarska osnovica",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Zadano je svijet. Odabrano izričito — nikad se ne izvodi iz vaše vremenske zone.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Osnovica",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Svijet — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "SAD — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Osnovica se nikad ne izvodi iz vaše vremenske zone. Spol pri rođenju je neobavezan.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Spol pri rođenju",
     "description": "Label for the optional sex-at-birth selector."

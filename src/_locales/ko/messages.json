@@ -47,6 +47,30 @@
     "message": "기본적으로 현재 표준시간대를 사용합니다. 이사하더라도 나이가 정확하게 유지되도록 출생지로 설정하세요.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "보험 계리 기준선",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "기본값은 세계입니다. 명시적으로 선택되며 표준시간대에서 추론되지 않습니다.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "기준선",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "세계 — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "미국 — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "기준선은 표준시간대에서 추론되지 않습니다. 출생 시 성별은 선택 사항입니다.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "출생 시 성별",
     "description": "Label for the optional sex-at-birth selector."

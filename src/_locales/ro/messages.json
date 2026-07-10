@@ -47,6 +47,30 @@
     "message": "Se folosește implicit fusul tău orar actual. Setează-l la locul nașterii pentru ca vârsta ta să rămână exactă dacă te muți.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Referință actuarială",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Implicit, lumea. Aleasă explicit — niciodată dedusă din fusul tău orar.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Referință",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Lume — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Statele Unite — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Referința nu este niciodată dedusă din fusul tău orar. Sexul la naștere este opțional.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Sex la naștere",
     "description": "Label for the optional sex-at-birth selector."

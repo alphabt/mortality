@@ -47,6 +47,30 @@
     "message": "డిఫాల్ట్‌గా మీ ప్రస్తుత టైమ్ జోన్ ఉపయోగించబడుతుంది. మీరు మారితే మీ వయసు ఖచ్చితంగా ఉండేలా దీన్ని మీ జననస్థలానికి సెట్ చేయండి.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "యాక్చురియల్ ఆధార రేఖ",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "డిఫాల్ట్‌గా ప్రపంచం. స్పష్టంగా ఎంపిక చేయబడింది — మీ టైమ్ జోన్ నుండి ఎప్పుడూ అంచనా వేయబడదు.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "ఆధార రేఖ",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "ప్రపంచం — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "అమెరికా — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "ఆధార రేఖ మీ టైమ్ జోన్ నుండి ఎప్పుడూ అంచనా వేయబడదు. పుట్టుక సమయంలో లింగం ఐచ్ఛికం.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "పుట్టుక సమయంలో లింగం",
     "description": "Label for the optional sex-at-birth selector."

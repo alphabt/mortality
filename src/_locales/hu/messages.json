@@ -47,6 +47,30 @@
     "message": "Alapértelmezés szerint a jelenlegi időzónádat használja. Állítsd a születési helyedre, hogy életkorod pontos maradjon, ha elköltözöl.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Aktuáriusi alapérték",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Alapértelmezés szerint a világ. Kifejezetten kiválasztva — sosem az időzónádból következtetve.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Alapérték",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Világ — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Egyesült Államok — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Az alapértéket soha nem az időzónádból következtetjük ki. A nem a születéskor opcionális.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Nem a születéskor",
     "description": "Label for the optional sex-at-birth selector."

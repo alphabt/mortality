@@ -47,6 +47,30 @@
     "message": "Standardmäßig deine aktuelle Zeitzone. Stelle sie auf deinen Geburtsort ein, damit dein Alter auch nach einem Umzug exakt bleibt.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Versicherungsmathematische Basis",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Standardmäßig Welt. Explizit gewählt — nie aus deiner Zeitzone abgeleitet.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Basis",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Welt — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Vereinigte Staaten — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Die Basis wird nie aus deiner Zeitzone abgeleitet. Geschlecht bei Geburt ist optional.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Geschlecht bei Geburt",
     "description": "Label for the optional sex-at-birth selector."

@@ -47,6 +47,30 @@
     "message": "Usa por defeito o teu fuso horário atual. Define-o para o teu local de nascimento para que a tua idade se mantenha exata se te mudares.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Referência atuarial",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Mundo por defeito. Escolhido explicitamente — nunca inferido do teu fuso horário.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Referência",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Mundo — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Estados Unidos — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "A referência nunca é inferida do teu fuso horário. O sexo à nascença é opcional.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Sexo à nascença",
     "description": "Label for the optional sex-at-birth selector."

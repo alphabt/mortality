@@ -47,6 +47,30 @@
     "message": "ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸಮಯ ವಲಯವನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಸ್ಥಳಾಂತರಗೊಂಡರೂ ವಯಸ್ಸು ನಿಖರವಾಗಿ ಇರಲು ಇದನ್ನು ನಿಮ್ಮ ಜನ್ಮಸ್ಥಳಕ್ಕೆ ಹೊಂದಿಸಿ.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "ಆಕ್ಚುರಿಯಲ್ ಆಧಾರರೇಖೆ",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ವಿಶ್ವ. ಸ್ಪಷ್ಟವಾಗಿ ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ — ನಿಮ್ಮ ಸಮಯ ವಲಯದಿಂದ ಎಂದಿಗೂ ಊಹಿಸಲಾಗುವುದಿಲ್ಲ.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "ಆಧಾರರೇಖೆ",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "ವಿಶ್ವ — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "ಅಮೆರಿಕ — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "ಆಧಾರರೇಖೆಯನ್ನು ನಿಮ್ಮ ಸಮಯ ವಲಯದಿಂದ ಎಂದಿಗೂ ಊಹಿಸಲಾಗುವುದಿಲ್ಲ. ಜನನದ ಸಮಯದಲ್ಲಿ ಲಿಂಗ ಐಚ್ಛಿಕ.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "ಜನನದ ಸಮಯದಲ್ಲಿ ಲಿಂಗ",
     "description": "Label for the optional sex-at-birth selector."

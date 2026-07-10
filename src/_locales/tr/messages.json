@@ -47,6 +47,30 @@
     "message": "Varsayılan olarak geçerli saat diliminizi kullanır. Taşınırsanız yaşınızın doğru kalması için doğum yerinize ayarlayın.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Aktüeryal taban değer",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Varsayılan olarak Dünya. Açıkça seçilir — saat diliminizden asla çıkarılmaz.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Taban değer",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Dünya — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Amerika Birleşik Devletleri — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Taban değer saat diliminizden asla çıkarılmaz. Doğumda cinsiyet isteğe bağlıdır.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Doğumda cinsiyet",
     "description": "Label for the optional sex-at-birth selector."

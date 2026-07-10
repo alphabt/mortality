@@ -47,6 +47,30 @@
     "message": "Standard är din nuvarande tidszon. Ställ in den till din födelseort så att din ålder förblir exakt om du flyttar.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Försäkringsmatematisk baslinje",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Världen som standard. Uttryckligen vald — härleds aldrig från din tidszon.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Baslinje",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Världen — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "USA — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Baslinjen härleds aldrig från din tidszon. Kön vid födseln är valfritt.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Kön vid födseln",
     "description": "Label for the optional sex-at-birth selector."

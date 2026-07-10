@@ -102,8 +102,10 @@ describe("life-table baseline metadata", () => {
       "world",
       "us",
     ]);
-    expect(LIFE_TABLE_OPTIONS[0].label).toContain("UN 2023");
-    expect(LIFE_TABLE_OPTIONS[1].label).toContain("SSA 2023");
+    expect(LIFE_TABLE_OPTIONS.map(({ messageKey }) => messageKey)).toEqual([
+      "lifeTableWorld",
+      "lifeTableUS",
+    ]);
   });
 
   it("normalizes unknown values to World", () => {

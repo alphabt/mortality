@@ -119,10 +119,10 @@ export const WORLD_UNISEX = WORLD_BOTH;
 
 export const DEFAULT_LIFE_TABLE = "world";
 
-/** Stable state values and user-facing labels for actuarial baselines. */
+/** Stable state values and locale message keys for actuarial baselines. */
 export const LIFE_TABLE_OPTIONS = Object.freeze([
-  Object.freeze({ value: "world", label: "World — UN 2023" }),
-  Object.freeze({ value: "us", label: "United States — SSA 2023" }),
+  Object.freeze({ value: "world", messageKey: "lifeTableWorld" }),
+  Object.freeze({ value: "us", messageKey: "lifeTableUS" }),
 ]);
 
 const TABLES = {

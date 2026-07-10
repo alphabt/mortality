@@ -47,6 +47,30 @@
     "message": "Domyślnie używana jest Twoja aktualna strefa czasowa. Ustaw ją na miejsce urodzenia, aby Twój wiek pozostał dokładny po przeprowadzce.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Aktuarialny poziom odniesienia",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Domyślnie świat. Wybierany jawnie — nigdy nie jest wywnioskowany z Twojej strefy czasowej.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Poziom odniesienia",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Świat — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Stany Zjednoczone — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Poziom odniesienia nigdy nie jest wywnioskowany z Twojej strefy czasowej. Płeć przy urodzeniu jest opcjonalna.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Płeć przy urodzeniu",
     "description": "Label for the optional sex-at-birth selector."

@@ -47,6 +47,30 @@
     "message": "Pagal nutylėjimą naudojama jūsų dabartinė laiko zona. Nustatykite ją į gimimo vietą, kad amžius liktų tikslus, jei persikeltumėte.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Aktuarinis pagrindas",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Pagal nutylėjimą – pasaulis. Pasirinkta aiškiai — niekada nesprendžiama pagal jūsų laiko zoną.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Pagrindas",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Pasaulis — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Jungtinės Valstijos — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Pagrindas niekada nenustatomas pagal jūsų laiko zoną. Lytis gimus yra neprivaloma.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Lytis gimus",
     "description": "Label for the optional sex-at-birth selector."

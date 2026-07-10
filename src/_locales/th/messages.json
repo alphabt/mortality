@@ -47,6 +47,30 @@
     "message": "ค่าเริ่มต้นใช้เขตเวลาปัจจุบันของคุณ ตั้งเป็นสถานที่เกิดของคุณเพื่อให้อายุยังคงแม่นยำหากคุณย้ายที่อยู่",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "ค่าฐานเชิงคณิตศาสตร์ประกันภัย",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "ค่าเริ่มต้นคือโลก เลือกอย่างชัดเจน — ไม่เคยอนุมานจากเขตเวลาของคุณ",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "ค่าฐาน",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "โลก — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "สหรัฐอเมริกา — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "ค่าฐานไม่เคยอนุมานจากเขตเวลาของคุณ เพศตอนเกิดเป็นทางเลือก",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "เพศตอนเกิด",
     "description": "Label for the optional sex-at-birth selector."

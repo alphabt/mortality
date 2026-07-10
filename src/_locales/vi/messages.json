@@ -47,6 +47,30 @@
     "message": "Theo mặc định sẽ dùng múi giờ hiện tại của bạn. Đặt thành nơi sinh để tuổi của bạn vẫn chính xác nếu bạn di chuyển.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Mức chuẩn tính toán bảo hiểm nhân thọ",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Theo mặc định là thế giới. Được chọn rõ ràng — không bao giờ suy ra từ múi giờ của bạn.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Mức chuẩn",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Thế giới — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Hoa Kỳ — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Mức chuẩn không bao giờ được suy ra từ múi giờ của bạn. Giới tính khi sinh là không bắt buộc.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Giới tính khi sinh",
     "description": "Label for the optional sex-at-birth selector."

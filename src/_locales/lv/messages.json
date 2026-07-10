@@ -47,6 +47,30 @@
     "message": "Pēc noklusējuma tiek izmantota jūsu pašreizējā laika zona. Iestatiet to uz dzimšanas vietu, lai jūsu vecums paliktu precīzs, ja pārceļaties.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
+  "actuarialBaseline": {
+    "message": "Aktuārais pamats",
+    "description": "Label for the actuarial life-table selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Pēc noklusējuma pasaule. Izvēlēts skaidri — nekad netiek noteikts no jūsu laika zonas.",
+    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+  },
+  "baseline": {
+    "message": "Pamats",
+    "description": "Short label for the actuarial life-table selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Pasaule — UN 2023",
+    "description": "Display name for the global United Nations 2023 actuarial baseline."
+  },
+  "lifeTableUS": {
+    "message": "Amerikas Savienotās Valstis — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+  },
+  "baselineSettingsHint": {
+    "message": "Pamats nekad netiek noteikts no jūsu laika zonas. Dzimums pie dzimšanas ir neobligāts.",
+    "description": "Privacy explanation below the actuarial estimate settings."
+  },
   "sexAtBirth": {
     "message": "Dzimums pie dzimšanas",
     "description": "Label for the optional sex-at-birth selector."
