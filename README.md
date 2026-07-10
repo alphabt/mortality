@@ -16,8 +16,21 @@ A browser extension that replaces your new tab page with a live counter of your 
   explicitly selected World (UN 2023) or United States (SSA 2023) baseline.
 - **Personalization** — light and dark themes that follow your system, color presets
   and custom colors, plus a fully custom life expectancy.
+- **Automatic localization** — follows your browser language across all 55 official
+  Chrome WebExtension locales.
 - **Accessible and calm** — WCAG 2.1 AA, a `prefers-reduced-motion` path, and full
   keyboard support.
+
+## Languages
+
+Mortality follows the browser/OS locale automatically and falls back to English; no
+in-extension language setting is needed. It ships every
+[Chrome-supported extension locale](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales):
+`ar`, `am`, `bg`, `bn`, `ca`, `cs`, `da`, `de`, `el`, `en`, `en_AU`, `en_GB`,
+`en_US`, `es`, `es_419`, `et`, `fa`, `fi`, `fil`, `fr`, `gu`, `he`, `hi`, `hr`,
+`hu`, `id`, `it`, `ja`, `kn`, `ko`, `lt`, `lv`, `ml`, `mr`, `ms`, `nl`, `no`,
+`pl`, `pt_BR`, `pt_PT`, `ro`, `ru`, `sk`, `sl`, `sr`, `sv`, `sw`, `ta`, `te`,
+`th`, `tr`, `uk`, `vi`, `zh_CN`, and `zh_TW`.
 
 ## Privacy
 

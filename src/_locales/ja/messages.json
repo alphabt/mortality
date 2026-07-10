@@ -4,139 +4,151 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Replace new tab page with a counter of your age",
+    "message": "新しいタブページをあなたの年齢のカウンターに置き換えます",
     "description": "Short extension-store description."
   },
   "pageTitle": {
-    "message": "Mortality — New Tab",
+    "message": "Mortality — 新しいタブ",
     "description": "Browser document title."
   },
   "setupTitle": {
-    "message": "When were you born?",
+    "message": "いつ生まれましたか?",
     "description": "Heading on the initial birthday setup screen."
   },
   "setupSubtitle": {
-    "message": "Your age, counting up live on every new tab.",
+    "message": "あなたの年齢が、新しいタブを開くたびにリアルタイムで増えていきます。",
     "description": "Short explanation below the setup heading."
   },
   "birthDateAria": {
-    "message": "Date of birth",
+    "message": "生年月日",
     "description": "Accessible label for the birth-date input."
   },
   "birthTimeAria": {
-    "message": "Time of birth (optional)",
+    "message": "出生時刻（任意）",
     "description": "Accessible label for the optional birth-time input."
   },
   "start": {
-    "message": "Start",
+    "message": "開始",
     "description": "Button that completes birthday setup."
   },
   "timeHint": {
-    "message": "Time is optional — it sharpens the live count.",
+    "message": "時刻の入力は任意です — ライブカウントの精度が上がります。",
     "description": "Hint explaining why a birth time can be entered."
   },
   "futureDateError": {
-    "message": "That date is in the future — please check your birthday.",
+    "message": "この日付は未来です。生年月日を確認してください。",
     "description": "Validation error for a future birth date."
   },
   "birthplaceLabel": {
-    "message": "Where were you born?",
+    "message": "どこで生まれましたか?",
     "description": "Label for the birthplace time-zone selector."
   },
   "birthplaceHint": {
-    "message": "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+    "message": "デフォルトでは現在のタイムゾーンが使われます。引っ越した後も年齢が正確に表示されるよう、出生地に設定してください。",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "sexAtBirth": {
-    "message": "Sex at birth",
+    "message": "出生時の性別",
     "description": "Label for the optional sex-at-birth selector."
   },
   "sexHint": {
-    "message": "Optional — sharpens the life-expectancy estimate.",
+    "message": "任意 — 平均寿命の推定精度が上がります。",
     "description": "Explains why sex at birth can be provided."
   },
   "sexUnspecified": {
-    "message": "Prefer not to say",
+    "message": "回答しない",
     "description": "Privacy-preserving empty option in the sex-at-birth selector."
   },
   "sexFemale": {
-    "message": "Female",
+    "message": "女性",
     "description": "Female sex-at-birth option."
   },
   "sexMale": {
-    "message": "Male",
+    "message": "男性",
     "description": "Male sex-at-birth option."
   },
   "modeYears": {
-    "message": "Age",
+    "message": "年齢",
     "description": "Label for the fractional-years counter mode."
   },
   "modeCalendar": {
-    "message": "Calendar age",
+    "message": "実年齢",
     "description": "Label for the years/months/days counter mode."
   },
   "modeBirthday": {
-    "message": "Next birthday",
+    "message": "次の誕生日",
     "description": "Label for the next-birthday countdown mode."
   },
   "modeDays": {
-    "message": "Days lived",
+    "message": "生きた日数",
     "description": "Label for the days-lived counter mode."
   },
   "modeWeeks": {
-    "message": "Weeks lived",
+    "message": "生きた週数",
     "description": "Label for the weeks-lived counter mode."
   },
   "modeYearsLeft": {
-    "message": "Years left",
+    "message": "残りの年数",
     "description": "Label for estimated years remaining."
   },
   "modeDaysLeft": {
-    "message": "Days left",
+    "message": "残りの日数",
     "description": "Label for estimated days remaining."
   },
   "modeWeeksLeft": {
-    "message": "Weeks left",
+    "message": "残りの週数",
     "description": "Label for estimated weeks remaining."
   },
   "settings": {
-    "message": "Settings",
+    "message": "設定",
     "description": "Settings screen title and settings-button accessible label."
   },
   "lifeInWeeks": {
-    "message": "Life in weeks",
+    "message": "週単位の人生",
     "description": "Life-in-weeks view title and button accessible label."
   },
   "changeUnits": {
-    "message": "Change units",
+    "message": "単位を切り替え",
     "description": "Accessible action name for cycling counter units."
   },
   "changeUnitsAction": {
-    "message": "Activate to change units",
+    "message": "有効にすると単位を切り替えられます",
     "description": "Activation instruction at the end of the live counter accessible label."
   },
   "changeUnitsTitle": {
-    "message": "Click to change units",
+    "message": "クリックで単位を切り替え",
     "description": "Visible hint and pointer tooltip for cycling counter units."
   },
   "counterAria": {
-    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "message": "$LABEL$ $VALUE$。$ACTION$。",
     "description": "Full accessible label for the live counter.",
     "placeholders": {
-      "label": { "content": "$1", "example": "Calendar age" },
-      "value": { "content": "$2", "example": "20 years, 3 months, and 2 days" },
-      "action": { "content": "$3", "example": "Change units" }
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
     }
   },
   "born": {
-    "message": "Born $DATE$",
+    "message": "$DATE$ 生まれ",
     "description": "Birth date shown below the counter.",
     "placeholders": {
-      "date": { "content": "$1", "example": "15 May 1990" }
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
     }
   },
   "birthdayCountdown": {
-    "message": "in $COUNTDOWN$",
+    "message": "あと $COUNTDOWN$",
     "description": "Accessible next-birthday countdown phrase.",
     "placeholders": {
       "countdown": {
@@ -146,56 +158,71 @@
     }
   },
   "progressCaption": {
-    "message": "$PERCENT$ of $YEARS$ yrs lived",
+    "message": "$YEARS$ 年のうち $PERCENT$ を経過",
     "description": "Life-progress caption below the counter.",
     "placeholders": {
-      "percent": { "content": "$1", "example": "25%" },
-      "years": { "content": "$2", "example": "80" }
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
     }
   },
   "reflectionLine": {
-    "message": "$LIVED$ years behind you · $AHEAD$ ahead, if the tables hold.",
+    "message": "$LIVED$ 年が過去 · 表が正しければ、あと $AHEAD$ 年。",
     "description": "Optional reflective line below the counter.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "30" },
-      "ahead": { "content": "$2", "example": "50" }
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
     }
   },
   "sectionPresets": {
-    "message": "Presets",
+    "message": "プリセット",
     "description": "Settings section heading."
   },
   "presetHint": {
-    "message": "A preset sets all four colors at once.",
+    "message": "1つのプリセットで4色すべてを一度に設定します。",
     "description": "Hint below theme presets."
   },
   "sectionColors": {
-    "message": "Colors",
+    "message": "カラー",
     "description": "Settings section heading."
   },
   "colorBackground": {
-    "message": "Background",
+    "message": "背景",
     "description": "Background color label."
   },
   "colorLabel": {
-    "message": "Label",
+    "message": "ラベル",
     "description": "Secondary-label color label."
   },
   "colorCounter": {
-    "message": "Counter",
+    "message": "カウンター",
     "description": "Counter color label."
   },
-  "colorAccent": { "message": "Accent", "description": "Accent color label." },
+  "colorAccent": {
+    "message": "アクセント",
+    "description": "Accent color label."
+  },
   "sectionDisplay": {
-    "message": "Display",
+    "message": "表示",
     "description": "Settings section heading."
   },
   "numerals": {
-    "message": "Numerals",
+    "message": "数字",
     "description": "Numeral typeface setting label."
   },
   "typefaceSystem": {
-    "message": "System",
+    "message": "システム",
     "description": "System numeral typeface option."
   },
   "typefaceGrotesk": {
@@ -207,133 +234,163 @@
     "description": "Monospace numeral typeface option."
   },
   "reflectionToggle": {
-    "message": "Reflection line under the counter",
+    "message": "カウンターの下に表示する一文",
     "description": "Label for the optional reflection-line switch."
   },
   "sectionLifeExpectancy": {
-    "message": "Life expectancy",
+    "message": "平均寿命",
     "description": "Settings section heading."
   },
   "source": {
-    "message": "Source",
+    "message": "データソース",
     "description": "Life-expectancy source label."
   },
   "sourceEstimate": {
-    "message": "Estimate",
+    "message": "推定値",
     "description": "Actuarial estimate source option."
   },
   "sourceCustom": {
-    "message": "Custom",
+    "message": "カスタム",
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ years — actuarial estimate for your age.",
+    "message": "≈ $YEARS$ 年 — あなたの年齢に基づく保険数理上の推定値。",
     "description": "Current actuarial estimate shown in settings.",
     "placeholders": {
-      "years": { "content": "$1", "example": "84" }
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
     }
   },
   "estimateMissing": {
-    "message": "Add your birthday to see an actuarial estimate.",
+    "message": "保険数理上の推定値を見るには生年月日を追加してください。",
     "description": "Shown when an actuarial estimate cannot be calculated."
   },
   "years": {
-    "message": "Years",
+    "message": "年",
     "description": "Manual life-expectancy field label."
   },
   "sectionTimeZone": {
-    "message": "Time zone",
+    "message": "タイムゾーン",
     "description": "Settings section heading."
   },
   "bornIn": {
-    "message": "Born in",
+    "message": "出生地",
     "description": "Birth time-zone field label."
   },
   "zoneHint": {
-    "message": "Anchors your birthday to a fixed instant, so your age stays exact when you travel.",
+    "message": "誕生日を固定の瞬間に結び付け、旅行中でも年齢を正確に保ちます。",
     "description": "Explains the stored birth time zone."
   },
   "sectionData": {
-    "message": "Data",
+    "message": "データ",
     "description": "Settings section heading."
   },
   "exportData": {
-    "message": "Export…",
+    "message": "エクスポート…",
     "description": "Export settings button."
   },
   "importData": {
-    "message": "Import…",
+    "message": "インポート…",
     "description": "Import settings button."
   },
   "changeBirthday": {
-    "message": "Change birthday",
+    "message": "生年月日を変更",
     "description": "Return to birthday setup button."
   },
   "resetColors": {
-    "message": "Reset colors",
+    "message": "カラーをリセット",
     "description": "Reset theme colors button."
   },
-  "done": { "message": "Done", "description": "Close settings button." },
+  "done": {
+    "message": "完了",
+    "description": "Close settings button."
+  },
   "lowContrast": {
-    "message": "Low contrast ($RATIO$:1). Aim for $TARGET$:1 on the background.",
+    "message": "コントラストが低すぎます（$RATIO$:1）。背景に対して $TARGET$:1 を目指してください。",
     "description": "Warning shown when a selected color misses WCAG contrast.",
     "placeholders": {
-      "ratio": { "content": "$1", "example": "2.5" },
-      "target": { "content": "$2", "example": "4.5" }
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
     }
   },
   "presetLight": {
-    "message": "Light",
+    "message": "ライト",
     "description": "Light theme preset name."
   },
-  "presetDark": { "message": "Dark", "description": "Dark theme preset name." },
+  "presetDark": {
+    "message": "ダーク",
+    "description": "Dark theme preset name."
+  },
   "presetPaper": {
-    "message": "Paper",
+    "message": "ペーパー",
     "description": "Paper theme preset name."
   },
-  "presetVoid": { "message": "Void", "description": "Void theme preset name." },
+  "presetVoid": {
+    "message": "ヴォイド",
+    "description": "Void theme preset name."
+  },
   "presetTerminal": {
-    "message": "Terminal",
+    "message": "ターミナル",
     "description": "Terminal theme preset name."
   },
   "presetBlueprint": {
-    "message": "Blueprint",
+    "message": "ブループリント",
     "description": "Blueprint theme preset name."
   },
   "presetAmber": {
-    "message": "Amber",
+    "message": "アンバー",
     "description": "Amber theme preset name."
   },
   "themeAria": {
-    "message": "$THEME$ theme",
+    "message": "$THEME$ テーマ",
     "description": "Accessible label for a theme preset button.",
     "placeholders": {
-      "theme": { "content": "$1", "example": "Paper" }
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
     }
   },
   "back": {
-    "message": "Back",
+    "message": "戻る",
     "description": "Return from the life-in-weeks view."
   },
   "weeksSummary": {
-    "message": "$LIVED$ weeks lived · $AHEAD$ ahead · $YEARS$ yrs",
+    "message": "$LIVED$ 週を経過 · あと $AHEAD$ · $YEARS$ 年",
     "description": "Summary above the life-in-weeks grid.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "1040" },
-      "ahead": { "content": "$2", "example": "3120" },
-      "years": { "content": "$3", "example": "80" }
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
     }
   },
   "legendLived": {
-    "message": "Lived",
+    "message": "経過",
     "description": "Legend label for elapsed weeks."
   },
   "legendThisWeek": {
-    "message": "This week",
+    "message": "今週",
     "description": "Legend label for the current week."
   },
   "legendAhead": {
-    "message": "Ahead",
+    "message": "あと",
     "description": "Legend label for future weeks."
   }
 }

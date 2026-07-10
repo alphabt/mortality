@@ -4,139 +4,151 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Replace new tab page with a counter of your age",
+    "message": "מחליף את דף הכרטיסייה החדשה במונה של הגיל שלך",
     "description": "Short extension-store description."
   },
   "pageTitle": {
-    "message": "Mortality — New Tab",
+    "message": "Mortality — כרטיסייה חדשה",
     "description": "Browser document title."
   },
   "setupTitle": {
-    "message": "When were you born?",
+    "message": "מתי נולדת?",
     "description": "Heading on the initial birthday setup screen."
   },
   "setupSubtitle": {
-    "message": "Your age, counting up live on every new tab.",
+    "message": "הגיל שלך, שמצטבר בזמן אמת בכל כרטיסייה חדשה.",
     "description": "Short explanation below the setup heading."
   },
   "birthDateAria": {
-    "message": "Date of birth",
+    "message": "תאריך לידה",
     "description": "Accessible label for the birth-date input."
   },
   "birthTimeAria": {
-    "message": "Time of birth (optional)",
+    "message": "שעת לידה (אופציונלי)",
     "description": "Accessible label for the optional birth-time input."
   },
   "start": {
-    "message": "Start",
+    "message": "התחל",
     "description": "Button that completes birthday setup."
   },
   "timeHint": {
-    "message": "Time is optional — it sharpens the live count.",
+    "message": "השעה היא אופציונלית — היא משפרת את דיוק המונה בזמן אמת.",
     "description": "Hint explaining why a birth time can be entered."
   },
   "futureDateError": {
-    "message": "That date is in the future — please check your birthday.",
+    "message": "התאריך הזה נמצא בעתיד — בדוק את תאריך הלידה שלך.",
     "description": "Validation error for a future birth date."
   },
   "birthplaceLabel": {
-    "message": "Where were you born?",
+    "message": "היכן נולדת?",
     "description": "Label for the birthplace time-zone selector."
   },
   "birthplaceHint": {
-    "message": "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+    "message": "כברירת מחדל נעשה שימוש באזור הזמן הנוכחי שלך. הגדר אותו למקום הלידה שלך כדי שהגיל שלך יישאר מדויק אם תעבור.",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "sexAtBirth": {
-    "message": "Sex at birth",
+    "message": "מגדר בלידה",
     "description": "Label for the optional sex-at-birth selector."
   },
   "sexHint": {
-    "message": "Optional — sharpens the life-expectancy estimate.",
+    "message": "אופציונלי — משפר את הערכת תוחלת החיים.",
     "description": "Explains why sex at birth can be provided."
   },
   "sexUnspecified": {
-    "message": "Prefer not to say",
+    "message": "מעדיף/ה לא לציין",
     "description": "Privacy-preserving empty option in the sex-at-birth selector."
   },
   "sexFemale": {
-    "message": "Female",
+    "message": "נקבה",
     "description": "Female sex-at-birth option."
   },
   "sexMale": {
-    "message": "Male",
+    "message": "זכר",
     "description": "Male sex-at-birth option."
   },
   "modeYears": {
-    "message": "Age",
+    "message": "גיל",
     "description": "Label for the fractional-years counter mode."
   },
   "modeCalendar": {
-    "message": "Calendar age",
+    "message": "גיל קלנדרי",
     "description": "Label for the years/months/days counter mode."
   },
   "modeBirthday": {
-    "message": "Next birthday",
+    "message": "יום ההולדת הבא",
     "description": "Label for the next-birthday countdown mode."
   },
   "modeDays": {
-    "message": "Days lived",
+    "message": "ימים שחייתם",
     "description": "Label for the days-lived counter mode."
   },
   "modeWeeks": {
-    "message": "Weeks lived",
+    "message": "שבועות שחייתם",
     "description": "Label for the weeks-lived counter mode."
   },
   "modeYearsLeft": {
-    "message": "Years left",
+    "message": "שנים שנותרו",
     "description": "Label for estimated years remaining."
   },
   "modeDaysLeft": {
-    "message": "Days left",
+    "message": "ימים שנותרו",
     "description": "Label for estimated days remaining."
   },
   "modeWeeksLeft": {
-    "message": "Weeks left",
+    "message": "שבועות שנותרו",
     "description": "Label for estimated weeks remaining."
   },
   "settings": {
-    "message": "Settings",
+    "message": "הגדרות",
     "description": "Settings screen title and settings-button accessible label."
   },
   "lifeInWeeks": {
-    "message": "Life in weeks",
+    "message": "חיים בשבועות",
     "description": "Life-in-weeks view title and button accessible label."
   },
   "changeUnits": {
-    "message": "Change units",
+    "message": "שינוי יחידות",
     "description": "Accessible action name for cycling counter units."
   },
   "changeUnitsAction": {
-    "message": "Activate to change units",
+    "message": "הפעל לשינוי יחידות",
     "description": "Activation instruction at the end of the live counter accessible label."
   },
   "changeUnitsTitle": {
-    "message": "Click to change units",
+    "message": "לחץ לשינוי יחידות",
     "description": "Visible hint and pointer tooltip for cycling counter units."
   },
   "counterAria": {
     "message": "$LABEL$ $VALUE$. $ACTION$.",
     "description": "Full accessible label for the live counter.",
     "placeholders": {
-      "label": { "content": "$1", "example": "Calendar age" },
-      "value": { "content": "$2", "example": "20 years, 3 months, and 2 days" },
-      "action": { "content": "$3", "example": "Change units" }
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
     }
   },
   "born": {
-    "message": "Born $DATE$",
+    "message": "נולד/ה בתאריך $DATE$",
     "description": "Birth date shown below the counter.",
     "placeholders": {
-      "date": { "content": "$1", "example": "15 May 1990" }
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
     }
   },
   "birthdayCountdown": {
-    "message": "in $COUNTDOWN$",
+    "message": "בעוד $COUNTDOWN$",
     "description": "Accessible next-birthday countdown phrase.",
     "placeholders": {
       "countdown": {
@@ -146,56 +158,71 @@
     }
   },
   "progressCaption": {
-    "message": "$PERCENT$ of $YEARS$ yrs lived",
+    "message": "$PERCENT$ מתוך $YEARS$ שנות חיים",
     "description": "Life-progress caption below the counter.",
     "placeholders": {
-      "percent": { "content": "$1", "example": "25%" },
-      "years": { "content": "$2", "example": "80" }
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
     }
   },
   "reflectionLine": {
-    "message": "$LIVED$ years behind you · $AHEAD$ ahead, if the tables hold.",
+    "message": "$LIVED$ שנים מאחוריך · $AHEAD$ קדימה, אם הטבלאות נכונות.",
     "description": "Optional reflective line below the counter.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "30" },
-      "ahead": { "content": "$2", "example": "50" }
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
     }
   },
   "sectionPresets": {
-    "message": "Presets",
+    "message": "הגדרות קבועות מראש",
     "description": "Settings section heading."
   },
   "presetHint": {
-    "message": "A preset sets all four colors at once.",
+    "message": "הגדרה קבועה מראש קובעת את ארבעת הצבעים בבת אחת.",
     "description": "Hint below theme presets."
   },
   "sectionColors": {
-    "message": "Colors",
+    "message": "צבעים",
     "description": "Settings section heading."
   },
   "colorBackground": {
-    "message": "Background",
+    "message": "רקע",
     "description": "Background color label."
   },
   "colorLabel": {
-    "message": "Label",
+    "message": "תווית",
     "description": "Secondary-label color label."
   },
   "colorCounter": {
-    "message": "Counter",
+    "message": "מונה",
     "description": "Counter color label."
   },
-  "colorAccent": { "message": "Accent", "description": "Accent color label." },
+  "colorAccent": {
+    "message": "הדגשה",
+    "description": "Accent color label."
+  },
   "sectionDisplay": {
-    "message": "Display",
+    "message": "תצוגה",
     "description": "Settings section heading."
   },
   "numerals": {
-    "message": "Numerals",
+    "message": "ספרות",
     "description": "Numeral typeface setting label."
   },
   "typefaceSystem": {
-    "message": "System",
+    "message": "מערכת",
     "description": "System numeral typeface option."
   },
   "typefaceGrotesk": {
@@ -207,133 +234,163 @@
     "description": "Monospace numeral typeface option."
   },
   "reflectionToggle": {
-    "message": "Reflection line under the counter",
+    "message": "שורת הגות מתחת למונה",
     "description": "Label for the optional reflection-line switch."
   },
   "sectionLifeExpectancy": {
-    "message": "Life expectancy",
+    "message": "תוחלת חיים",
     "description": "Settings section heading."
   },
   "source": {
-    "message": "Source",
+    "message": "מקור",
     "description": "Life-expectancy source label."
   },
   "sourceEstimate": {
-    "message": "Estimate",
+    "message": "הערכה",
     "description": "Actuarial estimate source option."
   },
   "sourceCustom": {
-    "message": "Custom",
+    "message": "מותאם אישית",
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ years — actuarial estimate for your age.",
+    "message": "≈ $YEARS$ שנים — הערכה אקטוארית לגילך.",
     "description": "Current actuarial estimate shown in settings.",
     "placeholders": {
-      "years": { "content": "$1", "example": "84" }
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
     }
   },
   "estimateMissing": {
-    "message": "Add your birthday to see an actuarial estimate.",
+    "message": "הוסף את תאריך הלידה שלך כדי לראות הערכה אקטוארית.",
     "description": "Shown when an actuarial estimate cannot be calculated."
   },
   "years": {
-    "message": "Years",
+    "message": "שנים",
     "description": "Manual life-expectancy field label."
   },
   "sectionTimeZone": {
-    "message": "Time zone",
+    "message": "אזור זמן",
     "description": "Settings section heading."
   },
   "bornIn": {
-    "message": "Born in",
+    "message": "מקום לידה",
     "description": "Birth time-zone field label."
   },
   "zoneHint": {
-    "message": "Anchors your birthday to a fixed instant, so your age stays exact when you travel.",
+    "message": "מקבע את יום ההולדת שלך לרגע קבוע, כך שגילך יישאר מדויק בעת נסיעה.",
     "description": "Explains the stored birth time zone."
   },
   "sectionData": {
-    "message": "Data",
+    "message": "נתונים",
     "description": "Settings section heading."
   },
   "exportData": {
-    "message": "Export…",
+    "message": "ייצוא…",
     "description": "Export settings button."
   },
   "importData": {
-    "message": "Import…",
+    "message": "ייבוא…",
     "description": "Import settings button."
   },
   "changeBirthday": {
-    "message": "Change birthday",
+    "message": "שינוי תאריך לידה",
     "description": "Return to birthday setup button."
   },
   "resetColors": {
-    "message": "Reset colors",
+    "message": "איפוס צבעים",
     "description": "Reset theme colors button."
   },
-  "done": { "message": "Done", "description": "Close settings button." },
+  "done": {
+    "message": "סיום",
+    "description": "Close settings button."
+  },
   "lowContrast": {
-    "message": "Low contrast ($RATIO$:1). Aim for $TARGET$:1 on the background.",
+    "message": "ניגודיות נמוכה ($RATIO$:1). שאף ל-$TARGET$:1 אל הרקע.",
     "description": "Warning shown when a selected color misses WCAG contrast.",
     "placeholders": {
-      "ratio": { "content": "$1", "example": "2.5" },
-      "target": { "content": "$2", "example": "4.5" }
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
     }
   },
   "presetLight": {
-    "message": "Light",
+    "message": "בהיר",
     "description": "Light theme preset name."
   },
-  "presetDark": { "message": "Dark", "description": "Dark theme preset name." },
+  "presetDark": {
+    "message": "כהה",
+    "description": "Dark theme preset name."
+  },
   "presetPaper": {
-    "message": "Paper",
+    "message": "נייר",
     "description": "Paper theme preset name."
   },
-  "presetVoid": { "message": "Void", "description": "Void theme preset name." },
+  "presetVoid": {
+    "message": "ריק",
+    "description": "Void theme preset name."
+  },
   "presetTerminal": {
-    "message": "Terminal",
+    "message": "מסוף",
     "description": "Terminal theme preset name."
   },
   "presetBlueprint": {
-    "message": "Blueprint",
+    "message": "תכנית",
     "description": "Blueprint theme preset name."
   },
   "presetAmber": {
-    "message": "Amber",
+    "message": "ענבר",
     "description": "Amber theme preset name."
   },
   "themeAria": {
-    "message": "$THEME$ theme",
+    "message": "עיצוב $THEME$",
     "description": "Accessible label for a theme preset button.",
     "placeholders": {
-      "theme": { "content": "$1", "example": "Paper" }
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
     }
   },
   "back": {
-    "message": "Back",
+    "message": "חזרה",
     "description": "Return from the life-in-weeks view."
   },
   "weeksSummary": {
-    "message": "$LIVED$ weeks lived · $AHEAD$ ahead · $YEARS$ yrs",
+    "message": "$LIVED$ שבועות שחייתם · $AHEAD$ קדימה · $YEARS$ שנים",
     "description": "Summary above the life-in-weeks grid.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "1040" },
-      "ahead": { "content": "$2", "example": "3120" },
-      "years": { "content": "$3", "example": "80" }
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
     }
   },
   "legendLived": {
-    "message": "Lived",
+    "message": "חייתם",
     "description": "Legend label for elapsed weeks."
   },
   "legendThisWeek": {
-    "message": "This week",
+    "message": "השבוע",
     "description": "Legend label for the current week."
   },
   "legendAhead": {
-    "message": "Ahead",
+    "message": "קדימה",
     "description": "Legend label for future weeks."
   }
 }

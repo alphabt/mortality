@@ -4,139 +4,151 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Replace new tab page with a counter of your age",
+    "message": "አዲሱን ትር ገፅ በዕድሜ ቆጣሪ ይተካል",
     "description": "Short extension-store description."
   },
   "pageTitle": {
-    "message": "Mortality — New Tab",
+    "message": "Mortality — አዲስ ትር",
     "description": "Browser document title."
   },
   "setupTitle": {
-    "message": "When were you born?",
+    "message": "መቼ ተወለዱ?",
     "description": "Heading on the initial birthday setup screen."
   },
   "setupSubtitle": {
-    "message": "Your age, counting up live on every new tab.",
+    "message": "ዕድሜዎ፣ በየአዲሱ ትር በቀጥታ እየጨመረ።",
     "description": "Short explanation below the setup heading."
   },
   "birthDateAria": {
-    "message": "Date of birth",
+    "message": "የትውልድ ቀን",
     "description": "Accessible label for the birth-date input."
   },
   "birthTimeAria": {
-    "message": "Time of birth (optional)",
+    "message": "የትውልድ ሰዓት (አማራጭ)",
     "description": "Accessible label for the optional birth-time input."
   },
   "start": {
-    "message": "Start",
+    "message": "ጀምር",
     "description": "Button that completes birthday setup."
   },
   "timeHint": {
-    "message": "Time is optional — it sharpens the live count.",
+    "message": "ሰዓቱ አማራጭ ነው — ቀጥታ ቆጠራውን የበለጠ ትክክለኛ ያደርገዋል።",
     "description": "Hint explaining why a birth time can be entered."
   },
   "futureDateError": {
-    "message": "That date is in the future — please check your birthday.",
+    "message": "ይህ ቀን ወደፊት ነው — እባክዎ የትውልድ ቀንዎን ያረጋግጡ።",
     "description": "Validation error for a future birth date."
   },
   "birthplaceLabel": {
-    "message": "Where were you born?",
+    "message": "የት ተወለዱ?",
     "description": "Label for the birthplace time-zone selector."
   },
   "birthplaceHint": {
-    "message": "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+    "message": "በነባሪነት የአሁኑን የጊዜ ዞን ይጠቀማል። ቢዘዋወሩም ዕድሜዎ ትክክለኛ እንዲሆን ወደ ትውልድ ቦታዎ ያዘጋጁት።",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "sexAtBirth": {
-    "message": "Sex at birth",
+    "message": "በትውልድ ጊዜ ጾታ",
     "description": "Label for the optional sex-at-birth selector."
   },
   "sexHint": {
-    "message": "Optional — sharpens the life-expectancy estimate.",
+    "message": "አማራጭ — የዕድሜ ግምትን የበለጠ ትክክለኛ ያደርገዋል።",
     "description": "Explains why sex at birth can be provided."
   },
   "sexUnspecified": {
-    "message": "Prefer not to say",
+    "message": "መግለጽ አልፈልግም",
     "description": "Privacy-preserving empty option in the sex-at-birth selector."
   },
   "sexFemale": {
-    "message": "Female",
+    "message": "ሴት",
     "description": "Female sex-at-birth option."
   },
   "sexMale": {
-    "message": "Male",
+    "message": "ወንድ",
     "description": "Male sex-at-birth option."
   },
   "modeYears": {
-    "message": "Age",
+    "message": "ዕድሜ",
     "description": "Label for the fractional-years counter mode."
   },
   "modeCalendar": {
-    "message": "Calendar age",
+    "message": "የቀን መቁጠሪያ ዕድሜ",
     "description": "Label for the years/months/days counter mode."
   },
   "modeBirthday": {
-    "message": "Next birthday",
+    "message": "የሚቀጥለው የልደት ቀን",
     "description": "Label for the next-birthday countdown mode."
   },
   "modeDays": {
-    "message": "Days lived",
+    "message": "የተኖሩ ቀናት",
     "description": "Label for the days-lived counter mode."
   },
   "modeWeeks": {
-    "message": "Weeks lived",
+    "message": "የተኖሩ ሳምንታት",
     "description": "Label for the weeks-lived counter mode."
   },
   "modeYearsLeft": {
-    "message": "Years left",
+    "message": "የቀሩ ዓመታት",
     "description": "Label for estimated years remaining."
   },
   "modeDaysLeft": {
-    "message": "Days left",
+    "message": "የቀሩ ቀናት",
     "description": "Label for estimated days remaining."
   },
   "modeWeeksLeft": {
-    "message": "Weeks left",
+    "message": "የቀሩ ሳምንታት",
     "description": "Label for estimated weeks remaining."
   },
   "settings": {
-    "message": "Settings",
+    "message": "ቅንብሮች",
     "description": "Settings screen title and settings-button accessible label."
   },
   "lifeInWeeks": {
-    "message": "Life in weeks",
+    "message": "ሕይወት በሳምንታት",
     "description": "Life-in-weeks view title and button accessible label."
   },
   "changeUnits": {
-    "message": "Change units",
+    "message": "መለኪያ ቀይር",
     "description": "Accessible action name for cycling counter units."
   },
   "changeUnitsAction": {
-    "message": "Activate to change units",
+    "message": "መለኪያ ለመቀየር አንቃ",
     "description": "Activation instruction at the end of the live counter accessible label."
   },
   "changeUnitsTitle": {
-    "message": "Click to change units",
+    "message": "መለኪያ ለመቀየር ጠቅ ያድርጉ",
     "description": "Visible hint and pointer tooltip for cycling counter units."
   },
   "counterAria": {
-    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "message": "$LABEL$ $VALUE$። $ACTION$።",
     "description": "Full accessible label for the live counter.",
     "placeholders": {
-      "label": { "content": "$1", "example": "Calendar age" },
-      "value": { "content": "$2", "example": "20 years, 3 months, and 2 days" },
-      "action": { "content": "$3", "example": "Change units" }
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
     }
   },
   "born": {
-    "message": "Born $DATE$",
+    "message": "የተወለደው $DATE$",
     "description": "Birth date shown below the counter.",
     "placeholders": {
-      "date": { "content": "$1", "example": "15 May 1990" }
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
     }
   },
   "birthdayCountdown": {
-    "message": "in $COUNTDOWN$",
+    "message": "በ $COUNTDOWN$ ውስጥ",
     "description": "Accessible next-birthday countdown phrase.",
     "placeholders": {
       "countdown": {
@@ -146,56 +158,71 @@
     }
   },
   "progressCaption": {
-    "message": "$PERCENT$ of $YEARS$ yrs lived",
+    "message": "ከ $YEARS$ ዓመታት ውስጥ $PERCENT$ ተኖረ",
     "description": "Life-progress caption below the counter.",
     "placeholders": {
-      "percent": { "content": "$1", "example": "25%" },
-      "years": { "content": "$2", "example": "80" }
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
     }
   },
   "reflectionLine": {
-    "message": "$LIVED$ years behind you · $AHEAD$ ahead, if the tables hold.",
+    "message": "$LIVED$ ዓመታት ኋላ · ሠንጠረዦቹ ትክክል ከሆኑ $AHEAD$ ወደፊት።",
     "description": "Optional reflective line below the counter.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "30" },
-      "ahead": { "content": "$2", "example": "50" }
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
     }
   },
   "sectionPresets": {
-    "message": "Presets",
+    "message": "ቅድመ ቅንብሮች",
     "description": "Settings section heading."
   },
   "presetHint": {
-    "message": "A preset sets all four colors at once.",
+    "message": "አንድ ቅድመ ቅንብር ሁሉንም አራት ቀለሞች በአንድ ጊዜ ያዘጋጃል።",
     "description": "Hint below theme presets."
   },
   "sectionColors": {
-    "message": "Colors",
+    "message": "ቀለሞች",
     "description": "Settings section heading."
   },
   "colorBackground": {
-    "message": "Background",
+    "message": "መደብ",
     "description": "Background color label."
   },
   "colorLabel": {
-    "message": "Label",
+    "message": "መለያ",
     "description": "Secondary-label color label."
   },
   "colorCounter": {
-    "message": "Counter",
+    "message": "ቆጣሪ",
     "description": "Counter color label."
   },
-  "colorAccent": { "message": "Accent", "description": "Accent color label." },
+  "colorAccent": {
+    "message": "ማድመቂያ ቀለም",
+    "description": "Accent color label."
+  },
   "sectionDisplay": {
-    "message": "Display",
+    "message": "ማሳያ",
     "description": "Settings section heading."
   },
   "numerals": {
-    "message": "Numerals",
+    "message": "አህዞች",
     "description": "Numeral typeface setting label."
   },
   "typefaceSystem": {
-    "message": "System",
+    "message": "ስርዓት",
     "description": "System numeral typeface option."
   },
   "typefaceGrotesk": {
@@ -207,133 +234,163 @@
     "description": "Monospace numeral typeface option."
   },
   "reflectionToggle": {
-    "message": "Reflection line under the counter",
+    "message": "ከቆጣሪው ስር የሚገኝ የማሰላሰል መስመር",
     "description": "Label for the optional reflection-line switch."
   },
   "sectionLifeExpectancy": {
-    "message": "Life expectancy",
+    "message": "የዕድሜ ግምት",
     "description": "Settings section heading."
   },
   "source": {
-    "message": "Source",
+    "message": "ምንጭ",
     "description": "Life-expectancy source label."
   },
   "sourceEstimate": {
-    "message": "Estimate",
+    "message": "ግምት",
     "description": "Actuarial estimate source option."
   },
   "sourceCustom": {
-    "message": "Custom",
+    "message": "ብጁ",
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ years — actuarial estimate for your age.",
+    "message": "≈ $YEARS$ ዓመታት — ለዕድሜዎ የአክቱሪያል ግምት።",
     "description": "Current actuarial estimate shown in settings.",
     "placeholders": {
-      "years": { "content": "$1", "example": "84" }
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
     }
   },
   "estimateMissing": {
-    "message": "Add your birthday to see an actuarial estimate.",
+    "message": "የአክቱሪያል ግምት ለማየት የትውልድ ቀንዎን ያክሉ።",
     "description": "Shown when an actuarial estimate cannot be calculated."
   },
   "years": {
-    "message": "Years",
+    "message": "ዓመታት",
     "description": "Manual life-expectancy field label."
   },
   "sectionTimeZone": {
-    "message": "Time zone",
+    "message": "የጊዜ ዞን",
     "description": "Settings section heading."
   },
   "bornIn": {
-    "message": "Born in",
+    "message": "የትውልድ ቦታ",
     "description": "Birth time-zone field label."
   },
   "zoneHint": {
-    "message": "Anchors your birthday to a fixed instant, so your age stays exact when you travel.",
+    "message": "በሚጓዙበት ጊዜ ዕድሜዎ ትክክለኛ እንዲሆን የልደት ቀንዎን ከቋሚ ጊዜ ጋር ያገናኛል።",
     "description": "Explains the stored birth time zone."
   },
   "sectionData": {
-    "message": "Data",
+    "message": "ውሂብ",
     "description": "Settings section heading."
   },
   "exportData": {
-    "message": "Export…",
+    "message": "ላክ…",
     "description": "Export settings button."
   },
   "importData": {
-    "message": "Import…",
+    "message": "አስመጣ…",
     "description": "Import settings button."
   },
   "changeBirthday": {
-    "message": "Change birthday",
+    "message": "የትውልድ ቀን ቀይር",
     "description": "Return to birthday setup button."
   },
   "resetColors": {
-    "message": "Reset colors",
+    "message": "ቀለሞችን ዳግም አስጀምር",
     "description": "Reset theme colors button."
   },
-  "done": { "message": "Done", "description": "Close settings button." },
+  "done": {
+    "message": "ተጠናቅቋል",
+    "description": "Close settings button."
+  },
   "lowContrast": {
-    "message": "Low contrast ($RATIO$:1). Aim for $TARGET$:1 on the background.",
+    "message": "ዝቅተኛ ንፅፅር ($RATIO$:1)። ከመደቡ አንፃር $TARGET$:1 ያለሙ።",
     "description": "Warning shown when a selected color misses WCAG contrast.",
     "placeholders": {
-      "ratio": { "content": "$1", "example": "2.5" },
-      "target": { "content": "$2", "example": "4.5" }
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
     }
   },
   "presetLight": {
-    "message": "Light",
+    "message": "ብሩህ",
     "description": "Light theme preset name."
   },
-  "presetDark": { "message": "Dark", "description": "Dark theme preset name." },
+  "presetDark": {
+    "message": "ጨለማ",
+    "description": "Dark theme preset name."
+  },
   "presetPaper": {
-    "message": "Paper",
+    "message": "ወረቀት",
     "description": "Paper theme preset name."
   },
-  "presetVoid": { "message": "Void", "description": "Void theme preset name." },
+  "presetVoid": {
+    "message": "ክፍተት",
+    "description": "Void theme preset name."
+  },
   "presetTerminal": {
-    "message": "Terminal",
+    "message": "ተርሚናል",
     "description": "Terminal theme preset name."
   },
   "presetBlueprint": {
-    "message": "Blueprint",
+    "message": "ንድፍ",
     "description": "Blueprint theme preset name."
   },
   "presetAmber": {
-    "message": "Amber",
+    "message": "አምበር",
     "description": "Amber theme preset name."
   },
   "themeAria": {
-    "message": "$THEME$ theme",
+    "message": "$THEME$ ገጽታ",
     "description": "Accessible label for a theme preset button.",
     "placeholders": {
-      "theme": { "content": "$1", "example": "Paper" }
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
     }
   },
   "back": {
-    "message": "Back",
+    "message": "ተመለስ",
     "description": "Return from the life-in-weeks view."
   },
   "weeksSummary": {
-    "message": "$LIVED$ weeks lived · $AHEAD$ ahead · $YEARS$ yrs",
+    "message": "$LIVED$ ሳምንታት ተኖረ · $AHEAD$ ወደፊት · $YEARS$ ዓመታት",
     "description": "Summary above the life-in-weeks grid.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "1040" },
-      "ahead": { "content": "$2", "example": "3120" },
-      "years": { "content": "$3", "example": "80" }
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
     }
   },
   "legendLived": {
-    "message": "Lived",
+    "message": "ተኖረ",
     "description": "Legend label for elapsed weeks."
   },
   "legendThisWeek": {
-    "message": "This week",
+    "message": "ይህ ሳምንት",
     "description": "Legend label for the current week."
   },
   "legendAhead": {
-    "message": "Ahead",
+    "message": "ወደፊት",
     "description": "Legend label for future weeks."
   }
 }

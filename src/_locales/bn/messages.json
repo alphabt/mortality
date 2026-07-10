@@ -1,0 +1,396 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "নতুন ট্যাব পেজটিকে আপনার বয়সের একটি কাউন্টার দিয়ে প্রতিস্থাপন করে",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — নতুন ট্যাব",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "আপনি কখন জন্মগ্রহণ করেছেন?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "আপনার বয়স, প্রতিটি নতুন ট্যাবে লাইভ গণনা হচ্ছে।",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "জন্ম তারিখ",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "জন্ম সময় (ঐচ্ছিক)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "শুরু করুন",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "সময় ঐচ্ছিক — এটি লাইভ গণনাকে আরও নির্ভুল করে।",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "এই তারিখটি ভবিষ্যতে — অনুগ্রহ করে আপনার জন্ম তারিখ যাচাই করুন।",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "আপনি কোথায় জন্মগ্রহণ করেছেন?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "ডিফল্টভাবে আপনার বর্তমান টাইম জোন ব্যবহৃত হয়। স্থানান্তরিত হলে আপনার বয়স নির্ভুল রাখতে এটি আপনার জন্মস্থানে সেট করুন।",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "sexAtBirth": {
+    "message": "জন্মের সময় লিঙ্গ",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "ঐচ্ছিক — এটি প্রত্যাশিত জীবনকালের অনুমানকে আরও নির্ভুল করে।",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "বলতে চাই না",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "নারী",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "পুরুষ",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "বয়স",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "ক্যালেন্ডার বয়স",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "পরবর্তী জন্মদিন",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "যাপিত দিন",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "যাপিত সপ্তাহ",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "অবশিষ্ট বছর",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "অবশিষ্ট দিন",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "অবশিষ্ট সপ্তাহ",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "সেটিংস",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "সপ্তাহে জীবন",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "একক পরিবর্তন করুন",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "একক পরিবর্তনের জন্য সক্রিয় করুন",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "একক পরিবর্তনের জন্য ক্লিক করুন",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$। $ACTION$।",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "জন্ম $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ পরে",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ বছরের মধ্যে $PERCENT$ যাপিত",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ বছর পেছনে · $AHEAD$ সামনে, যদি টেবিলগুলো সঠিক হয়।",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "প্রিসেট",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "একটি প্রিসেট একসাথে সব চারটি রং নির্ধারণ করে।",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "রং",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "পটভূমি",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "লেবেল",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "কাউন্টার",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "অ্যাকসেন্ট",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "প্রদর্শন",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "অঙ্ক",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "সিস্টেম",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "কাউন্টারের নিচে প্রতিফলন লাইন",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "প্রত্যাশিত জীবনকাল",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "উৎস",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "অনুমান",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "কাস্টম",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ বছর — আপনার বয়সের জন্য অ্যাকচুয়ারিয়াল অনুমান।",
+    "description": "Current actuarial estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "অ্যাকচুয়ারিয়াল অনুমান দেখতে আপনার জন্ম তারিখ যুক্ত করুন।",
+    "description": "Shown when an actuarial estimate cannot be calculated."
+  },
+  "years": {
+    "message": "বছর",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "টাইম জোন",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "জন্মস্থান",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "আপনার জন্মদিনকে একটি নির্দিষ্ট মুহূর্তে যুক্ত করে, যাতে ভ্রমণের সময় আপনার বয়স নির্ভুল থাকে।",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "ডেটা",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "রপ্তানি…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "আমদানি…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "জন্ম তারিখ পরিবর্তন করুন",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "রং রিসেট করুন",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "সম্পন্ন",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "কম কনট্রাস্ট ($RATIO$:1)। পটভূমির তুলনায় $TARGET$:1 লক্ষ্য রাখুন।",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "হালকা",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "গাঢ়",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "কাগজ",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "শূন্যতা",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "টার্মিনাল",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "ব্লুপ্রিন্ট",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "অ্যামবার",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ থিম",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "পেছনে",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ সপ্তাহ যাপিত · $AHEAD$ সামনে · $YEARS$ বছর",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "যাপিত",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "এই সপ্তাহ",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "সামনে",
+    "description": "Legend label for future weeks."
+  }
+}

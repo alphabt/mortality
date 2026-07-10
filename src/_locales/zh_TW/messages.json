@@ -4,139 +4,151 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Replace new tab page with a counter of your age",
+    "message": "將新分頁頁面替換為你的年齡計數器",
     "description": "Short extension-store description."
   },
   "pageTitle": {
-    "message": "Mortality — New Tab",
+    "message": "Mortality — 新分頁",
     "description": "Browser document title."
   },
   "setupTitle": {
-    "message": "When were you born?",
+    "message": "你出生於何時？",
     "description": "Heading on the initial birthday setup screen."
   },
   "setupSubtitle": {
-    "message": "Your age, counting up live on every new tab.",
+    "message": "你的年齡，隨每個新分頁即時增加。",
     "description": "Short explanation below the setup heading."
   },
   "birthDateAria": {
-    "message": "Date of birth",
+    "message": "出生日期",
     "description": "Accessible label for the birth-date input."
   },
   "birthTimeAria": {
-    "message": "Time of birth (optional)",
+    "message": "出生時間（選填）",
     "description": "Accessible label for the optional birth-time input."
   },
   "start": {
-    "message": "Start",
+    "message": "開始",
     "description": "Button that completes birthday setup."
   },
   "timeHint": {
-    "message": "Time is optional — it sharpens the live count.",
+    "message": "時間為選填項目 — 可讓即時計數更精確。",
     "description": "Hint explaining why a birth time can be entered."
   },
   "futureDateError": {
-    "message": "That date is in the future — please check your birthday.",
+    "message": "此日期是未來日期 — 請檢查你的出生日期。",
     "description": "Validation error for a future birth date."
   },
   "birthplaceLabel": {
-    "message": "Where were you born?",
+    "message": "你出生於何地？",
     "description": "Label for the birthplace time-zone selector."
   },
   "birthplaceHint": {
-    "message": "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+    "message": "預設會使用你目前的時區。若你遷居，請設為出生地，以維持年齡準確。",
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "sexAtBirth": {
-    "message": "Sex at birth",
+    "message": "出生時的性別",
     "description": "Label for the optional sex-at-birth selector."
   },
   "sexHint": {
-    "message": "Optional — sharpens the life-expectancy estimate.",
+    "message": "選填 — 可讓預期壽命估算更精確。",
     "description": "Explains why sex at birth can be provided."
   },
   "sexUnspecified": {
-    "message": "Prefer not to say",
+    "message": "不願透露",
     "description": "Privacy-preserving empty option in the sex-at-birth selector."
   },
   "sexFemale": {
-    "message": "Female",
+    "message": "女",
     "description": "Female sex-at-birth option."
   },
   "sexMale": {
-    "message": "Male",
+    "message": "男",
     "description": "Male sex-at-birth option."
   },
   "modeYears": {
-    "message": "Age",
+    "message": "年齡",
     "description": "Label for the fractional-years counter mode."
   },
   "modeCalendar": {
-    "message": "Calendar age",
+    "message": "實歲",
     "description": "Label for the years/months/days counter mode."
   },
   "modeBirthday": {
-    "message": "Next birthday",
+    "message": "下一個生日",
     "description": "Label for the next-birthday countdown mode."
   },
   "modeDays": {
-    "message": "Days lived",
+    "message": "已度過的天數",
     "description": "Label for the days-lived counter mode."
   },
   "modeWeeks": {
-    "message": "Weeks lived",
+    "message": "已度過的週數",
     "description": "Label for the weeks-lived counter mode."
   },
   "modeYearsLeft": {
-    "message": "Years left",
+    "message": "剩餘年數",
     "description": "Label for estimated years remaining."
   },
   "modeDaysLeft": {
-    "message": "Days left",
+    "message": "剩餘天數",
     "description": "Label for estimated days remaining."
   },
   "modeWeeksLeft": {
-    "message": "Weeks left",
+    "message": "剩餘週數",
     "description": "Label for estimated weeks remaining."
   },
   "settings": {
-    "message": "Settings",
+    "message": "設定",
     "description": "Settings screen title and settings-button accessible label."
   },
   "lifeInWeeks": {
-    "message": "Life in weeks",
+    "message": "以週為單位的人生",
     "description": "Life-in-weeks view title and button accessible label."
   },
   "changeUnits": {
-    "message": "Change units",
+    "message": "切換單位",
     "description": "Accessible action name for cycling counter units."
   },
   "changeUnitsAction": {
-    "message": "Activate to change units",
+    "message": "啟用以切換單位",
     "description": "Activation instruction at the end of the live counter accessible label."
   },
   "changeUnitsTitle": {
-    "message": "Click to change units",
+    "message": "點按以切換單位",
     "description": "Visible hint and pointer tooltip for cycling counter units."
   },
   "counterAria": {
-    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "message": "$LABEL$ $VALUE$。$ACTION$。",
     "description": "Full accessible label for the live counter.",
     "placeholders": {
-      "label": { "content": "$1", "example": "Calendar age" },
-      "value": { "content": "$2", "example": "20 years, 3 months, and 2 days" },
-      "action": { "content": "$3", "example": "Change units" }
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
     }
   },
   "born": {
-    "message": "Born $DATE$",
+    "message": "出生於 $DATE$",
     "description": "Birth date shown below the counter.",
     "placeholders": {
-      "date": { "content": "$1", "example": "15 May 1990" }
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
     }
   },
   "birthdayCountdown": {
-    "message": "in $COUNTDOWN$",
+    "message": "$COUNTDOWN$後",
     "description": "Accessible next-birthday countdown phrase.",
     "placeholders": {
       "countdown": {
@@ -146,56 +158,71 @@
     }
   },
   "progressCaption": {
-    "message": "$PERCENT$ of $YEARS$ yrs lived",
+    "message": "已度過 $YEARS$ 年中的 $PERCENT$",
     "description": "Life-progress caption below the counter.",
     "placeholders": {
-      "percent": { "content": "$1", "example": "25%" },
-      "years": { "content": "$2", "example": "80" }
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
     }
   },
   "reflectionLine": {
-    "message": "$LIVED$ years behind you · $AHEAD$ ahead, if the tables hold.",
+    "message": "已過 $LIVED$ 年 · 若表格準確，還有 $AHEAD$ 年。",
     "description": "Optional reflective line below the counter.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "30" },
-      "ahead": { "content": "$2", "example": "50" }
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
     }
   },
   "sectionPresets": {
-    "message": "Presets",
+    "message": "預設",
     "description": "Settings section heading."
   },
   "presetHint": {
-    "message": "A preset sets all four colors at once.",
+    "message": "一個預設可同時設定全部四種顏色。",
     "description": "Hint below theme presets."
   },
   "sectionColors": {
-    "message": "Colors",
+    "message": "顏色",
     "description": "Settings section heading."
   },
   "colorBackground": {
-    "message": "Background",
+    "message": "背景",
     "description": "Background color label."
   },
   "colorLabel": {
-    "message": "Label",
+    "message": "標籤",
     "description": "Secondary-label color label."
   },
   "colorCounter": {
-    "message": "Counter",
+    "message": "計數器",
     "description": "Counter color label."
   },
-  "colorAccent": { "message": "Accent", "description": "Accent color label." },
+  "colorAccent": {
+    "message": "強調色",
+    "description": "Accent color label."
+  },
   "sectionDisplay": {
-    "message": "Display",
+    "message": "顯示",
     "description": "Settings section heading."
   },
   "numerals": {
-    "message": "Numerals",
+    "message": "數字",
     "description": "Numeral typeface setting label."
   },
   "typefaceSystem": {
-    "message": "System",
+    "message": "系統",
     "description": "System numeral typeface option."
   },
   "typefaceGrotesk": {
@@ -207,133 +234,163 @@
     "description": "Monospace numeral typeface option."
   },
   "reflectionToggle": {
-    "message": "Reflection line under the counter",
+    "message": "計數器下方的思考語句",
     "description": "Label for the optional reflection-line switch."
   },
   "sectionLifeExpectancy": {
-    "message": "Life expectancy",
+    "message": "預期壽命",
     "description": "Settings section heading."
   },
   "source": {
-    "message": "Source",
+    "message": "來源",
     "description": "Life-expectancy source label."
   },
   "sourceEstimate": {
-    "message": "Estimate",
+    "message": "估算值",
     "description": "Actuarial estimate source option."
   },
   "sourceCustom": {
-    "message": "Custom",
+    "message": "自訂",
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ years — actuarial estimate for your age.",
+    "message": "≈ $YEARS$ 年 — 依你年齡計算的精算估算值。",
     "description": "Current actuarial estimate shown in settings.",
     "placeholders": {
-      "years": { "content": "$1", "example": "84" }
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
     }
   },
   "estimateMissing": {
-    "message": "Add your birthday to see an actuarial estimate.",
+    "message": "新增你的出生日期以查看精算估算值。",
     "description": "Shown when an actuarial estimate cannot be calculated."
   },
   "years": {
-    "message": "Years",
+    "message": "年",
     "description": "Manual life-expectancy field label."
   },
   "sectionTimeZone": {
-    "message": "Time zone",
+    "message": "時區",
     "description": "Settings section heading."
   },
   "bornIn": {
-    "message": "Born in",
+    "message": "出生地",
     "description": "Birth time-zone field label."
   },
   "zoneHint": {
-    "message": "Anchors your birthday to a fixed instant, so your age stays exact when you travel.",
+    "message": "將你的生日與固定時刻連結，以便出行時年齡保持準確。",
     "description": "Explains the stored birth time zone."
   },
   "sectionData": {
-    "message": "Data",
+    "message": "資料",
     "description": "Settings section heading."
   },
   "exportData": {
-    "message": "Export…",
+    "message": "匯出…",
     "description": "Export settings button."
   },
   "importData": {
-    "message": "Import…",
+    "message": "匯入…",
     "description": "Import settings button."
   },
   "changeBirthday": {
-    "message": "Change birthday",
+    "message": "變更出生日期",
     "description": "Return to birthday setup button."
   },
   "resetColors": {
-    "message": "Reset colors",
+    "message": "重設顏色",
     "description": "Reset theme colors button."
   },
-  "done": { "message": "Done", "description": "Close settings button." },
+  "done": {
+    "message": "完成",
+    "description": "Close settings button."
+  },
   "lowContrast": {
-    "message": "Low contrast ($RATIO$:1). Aim for $TARGET$:1 on the background.",
+    "message": "對比度過低（$RATIO$:1）。請以背景為基準，力求達到 $TARGET$:1。",
     "description": "Warning shown when a selected color misses WCAG contrast.",
     "placeholders": {
-      "ratio": { "content": "$1", "example": "2.5" },
-      "target": { "content": "$2", "example": "4.5" }
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
     }
   },
   "presetLight": {
-    "message": "Light",
+    "message": "淺色",
     "description": "Light theme preset name."
   },
-  "presetDark": { "message": "Dark", "description": "Dark theme preset name." },
+  "presetDark": {
+    "message": "深色",
+    "description": "Dark theme preset name."
+  },
   "presetPaper": {
-    "message": "Paper",
+    "message": "紙質",
     "description": "Paper theme preset name."
   },
-  "presetVoid": { "message": "Void", "description": "Void theme preset name." },
+  "presetVoid": {
+    "message": "虛空",
+    "description": "Void theme preset name."
+  },
   "presetTerminal": {
-    "message": "Terminal",
+    "message": "終端機",
     "description": "Terminal theme preset name."
   },
   "presetBlueprint": {
-    "message": "Blueprint",
+    "message": "藍圖",
     "description": "Blueprint theme preset name."
   },
   "presetAmber": {
-    "message": "Amber",
+    "message": "琥珀",
     "description": "Amber theme preset name."
   },
   "themeAria": {
-    "message": "$THEME$ theme",
+    "message": "$THEME$主題",
     "description": "Accessible label for a theme preset button.",
     "placeholders": {
-      "theme": { "content": "$1", "example": "Paper" }
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
     }
   },
   "back": {
-    "message": "Back",
+    "message": "返回",
     "description": "Return from the life-in-weeks view."
   },
   "weeksSummary": {
-    "message": "$LIVED$ weeks lived · $AHEAD$ ahead · $YEARS$ yrs",
+    "message": "已度過 $LIVED$ 週 · 還有 $AHEAD$ · $YEARS$ 年",
     "description": "Summary above the life-in-weeks grid.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "1040" },
-      "ahead": { "content": "$2", "example": "3120" },
-      "years": { "content": "$3", "example": "80" }
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
     }
   },
   "legendLived": {
-    "message": "Lived",
+    "message": "已度過",
     "description": "Legend label for elapsed weeks."
   },
   "legendThisWeek": {
-    "message": "This week",
+    "message": "本週",
     "description": "Legend label for the current week."
   },
   "legendAhead": {
-    "message": "Ahead",
+    "message": "還有",
     "description": "Legend label for future weeks."
   }
 }

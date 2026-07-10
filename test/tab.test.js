@@ -4,6 +4,7 @@ import {
   formatBorn,
   lifeWeeks,
   reflectionLine,
+  formatProgressCaption,
   mergeImported,
 } from "../src/tab.js";
 
@@ -86,6 +87,13 @@ describe("reflectionLine", () => {
     expect(reflectionLine(born, now, 80)).toBe(
       "30 years behind you \u00b7 50 ahead, if the tables hold.",
     );
+  });
+
+  describe("formatProgressCaption", () => {
+    it("preserves the historical floor rather than rounding up", () => {
+      expect(formatProgressCaption(0.246, 80)).toBe("24% of 80 yrs lived");
+      expect(formatProgressCaption(0.999, 80)).toBe("99% of 80 yrs lived");
+    });
   });
 
   it("floors the years lived rather than rounding", () => {

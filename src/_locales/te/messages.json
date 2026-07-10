@@ -1,0 +1,396 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "కొత్త ట్యాబ్ పేజీని మీ వయసు కౌంటర్‌తో భర్తీ చేస్తుంది",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — కొత్త ట్యాబ్",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "మీరు ఎప్పుడు పుట్టారు?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "మీ వయసు, ప్రతి కొత్త ట్యాబ్‌లో లైవ్‌గా పెరుగుతుంది.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "పుట్టిన తేదీ",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "పుట్టిన సమయం (ఐచ్ఛికం)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "ప్రారంభించు",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "సమయం ఐచ్ఛికం — ఇది లైవ్ కౌంట్‌ను మరింత ఖచ్చితంగా చేస్తుంది.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "ఈ తేదీ భవిష్యత్తులో ఉంది — దయచేసి మీ పుట్టిన తేదీని తనిఖీ చేయండి.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "మీరు ఎక్కడ పుట్టారు?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "డిఫాల్ట్‌గా మీ ప్రస్తుత టైమ్ జోన్ ఉపయోగించబడుతుంది. మీరు మారితే మీ వయసు ఖచ్చితంగా ఉండేలా దీన్ని మీ జననస్థలానికి సెట్ చేయండి.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "sexAtBirth": {
+    "message": "పుట్టుక సమయంలో లింగం",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "ఐచ్ఛికం — ఇది ఆయుఃప్రమాణ అంచనాను మరింత ఖచ్చితంగా చేస్తుంది.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "చెప్పకూడదనుకుంటున్నాను",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "స్త్రీ",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "పురుషుడు",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "వయసు",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "క్యాలెండర్ వయసు",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "తదుపరి పుట్టినరోజు",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "జీవించిన రోజులు",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "జీవించిన వారాలు",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "మిగిలిన సంవత్సరాలు",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "మిగిలిన రోజులు",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "మిగిలిన వారాలు",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "సెట్టింగ్‌లు",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "వారాలలో జీవితం",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "యూనిట్లు మార్చు",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "యూనిట్లు మార్చడానికి యాక్టివేట్ చేయండి",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "యూనిట్లు మార్చడానికి క్లిక్ చేయండి",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "పుట్టినది $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ లో",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ సంవత్సరాలలో $PERCENT$ జీవించారు",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ సంవత్సరాలు వెనుక · పట్టికలు సరైతే $AHEAD$ ముందు ఉంది.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "ప్రీసెట్‌లు",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "ఒక ప్రీసెట్ నాలుగు రంగులను ఒకేసారి సెట్ చేస్తుంది.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "రంగులు",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "నేపథ్యం",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "లేబుల్",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "కౌంటర్",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "యాక్సెంట్",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "ప్రదర్శన",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "సంఖ్యలు",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "సిస్టమ్",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "కౌంటర్ దిగువన ఆలోచన పంక్తి",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "ఆయుఃప్రమాణం",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "మూలం",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "అంచనా",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "అనుకూలం",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ సంవత్సరాలు — మీ వయసుకు యాక్చురియల్ అంచనా.",
+    "description": "Current actuarial estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "యాక్చురియల్ అంచనాను చూడటానికి మీ పుట్టిన తేదీని జోడించండి.",
+    "description": "Shown when an actuarial estimate cannot be calculated."
+  },
+  "years": {
+    "message": "సంవత్సరాలు",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "టైమ్ జోన్",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "జననస్థలం",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "మీరు ప్రయాణించేటప్పుడు మీ వయసు ఖచ్చితంగా ఉండేలా, మీ పుట్టినరోజును స్థిర క్షణానికి లంకె చేస్తుంది.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "డేటా",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "ఎగుమతి…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "దిగుమతి…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "పుట్టిన తేదీని మార్చు",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "రంగులను రీసెట్ చేయి",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "పూర్తయింది",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "తక్కువ కాంట్రాస్ట్ ($RATIO$:1). నేపథ్యానికి వ్యతిరేకంగా $TARGET$:1 లక్ష్యంగా పెట్టుకోండి.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "లేత",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "చీకటి",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "కాగితం",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "శూన్యం",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "టర్మినల్",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "బ్లూప్రింట్",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "అంబర్",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ థీమ్",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "వెనుకకు",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ వారాలు జీవించారు · $AHEAD$ ముందు ఉంది · $YEARS$ సంవత్సరాలు",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "జీవించారు",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "ఈ వారం",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "ముందు ఉంది",
+    "description": "Legend label for future weeks."
+  }
+}

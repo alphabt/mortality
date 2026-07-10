@@ -1,0 +1,396 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "புதிய தாவல் பக்கத்தை உங்கள் வயதின் எண்ணிக்கையாளருடன் மாற்றுகிறது",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — புதிய தாவல்",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "நீங்கள் எப்போது பிறந்தீர்கள்?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "உங்கள் வயது, ஒவ்வொரு புதிய தாவலிலும் நேரலையாக அதிகரிக்கிறது.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "பிறந்த தேதி",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "பிறந்த நேரம் (விருப்பமானது)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "தொடங்கு",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "நேரம் விருப்பமானது — இது நேரலை எண்ணிக்கையை மேலும் துல்லியமாக்குகிறது.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "இந்த தேதி எதிர்காலத்தில் உள்ளது — உங்கள் பிறந்த தேதியை சரிபார்க்கவும்.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "நீங்கள் எங்கே பிறந்தீர்கள்?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "இயல்பாக உங்கள் தற்போதைய நேர மண்டலம் பயன்படுத்தப்படுகிறது. நீங்கள் இடம் மாறினாலும் வயது துல்லியமாக இருக்க, அதை உங்கள் பிறந்த இடத்திற்கு அமைக்கவும்.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "sexAtBirth": {
+    "message": "பிறப்பின்போது பாலினம்",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "விருப்பமானது — இது வாழ்நாள் எதிர்பார்ப்பு மதிப்பீட்டை மேலும் துல்லியமாக்குகிறது.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "தெரிவிக்க விரும்பவில்லை",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "பெண்",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "ஆண்",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "வயது",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "நாட்காட்டி வயது",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "அடுத்த பிறந்தநாள்",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "வாழ்ந்த நாட்கள்",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "வாழ்ந்த வாரங்கள்",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "மீதமுள்ள ஆண்டுகள்",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "மீதமுள்ள நாட்கள்",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "மீதமுள்ள வாரங்கள்",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "அமைப்புகள்",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "வாரங்களில் வாழ்க்கை",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "அலகுகளை மாற்று",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "அலகுகளை மாற்ற செயல்படுத்து",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "அலகுகளை மாற்ற கிளிக் செய்யவும்",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "பிறந்த தேதி $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ இல்",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ ஆண்டுகளில் $PERCENT$ வாழ்ந்தது",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ ஆண்டுகள் கடந்தது · அட்டவணைகள் சரியாக இருந்தால் $AHEAD$ இன்னும் உள்ளது.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "முன்னமைவுகள்",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "ஒரு முன்னமைவு நான்கு நிறங்களையும் ஒரே நேரத்தில் அமைக்கிறது.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "நிறங்கள்",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "பின்னணி",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "லேபிள்",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "எண்ணிக்கையாளர்",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "சிறப்பு நிறம்",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "காட்சி",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "எண்கள்",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "கணினி",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "எண்ணிக்கையாளருக்குக் கீழே சிந்தனை வரி",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "வாழ்நாள் எதிர்பார்ப்பு",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "மூலம்",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "மதிப்பீடு",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "தனிப்பயன்",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ ஆண்டுகள் — உங்கள் வயதுக்கான காப்பீட்டியல் மதிப்பீடு.",
+    "description": "Current actuarial estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "காப்பீட்டியல் மதிப்பீட்டைக் காண உங்கள் பிறந்த தேதியைச் சேர்க்கவும்.",
+    "description": "Shown when an actuarial estimate cannot be calculated."
+  },
+  "years": {
+    "message": "ஆண்டுகள்",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "நேர மண்டலம்",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "பிறந்த இடம்",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "நீங்கள் பயணிக்கும்போது வயது துல்லியமாக இருக்க, உங்கள் பிறந்தநாளை ஒரு நிலையான தருணத்துடன் இணைக்கிறது.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "தரவு",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "ஏற்றுமதி…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "இறக்குமதி…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "பிறந்த தேதியை மாற்று",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "நிறங்களை மீட்டமை",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "முடிந்தது",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "குறைந்த மாறுபாடு ($RATIO$:1)। பின்னணிக்கு எதிராக $TARGET$:1 இலக்காகக் கொள்ளவும்.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "வெளிர்",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "இருள்",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "காகிதம்",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "வெறுமை",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "டெர்மினல்",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "வடிவமைப்புத் திட்டம்",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "அம்பர்",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ தீம்",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "பின்",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ வாரங்கள் வாழ்ந்தது · $AHEAD$ இன்னும் உள்ளது · $YEARS$ ஆண்டுகள்",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "வாழ்ந்தது",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "இந்த வாரம்",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "இன்னும் உள்ளது",
+    "description": "Legend label for future weeks."
+  }
+}

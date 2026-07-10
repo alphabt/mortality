@@ -48,6 +48,8 @@ beforeEach(() => {
 afterEach(() => {
   vi.useRealTimers();
   vi.resetModules();
+  delete globalThis.browser;
+  delete globalThis.chrome;
 });
 
 describe("initial routing", () => {
@@ -68,6 +70,37 @@ describe("initial routing", () => {
     const bornMs = new Date("2000-01-01T00:00").getTime();
     const expected = ((Date.now() - bornMs) / YEAR_MS).toFixed(9).split(".")[0];
     expect(intEl.textContent).toBe(expected);
+  });
+
+  describe("localized integration", () => {
+    it("uses a non-English translator across counter and settings renders", async () => {
+      globalThis.chrome = {
+        i18n: {
+          getUILanguage: () => "de",
+          getMessage: (key) => (key.startsWith("@@") ? "" : `de:${key}`),
+        },
+      };
+      seed({ birth: "2000-01-01T00:00", mode: "years" });
+      await boot();
+
+      expect(document.querySelector("#unit-label").textContent).toBe(
+        "de:modeYears",
+      );
+      expect(document.querySelector("#pct").textContent).toBe(
+        "de:progressCaption",
+      );
+      expect(document.querySelector(".born").textContent).toBe("de:born");
+
+      document.querySelector("#gear").click();
+      expect(document.querySelector(".screen-title").textContent).toBe(
+        "de:settings",
+      );
+      const sectionLabels = [
+        ...document.querySelectorAll(".settings-label"),
+      ].map((node) => node.textContent);
+      expect(sectionLabels).toContain("de:sectionPresets");
+      expect(sectionLabels).toContain("de:sectionLifeExpectancy");
+    });
   });
 
   it("shows a life-progress percentage on the counter", async () => {
@@ -263,9 +296,9 @@ describe("counter interactions", () => {
       (n) => n.textContent,
     );
     expect(nums).toEqual(["20", "0", "0"]);
-    expect(units).toEqual(["yr", "mo", "d"]);
+    expect(units).toEqual(["y", "m", "d"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
-      "Calendar age 20 years 0 months 0 days. Activate to change units.",
+      "Calendar age 20 years, 0 months, and 0 days. Activate to change units.",
     );
   });
 
@@ -292,7 +325,7 @@ describe("counter interactions", () => {
       ),
     ).toEqual(["d", "h", "m", "s"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
-      "Next birthday in 1 day, 0 hours, 30 minutes, 0 seconds. Activate to change units.",
+      "Next birthday in 1 day, 0 hours, 30 minutes, and 0 seconds. Activate to change units.",
     );
   });
 
@@ -339,7 +372,7 @@ describe("counter interactions", () => {
       ),
     ).toEqual(["0", "00", "00", "01"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
-      "Next birthday in 0 days, 0 hours, 0 minutes, 1 second. Activate to change units.",
+      "Next birthday in 0 days, 0 hours, 0 minutes, and 1 second. Activate to change units.",
     );
 
     await vi.advanceTimersByTimeAsync(500);
@@ -349,7 +382,7 @@ describe("counter interactions", () => {
       ),
     ).toEqual(["366", "00", "00", "00"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
-      "Next birthday in 366 days, 0 hours, 0 minutes, 0 seconds. Activate to change units.",
+      "Next birthday in 366 days, 0 hours, 0 minutes, and 0 seconds. Activate to change units.",
     );
   });
 });
