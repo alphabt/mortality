@@ -97,7 +97,12 @@ server.on("listening", () => {
   const address = server.address();
   const activePort =
     typeof address === "object" && address ? address.port : port;
-  const urlHost = host.includes(":") ? `[${host}]` : host;
+  const urlHost =
+    host === "0.0.0.0" || host === "::"
+      ? "localhost"
+      : host.includes(":")
+        ? `[${host}]`
+        : host;
   console.log(`Mortality preview ready at http://${urlHost}:${activePort}/`);
 });
 
