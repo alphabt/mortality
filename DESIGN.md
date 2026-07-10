@@ -287,12 +287,14 @@ never a bounce, never a glow-for-flavor.
 
 ### Life in Weeks (view)
 
-- A full-screen calendar where each row is a year and each cell a week: a 52-column grid of
-  `1px`-radius (`rounded.2xs` hairline) squares with `aspect-ratio: 1` and `2px` gaps, in
-  three tonal states — lived (`count`-tinted), now (accent), future (translucent muted). The
-  legend swatches share the same hairline radius. The `2xs` (`1px`) corner just softens the
-  hard edge across the ~4,000-cell field without rounding the cells into dots — anything
-  larger reads as chips and breaks the plotted-grid feel.
+- A full-screen plotted field of sequential seven-day cells in fixed 52-column bands. A
+  narrow logical-start gutter labels every five bands, with decades strongest and only
+  decades visible on narrow screens. The labels remain subordinate and do not imply that a
+  52-week boundary is an exact birthday.
+- Cells keep the `1px`-radius (`rounded.2xs` hairline), `aspect-ratio: 1`, and three tonal
+  states — lived (`count`-tinted), now (accent), future (translucent muted). The current cell
+  is the only accent and carries a static outline. The legend swatches share the plot
+  vocabulary.
 
 ## 6. Do's and Don'ts
 

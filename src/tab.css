@@ -876,9 +876,8 @@ footer {
   }
 }
 
-/* Life in weeks: a full-screen calendar where each row is a year and each cell a
-   week. Taller than the viewport, so the screen scrolls from the top instead of
-   the base centred layout (which would clip the grid). */
+/* Life in weeks: sequential seven-day cells in fixed 52-cell bands, with a
+   restrained age gutter that does not imply an exact birthday boundary. */
 body.screen-weeks {
   justify-content: flex-start;
   height: auto;
@@ -893,6 +892,7 @@ body.screen-weeks {
   align-items: center;
   gap: 0.9rem;
   padding: 1.25rem;
+  width: 100%;
 }
 
 .weeks-head {
@@ -903,28 +903,59 @@ body.screen-weeks {
   text-align: center;
 }
 
-.weeks-grid {
-  display: grid;
-  grid-template-columns: repeat(52, 1fr);
+.weeks-plot {
+  display: flex;
+  flex-direction: column;
   gap: 2px;
-  width: min(92vw, 620px);
+  width: min(96vw, 660px);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
-.weeks-grid i {
+.weeks-row {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 620px);
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.weeks-band {
+  display: grid;
+  grid-template-columns: repeat(52, minmax(0, 1fr));
+  gap: clamp(1px, 0.3vw, 2px);
+  min-width: 0;
+}
+
+.age-tick {
+  color: color-mix(in srgb, var(--label) 66%, transparent);
+  font-size: 0.58rem;
+  line-height: 1;
+  text-align: end;
+}
+
+.age-tick.decade-label {
+  color: var(--label);
+  font-weight: 600;
+}
+
+.weeks-band i {
+  position: relative;
   aspect-ratio: 1/1;
   border-radius: 1px;
 }
 
-.weeks-grid i.lived {
+.weeks-band i.lived {
   background: color-mix(in srgb, var(--count) 62%, var(--bg));
 }
 
-.weeks-grid i.now {
+.weeks-band i.now {
   background: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+  z-index: 1;
 }
 
-.weeks-grid i.future {
+.weeks-band i.future {
   background: color-mix(in srgb, var(--label) 20%, transparent);
 }
 
@@ -944,6 +975,7 @@ body.screen-weeks {
 }
 
 .weeks-legend i {
+  position: relative;
   width: 0.62rem;
   height: 0.62rem;
   border-radius: 1px;
@@ -959,6 +991,25 @@ body.screen-weeks {
 
 .weeks-legend i.future {
   background: color-mix(in srgb, var(--label) 20%, transparent);
+}
+
+@media (max-width: 360px) {
+  .weeks-wrap {
+    padding-inline: 0.75rem;
+  }
+
+  .weeks-plot {
+    width: 100%;
+  }
+
+  .weeks-row {
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.3rem;
+  }
+
+  .age-tick.five-year-label {
+    visibility: hidden;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
