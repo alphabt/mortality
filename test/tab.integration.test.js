@@ -108,14 +108,21 @@ describe("counter interactions", () => {
     seed({ birth: "2000-01-01T00:00", mode: "years" });
     await boot();
 
-    // years -> calendar (the new mode inserted after years).
+    // years -> calendar.
     document.querySelector("#count").click();
     expect(document.querySelector("#unit-label").textContent).toBe(
       "Calendar age",
     );
     expect(stored().mode).toBe("calendar");
 
-    // calendar -> days.
+    // calendar -> birthday (inserted immediately after calendar).
+    document.querySelector("#count").click();
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Next birthday",
+    );
+    expect(stored().mode).toBe("birthday");
+
+    // birthday -> days.
     document.querySelector("#count").click();
     expect(document.querySelector("#unit-label").textContent).toBe(
       "Days lived",
@@ -248,6 +255,90 @@ describe("counter interactions", () => {
     expect(units).toEqual(["yr", "mo", "d"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
       "Calendar age 20 years 0 months 0 days. Activate to change units.",
+    );
+  });
+
+  it("renders the next birthday in the birth zone with a readable label", async () => {
+    vi.setSystemTime(new Date("2024-03-14T00:00:00Z"));
+    seed({
+      birth: "2000-03-15T09:30",
+      birthZone: "Asia/Tokyo",
+      mode: "birthday",
+    });
+    await boot();
+
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Next birthday",
+    );
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["1", "00", "30", "00"]);
+    expect(
+      [...document.querySelectorAll("#count .cal-unit")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["d", "h", "m", "s"]);
+    expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
+      "Next birthday in 1 day, 0 hours, 30 minutes, 0 seconds. Activate to change units.",
+    );
+  });
+
+  it("decrements live without rebuilding inside the displayed second", async () => {
+    vi.setSystemTime(new Date("2019-12-31T23:59:54.100Z"));
+    seed({
+      birth: "2000-01-01T00:00",
+      birthZone: "UTC",
+      mode: "birthday",
+    });
+    await boot();
+
+    const firstDayNode = document.querySelector("#count .cal-num");
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["0", "00", "00", "06"]);
+
+    await vi.advanceTimersByTimeAsync(100);
+    expect(document.querySelector("#count .cal-num")).toBe(firstDayNode);
+
+    await vi.advanceTimersByTimeAsync(900);
+    expect(document.querySelector("#count .cal-num")).not.toBe(firstDayNode);
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["0", "00", "00", "05"]);
+  });
+
+  it("rolls directly to the following birthday at the target instant", async () => {
+    vi.setSystemTime(new Date("2019-12-31T23:59:59.500Z"));
+    seed({
+      birth: "2000-01-01T00:00",
+      birthZone: "UTC",
+      mode: "birthday",
+    });
+    await boot();
+
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["0", "00", "00", "01"]);
+    expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
+      "Next birthday in 0 days, 0 hours, 0 minutes, 1 second. Activate to change units.",
+    );
+
+    await vi.advanceTimersByTimeAsync(500);
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["366", "00", "00", "00"]);
+    expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
+      "Next birthday in 366 days, 0 hours, 0 minutes, 0 seconds. Activate to change units.",
     );
   });
 });

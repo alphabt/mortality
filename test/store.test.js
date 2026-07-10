@@ -43,6 +43,7 @@ describe("constants", () => {
     expect(MODES).toEqual([
       "years",
       "calendar",
+      "birthday",
       "days",
       "weeks",
       "yearsLeft",

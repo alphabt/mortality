@@ -16,6 +16,7 @@ export const TYPEFACES = ["system", "grotesk", "mono"];
 export const MODES = [
   "years",
   "calendar",
+  "birthday",
   "days",
   "weeks",
   "yearsLeft",

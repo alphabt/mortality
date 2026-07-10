@@ -174,7 +174,7 @@ export function parseBirthParts(birth) {
   const hour = m[4] === undefined ? 0 : +m[4];
   const minute = m[5] === undefined ? 0 : +m[5];
   if (month < 1 || month > 12) return null;
-  if (day < 1 || day > 31) return null;
+  if (day < 1 || day > daysInMonth(year, month)) return null;
   if (hour > 23 || minute > 59) return null;
   return { year, month, day, hour, minute };
 }
@@ -190,6 +190,10 @@ export function isValidZone(zone) {
   }
 }
 
+function resolvedZone(timeZone) {
+  return isValidZone(timeZone) ? timeZone : detectZone();
+}
+
 /**
  * Absolute birth instant (ms) for a stored birth string, interpreted in
  * `timeZone`. Falls back to the detected zone if `timeZone` is missing or
@@ -199,8 +203,58 @@ export function isValidZone(zone) {
 export function birthInstantMs(birth, timeZone) {
   const p = parseBirthParts(birth);
   if (!p) return NaN;
-  const zone = isValidZone(timeZone) ? timeZone : detectZone();
+  const zone = resolvedZone(timeZone);
   return zonedWallClockToUtcMs(p.year, p.month, p.day, p.hour, p.minute, zone);
+}
+
+/**
+ * Absolute instant of the next birthday after `nowMs`, observed in the stored
+ * birth zone at the original wall-clock time. A 29 February birth is observed
+ * on 28 February in non-leap years: clamping to the target month's final day
+ * also guarantees the converter never receives an invalid calendar date.
+ * Returns NaN for malformed birth data or a non-finite current instant.
+ * @param {unknown} birth Stored wall-clock birth string.
+ * @param {number} nowMs Absolute current instant (ms since epoch).
+ * @param {string} timeZone IANA birthplace zone id.
+ * @returns {number}
+ */
+export function nextBirthdayInstantMs(birth, nowMs, timeZone) {
+  const p = parseBirthParts(birth);
+  if (!p || !Number.isFinite(nowMs)) return NaN;
+
+  const zone = resolvedZone(timeZone);
+  const currentYear = zonedParts(nowMs, zone).year;
+  const inYear = (year) =>
+    zonedWallClockToUtcMs(
+      year,
+      p.month,
+      Math.min(p.day, daysInMonth(year, p.month)),
+      p.hour,
+      p.minute,
+      zone,
+    );
+
+  const thisYear = inYear(currentYear);
+  return thisYear > nowMs ? thisYear : inYear(currentYear + 1);
+}
+
+/**
+ * Break a remaining duration into display-ready whole countdown units. Rounding
+ * up to the next second prevents an all-zero reading before the target instant.
+ * @param {number} remainingMs
+ * @returns {{days:number,hours:number,minutes:number,seconds:number}}
+ */
+export function countdownParts(remainingMs) {
+  let seconds = Number.isFinite(remainingMs)
+    ? Math.max(0, Math.ceil(remainingMs / 1000))
+    : 0;
+  const days = Math.floor(seconds / 86400);
+  seconds %= 86400;
+  const hours = Math.floor(seconds / 3600);
+  seconds %= 3600;
+  const minutes = Math.floor(seconds / 60);
+  seconds %= 60;
+  return { days, hours, minutes, seconds };
 }
 
 /** The device's current IANA zone (e.g. "Asia/Tokyo"), or "UTC" if unknown. */
