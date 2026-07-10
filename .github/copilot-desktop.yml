@@ -1,0 +1,4 @@
+scripts:
+  run: npm run dev
+server_ready_pattern: '(?i)ready at (https?://\S+)'
+auto_open_in_browser: true

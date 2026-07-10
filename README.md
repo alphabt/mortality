@@ -53,6 +53,19 @@ The shipped extension has **no build step and no runtime dependencies** — the
 files in [`src/`](src/) _are_ the extension. Development tooling (formatting and
 tests) runs through npm and never ships; `npm run zip` only packages `src/`.
 
+### Preview in the Copilot app
+
+Click **Run** to start the local preview and open it in the integrated browser.
+The preview serves `src/tab.html`, starting at `http://127.0.0.1:4173/` and
+automatically choosing the next available port when another session is running.
+Settings use the same local-storage fallback as any ordinary HTTP preview.
+
+To start it from a terminal instead:
+
+```
+npm run dev
+```
+
 ### Run it locally
 
 Load the `src/` folder as an unpacked extension:
