@@ -389,11 +389,17 @@ function updateAmbient() {
 
   let hue, sat, light, alpha, yFrac;
   if (elevation <= 0) {
+    // Night: a dim, cool pool of light. Anchored to the very bottom edge with a
+    // near-invisible alpha, the old glow read as a barely-there sliver after
+    // dark; lift the centre off the floor (yFrac < 1) and give it a touch more
+    // presence so it stays legible at a glance, yet sits high enough above the
+    // lower-left counter that its text keeps its AA contrast. Still calmer than
+    // the daytime peak (alpha 0.11), preserving the day/night rhythm.
     hue = 222;
     sat = 38;
     light = 58;
-    alpha = 0.045;
-    yFrac = 1;
+    alpha = 0.06;
+    yFrac = 0.7;
   } else {
     hue = 30 + 18 * elevation;
     sat = 72 - 22 * elevation;
@@ -413,8 +419,35 @@ function updateAmbient() {
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, w, h);
 
-  const cx = (hour / 24) * w;
-  const cy = yFrac * h;
+  // On a light theme the glow *darkens* the canvas instead of lifting it off a
+  // dark ground, and the lower-left counter already sits at nearly the lowest
+  // AA contrast the palette allows — so a glow pooled over that corner would
+  // push its label below 4.5:1. When the background is light, keep the glow in
+  // the upper band and clear of the counter's column: pool the cool night light
+  // in the empty upper-right, and hold the warm daytime wash centre-right,
+  // deepening it in proportion to the sun's height (boldest near midday). The
+  // dark theme, where the glow adds light and never touches the text, is left
+  // untouched.
+  let cxFrac = hour / 24;
+  let cyFrac = yFrac;
+  const bgLum = (0.299 * bgR + 0.587 * bgG + 0.114 * bgB) / 255;
+  if (bgLum > 0.6) {
+    cyFrac = Math.min(cyFrac, 0.3);
+    if (elevation <= 0) {
+      cxFrac = 0.72;
+      light = 47;
+      sat = 50;
+      alpha = 0.115;
+    } else {
+      cxFrac = Math.max(cxFrac, 0.55);
+      light -= 5 * elevation;
+      sat += 7 * elevation;
+      alpha += 0.075 * elevation;
+    }
+  }
+
+  const cx = cxFrac * w;
+  const cy = cyFrac * h;
   const radius = 0.9 * Math.max(w, h);
   // Fade through the SAME hue at decreasing alpha, never to `transparent`
   // (transparent black, which would inject a grey edge).
