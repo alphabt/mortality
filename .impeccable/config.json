@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "#000",
+        "reason": "mask-image alpha stop on .count .fraction (linear-gradient fade); only the alpha channel is used, not a paint color",
+        "createdAt": "2026-07-10T04:21:33.785Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0, 0, 0, 0.28)",
+        "reason": "mask-image alpha stop on .count .fraction (linear-gradient fade); only the alpha channel is used, not a paint color",
+        "createdAt": "2026-07-10T04:21:37.956Z"
+      }
+    ]
+  }
+}
