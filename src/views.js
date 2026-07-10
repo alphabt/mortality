@@ -181,7 +181,7 @@ function splitBirth(value) {
 /** Birthday entry screen. Stored values pre-fill when editing. */
 export function renderSetup(
   app,
-  { start, setLanguage },
+  { start, setLanguage = () => {} },
   current,
   savedZone,
   savedSex,
