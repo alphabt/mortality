@@ -67,6 +67,14 @@ body {
   padding: 1.5rem;
 }
 
+/* These forms can grow beyond a short viewport. Keep them centred when they
+   fit, but let the body expand from the top when they need to scroll. */
+body.screen-setup,
+body.screen-settings {
+  height: auto;
+  min-height: 100%;
+}
+
 /* Counter screen: break dead-centre for an editorial lower-left composition.
    Setup and settings keep the default centred layout. */
 body.screen-counter {
@@ -489,6 +497,7 @@ footer {
 }
 
 .row select {
+  max-width: min(15rem, 58vw);
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-family: inherit;

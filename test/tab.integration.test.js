@@ -100,6 +100,17 @@ describe("setup flow", () => {
     expect(stored().sex).toBe("female");
     // A brand-new setup leaves the actuarial estimate as the active source.
     expect(stored().expectancySource).toBe("estimate");
+    expect(stored().lifeTable).toBe("world");
+  });
+
+  it("persists an explicitly selected U.S. actuarial baseline", async () => {
+    await boot();
+    document.querySelector("#birth-date").value = "1990-06-15";
+    document.querySelector("#birth-life-table").value = "us";
+    document
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(stored().lifeTable).toBe("us");
   });
 });
 
@@ -414,7 +425,7 @@ describe("settings routing and edits", () => {
   });
 });
 
-describe("settings: life-expectancy source and sex", () => {
+describe("settings: life-expectancy source, baseline, and sex", () => {
   const bornMs = new Date("2000-01-01T00:00").getTime();
   const ageYears = (from) => (from - bornMs) / YEAR_MS;
 
@@ -432,6 +443,22 @@ describe("settings: life-expectancy source and sex", () => {
     expect(shown).toBe(expected);
     // A 20-year-old's conditional expectancy differs from the flat at-birth 80.
     expect(shown).not.toBe(80);
+  });
+
+  it("uses the explicitly selected U.S. baseline", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "estimate",
+      lifeTable: "us",
+      sex: "male",
+      mode: "years",
+    });
+    await boot();
+    const expected = estimateExpectancy(ageYears(Date.now()), "male", "us");
+    const shown = Number(
+      document.querySelector("#pct").textContent.match(/of (\d+) yrs lived/)[1],
+    );
+    expect(shown).toBe(expected);
   });
 
   it("reflects the chosen sex in the estimate denominator", async () => {
@@ -496,6 +523,23 @@ describe("settings: life-expectancy source and sex", () => {
     expect(stored().sex).toBe("male");
     // The estimate line re-renders for the new sex.
     expect(document.querySelector("#expectancy-estimate")).not.toBeNull();
+  });
+
+  it("changes the actuarial baseline from settings and persists it", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "estimate",
+      lifeTable: "world",
+      sex: "male",
+    });
+    await boot();
+    document.querySelector("#gear").click();
+    const lifeTable = document.querySelector("#settings-life-table");
+    expect(lifeTable.value).toBe("world");
+    lifeTable.value = "us";
+    lifeTable.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(stored().lifeTable).toBe("us");
+    expect(document.querySelector("#settings-life-table").value).toBe("us");
   });
 });
 

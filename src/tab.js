@@ -28,7 +28,11 @@ import {
   nextBirthdayInstantMs,
   parseBirthParts,
 } from "./time.js";
-import { estimateExpectancy } from "./lifetable.js";
+import {
+  estimateExpectancy,
+  LIFE_TABLE_OPTIONS,
+  normalizeLifeTable,
+} from "./lifetable.js";
 import { el } from "./dom.js";
 
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
@@ -147,6 +151,12 @@ export function mergeImported(current, imported) {
       : current.expectancySource;
   if ("sex" in src)
     known.sex = src.sex === "male" || src.sex === "female" ? src.sex : null;
+  if ("lifeTable" in src)
+    known.lifeTable = LIFE_TABLE_OPTIONS.some(
+      ({ value }) => value === src.lifeTable,
+    )
+      ? src.lifeTable
+      : current.lifeTable;
   if ("mode" in src && MODES.includes(src.mode)) known.mode = src.mode;
   if ("typeface" in src)
     known.typeface = TYPEFACES.includes(src.typeface) ? src.typeface : "system";
@@ -157,13 +167,21 @@ export function mergeImported(current, imported) {
 function showSetup() {
   stopTimer();
   setScreen("setup");
-  renderSetup(app, { start }, state.birth, state.birthZone, state.sex);
+  renderSetup(
+    app,
+    { start },
+    state.birth,
+    state.birthZone,
+    state.sex,
+    state.lifeTable,
+  );
 }
 
-function start(birth, zone, sex) {
+function start(birth, zone, sex, lifeTable) {
   state.birth = birth;
   state.birthZone = zone || detectZone();
   state.sex = sex === "male" || sex === "female" ? sex : null;
+  state.lifeTable = normalizeLifeTable(lifeTable);
   save(state);
   showCounter();
 }
@@ -433,6 +451,11 @@ function showSettings() {
         // Re-render so the estimate line reflects the new sex immediately.
         showSettings();
       },
+      setLifeTable(value) {
+        state.lifeTable = normalizeLifeTable(value);
+        save(state);
+        showSettings();
+      },
       resetColors() {
         state.theme = null;
         save(state);
@@ -508,6 +531,7 @@ function showSettings() {
       expectancySource:
         state.expectancySource === "custom" ? "custom" : "estimate",
       sex: state.sex === "male" || state.sex === "female" ? state.sex : null,
+      lifeTable: normalizeLifeTable(state.lifeTable),
       estimate: settingsEstimate(),
       typeface: state.typeface,
       reflection: state.reflection,
@@ -525,7 +549,7 @@ function settingsEstimate() {
   const bornMs = birthInstantMs(state.birth, zone);
   const ageYears = ageYearsFrom(bornMs, Date.now());
   return Number.isFinite(ageYears)
-    ? estimateExpectancy(ageYears, state.sex)
+    ? estimateExpectancy(ageYears, state.sex, state.lifeTable)
     : null;
 }
 

@@ -1,7 +1,11 @@
 // Persistence + theming. No dependencies, runs directly in the browser.
 
 import { detectZone } from "./time.js";
-import { estimateExpectancy } from "./lifetable.js";
+import {
+  DEFAULT_LIFE_TABLE,
+  estimateExpectancy,
+  normalizeLifeTable,
+} from "./lifetable.js";
 
 const KEY = "mortality";
 
@@ -82,6 +86,7 @@ const DEFAULTS = {
   expectancy: 80,
   expectancySource: "estimate",
   sex: null,
+  lifeTable: DEFAULT_LIFE_TABLE,
   mode: "years",
   typeface: "system",
   reflection: false,
@@ -108,7 +113,7 @@ export function clampExpectancy(value) {
  * derive an actuarial estimate from their age and optional sex at birth. Falls
  * back to the clamped custom value whenever the age can't be computed (e.g. no
  * birthday yet), so the counter always has a sane denominator. Pure.
- * @param {{expectancySource?: string, expectancy?: unknown, sex?: string|null}} state
+ * @param {{expectancySource?: string, expectancy?: unknown, sex?: string|null, lifeTable?: string}} state
  * @param {number} ageYears Attained age in years (may be fractional or NaN).
  * @returns {number}
  */
@@ -117,7 +122,11 @@ export function effectiveExpectancy(state, ageYears) {
   const custom = clampExpectancy(state && state.expectancy);
   if (source === "custom") return custom;
   if (!Number.isFinite(ageYears)) return custom;
-  return estimateExpectancy(ageYears, state ? state.sex : null);
+  return estimateExpectancy(
+    ageYears,
+    state ? state.sex : null,
+    state ? state.lifeTable : DEFAULT_LIFE_TABLE,
+  );
 }
 
 // Extension storage.local persists across the privacy/history clearing that can
@@ -198,8 +207,9 @@ function backfillZone(state) {
  * any record that already lived on disk before this feature lacked the field, so
  * it's pinned to "custom" — preserving the exact number that user has always
  * seen (their flat 80, or whatever they set) rather than silently swapping in an
- * age-based estimate on update. `sex` is backfilled to null when absent. Returns
- * the state unchanged (same reference) when there is nothing to migrate.
+ * age-based estimate on update. `sex` is backfilled to null and `lifeTable` to
+ * the neutral World baseline when absent. Returns the state unchanged (same
+ * reference) when there is nothing to migrate.
  * @param {object} state  State already merged over DEFAULTS.
  * @param {object|null|undefined} raw  The record as read from storage/legacy.
  */
@@ -208,6 +218,12 @@ function migrateExpectancy(state, raw) {
   const patch = {};
   if (!("expectancySource" in raw)) patch.expectancySource = "custom";
   if (!("sex" in raw)) patch.sex = null;
+  if (
+    !("lifeTable" in raw) ||
+    normalizeLifeTable(raw.lifeTable) !== raw.lifeTable
+  ) {
+    patch.lifeTable = DEFAULT_LIFE_TABLE;
+  }
   return Object.keys(patch).length ? { ...state, ...patch } : state;
 }
 
@@ -219,7 +235,7 @@ function migrateExpectancy(state, raw) {
  * forward without changing the age shown today. Records that predate the
  * actuarial-expectancy feature keep their flat number by being pinned to a
  * "custom" expectancy source (see migrateExpectancy).
- * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, expectancySource: string, sex: string|null, mode: string, typeface: string, reflection: boolean }>}
+ * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, expectancySource: string, sex: string|null, lifeTable: string, mode: string, typeface: string, reflection: boolean }>}
  */
 export async function load() {
   let stored;

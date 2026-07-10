@@ -9,6 +9,11 @@ import {
   bestOnColor,
 } from "./store.js";
 import { listTimeZones, detectZone } from "./time.js";
+import {
+  DEFAULT_LIFE_TABLE,
+  LIFE_TABLE_OPTIONS,
+  normalizeLifeTable,
+} from "./lifetable.js";
 import { el } from "./dom.js";
 
 const COLOR_LABELS = {
@@ -95,6 +100,19 @@ function sexSelect(id, current) {
   return select;
 }
 
+/** An explicit actuarial-baseline picker; never inferred from time zone. */
+function lifeTableSelect(id, current) {
+  const select = el(
+    "select",
+    { id },
+    LIFE_TABLE_OPTIONS.map(({ value, label }) =>
+      el("option", { value }, label),
+    ),
+  );
+  select.value = normalizeLifeTable(current || DEFAULT_LIFE_TABLE);
+  return select;
+}
+
 /** Today as YYYY-MM-DD in local time, used to cap the birth-date field. */
 function todayISO() {
   const now = new Date();
@@ -109,8 +127,15 @@ function splitBirth(value) {
   return [date, time.slice(0, 5)];
 }
 
-/** Birthday entry screen. `current`/`savedZone`/`savedSex` pre-fill when editing. */
-export function renderSetup(app, { start }, current, savedZone, savedSex) {
+/** Birthday entry screen. Stored values pre-fill when editing. */
+export function renderSetup(
+  app,
+  { start },
+  current,
+  savedZone,
+  savedSex,
+  savedLifeTable,
+) {
   const dateEl = el("input", {
     type: "date",
     id: "birth-date",
@@ -135,6 +160,7 @@ export function renderSetup(app, { start }, current, savedZone, savedSex) {
   );
   zoneEl.value = selectedZone;
   const sexEl = sexSelect("birth-sex", savedSex);
+  const lifeTableEl = lifeTableSelect("birth-life-table", savedLifeTable);
   const startBtn = el("button", { id: "start" }, "Start");
   const errorEl = el("p", {
     class: "field-error",
@@ -170,6 +196,19 @@ export function renderSetup(app, { start }, current, savedZone, savedSex) {
       ),
     ]),
     el("div", { class: "setup-field" }, [
+      el(
+        "label",
+        { class: "setup-label", for: "birth-life-table" },
+        "Actuarial baseline",
+      ),
+      lifeTableEl,
+      el(
+        "p",
+        { class: "hint" },
+        "World by default. Chosen explicitly — never inferred from your time zone.",
+      ),
+    ]),
+    el("div", { class: "setup-field" }, [
       el("label", { class: "setup-label", for: "birth-sex" }, "Sex at birth"),
       sexEl,
       el(
@@ -201,7 +240,7 @@ export function renderSetup(app, { start }, current, savedZone, savedSex) {
       return;
     }
     errorEl.hidden = true;
-    start(birth, zoneEl.value, sexEl.value || null);
+    start(birth, zoneEl.value, sexEl.value || null, lifeTableEl.value);
   }
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -212,7 +251,7 @@ export function renderSetup(app, { start }, current, savedZone, savedSex) {
       errorEl.hidden = true;
     }),
   );
-  [dateEl, timeEl, zoneEl, sexEl].forEach((input) =>
+  [dateEl, timeEl, zoneEl, lifeTableEl, sexEl].forEach((input) =>
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -309,6 +348,7 @@ export function renderSettings(
     expectancy,
     expectancySource,
     sex,
+    lifeTable,
     estimate,
     typeface,
     reflection,
@@ -407,6 +447,14 @@ export function renderSettings(
   const customRow = el("div", { class: "row" }, [
     el("label", { for: "expectancy" }, "Years"),
     expectancyInput,
+  ]);
+  const lifeTableEl = lifeTableSelect("settings-life-table", lifeTable);
+  lifeTableEl.addEventListener("change", () =>
+    actions.setLifeTable(lifeTableEl.value),
+  );
+  const lifeTableRow = el("div", { class: "row" }, [
+    el("label", { for: "settings-life-table" }, "Baseline"),
+    lifeTableEl,
   ]);
   const sexEl = sexSelect("settings-sex", sex);
   sexEl.addEventListener("change", () => actions.setSex(sexEl.value || null));
@@ -512,13 +560,18 @@ export function renderSettings(
       el("label", { id: "expectancy-source-label" }, "Source"),
       sourceSegment,
     ]),
-    useEstimate ? estimateLine : customRow,
-    sexRow,
-    el(
-      "p",
-      { class: "settings-hint" },
-      "Optional — sharpens the life-expectancy estimate.",
-    ),
+    ...(useEstimate
+      ? [
+          lifeTableRow,
+          estimateLine,
+          sexRow,
+          el(
+            "p",
+            { class: "settings-hint" },
+            "Baseline is never inferred from your time zone. Sex at birth is optional.",
+          ),
+        ]
+      : [customRow]),
     el("p", { class: "settings-label" }, "Time zone"),
     el("div", { class: "setup-field" }, [
       el("label", { class: "setup-label", for: "settings-zone" }, "Born in"),

@@ -47,7 +47,7 @@ describe("renderSetup", () => {
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2000-03-04T09:15", zone, null);
+    expect(start).toHaveBeenCalledWith("2000-03-04T09:15", zone, null, "world");
   });
 
   it("defaults an empty time to midnight", () => {
@@ -58,7 +58,7 @@ describe("renderSetup", () => {
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2010-10-10T00:00", zone, null);
+    expect(start).toHaveBeenCalledWith("2010-10-10T00:00", zone, null, "world");
   });
 
   it("blocks submission and reports validity when the date is empty", () => {
@@ -79,7 +79,7 @@ describe("renderSetup", () => {
     app.querySelector("#birth-date").value = "1975-12-25";
     const zone = app.querySelector("#birth-zone").value;
     keydown(app.querySelector("#birth-date"), "Enter");
-    expect(start).toHaveBeenCalledWith("1975-12-25T00:00", zone, null);
+    expect(start).toHaveBeenCalledWith("1975-12-25T00:00", zone, null, "world");
   });
 
   it("renders a birthplace time-zone select defaulting to the device zone", () => {
@@ -97,6 +97,24 @@ describe("renderSetup", () => {
   it("pre-selects the saved birth zone when editing", () => {
     renderSetup(app, { start: vi.fn() }, "1990-05-15T00:00", "Asia/Tokyo");
     expect(app.querySelector("#birth-zone").value).toBe("Asia/Tokyo");
+  });
+
+  it("offers an explicit actuarial baseline defaulting to World", () => {
+    renderSetup(app, { start: vi.fn() }, null);
+    const lifeTable = app.querySelector("#birth-life-table");
+    expect(lifeTable).not.toBeNull();
+    expect(lifeTable.value).toBe("world");
+    expect(
+      [...lifeTable.options].map(({ textContent }) => textContent),
+    ).toEqual(["World — UN 2023", "United States — SSA 2023"]);
+    expect(app.querySelector('label[for="birth-life-table"]').textContent).toBe(
+      "Actuarial baseline",
+    );
+  });
+
+  it("pre-selects a saved U.S. baseline when editing", () => {
+    renderSetup(app, { start: vi.fn() }, "1990-05-15T00:00", "UTC", null, "us");
+    expect(app.querySelector("#birth-life-table").value).toBe("us");
   });
 
   it("caps the birth date at today", () => {
@@ -157,7 +175,24 @@ describe("renderSetup", () => {
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("1980-07-08T00:00", zone, "male");
+    expect(start).toHaveBeenCalledWith(
+      "1980-07-08T00:00",
+      zone,
+      "male",
+      "world",
+    );
+  });
+
+  it("passes the chosen actuarial baseline through to start", () => {
+    const start = vi.fn();
+    renderSetup(app, { start }, null);
+    app.querySelector("#birth-date").value = "1980-07-08";
+    app.querySelector("#birth-life-table").value = "us";
+    const zone = app.querySelector("#birth-zone").value;
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(start).toHaveBeenCalledWith("1980-07-08T00:00", zone, null, "us");
   });
 });
 
@@ -227,6 +262,7 @@ describe("renderSettings", () => {
     setExpectancy: vi.fn(),
     setExpectancySource: vi.fn(),
     setSex: vi.fn(),
+    setLifeTable: vi.fn(),
     resetColors: vi.fn(),
     resetBirthday: vi.fn(),
     closeSettings: vi.fn(),
@@ -242,6 +278,7 @@ describe("renderSettings", () => {
     expectancy: 80,
     expectancySource: "custom",
     sex: null,
+    lifeTable: "world",
     estimate: 84,
     typeface: "system",
     reflection: false,
@@ -422,6 +459,8 @@ describe("renderSettings", () => {
     renderSettings(app, actions(), data({ expectancySource: "custom" }));
     expect(app.querySelector("#expectancy")).not.toBeNull();
     expect(app.querySelector("#expectancy-estimate")).toBeNull();
+    expect(app.querySelector("#settings-life-table")).toBeNull();
+    expect(app.querySelector("#settings-sex")).toBeNull();
   });
 
   it("hides the Years input and previews the estimate in estimate mode", () => {
@@ -457,7 +496,11 @@ describe("renderSettings", () => {
 
   it("preselects the stored sex and reports changes, mapping blank to null", () => {
     const a = actions();
-    renderSettings(app, a, data({ sex: "female" }));
+    renderSettings(
+      app,
+      a,
+      data({ expectancySource: "estimate", sex: "female" }),
+    );
     const sex = app.querySelector("#settings-sex");
     expect(sex.value).toBe("female");
     sex.value = "male";
@@ -466,5 +509,19 @@ describe("renderSettings", () => {
     sex.value = "";
     sex.dispatchEvent(new Event("change", { bubbles: true }));
     expect(a.setSex).toHaveBeenCalledWith(null);
+  });
+
+  it("preselects and reports the actuarial baseline in estimate mode", () => {
+    const a = actions();
+    renderSettings(
+      app,
+      a,
+      data({ expectancySource: "estimate", lifeTable: "us" }),
+    );
+    const lifeTable = app.querySelector("#settings-life-table");
+    expect(lifeTable.value).toBe("us");
+    lifeTable.value = "world";
+    lifeTable.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(a.setLifeTable).toHaveBeenCalledWith("world");
   });
 });
