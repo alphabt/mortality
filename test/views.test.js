@@ -15,9 +15,13 @@ beforeEach(() => {
   app = document.createElement("div");
   app.id = "app";
   document.body.appendChild(app);
+  for (const key of THEME_KEYS) {
+    document.documentElement.style.setProperty(`--${key}`, PRESETS.Light[key]);
+  }
 });
 
 afterEach(() => {
+  vi.restoreAllMocks();
   vi.unstubAllGlobals();
 });
 
@@ -174,6 +178,22 @@ describe("renderSetup", () => {
     );
   });
 
+  it("falls back from an invalid saved birth zone", () => {
+    const start = vi.fn();
+    renderSetup(app, { start }, "1990-05-15T00:00", "Mars/Olympus");
+    const zone = app.querySelector("#birth-zone");
+    expect(zone.value).not.toContain("Mars");
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(start).toHaveBeenCalledWith(
+      "1990-05-15T00:00",
+      detectedZone,
+      null,
+      "world",
+    );
+  });
+
   it("keeps invalid zone text from replacing the selected canonical value", () => {
     const start = vi.fn();
     renderSetup(app, { start }, "1990-05-15T00:00", "Asia/Tokyo");
@@ -269,6 +289,39 @@ describe("renderSetup", () => {
     expect(app.querySelector("#birth-date").getAttribute("max")).toMatch(
       /^\d{4}-\d{2}-\d{2}$/,
     );
+  });
+
+  it("updates the maximum date for the selected birth zone", () => {
+    const now = vi
+      .spyOn(Date, "now")
+      .mockReturnValue(Date.parse("2024-01-01T00:30:00Z"));
+    renderSetup(app, { start: vi.fn() }, null, "Asia/Tokyo");
+    const date = app.querySelector("#birth-date");
+    const zone = app.querySelector("#birth-zone");
+    expect(date.max).toBe("2024-01-01");
+
+    zone.value = "America/Los_Angeles";
+    zone.dispatchEvent(new Event("input", { bubbles: true }));
+    keydown(zone, "Enter");
+    expect(date.max).toBe("2023-12-31");
+    now.mockRestore();
+  });
+
+  it("rejects a birth instant that is future in the selected zone", () => {
+    const now = vi
+      .spyOn(Date, "now")
+      .mockReturnValue(Date.parse("2024-01-01T00:30:00Z"));
+    const start = vi.fn();
+    renderSetup(app, { start }, null, "America/Los_Angeles");
+    app.querySelector("#birth-date").value = "2023-12-31";
+    app.querySelector("#birth-time").value = "23:45";
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+
+    expect(start).not.toHaveBeenCalled();
+    expect(app.querySelector("#birth-error").hidden).toBe(false);
+    now.mockRestore();
   });
 
   it("rejects a future birth date and surfaces an error", () => {
@@ -450,7 +503,7 @@ describe("renderWeeks", () => {
     expect(app.querySelector(".weeks-plot").getAttribute("aria-hidden")).toBe(
       "true",
     );
-    expect(app.querySelectorAll("[tabindex]")).toHaveLength(0);
+    expect(app.querySelectorAll(".weeks-plot [tabindex]")).toHaveLength(0);
   });
 
   it("keeps exactly one accent current cell", () => {
@@ -475,7 +528,7 @@ describe("renderWeeks", () => {
 
 describe("renderSettings", () => {
   const actions = () => ({
-    setColor: vi.fn(),
+    setTheme: vi.fn(),
     applyPreset: vi.fn(),
     setExpectancy: vi.fn(),
     setExpectancySource: vi.fn(),
@@ -543,13 +596,38 @@ describe("renderSettings", () => {
     expect(app.querySelector("#expectancy").value).toBe("73");
   });
 
-  it("reports color edits with key and value", () => {
+  it("persists a complete palette when a color edit remains accessible", () => {
     const a = actions();
-    renderSettings(app, a, { theme: null, expectancy: 80 });
+    renderSettings(app, a, data({ theme: PRESETS.Light }));
     const input = app.querySelector("#color-accent");
-    input.value = "#abcdef";
+    input.value = "#006080";
     input.dispatchEvent(new Event("input", { bubbles: true }));
-    expect(a.setColor).toHaveBeenCalledWith("accent", "#abcdef");
+    expect(a.setTheme).toHaveBeenCalledWith({
+      ...PRESETS.Light,
+      accent: "#006080",
+    });
+  });
+
+  it("blocks an inaccessible color draft until its contrast is repaired", () => {
+    const a = actions();
+    renderSettings(app, a, data({ theme: PRESETS.Light }));
+    const input = app.querySelector("#color-count");
+    input.value = "#f2f2f2";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+
+    expect(a.setTheme).not.toHaveBeenCalled();
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+    expect(app.querySelector("#warn-count").hidden).toBe(false);
+    expect(app.querySelector("#done").disabled).toBe(true);
+
+    input.value = "#222222";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    expect(a.setTheme).toHaveBeenCalledWith({
+      ...PRESETS.Light,
+      count: "#222222",
+    });
+    expect(input.getAttribute("aria-invalid")).toBe("false");
+    expect(app.querySelector("#done").disabled).toBe(false);
   });
 
   it("applies a preset when its swatch is clicked", () => {
@@ -571,7 +649,7 @@ describe("renderSettings", () => {
 
   it("wires the reset and done buttons", () => {
     const a = actions();
-    renderSettings(app, a, { theme: null, expectancy: 80 });
+    renderSettings(app, a, data({ theme: PRESETS.Light }));
     app.querySelector("#reset-birthday").click();
     app.querySelector("#reset-colors").click();
     app.querySelector("#done").click();
@@ -664,6 +742,25 @@ describe("renderSettings", () => {
     expect(a.setZone).toHaveBeenCalledWith("America/New_York");
   });
 
+  it("falls back from an invalid settings birth zone", () => {
+    renderSettings(app, actions(), data({ birthZone: "Mars/Olympus" }));
+    expect(app.querySelector("#settings-zone").value).not.toContain("Mars");
+  });
+
+  it("surfaces a rejected settings zone as an accessible error", () => {
+    renderSettings(
+      app,
+      actions(),
+      data({ zoneError: "Birth date cannot be in the future." }),
+    );
+    const input = app.querySelector("#settings-zone");
+    const error = app.querySelector("#settings-zone-error");
+    expect(error.hidden).toBe(false);
+    expect(error.getAttribute("role")).toBe("alert");
+    expect(input.getAttribute("aria-describedby")).toBe("settings-zone-error");
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+  });
+
   it("cleans up an open zone popup before settings re-render", () => {
     const abort = vi.spyOn(AbortController.prototype, "abort");
     renderSettings(app, actions(), data({ birthZone: "Asia/Tokyo" }));
@@ -691,6 +788,16 @@ describe("renderSettings", () => {
     app.querySelector("#import-data").click();
     expect(a.exportData).toHaveBeenCalledOnce();
     expect(a.importData).toHaveBeenCalledOnce();
+  });
+
+  it("provides a hidden live alert for import failures", () => {
+    renderSettings(app, actions(), data());
+    const status = app.querySelector("#import-status");
+    expect(status.hidden).toBe(true);
+    expect(status.getAttribute("role")).toBe("alert");
+    expect(
+      app.querySelector("#import-data").getAttribute("aria-describedby"),
+    ).toBe("import-status");
   });
 
   it("renders the expectancy source segment reflecting the current source", () => {

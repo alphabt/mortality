@@ -345,6 +345,10 @@
     "message": "Impor…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Impor gagal. Pilih file setelan Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Ubah tanggal lahir",
     "description": "Return to birthday setup button."

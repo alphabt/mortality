@@ -2,8 +2,8 @@
 # Publish the packaged extension to the Chrome Web Store, Microsoft Edge
 # Add-ons, and Firefox (addons.mozilla.org).
 #
-# This is the engine invoked by .github/workflows/publish-stores.yml. It reads
-# every credential from the environment; in CI those come from repo secrets.
+# This is the engine invoked by the release and manual publishing workflows. It
+# reads every credential from the environment; in CI those come from repo secrets.
 #
 # Usage:
 #   scripts/publish.sh [chrome] [edge] [firefox] [options]
@@ -45,7 +45,7 @@ die()  { printf '%s\n' "${c_red}[error] $*${c_reset}" >&2; exit 1; }
 chrome_vars=(CHROME_CLIENT_ID CHROME_CLIENT_SECRET CHROME_REFRESH_TOKEN \
   CHROME_PUBLISHER_ID CHROME_EXTENSION_ID)
 edge_vars=(EDGE_PRODUCT_ID EDGE_CLIENT_ID EDGE_API_KEY)
-firefox_vars=(FIREFOX_JWT_ISSUER FIREFOX_JWT_SECRET)
+firefox_vars=(FIREFOX_JWT_ISSUER FIREFOX_JWT_SECRET FIREFOX_ADDON_ID)
 
 require_env() {
   local missing=() v
@@ -59,16 +59,29 @@ is_configured() {
   return 0
 }
 
-# curl wrapper: echoes the response body and sets $http_code. Any args after the
-# URL are forwarded to curl.
+# curl wrapper: stores the response body and status in the current shell. Call
+# it directly (not through command substitution) so both values remain visible.
 http_code=000
+response_body=""
 request() {
   local method="$1" url="$2"; shift 2
-  local resp
-  resp="$(curl -sS -w $'\n%{http_code}' -X "$method" "$@" "$url")" || true
-  http_code="${resp##*$'\n'}"
-  [ -n "$http_code" ] || http_code=000
-  printf '%s' "${resp%$'\n'*}"
+  local output curl_status
+  output="$(mktemp)"
+  response_body=""
+  http_code=000
+
+  if http_code="$(curl -sS -o "$output" -w '%{http_code}' \
+    -X "$method" "$@" "$url")"; then
+    curl_status=0
+  else
+    curl_status=$?
+  fi
+
+  response_body="$(<"$output")"
+  rm -f "$output"
+
+  [ "$curl_status" -eq 0 ] || return "$curl_status"
+  [[ "$http_code" =~ ^2[0-9][0-9]$ ]]
 }
 
 # ---------------------------------------------------------------------------
@@ -79,34 +92,74 @@ publish_chrome() {
   log "${c_bold}Chrome Web Store${c_reset}"
 
   local body token
-  body="$(request POST https://oauth2.googleapis.com/token \
-    -d "client_id=$CHROME_CLIENT_ID" \
-    -d "client_secret=$CHROME_CLIENT_SECRET" \
-    -d "refresh_token=$CHROME_REFRESH_TOKEN" \
-    -d "grant_type=refresh_token")"
-  [ "$http_code" -lt 400 ] || die "Chrome: token request failed (HTTP $http_code): $body"
-  token="$(printf '%s' "$body" | jq -r '.access_token // empty')"
-  [ -n "$token" ] || die "Chrome: no access token in response: $body"
+  request POST https://oauth2.googleapis.com/token \
+    --data-urlencode "client_id=$CHROME_CLIENT_ID" \
+    --data-urlencode "client_secret=$CHROME_CLIENT_SECRET" \
+    --data-urlencode "refresh_token=$CHROME_REFRESH_TOKEN" \
+    --data-urlencode "grant_type=refresh_token" \
+    || die "Chrome: token request failed (HTTP $http_code): $response_body"
+  body="$response_body"
+  token="$(printf '%s' "$body" | jq -er \
+    '.access_token | select(type == "string" and length > 0)')" \
+    || die "Chrome: no access token in response: $body"
 
   local api="https://chromewebstore.googleapis.com"
   local item="publishers/$CHROME_PUBLISHER_ID/items/$CHROME_EXTENSION_ID"
 
   log "Chrome: uploading package"
-  body="$(request POST "$api/upload/v2/$item:upload" \
-    -H "Authorization: Bearer $token" -T "$ZIP")"
-  [ "$http_code" -lt 400 ] || die "Chrome: upload failed (HTTP $http_code): $body"
+  request POST "$api/upload/v2/$item:upload" \
+    -H "Authorization: Bearer $token" -T "$ZIP" \
+    || die "Chrome: upload failed (HTTP $http_code): $response_body"
+  body="$response_body"
   local state
-  state="$(printf '%s' "$body" | jq -r '.uploadState // empty')"
-  [ "$state" != "FAILURE" ] || die "Chrome: upload rejected: $body"
-  ok "Chrome: uploaded (uploadState=${state:-unknown})"
+  state="$(printf '%s' "$body" | jq -er \
+    '.uploadState | select(type == "string" and length > 0)')" \
+    || die "Chrome: upload response omitted uploadState: $body"
+  chrome_wait_upload "$state" "$api/v2/$item:fetchStatus" "$token"
+  ok "Chrome: package accepted"
 
   if $DRY_RUN; then warn "Chrome: --dry-run, not publishing"; return; fi
 
   log "Chrome: publishing to public"
-  body="$(request POST "$api/v2/$item:publish" \
-    -H "Authorization: Bearer $token" -H "Content-Length: 0")"
-  [ "$http_code" -lt 400 ] || die "Chrome: publish failed (HTTP $http_code): $body"
-  ok "Chrome: published $VERSION (review pending) $(printf '%s' "$body" | jq -c '.status? // empty')"
+  request POST "$api/v2/$item:publish" \
+    -H "Authorization: Bearer $token" -H "Content-Length: 0" \
+    || die "Chrome: publish failed (HTTP $http_code): $response_body"
+  body="$response_body"
+  state="$(printf '%s' "$body" | jq -er \
+    '.state | select(type == "string" and length > 0)')" \
+    || die "Chrome: publish response omitted state: $body"
+  case "$state" in
+    PENDING_REVIEW|PUBLISHED)
+      ok "Chrome: submitted $VERSION (state=$state)" ;;
+    *)
+      die "Chrome: publish ended in non-public state $state" ;;
+  esac
+}
+
+chrome_wait_upload() {
+  local state="$1" status_url="$2" token="$3"
+  local i body
+
+  for i in $(seq 1 60); do
+    case "$state" in
+      SUCCEEDED) return 0 ;;
+      FAILED|NOT_FOUND) die "Chrome: upload ended in $state" ;;
+      IN_PROGRESS)
+        [ "$i" -lt 60 ] || break
+        printf '    Chrome: upload IN_PROGRESS...\n'
+        sleep 5
+        request GET "$status_url" -H "Authorization: Bearer $token" \
+          || die "Chrome: upload status failed (HTTP $http_code): $response_body"
+        body="$response_body"
+        state="$(printf '%s' "$body" | jq -er \
+          '.lastAsyncUploadState | select(type == "string" and length > 0)')" \
+          || die "Chrome: status response omitted lastAsyncUploadState: $body"
+        ;;
+      *) die "Chrome: unknown upload state '$state'" ;;
+    esac
+  done
+
+  die "Chrome: timed out waiting for upload"
 }
 
 # ---------------------------------------------------------------------------
@@ -124,14 +177,19 @@ edge_wait() {
   local url="$1" what="$2"; shift 2
   local i resp status message
   for i in $(seq 1 60); do
-    resp="$(curl -sS "$@" "$url")" || die "Edge: status request failed"
-    status="$(printf '%s' "$resp" | jq -r '.status // empty')"
+    request GET "$url" "$@" \
+      || die "Edge: status request failed (HTTP $http_code): $response_body"
+    resp="$response_body"
+    status="$(printf '%s' "$resp" | jq -er \
+      '.status | select(type == "string" and length > 0)')" \
+      || die "Edge: $what status response omitted status: $resp"
     case "$status" in
       Succeeded) return 0 ;;
       Failed)
         message="$(printf '%s' "$resp" | jq -r '.message // .errorCode // "unknown error"')"
         die "Edge: $what failed: $message" ;;
-      *) printf '    Edge: %s %s...\n' "$what" "${status:-InProgress}"; sleep 5 ;;
+      InProgress) printf '    Edge: %s InProgress...\n' "$what"; sleep 5 ;;
+      *) die "Edge: unknown $what status '$status'" ;;
     esac
   done
   die "Edge: timed out waiting for $what"
@@ -174,14 +232,17 @@ publish_edge() {
 # ---------------------------------------------------------------------------
 # Firefox  (addons.mozilla.org, via web-ext)
 # ---------------------------------------------------------------------------
-publish_firefox() {
+publish_firefox() (
   require_env "${firefox_vars[@]}"
   log "${c_bold}Firefox (addons.mozilla.org)${c_reset}"
-  command -v npx >/dev/null || die "Firefox: Node.js/npx is required for web-ext"
+  local web_ext="$repo_root/node_modules/.bin/web-ext"
+  [ -x "$web_ext" ] \
+    || die "Firefox: run 'npm ci' to install the locked web-ext dependency"
 
   # web-ext signs a source directory, so unpack the resolved artifact and sign
   # the exact bytes shipped to Chrome and Edge.
   local src; src="$(mktemp -d)"
+  trap 'rm -rf "$src"' EXIT
   python3 -m zipfile -e "$ZIP" "$src"
 
   # A listed add-on can only be updated by an upload that carries its Firefox
@@ -204,17 +265,16 @@ PY
 
   if $DRY_RUN; then
     warn "Firefox: --dry-run, linting instead of signing"
-    npx --yes web-ext@8 lint --source-dir="$src"
-    rm -rf "$src"; return
+    "$web_ext" lint --source-dir="$src"
+    return
   fi
 
   log "Firefox: uploading & submitting to the listed channel"
   # --approval-timeout=0: return as soon as the version is submitted instead of
   # blocking until Mozilla's human review approves it (which takes days).
-  npx --yes web-ext@8 sign --channel=listed --approval-timeout=0 "${args[@]}"
-  rm -rf "$src"
+  "$web_ext" sign --channel=listed --approval-timeout=0 "${args[@]}"
   ok "Firefox: submitted $VERSION (review pending)"
-}
+)
 
 # ---------------------------------------------------------------------------
 # Artifact resolution
@@ -286,7 +346,9 @@ fi
 # ---------------------------------------------------------------------------
 resolve_artifact
 log "Artifact: ${c_bold}$ZIP${c_reset} (version $VERSION)"
-log "Publishing to: ${c_bold}${stores[*]}${c_reset}${DRY_RUN:+ (dry-run)}"
+dry_run_label=""
+if $DRY_RUN; then dry_run_label=" (dry-run)"; fi
+log "Publishing to: ${c_bold}${stores[*]}${c_reset}$dry_run_label"
 
 for s in "${stores[@]}"; do
   case "$s" in

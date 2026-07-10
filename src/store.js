@@ -1,6 +1,11 @@
 // Persistence + theming. No dependencies, runs directly in the browser.
 
-import { detectZone } from "./time.js";
+import {
+  birthInstantMs,
+  detectZone,
+  isValidZone,
+  parseBirthParts,
+} from "./time.js";
 import {
   DEFAULT_LIFE_TABLE,
   estimateExpectancy,
@@ -11,6 +16,11 @@ const KEY = "mortality";
 
 // Colors the user can customise. Each maps to a CSS custom property (--<key>).
 export const THEME_KEYS = ["bg", "label", "count", "accent"];
+export const CONTRAST_MIN = Object.freeze({
+  label: 4.5,
+  count: 4.5,
+  accent: 3,
+});
 
 // Numeral typefaces for the big count, chosen in Settings. Each maps to a
 // --num-font value applied by applyTypeface (see below); "system" clears it.
@@ -92,6 +102,10 @@ const DEFAULTS = {
   reflection: false,
   language: "auto",
 };
+
+function isRecord(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
 
 /**
  * Clamp a life-expectancy value to the supported whole-year band [1, 150],
@@ -212,10 +226,10 @@ function backfillZone(state) {
  * the neutral World baseline when absent. Returns the state unchanged (same
  * reference) when there is nothing to migrate.
  * @param {object} state  State already merged over DEFAULTS.
- * @param {object|null|undefined} raw  The record as read from storage/legacy.
+ * @param {unknown} raw  The value as read from storage/legacy.
  */
 function migrateExpectancy(state, raw) {
-  if (!raw) return state; // brand-new install → keep the DEFAULTS estimate
+  if (!isRecord(raw)) return state; // brand-new/invalid → keep the defaults
   const patch = {};
   if (!("expectancySource" in raw)) patch.expectancySource = "custom";
   if (!("sex" in raw)) patch.sex = null;
@@ -226,6 +240,34 @@ function migrateExpectancy(state, raw) {
     patch.lifeTable = DEFAULT_LIFE_TABLE;
   }
   return Object.keys(patch).length ? { ...state, ...patch } : state;
+}
+
+function normalizeStoredTheme(state) {
+  if (state.theme == null) return state;
+  const theme = normalizeTheme(state.theme);
+  const unchanged =
+    theme &&
+    THEME_KEYS.every(
+      (key) => theme[key] === String(state.theme?.[key] || "").toLowerCase(),
+    );
+  return unchanged ? state : { ...state, theme };
+}
+
+function normalizeStoredBirth(state) {
+  if (state.birth == null) {
+    return state.birthZone == null ? state : { ...state, birthZone: null };
+  }
+  const hasValidZone = isValidZone(state.birthZone);
+  const zone = hasValidZone ? state.birthZone : detectZone();
+  const bornMs = birthInstantMs(state.birth, zone);
+  if (
+    parseBirthParts(state.birth) &&
+    Number.isFinite(bornMs) &&
+    bornMs <= Date.now()
+  ) {
+    return hasValidZone ? state : { ...state, birthZone: zone };
+  }
+  return { ...state, birth: null, birthZone: null };
 }
 
 /**
@@ -246,12 +288,16 @@ export async function load() {
     stored = null;
   }
 
+  const invalidStored = stored != null && !isRecord(stored);
+  if (invalidStored) stored = null;
+
   if (!stored) {
     const legacy = readLegacy();
-    if (legacy) {
-      const migrated = migrateExpectancy(
-        backfillZone({ ...DEFAULTS, ...legacy }),
-        legacy,
+    if (isRecord(legacy)) {
+      const migrated = normalizeStoredBirth(
+        normalizeStoredTheme(
+          migrateExpectancy(backfillZone({ ...DEFAULTS, ...legacy }), legacy),
+        ),
       );
       await save(migrated);
       // Only clear localStorage when a real extension store now owns the data;
@@ -259,13 +305,21 @@ export async function load() {
       if (hasExtStorage) clearLegacy();
       return migrated;
     }
+    if (invalidStored || legacy != null) {
+      const defaults = { ...DEFAULTS };
+      await save(defaults);
+      if (hasExtStorage) clearLegacy();
+      return defaults;
+    }
   }
 
-  const state = { ...DEFAULTS, ...(stored || {}) };
+  const state = { ...DEFAULTS, ...stored };
   const migrated = migrateExpectancy(state, stored);
-  const backfilled = backfillZone(migrated);
-  if (backfilled !== state) await save(backfilled);
-  return backfilled;
+  const themed = normalizeStoredTheme(migrated);
+  const backfilled = backfillZone(themed);
+  const normalized = normalizeStoredBirth(backfilled);
+  if (normalized !== state) await save(normalized);
+  return normalized;
 }
 
 /** Persist state. */
@@ -298,11 +352,41 @@ export function contrast(a, b) {
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
 }
 
-/** Pick black or white ink for legible text on top of an accent fill. */
+function normalizeHex(value) {
+  if (typeof value !== "string") return null;
+  const short = value.match(/^#([0-9a-f]{3})$/i);
+  if (short) {
+    return `#${[...short[1]].map((digit) => digit.repeat(2)).join("")}`.toLowerCase();
+  }
+  return /^#[0-9a-f]{6}$/i.test(value) ? value.toLowerCase() : null;
+}
+
+/**
+ * Return a complete, normalized theme only when every value is a CSS hex color
+ * and the palette meets Mortality's WCAG contrast contract. Invalid or partial
+ * palettes resolve to null so callers can safely fall back to the system theme.
+ */
+export function normalizeTheme(theme) {
+  if (!theme || typeof theme !== "object" || Array.isArray(theme)) return null;
+  const normalized = {};
+  for (const key of THEME_KEYS) {
+    const value = normalizeHex(theme[key]);
+    if (!value) return null;
+    normalized[key] = value;
+  }
+  for (const [key, minimum] of Object.entries(CONTRAST_MIN)) {
+    if (contrast(normalized[key], normalized.bg) < minimum) return null;
+  }
+  return normalized;
+}
+
+/** Pick a preferred ink that always meets normal-text contrast on an accent. */
 export function bestOnColor(hex) {
-  return contrast("#ffffff", hex) >= contrast("#141414", hex)
-    ? "#ffffff"
-    : "#141414";
+  const light = contrast("#ffffff", hex);
+  const dark = contrast("#141414", hex);
+  if (light >= 4.5 && light >= dark) return "#ffffff";
+  if (dark >= 4.5) return "#141414";
+  return "#000000";
 }
 
 /**
@@ -312,11 +396,14 @@ export function bestOnColor(hex) {
  * legible for any accent the user (or a preset) picks.
  */
 export function applyTheme(theme) {
+  const applied = normalizeTheme(theme);
   const root = document.documentElement.style;
   THEME_KEYS.forEach((key) => {
-    if (theme && theme[key]) root.setProperty(`--${key}`, theme[key]);
+    if (applied) root.setProperty(`--${key}`, applied[key]);
     else root.removeProperty(`--${key}`);
   });
+  if (applied) root.setProperty("--focus", applied.accent);
+  else root.removeProperty("--focus");
   root.setProperty("--on-accent", bestOnColor(cssDefault("accent")));
 }
 

@@ -345,6 +345,10 @@
     "message": "ಆಮದು…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "ಆಮದು ವಿಫಲವಾಗಿದೆ. Mortality ಸೆಟ್ಟಿಂಗ್ಸ್ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "ಜನ್ಮ ದಿನಾಂಕವನ್ನು ಬದಲಾಯಿಸಿ",
     "description": "Return to birthday setup button."

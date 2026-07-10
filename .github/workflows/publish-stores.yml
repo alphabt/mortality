@@ -1,9 +1,9 @@
 name: "publish-stores"
 
-# Manual store publishing: re-publish a released tag, ship a subset of stores, or
-# recover a single store that failed mid-release. The automatic tag pipeline lives
-# in release.yml — this is the on-demand escape hatch that shares its engine
-# (publish.yml). Credentials come entirely from repo secrets; see
+# Manual store publishing: re-publish a released tag, ship a subset of stores,
+# or recover a single store that failed mid-release. It only accepts an existing
+# release asset; branch builds must pass the release workflow's CI gate first.
+# Credentials come entirely from repo secrets; see
 # .github/skills/publish-to-stores/SKILL.md for the full list and how to get them.
 
 on:
@@ -14,11 +14,7 @@ on:
         default: "all"
         required: true
       tag:
-        description: "Release tag whose built asset to publish (e.g. v1.4.0). Recommended for re-publishing a release."
-        default: ""
-        required: false
-      ref:
-        description: "Branch/tag to build a fresh zip from (used only when 'tag' is blank)."
+        description: "Release tag whose built asset to publish (e.g. v1.4.0). Leave blank for the latest release."
         default: ""
         required: false
 
@@ -31,5 +27,4 @@ jobs:
     with:
       stores: ${{ inputs.stores }}
       tag: ${{ inputs.tag }}
-      ref: ${{ inputs.ref }}
     secrets: inherit

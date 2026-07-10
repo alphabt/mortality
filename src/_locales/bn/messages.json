@@ -345,6 +345,10 @@
     "message": "আমদানি…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "ইমপোর্ট ব্যর্থ হয়েছে। একটি Mortality সেটিংস ফাইল বেছে নিন।",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "জন্ম তারিখ পরিবর্তন করুন",
     "description": "Return to birthday setup button."

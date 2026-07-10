@@ -345,6 +345,10 @@
     "message": "匯入…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "匯入失敗。請選擇 Mortality 設定檔。",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "變更出生日期",
     "description": "Return to birthday setup button."

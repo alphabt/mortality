@@ -345,6 +345,10 @@
     "message": "Nhập…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Nhập không thành công. Hãy chọn tệp cài đặt Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Đổi ngày sinh",
     "description": "Return to birthday setup button."

@@ -6,6 +6,7 @@ import {
   reflectionLine,
   formatProgressCaption,
   mergeImported,
+  parseImportedSettings,
 } from "../src/tab.js";
 
 const YEAR_MS = 31556900000;
@@ -137,7 +138,12 @@ describe("mergeImported", () => {
     const merged = mergeImported(current, {
       birth: "1990-05-15T09:00",
       birthZone: "Europe/London",
-      theme: { bg: "#000000" },
+      theme: {
+        bg: "#000000",
+        label: "#aaaaaa",
+        count: "#ffffff",
+        accent: "#5cc2ea",
+      },
       mode: "days",
       typeface: "mono",
       reflection: true,
@@ -145,7 +151,12 @@ describe("mergeImported", () => {
     });
     expect(merged.birth).toBe("1990-05-15T09:00");
     expect(merged.birthZone).toBe("Europe/London");
-    expect(merged.theme).toEqual({ bg: "#000000" });
+    expect(merged.theme).toEqual({
+      bg: "#000000",
+      label: "#aaaaaa",
+      count: "#ffffff",
+      accent: "#5cc2ea",
+    });
     expect(merged.mode).toBe("days");
     expect(merged.typeface).toBe("mono");
     expect(merged.reflection).toBe(true);
@@ -210,7 +221,7 @@ describe("mergeImported", () => {
   });
 
   it("keeps a non-string birth from corrupting state", () => {
-    expect(mergeImported(current, { birth: 12345 }).birth).toBeNull();
+    expect(mergeImported(current, { birth: 12345 }).birth).toBe(current.birth);
   });
 
   it("ignores an unknown mode, keeping the current one", () => {
@@ -236,5 +247,105 @@ describe("mergeImported", () => {
   it("tolerates a non-object import", () => {
     expect(mergeImported(current, null)).toEqual(current);
     expect(mergeImported(current, "nope")).toEqual(current);
+  });
+});
+
+describe("parseImportedSettings", () => {
+  const current = {
+    version: 1,
+    birth: "2000-01-01T00:00",
+    birthZone: "UTC",
+    theme: null,
+    expectancy: 80,
+    expectancySource: "estimate",
+    sex: null,
+    lifeTable: "world",
+    mode: "years",
+    typeface: "system",
+    reflection: false,
+  };
+  const now = Date.parse("2024-01-01T00:30:00Z");
+
+  it("accepts and normalizes a valid settings object", () => {
+    const parsed = parseImportedSettings(
+      current,
+      {
+        birth: "1990-05-15T09:00",
+        birthZone: "Europe/London",
+        theme: {
+          bg: "#111",
+          label: "#aaa",
+          count: "#fff",
+          accent: "#f00",
+        },
+      },
+      now,
+    );
+    expect(parsed).toMatchObject({
+      birth: "1990-05-15T09:00",
+      birthZone: "Europe/London",
+      theme: {
+        bg: "#111111",
+        label: "#aaaaaa",
+        count: "#ffffff",
+        accent: "#ff0000",
+      },
+    });
+  });
+
+  it.each([null, "settings", [], 42])(
+    "rejects a non-object root: %j",
+    (value) => {
+      expect(parseImportedSettings(current, value, now)).toBeNull();
+    },
+  );
+
+  it("rejects malformed birthdays, zones, and themes", () => {
+    expect(
+      parseImportedSettings(current, { birth: "not-a-date" }, now),
+    ).toBeNull();
+    expect(
+      parseImportedSettings(current, { birthZone: "Mars/Olympus" }, now),
+    ).toBeNull();
+    expect(
+      parseImportedSettings(current, { theme: { accent: "#007ea6" } }, now),
+    ).toBeNull();
+    expect(
+      parseImportedSettings(
+        current,
+        {
+          theme: {
+            bg: "#ffffff",
+            label: "#eeeeee",
+            count: "#ffffff",
+            accent: "#eeeeee",
+          },
+        },
+        now,
+      ),
+    ).toBeNull();
+  });
+
+  it("rejects a birth instant that is future in its selected zone", () => {
+    expect(
+      parseImportedSettings(
+        current,
+        {
+          birth: "2023-12-31T23:45",
+          birthZone: "America/Los_Angeles",
+        },
+        now,
+      ),
+    ).toBeNull();
+    expect(
+      parseImportedSettings(
+        current,
+        {
+          birth: "2024-01-01T08:00",
+          birthZone: "Asia/Tokyo",
+        },
+        now,
+      ),
+    ).not.toBeNull();
   });
 });

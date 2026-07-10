@@ -345,6 +345,10 @@
     "message": "Hamisha ndani…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Uingizaji haukufaulu. Chagua faili ya mipangilio ya Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Badilisha tarehe ya kuzaliwa",
     "description": "Return to birthday setup button."

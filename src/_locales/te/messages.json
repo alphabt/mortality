@@ -345,6 +345,10 @@
     "message": "దిగుమతి…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "దిగుమతి విఫలమైంది. Mortality సెట్టింగ్స్ ఫైల్‌ను ఎంచుకోండి.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "పుట్టిన తేదీని మార్చు",
     "description": "Return to birthday setup button."

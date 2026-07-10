@@ -86,7 +86,7 @@ components:
     size: "2.75rem"
   preset-swatch:
     rounded: "{rounded.md}"
-    height: "2.25rem"
+    height: "2.75rem"
     width: "3.25rem"
   counter:
     textColor: "{colors.ink}"
@@ -187,7 +187,8 @@ sub-scale rather than a second typeface.
 - **Display** (600, `clamp(2.75rem, 13vw, 6rem)`, line-height 1): The counter. `tabular-nums`
   - `font-feature-settings: "tnum" 1` so digits never shift width as they tick.
 - **Mono fraction** (500, `0.4em` of the display, raised `vertical-align: 0.82em`): The
-  fractional years, masked with a left-to-right fade so the least-significant digits recede.
+  fractional years in the full reading ink. Its scale and position create the fine-detail
+  hierarchy without fading any digit below the contrast floor.
 - **Title** (600, `1.4rem`, line-height 1.25, `text-wrap: balance`): Setup and Settings
   screen headings ("When were you born?", "Settings").
 - **Label** (400, `1rem`, `letter-spacing: 0.18em`, UPPERCASE, line-height 1): The single
@@ -239,8 +240,9 @@ never a bounce, never a glow-for-flavor.
 - **Shape:** Softly rounded (`0.25rem`).
 - **Primary:** Accent background (`#007ea6`), on-accent text (derived for legibility),
   no border, padding `0.375rem 0.75rem`. Font inherits at `1.5rem`.
-- **Hover / Active:** `filter: brightness(1.08)` on hover, `0.92` on active — a lightness
-  nudge, not a color change. `transition: filter 0.15s ease`.
+- **Hover / Active:** Text buttons gain a short underline (thicker while pressed), while
+  icon, switch, preset, and secondary controls use their component-specific border or
+  tonal treatment. Interaction states never dim or filter text below its contrast floor.
 - **Secondary (`.btn-secondary`):** Transparent fill, muted text, `1px` hairline border;
   on hover the text and border shift to ink.
 - **Focus:** `2px solid` focus tone, `2px` offset, `:focus-visible` only.
@@ -253,7 +255,7 @@ never a bounce, never a glow-for-flavor.
 
 ### Preset Swatch
 
-- A `3.25 × 2.25rem` rounded (`0.4rem`) chip showing the theme's background with two inner
+- A `3.25 × 2.75rem` rounded (`0.4rem`) chip showing the theme's background with two inner
   dots (count + accent). Hover lifts it `1px` (`translateY(-1px)`), the only "lift" in the
   system and a purely transient hint.
 
@@ -265,11 +267,11 @@ never a bounce, never a glow-for-flavor.
 ### The Counter (signature component)
 
 - The product itself: `<p class="count" role="button">` — a large tabular figure, an
-  accent separator dot (`.sep`), and a masked monospace fraction (`.fraction`). It is
+  accent separator dot (`.sep`), and a compact monospace fraction (`.fraction`). It is
   clickable to cycle units (years → days → weeks → weeks-left) and keyboard-operable
-  (Enter / Space), with a live-updating `aria-label`. Focus shows a `2px` outline at `8px`
-  offset. It enters with a single `rise` animation (`0.55s` ease-out-expo) and cross-fades
-  on unit change.
+  (Enter / Space), with an accessible value updated only when its human-readable quantity
+  changes. Focus shows a `2px` outline at `8px` offset. It enters with a single `rise`
+  animation (`0.55s` ease-out-expo) and shifts gently on unit change without fading.
 
 ### The Life Meter (signature component)
 
@@ -279,11 +281,11 @@ never a bounce, never a glow-for-flavor.
 
 ### The Reflection Toggle
 
-- The Settings on/off control (`.switch`): a `2.6 × 1.5rem` fully-rounded **pill**
-  (`rounded.full`, `999px`) with a `1px` hairline border and a circular knob that slides
-  left→right on toggle; the track fills with accent when on. `transition: 0.15s ease`. The
-  pill is the one fully-rounded shape in the system — it reads instantly as a switch and is
-  reserved for that control.
+- The Settings on/off control (`.switch`): a `2.6 × 1.5rem` fully-rounded **pill** inside a
+  `2.75rem` square touch target. The track has a `1px` hairline border and a circular knob
+  that slides left→right on toggle; it fills with accent when on. `transition: 0.15s ease`.
+  The pill is the one fully-rounded shape in the system — it reads instantly as a switch
+  and is reserved for that control.
 
 ### Life in Weeks (view)
 

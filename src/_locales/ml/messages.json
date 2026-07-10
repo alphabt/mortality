@@ -345,6 +345,10 @@
     "message": "ഇംപോർട്ട്…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "ഇറക്കുമതി പരാജയപ്പെട്ടു. Mortality ക്രമീകരണ ഫയൽ തിരഞ്ഞെടുക്കുക.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "ജനന തീയതി മാറ്റുക",
     "description": "Return to birthday setup button."

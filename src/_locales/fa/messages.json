@@ -345,6 +345,10 @@
     "message": "وارد کردن…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "درون‌ریزی ناموفق بود. یک فایل تنظیمات Mortality انتخاب کنید.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "تغییر تاریخ تولد",
     "description": "Return to birthday setup button."

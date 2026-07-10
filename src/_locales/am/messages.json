@@ -345,6 +345,10 @@
     "message": "አስመጣ…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "ማስመጣት አልተሳካም። የMortality ቅንብሮች ፋይል ይምረጡ።",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "የትውልድ ቀን ቀይር",
     "description": "Return to birthday setup button."

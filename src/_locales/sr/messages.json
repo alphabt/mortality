@@ -345,6 +345,10 @@
     "message": "Увези…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Увоз није успео. Изаберите датотеку подешавања за Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Промени датум рођења",
     "description": "Return to birthday setup button."

@@ -80,6 +80,7 @@ export const EN_MESSAGES = {
   sectionData: "Data",
   exportData: "Export…",
   importData: "Import…",
+  importError: "Import failed. Choose a Mortality settings file.",
   changeBirthday: "Change birthday",
   resetColors: "Reset colors",
   done: "Done",

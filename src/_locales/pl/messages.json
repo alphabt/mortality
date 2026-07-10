@@ -345,6 +345,10 @@
     "message": "Importuj…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Importowanie nie powiodło się. Wybierz plik ustawień Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Zmień datę urodzenia",
     "description": "Return to birthday setup button."

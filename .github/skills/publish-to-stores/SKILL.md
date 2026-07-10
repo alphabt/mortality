@@ -27,12 +27,13 @@ Ships a tagged release to all three extension stores. All credentials live in
   then `:publish`.
 - **Edge** — Add-ons API v1.1: upload the package, poll, publish the draft,
   poll again.
-- **Firefox** — `web-ext sign --channel=listed` uploads to the listed channel
-  on addons.mozilla.org.
+- **Firefox** — the exact `web-ext` version locked in `package-lock.json` runs
+  `sign --channel=listed` and uploads to addons.mozilla.org.
 
 Each store **submits for review**; the update goes live after the store
-approves it (minutes to a few days). A store whose secrets are absent is
-skipped, so you can roll them out one at a time.
+approves it (minutes to a few days). Stores run in isolated jobs that receive
+only their own credentials. With `stores=all`, an unconfigured store is skipped;
+an explicitly requested store fails fast when its credentials are incomplete.
 
 ## One-time setup: create API credentials and add them as secrets
 
@@ -89,9 +90,12 @@ gh workflow run publish-stores.yml -f stores=all -f tag=v1.4.0
 # just one or two stores
 gh workflow run publish-stores.yml -f stores="edge firefox" -f tag=v1.4.0
 
-# build a fresh zip from a branch instead of a released asset
-gh workflow run publish-stores.yml -f stores=all -f ref=my-branch
+# leave tag blank to use the latest published release asset
+gh workflow run publish-stores.yml -f stores=chrome
 ```
+
+Manual publishing never builds from a branch. New code must pass the tag-driven
+release workflow's CI gate and publish the immutable GitHub Release asset first.
 
 ## Agent playbook
 

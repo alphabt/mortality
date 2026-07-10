@@ -345,6 +345,10 @@
     "message": "ייבוא…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "הייבוא נכשל. בחרו קובץ הגדרות של Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "שינוי תאריך לידה",
     "description": "Return to birthday setup button."
