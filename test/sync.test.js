@@ -138,6 +138,8 @@ async function settle() {
   for (let index = 0; index < 20; index += 1) await Promise.resolve();
 }
 
+const createdManagers = [];
+
 function managerFor(storage, options = {}) {
   const persistLocal = vi.fn(async () => {});
   const onRemoteState = vi.fn(async () => {});
@@ -149,6 +151,7 @@ function managerFor(storage, options = {}) {
     onStatus: (model) => statuses.push(model),
     ...options,
   });
+  createdManagers.push(manager);
   return { manager, persistLocal, onRemoteState, statuses };
 }
 
@@ -158,6 +161,8 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.useRealTimers();
+  for (const manager of createdManagers) manager.destroy();
+  createdManagers.length = 0;
 });
 
 describe("sync payload helpers", () => {
@@ -575,6 +580,34 @@ describe("sync manager events, coalescing, and failures", () => {
     expect(storage.syncArea.set).not.toHaveBeenCalled();
   });
 
+  it("ignores own-removal echoes and does not treat them as foreign changes", async () => {
+    const storage = storageApi({ autoEvents: true });
+    const { manager, persistLocal, onRemoteState } = managerFor(storage);
+    await manager.initialize(LOCAL_STATE);
+    await manager.togglePreferences(true);
+    await manager.toggleProfile(true);
+    await settle();
+    persistLocal.mockClear();
+    onRemoteState.mockClear();
+
+    // Disable sync — manager will remove preferences and profile keys from sync storage.
+    await manager.togglePreferences(false);
+    await settle();
+
+    // The removal echo arrives: newValue is undefined.
+    storage.emit({
+      [SYNC_PREFERENCES_KEY]: {
+        oldValue: storage.syncData[SYNC_PREFERENCES_KEY],
+        newValue: undefined,
+      },
+    });
+    await settle();
+
+    // Own removal echo must not trigger a reconcile/persist cycle.
+    expect(persistLocal).not.toHaveBeenCalled();
+    expect(onRemoteState).not.toHaveBeenCalled();
+  });
+
   it("propagates updates between live tabs that share one stable device writer ID", async () => {
     const storage = storageApi({ autoEvents: true });
     const first = managerFor(storage);
@@ -785,6 +818,7 @@ describe("sync manager events, coalescing, and failures", () => {
       onRemoteState,
       debounceMs: 750,
     });
+    createdManagers.push(manager);
     await manager.initialize(LOCAL_STATE);
     storage.syncArea.set.mockClear();
 
@@ -872,6 +906,7 @@ describe("sync manager events, coalescing, and failures", () => {
       api: storage.api,
       persistLocal,
     });
+    createdManagers.push(manager);
 
     const initializing = manager.initialize(LOCAL_STATE);
     await settle();
@@ -1022,6 +1057,7 @@ describe("sync manager events, coalescing, and failures", () => {
       persistLocal,
       onRemoteState,
     });
+    createdManagers.push(manager);
     await manager.initialize(LOCAL_STATE);
     expect(manager.model().status).toBe("error");
 
@@ -1170,6 +1206,7 @@ describe("sync manager events, coalescing, and failures", () => {
       api: undefined,
       persistLocal,
     });
+    createdManagers.push(manager);
     await expect(manager.initialize(LOCAL_STATE)).resolves.toBe(LOCAL_STATE);
     manager.stateChanged({ ...LOCAL_STATE, language: "de" });
     expect(manager.model()).toMatchObject({

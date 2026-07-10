@@ -383,6 +383,7 @@ export function createSyncManager({
   let lastPreferences = null;
   let lastProfile = null;
   const ownWrites = new Set();
+  const ownRemoves = new Set();
   let changeSequence = 0;
   const latestOwnWriteSequence = new Map();
 
@@ -484,6 +485,17 @@ export function createSyncManager({
     }
   }
 
+  async function removeSync(keys) {
+    const normalized = Array.isArray(keys) ? keys : [keys];
+    for (const key of normalized) ownRemoves.add(key);
+    try {
+      await syncStorage.remove(keys);
+    } catch (error) {
+      for (const key of normalized) ownRemoves.delete(key);
+      throw error;
+    }
+  }
+
   function preferenceEnvelope() {
     return createSyncEnvelope(
       "preferences",
@@ -542,7 +554,7 @@ export function createSyncManager({
       const stale = [SYNC_PREFERENCES_KEY, SYNC_PROFILE_KEY].filter(
         (key) => records[key] !== undefined,
       );
-      if (stale.length) await syncStorage.remove(stale);
+      if (stale.length) await removeSync(stale);
       setStatus("off");
       return;
     }
@@ -585,7 +597,7 @@ export function createSyncManager({
       }
     } else if (records[SYNC_PROFILE_KEY] !== undefined) {
       desiredProfile = null;
-      await syncStorage.remove(SYNC_PROFILE_KEY);
+      await removeSync(SYNC_PROFILE_KEY);
     }
 
     if (Object.keys(writes).length) await setSync(writes);
@@ -647,7 +659,7 @@ export function createSyncManager({
       const stale = [SYNC_PREFERENCES_KEY, SYNC_PROFILE_KEY].filter(
         (key) => supplied[key] !== undefined || records[key] !== undefined,
       );
-      if (stale.length) await syncStorage.remove(stale);
+      if (stale.length) await removeSync(stale);
       setStatus("off");
       return;
     }
@@ -665,6 +677,11 @@ export function createSyncManager({
       const change = changes[key];
       if (!change) continue;
       const value = change.newValue;
+      if (value === undefined && ownRemoves.has(key)) {
+        ownRemoves.delete(key);
+        latestOwnWriteSequence.set(key, sequence);
+        continue;
+      }
       const valueFingerprint =
         value === undefined ? null : fingerprint(change.newValue);
       if (valueFingerprint && ownWrites.has(valueFingerprint)) {
@@ -746,7 +763,7 @@ export function createSyncManager({
       const stale = [SYNC_PREFERENCES_KEY, SYNC_PROFILE_KEY].filter(
         (key) => records[key] !== undefined,
       );
-      if (stale.length) await syncStorage.remove(stale);
+      if (stale.length) await removeSync(stale);
       rememberCurrentScopes();
       return;
     }
@@ -909,7 +926,7 @@ export function createSyncManager({
     );
     await setSync({ [SYNC_CONFIG_KEY]: config });
     currentConfig = { preferences: false, profile: false };
-    await syncStorage.remove([SYNC_PREFERENCES_KEY, SYNC_PROFILE_KEY]);
+    await removeSync([SYNC_PREFERENCES_KEY, SYNC_PROFILE_KEY]);
   }
 
   async function togglePreferences(enabled) {
@@ -987,7 +1004,7 @@ export function createSyncManager({
       }
     }
     desiredProfile = null;
-    await syncStorage.remove(SYNC_PROFILE_KEY);
+    await removeSync(SYNC_PROFILE_KEY);
     if (desiredPreferences) await writeDesired();
   }
 
