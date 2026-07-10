@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "أمامك",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "البحث في المناطق الزمنية",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "لا توجد مناطق زمنية مطابقة",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "இன்னும் உள்ளது",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "நேர மண்டலங்களைத் தேடுக",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "பொருந்தும் நேர மண்டலங்கள் இல்லை",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

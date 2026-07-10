@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Edessä",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Hae aikavyöhykkeitä",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Vastaavia aikavyöhykkeitä ei löytynyt",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

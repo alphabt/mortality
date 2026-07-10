@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Davanti",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Cerca fusi orari",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Nessun fuso orario corrispondente",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

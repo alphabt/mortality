@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "આગળ છે",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "સમય ઝોન શોધો",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "કોઈ મેળ ખાતો સમય ઝોન નથી",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

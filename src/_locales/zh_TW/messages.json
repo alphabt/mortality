@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "還有",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "搜尋時區",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "沒有相符的時區",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

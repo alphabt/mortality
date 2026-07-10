@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Před vámi",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Hledat časová pásma",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Žádná odpovídající časová pásma",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

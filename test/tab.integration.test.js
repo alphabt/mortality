@@ -699,8 +699,9 @@ describe("settings: display, reflection, and zone", () => {
     await boot();
     document.querySelector("#gear").click();
     const zone = document.querySelector("#settings-zone");
-    zone.value = "Asia/Tokyo";
-    zone.dispatchEvent(new Event("change", { bubbles: true }));
+    zone.value = "tokyo";
+    zone.dispatchEvent(new Event("input", { bubbles: true }));
+    document.querySelector('[role="option"]').click();
     expect(stored().birthZone).toBe("Asia/Tokyo");
   });
 });

@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Lagi",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Cari zona waktu",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Tidak ada zona waktu yang cocok",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

@@ -8,7 +8,7 @@ import {
   contrast,
   bestOnColor,
 } from "./store.js";
-import { listTimeZones, detectZone } from "./time.js";
+import { buildTimeZoneOptions, detectZone } from "./time.js";
 import {
   DEFAULT_LIFE_TABLE,
   LIFE_TABLE_OPTIONS,
@@ -23,6 +23,7 @@ import {
   msg,
   normalizeLanguage,
 } from "./i18n.js";
+import { createSearchSelect } from "./search-select.js";
 
 const COLOR_LABELS = {
   bg: "colorBackground",
@@ -53,6 +54,12 @@ const PRESET_LABELS = {
 const CONTRAST_MIN = { count: 4.5, label: 4.5, accent: 3 };
 
 const SVG_NS = "http://www.w3.org/2000/svg";
+const viewCleanups = new WeakMap();
+
+function cleanupView(app) {
+  viewCleanups.get(app)?.();
+  viewCleanups.delete(app);
+}
 
 /** Build an SVG node. el() uses createElement (HTML only), so icons need this. */
 function svgEl(tag, attrs = {}, children = []) {
@@ -176,6 +183,7 @@ export function renderSetup(
   savedLifeTable,
   savedLanguage,
 ) {
+  cleanupView(app);
   const dateEl = el("input", {
     type: "date",
     id: "birth-date",
@@ -191,14 +199,14 @@ export function renderSetup(
   });
   const detected = detectZone();
   const selectedZone = savedZone || detected;
-  const zoneEl = el(
-    "select",
-    { id: "birth-zone", class: "bidi-id" },
-    listTimeZones(selectedZone, detected).map((zone) =>
-      el("option", { value: zone }, zone),
-    ),
-  );
-  zoneEl.value = selectedZone;
+  const zoneControl = createSearchSelect({
+    id: "birth-zone",
+    options: buildTimeZoneOptions(selectedZone, detected),
+    currentValue: selectedZone,
+    placeholder: msg("searchTimeZones"),
+    noResults: msg("noTimeZones"),
+    inputDir: "ltr",
+  });
   const sexEl = sexSelect("birth-sex", savedSex);
   const lifeTableEl = lifeTableSelect("birth-life-table", savedLifeTable);
   const languageEl = languageSelect("setup-language", savedLanguage);
@@ -229,7 +237,7 @@ export function renderSetup(
         { class: "setup-label", for: "birth-zone" },
         msg("birthplaceLabel"),
       ),
-      zoneEl,
+      zoneControl.element,
       el("p", { class: "hint" }, msg("birthplaceHint")),
     ]),
     el("div", { class: "setup-field" }, [
@@ -253,6 +261,7 @@ export function renderSetup(
     el("footer", {}, [startBtn]),
   ]);
   app.replaceChildren(form);
+  viewCleanups.set(app, () => zoneControl.destroy());
 
   if (current) {
     const [date, time] = splitBirth(current);
@@ -271,8 +280,9 @@ export function renderSetup(
       dateEl.focus();
       return;
     }
+    zoneControl.restore();
     errorEl.hidden = true;
-    start(birth, zoneEl.value, sexEl.value || null, lifeTableEl.value);
+    start(birth, zoneControl.value, sexEl.value || null, lifeTableEl.value);
   }
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -287,14 +297,15 @@ export function renderSetup(
     const birth = dateEl.value
       ? `${dateEl.value}T${timeEl.value || "00:00"}`
       : null;
+    zoneControl.restore();
     setLanguage(languageEl.value, {
       birth,
-      birthZone: zoneEl.value,
+      birthZone: zoneControl.value,
       sex: sexEl.value || null,
       lifeTable: lifeTableEl.value,
     });
   });
-  [dateEl, timeEl, zoneEl, lifeTableEl, sexEl].forEach((input) =>
+  [dateEl, timeEl, lifeTableEl, sexEl].forEach((input) =>
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -311,6 +322,7 @@ export function renderCounter(
   { openSettings, onCycle, openWeeks },
   { born, reflection },
 ) {
+  cleanupView(app);
   const gear = el(
     "button",
     {
@@ -408,6 +420,7 @@ export function renderSettings(
     language,
   },
 ) {
+  cleanupView(app);
   const colorInputs = {};
   const notes = {};
   const languageEl = languageSelect("settings-language", language);
@@ -554,17 +567,15 @@ export function renderSettings(
   // Time zone: re-anchor the birth instant to a different zone after setup.
   const detected = detectZone();
   const selectedZone = birthZone || detected;
-  const zoneSelect = el(
-    "select",
-    { id: "settings-zone", class: "bidi-id" },
-    listTimeZones(selectedZone, detected).map((zone) =>
-      el("option", { value: zone }, zone),
-    ),
-  );
-  zoneSelect.value = selectedZone;
-  zoneSelect.addEventListener("change", (event) =>
-    actions.setZone(event.target.value),
-  );
+  const zoneControl = createSearchSelect({
+    id: "settings-zone",
+    options: buildTimeZoneOptions(selectedZone, detected),
+    currentValue: selectedZone,
+    placeholder: msg("searchTimeZones"),
+    noResults: msg("noTimeZones"),
+    inputDir: "ltr",
+    onSelect: actions.setZone,
+  });
 
   // Data: export the whole state as JSON, or import a previously saved file.
   const exportBtn = el(
@@ -629,7 +640,7 @@ export function renderSettings(
         { class: "setup-label", for: "settings-zone" },
         msg("bornIn"),
       ),
-      zoneSelect,
+      zoneControl.element,
       el("p", { class: "hint" }, msg("zoneHint")),
     ]),
     el("p", { class: "settings-label" }, msg("sectionData")),
@@ -638,6 +649,7 @@ export function renderSettings(
     el("div", { class: "actions" }, [doneBtn]),
   ]);
   app.replaceChildren(settings);
+  viewCleanups.set(app, () => zoneControl.destroy());
 
   function activePreset() {
     return (
@@ -716,6 +728,7 @@ export function renderWeeks(
   { back, openSettings },
   { born, lived, total, expectancy },
 ) {
+  cleanupView(app);
   const backBtn = el(
     "button",
     {

@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "İleride",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Saat dilimlerinde ara",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Eşleşen saat dilimi yok",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

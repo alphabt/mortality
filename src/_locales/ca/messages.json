@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Per endavant",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Cerca zones horàries",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "No hi ha cap zona horària coincident",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

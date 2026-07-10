@@ -367,5 +367,13 @@
   "legendAhead": {
     "message": "Ahead",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Search time zones",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "No matching time zones",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

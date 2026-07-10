@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Còn lại",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Tìm kiếm múi giờ",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Không có múi giờ phù hợp",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

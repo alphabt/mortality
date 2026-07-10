@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Μπροστά",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Αναζήτηση ζωνών ώρας",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Δεν βρέθηκαν ζώνες ώρας",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

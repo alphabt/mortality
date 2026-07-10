@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "आगे",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "समय क्षेत्र खोजें",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "कोई मिलता-जुलता समय क्षेत्र नहीं",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

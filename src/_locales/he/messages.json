@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "קדימה",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "חיפוש אזורי זמן",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "לא נמצאו אזורי זמן תואמים",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

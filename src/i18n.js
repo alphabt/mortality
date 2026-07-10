@@ -14,6 +14,8 @@ export const EN_MESSAGES = {
   birthplaceLabel: "Where were you born?",
   birthplaceHint:
     "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+  searchTimeZones: "Search time zones",
+  noTimeZones: "No matching time zones",
   actuarialBaseline: "Life expectancy data source",
   baselineSetupHint:
     "World data by default. Your time zone never changes this choice.",

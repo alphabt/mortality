@@ -11,6 +11,9 @@ import {
   isValidZone,
   detectZone,
   listTimeZones,
+  humanizeTimeZone,
+  formatUtcOffset,
+  buildTimeZoneOptions,
 } from "../src/time.js";
 
 const HOUR_MS = 3600000;
@@ -321,5 +324,86 @@ describe("listTimeZones", () => {
     const zones = listTimeZones("Custom/Place", "Asia/Tokyo");
     expect(zones).toContain("Custom/Place");
     expect(zones.filter((z) => z === "Asia/Tokyo")).toHaveLength(1);
+  });
+});
+
+describe("time-zone picker records", () => {
+  it("humanizes IANA paths without changing their canonical value", () => {
+    expect(humanizeTimeZone("America/Argentina/Buenos_Aires")).toBe(
+      "America / Argentina / Buenos Aires",
+    );
+  });
+
+  it("formats zero, positive, negative, half-, and quarter-hour offsets", () => {
+    expect(formatUtcOffset(0)).toBe("UTC");
+    expect(formatUtcOffset(9 * HOUR_MS)).toBe("UTC+09:00");
+    expect(formatUtcOffset(-5 * HOUR_MS)).toBe("UTC-05:00");
+    expect(formatUtcOffset(5.5 * HOUR_MS)).toBe("UTC+05:30");
+    expect(formatUtcOffset(5.75 * HOUR_MS)).toBe("UTC+05:45");
+  });
+
+  it("builds searchable labels using offsets at the supplied instant", () => {
+    const winter = Date.UTC(2024, 0, 15, 12);
+    const records = buildTimeZoneOptions("UTC", "America/New_York", winter);
+    expect(records.find(({ value }) => value === "UTC")).toMatchObject({
+      value: "UTC",
+      label: "UTC",
+      meta: "",
+      displayText: "UTC",
+    });
+    expect(
+      records.find(({ value }) => value === "America/New_York"),
+    ).toMatchObject({
+      label: "America / New York",
+      meta: "UTC-05:00",
+    });
+    expect(records.find(({ value }) => value === "Asia/Tokyo").meta).toBe(
+      "UTC+09:00",
+    );
+    const quarterHour = buildTimeZoneOptions("Asia/Kathmandu", "UTC", winter);
+    expect(
+      quarterHour.find(({ value }) => value === "Asia/Kathmandu").meta,
+    ).toBe("UTC+05:45");
+  });
+
+  it("uses the current DST offset at the frozen render instant", () => {
+    const winter = buildTimeZoneOptions(
+      "America/New_York",
+      "UTC",
+      Date.UTC(2024, 0, 15, 12),
+    );
+    const summer = buildTimeZoneOptions(
+      "America/New_York",
+      "UTC",
+      Date.UTC(2024, 6, 15, 12),
+    );
+    expect(winter.find(({ value }) => value === "America/New_York").meta).toBe(
+      "UTC-05:00",
+    );
+    expect(summer.find(({ value }) => value === "America/New_York").meta).toBe(
+      "UTC-04:00",
+    );
+  });
+
+  it("retains the curated zones when supportedValuesOf is unavailable", () => {
+    const original = Intl.supportedValuesOf;
+    Object.defineProperty(Intl, "supportedValuesOf", {
+      value: undefined,
+      configurable: true,
+    });
+    try {
+      const records = buildTimeZoneOptions(
+        "Asia/Tokyo",
+        "UTC",
+        Date.UTC(2024, 0, 1),
+      );
+      expect(records.map(({ value }) => value)).toContain("Asia/Tokyo");
+      expect(records.map(({ value }) => value)).toContain("America/New_York");
+    } finally {
+      Object.defineProperty(Intl, "supportedValuesOf", {
+        value: original,
+        configurable: true,
+      });
+    }
   });
 });

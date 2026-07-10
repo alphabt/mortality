@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Devant",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Rechercher des fuseaux horaires",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Aucun fuseau horaire correspondant",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

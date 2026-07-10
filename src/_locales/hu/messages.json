@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Előtted",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Időzónák keresése",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Nincs megfelelő időzóna",
+    "description": "Empty result shown when no time zones match the search."
   }
 }
