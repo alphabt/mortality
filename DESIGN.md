@@ -46,11 +46,17 @@ typography:
     fontSize: "0.4em"
     fontWeight: 500
     letterSpacing: "0.01em"
+  numeral-grotesk:
+    fontFamily: "'Avenir Next', 'Helvetica Neue', Arial, sans-serif"
+    fontWeight: 600
+    fontFeature: "'tnum' 1"
 rounded:
+  2xs: "1px"
   xs: "2px"
   sm: "0.25rem"
   md: "0.4rem"
   lg: "0.5rem"
+  full: "999px"
 spacing:
   xs: "0.35rem"
   sm: "0.5rem"
@@ -189,6 +195,20 @@ sub-scale rather than a second typeface.
 - **Caption** (400, `0.72rem`, `letter-spacing: 0.1em`, UPPERCASE): The meta row (born date,
   percentage) and settings section labels.
 
+### Numeral Typeface (user-selectable)
+
+The big count offers three numeral typefaces, chosen in Settings and applied as an inline
+`--num-font` custom property by `applyTypeface()` in `store.js` (`TYPEFACES = ["system",
+"grotesk", "mono"]`). All three keep `tabular-nums` + `"tnum" 1`, and only the figures
+change — the rest of the interface always stays on the display sans.
+
+- **System** (default): clears `--num-font`, so the number inherits the display face
+  (Avenir). The quietest option; the count matches the labels around it.
+- **Grotesk**: `'Avenir Next', 'Helvetica Neue', Arial, sans-serif` — a slightly more
+  geometric grotesque for the figures only.
+- **Mono**: `ui-monospace, 'SF Mono', Menlo, Consolas, monospace` — the same monospace as
+  the fraction sub-scale, turning the whole reading into an instrument-panel readout.
+
 ### Named Rules
 
 **The Tabular Rule.** Any figure that updates in place is `tabular-nums`. A number that
@@ -256,6 +276,23 @@ never a bounce, never a glow-for-flavor.
 - A `2px` hairline track (`.progress`) in a translucent muted tone with an accent fill
   (`.progress-fill`) driven by `transform: scaleX(fraction)` over `0.6s` ease-out-expo.
   Paired with a caption row: born date at left, "% of N yrs lived" at right.
+
+### The Reflection Toggle
+
+- The Settings on/off control (`.switch`): a `2.6 × 1.5rem` fully-rounded **pill**
+  (`rounded.full`, `999px`) with a `1px` hairline border and a circular knob that slides
+  left→right on toggle; the track fills with accent when on. `transition: 0.15s ease`. The
+  pill is the one fully-rounded shape in the system — it reads instantly as a switch and is
+  reserved for that control.
+
+### Life in Weeks (view)
+
+- A full-screen calendar where each row is a year and each cell a week: a 52-column grid of
+  `1px`-radius (`rounded.2xs` hairline) squares with `aspect-ratio: 1` and `2px` gaps, in
+  three tonal states — lived (`count`-tinted), now (accent), future (translucent muted). The
+  legend swatches share the same hairline radius. The `2xs` (`1px`) corner just softens the
+  hard edge across the ~4,000-cell field without rounding the cells into dots — anything
+  larger reads as chips and breaks the plotted-grid feel.
 
 ## 6. Do's and Don'ts
 
