@@ -241,6 +241,14 @@
     "message": "顯示",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "語言",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "瀏覽器預設",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "數字",
     "description": "Numeral typeface setting label."

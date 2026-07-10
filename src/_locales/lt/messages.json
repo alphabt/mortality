@@ -241,6 +241,14 @@
     "message": "Rodymas",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Kalba",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Numatytoji naršyklės kalba",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Skaitmenys",
     "description": "Numeral typeface setting label."

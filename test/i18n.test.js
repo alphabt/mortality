@@ -3,7 +3,10 @@ import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  AUTOMATIC_LANGUAGE,
   EN_MESSAGES,
+  SUPPORTED_LANGUAGES,
+  activateLanguage,
   applyDocumentLocale,
   formatDate,
   formatFixedParts,
@@ -14,7 +17,9 @@ import {
   formatUnitParts,
   getDirection,
   getLocale,
+  languageName,
   msg,
+  normalizeLanguage,
 } from "../src/i18n.js";
 import { renderSetup } from "../src/views.js";
 import { formatBorn } from "../src/tab.js";
@@ -111,7 +116,8 @@ function mockLocale(locale, messages = {}) {
   });
 }
 
-afterEach(() => {
+afterEach(async () => {
+  await activateLanguage(AUTOMATIC_LANGUAGE);
   vi.unstubAllGlobals();
   document.documentElement.lang = "en";
   document.documentElement.removeAttribute("dir");
@@ -125,6 +131,7 @@ describe("locale catalogs", () => {
   it("ships exactly the 55 official Chrome WebExtension locales", () => {
     const actual = readdirSync(join(ROOT, "src", "_locales")).sort();
     expect(actual).toEqual([...LOCALES].sort());
+    expect([...SUPPORTED_LANGUAGES].sort()).toEqual([...LOCALES].sort());
   });
 
   it.each(LOCALES)(
@@ -283,6 +290,69 @@ describe("message lookup and document locale", () => {
     mockLocale("en");
     chrome.i18n.getMessage = (key) => (key === "@@bidi_dir" ? "rtl" : "");
     expect(getDirection()).toBe("rtl");
+  });
+
+  it("normalizes supported language choices and rejects unknown values", () => {
+    expect(normalizeLanguage("pt-BR")).toBe("pt_BR");
+    expect(normalizeLanguage("zh_CN")).toBe("zh_CN");
+    expect(normalizeLanguage("not-a-locale")).toBe(AUTOMATIC_LANGUAGE);
+    expect(normalizeLanguage(null)).toBe(AUTOMATIC_LANGUAGE);
+  });
+
+  it("provides a readable native name for every language choice", () => {
+    for (const language of SUPPORTED_LANGUAGES) {
+      expect(languageName(language).trim(), language).not.toBe("");
+    }
+    expect(languageName("de")).toMatch(/Deutsch/i);
+  });
+
+  it("loads a manually selected catalog instead of the browser locale", async () => {
+    mockLocale("en", { settings: "Browser settings" });
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => ({
+        ok: true,
+        json: async () => ({
+          settings: { message: "Einstellungen" },
+          progressCaption: {
+            message: "$PERCENT$ von $YEARS$ Jahren gelebt",
+            placeholders: {
+              percent: { content: "$1" },
+              years: { content: "$2" },
+            },
+          },
+        }),
+      })),
+    );
+
+    await expect(activateLanguage("de")).resolves.toBe("de");
+    expect(getLocale()).toBe("de");
+    expect(msg("settings")).toBe("Einstellungen");
+    expect(msg("progressCaption", ["25 %", "80"])).toBe(
+      "25 % von 80 Jahren gelebt",
+    );
+    expect(fetch).toHaveBeenCalledWith(
+      expect.objectContaining({ pathname: expect.stringContaining("/de/") }),
+    );
+  });
+
+  it("uses the selected language direction instead of the browser direction", async () => {
+    mockLocale("en");
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => ({
+        ok: true,
+        json: async () => ({
+          pageTitle: { message: "Mortality — علامة تبويب جديدة" },
+        }),
+      })),
+    );
+
+    await activateLanguage("ar");
+    applyDocumentLocale();
+    expect(getDirection()).toBe("rtl");
+    expect(document.documentElement.lang).toBe("ar");
+    expect(document.documentElement.dir).toBe("rtl");
   });
 });
 

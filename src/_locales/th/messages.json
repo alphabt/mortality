@@ -241,6 +241,14 @@
     "message": "การแสดงผล",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "ภาษา",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "ค่าเริ่มต้นของเบราว์เซอร์",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "ตัวเลข",
     "description": "Numeral typeface setting label."

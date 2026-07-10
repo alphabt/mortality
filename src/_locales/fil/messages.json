@@ -241,6 +241,14 @@
     "message": "Display",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Wika",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Default ng browser",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Mga Numero",
     "description": "Numeral typeface setting label."

@@ -241,6 +241,14 @@
     "message": "ప్రదర్శన",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "భాష",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "బ్రౌజర్ డిఫాల్ట్",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "సంఖ్యలు",
     "description": "Numeral typeface setting label."

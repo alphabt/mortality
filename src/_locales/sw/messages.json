@@ -241,6 +241,14 @@
     "message": "Onyesho",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Lugha",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Chaguo-msingi la kivinjari",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Nambari",
     "description": "Numeral typeface setting label."

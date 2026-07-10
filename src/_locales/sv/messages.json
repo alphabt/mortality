@@ -241,6 +241,14 @@
     "message": "Visning",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Språk",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Webbläsarens standard",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Siffror",
     "description": "Numeral typeface setting label."

@@ -241,6 +241,14 @@
     "message": "Näyttö",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Kieli",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Selaimen oletus",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Numerot",
     "description": "Numeral typeface setting label."

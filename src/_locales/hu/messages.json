@@ -241,6 +241,14 @@
     "message": "Megjelenítés",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Nyelv",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Böngésző alapértelmezése",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Számjegyek",
     "description": "Numeral typeface setting label."

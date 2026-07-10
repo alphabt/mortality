@@ -241,6 +241,14 @@
     "message": "ማሳያ",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "ቋንቋ",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "የአሳሹ ነባሪ",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "አህዞች",
     "description": "Numeral typeface setting label."

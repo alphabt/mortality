@@ -15,7 +15,14 @@ import {
   normalizeLifeTable,
 } from "./lifetable.js";
 import { el } from "./dom.js";
-import { formatNumber, msg } from "./i18n.js";
+import {
+  AUTOMATIC_LANGUAGE,
+  SUPPORTED_LANGUAGES,
+  formatNumber,
+  languageName,
+  msg,
+  normalizeLanguage,
+} from "./i18n.js";
 
 const COLOR_LABELS = {
   bg: "colorBackground",
@@ -124,6 +131,27 @@ function lifeTableSelect(id, current) {
   return select;
 }
 
+/** A language picker whose choices identify themselves in their own language. */
+function languageSelect(id, current) {
+  const select = el("select", { id }, [
+    el("option", { value: AUTOMATIC_LANGUAGE }, msg("languageAutomatic")),
+    ...SUPPORTED_LANGUAGES.map((language) => {
+      const locale = language.replaceAll("_", "-");
+      return el(
+        "option",
+        {
+          value: language,
+          lang: locale,
+          dir: /^(ar|fa|he)(-|$)/i.test(locale) ? "rtl" : "ltr",
+        },
+        languageName(language),
+      );
+    }),
+  ]);
+  select.value = normalizeLanguage(current);
+  return select;
+}
+
 /** Today as YYYY-MM-DD in local time, used to cap the birth-date field. */
 function todayISO() {
   const now = new Date();
@@ -141,11 +169,12 @@ function splitBirth(value) {
 /** Birthday entry screen. Stored values pre-fill when editing. */
 export function renderSetup(
   app,
-  { start },
+  { start, setLanguage },
   current,
   savedZone,
   savedSex,
   savedLifeTable,
+  savedLanguage,
 ) {
   const dateEl = el("input", {
     type: "date",
@@ -172,6 +201,7 @@ export function renderSetup(
   zoneEl.value = selectedZone;
   const sexEl = sexSelect("birth-sex", savedSex);
   const lifeTableEl = lifeTableSelect("birth-life-table", savedLifeTable);
+  const languageEl = languageSelect("setup-language", savedLanguage);
   const startBtn = el("button", { id: "start" }, msg("start"));
   const errorEl = el("p", {
     class: "field-error",
@@ -182,6 +212,14 @@ export function renderSetup(
   const form = el("form", {}, [
     el("h1", { class: "screen-title" }, msg("setupTitle")),
     el("p", { class: "screen-subtitle" }, msg("setupSubtitle")),
+    el("div", { class: "setup-field setup-language" }, [
+      el(
+        "label",
+        { class: "setup-label", for: "setup-language" },
+        msg("language"),
+      ),
+      languageEl,
+    ]),
     el("div", { class: "setup-row" }, [dateEl, timeEl]),
     errorEl,
     el("p", { class: "hint setup-hint" }, msg("timeHint")),
@@ -245,6 +283,17 @@ export function renderSetup(
       errorEl.hidden = true;
     }),
   );
+  languageEl.addEventListener("change", () => {
+    const birth = dateEl.value
+      ? `${dateEl.value}T${timeEl.value || "00:00"}`
+      : null;
+    setLanguage(languageEl.value, {
+      birth,
+      birthZone: zoneEl.value,
+      sex: sexEl.value || null,
+      lifeTable: lifeTableEl.value,
+    });
+  });
   [dateEl, timeEl, zoneEl, lifeTableEl, sexEl].forEach((input) =>
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
@@ -356,10 +405,15 @@ export function renderSettings(
     typeface,
     reflection,
     birthZone,
+    language,
   },
 ) {
   const colorInputs = {};
   const notes = {};
+  const languageEl = languageSelect("settings-language", language);
+  languageEl.addEventListener("change", () =>
+    actions.setLanguage(languageEl.value),
+  );
   const rows = THEME_KEYS.flatMap((key) => {
     const attrs = {
       type: "color",
@@ -546,6 +600,10 @@ export function renderSettings(
     el("p", { class: "settings-label" }, msg("sectionColors")),
     ...rows,
     el("p", { class: "settings-label" }, msg("sectionDisplay")),
+    el("div", { class: "row" }, [
+      el("label", { for: "settings-language" }, msg("language")),
+      languageEl,
+    ]),
     el("div", { class: "row" }, [numeralsLabel, typefaceSegment]),
     el("div", { class: "row" }, [
       el("label", { for: "reflection-switch" }, msg("reflectionToggle")),

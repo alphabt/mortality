@@ -241,6 +241,14 @@
     "message": "Görünüm",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Dil",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Tarayıcı varsayılanı",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Rakamlar",
     "description": "Numeral typeface setting label."
