@@ -543,6 +543,17 @@ async function init() {
   state = await load();
   applyTheme(state.theme);
   applyTypeface(state.typeface);
+
+  // Escape returns to the counter from the weeks and settings screens, so those
+  // views are dismissable from the keyboard, not only via the corner control.
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !state || !state.birth) return;
+    const screen = document.body.className;
+    if (screen === "screen-weeks" || screen === "screen-settings") {
+      showCounter();
+    }
+  });
+
   setupAmbient();
   if (state.birth) showCounter();
   else showSetup();
