@@ -308,15 +308,6 @@ export function createSearchSelect({
   });
   input.addEventListener("keydown", (event) => {
     if (event.isComposing || event.keyCode === 229) return;
-    if (
-      !event.altKey &&
-      (event.metaKey || event.ctrlKey) &&
-      event.key.toLowerCase() === "a"
-    ) {
-      event.preventDefault();
-      input.select();
-      return;
-    }
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();

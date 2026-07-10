@@ -46,12 +46,11 @@ function build(overrides = {}) {
   return control;
 }
 
-function keydown(element, key, modifiers = {}) {
+function keydown(element, key) {
   const event = new KeyboardEvent("keydown", {
     key,
     bubbles: true,
     cancelable: true,
-    ...modifiers,
   });
   element.dispatchEvent(event);
   return event;
@@ -152,19 +151,6 @@ describe("search select", () => {
     expect(control.input.selectionStart).toBe(0);
     expect(control.input.selectionEnd).toBe(control.input.value.length);
   });
-
-  it.each([{ metaKey: true }, { ctrlKey: true }])(
-    "selects the entire query for the platform select-all shortcut",
-    (modifier) => {
-      const control = build();
-      query(control, "new york");
-      control.input.setSelectionRange(3, 3);
-      const event = keydown(control.input, "a", modifier);
-      expect(event.defaultPrevented).toBe(true);
-      expect(control.input.selectionStart).toBe(0);
-      expect(control.input.selectionEnd).toBe(control.input.value.length);
-    },
-  );
 
   it("filters as the user types and keeps the selected value stable", () => {
     const control = build();
