@@ -74,6 +74,14 @@ describe("search normalization", () => {
       OPTIONS[0],
     ]);
   });
+
+  it("refreshes a cached option when its searchable text changes", () => {
+    const option = { value: "one", label: "One", searchText: "before" };
+    expect(filterSearchOptions([option], "before")).toEqual([option]);
+    option.searchText = "after";
+    expect(filterSearchOptions([option], "before")).toEqual([]);
+    expect(filterSearchOptions([option], "after")).toEqual([option]);
+  });
 });
 
 describe("search select", () => {
@@ -93,6 +101,9 @@ describe("search select", () => {
       "listbox",
     );
     expect(input.getAttribute("aria-activedescendant")).toBe("zone-option-1");
+    expect(
+      document.querySelector("#zone-option-1").getAttribute("aria-label"),
+    ).toBe("Asia / Tokyo · UTC+09:00");
   });
 
   it("supports arrows, Home, End, and Enter without submitting", () => {
@@ -204,6 +215,18 @@ describe("search select", () => {
     );
     expect(control.input.getAttribute("aria-expanded")).toBe("false");
     expect(control.input.value).toBe("Asia / Tokyo · UTC+09:00");
+  });
+
+  it("repositions for page scroll without reacting to listbox scroll", () => {
+    const control = build();
+    keydown(control.input, "ArrowDown");
+    const rect = vi.spyOn(control.input, "getBoundingClientRect");
+    document
+      .querySelector(".search-select-listbox")
+      .dispatchEvent(new Event("scroll"));
+    expect(rect).not.toHaveBeenCalled();
+    window.dispatchEvent(new Event("scroll"));
+    expect(rect).toHaveBeenCalledOnce();
   });
 
   it("selects a pointer or touch result exactly once", () => {

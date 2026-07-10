@@ -1,5 +1,7 @@
 import { el } from "./dom.js";
 
+const normalizedOptionText = new WeakMap();
+
 /** Normalize text for forgiving, case- and diacritic-insensitive matching. */
 export function normalizeSearchText(value) {
   return String(value ?? "")
@@ -11,22 +13,29 @@ export function normalizeSearchText(value) {
     .trim();
 }
 
+function optionSearchText(option) {
+  const source = [
+    option.value,
+    option.label,
+    option.meta,
+    option.displayText,
+    option.searchText,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const cached = normalizedOptionText.get(option);
+  if (cached?.source === source) return cached.value;
+  const value = normalizeSearchText(source);
+  normalizedOptionText.set(option, { source, value });
+  return value;
+}
+
 /** Filter option records while preserving their source order. */
 export function filterSearchOptions(options, query) {
   const terms = normalizeSearchText(query).split(" ").filter(Boolean);
   if (!terms.length) return [...options];
   return options.filter((option) => {
-    const haystack = normalizeSearchText(
-      [
-        option.value,
-        option.label,
-        option.meta,
-        option.displayText,
-        option.searchText,
-      ]
-        .filter(Boolean)
-        .join(" "),
-    );
+    const haystack = optionSearchText(option);
     return terms.every((term) => haystack.includes(term));
   });
 }
@@ -144,6 +153,7 @@ export function createSearchSelect({
           class: "search-select-option",
           role: "option",
           "aria-selected": String(option.value === selectedValue),
+          "aria-label": optionDisplayText(option),
           "data-index": index,
           title: optionDisplayText(option),
         };
@@ -257,10 +267,7 @@ export function createSearchSelect({
         { capture: true, signal },
       );
       window.addEventListener("resize", positionPopup, { signal });
-      window.addEventListener("scroll", positionPopup, {
-        capture: true,
-        signal,
-      });
+      window.addEventListener("scroll", positionPopup, { signal });
     }
     positionPopup();
     scrollActiveIntoView();

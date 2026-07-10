@@ -1,10 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { renderSetup, renderCounter, renderSettings } from "../src/views.js";
 import { THEME_KEYS, PRESETS, cssDefault } from "../src/store.js";
+import { detectZone } from "../src/time.js";
 import { SUPPORTED_LANGUAGES } from "../src/i18n.js";
 
 let app;
-const detectedZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const detectedZone = detectZone();
 beforeEach(() => {
   app = document.createElement("div");
   app.id = "app";

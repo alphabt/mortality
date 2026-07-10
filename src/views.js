@@ -207,7 +207,6 @@ export function renderSetup(
     noResults: msg("noTimeZones"),
     inputDir: "ltr",
   });
-  const zoneEl = zoneControl.input;
   const sexEl = sexSelect("birth-sex", savedSex);
   const lifeTableEl = lifeTableSelect("birth-life-table", savedLifeTable);
   const languageEl = languageSelect("setup-language", savedLanguage);
