@@ -90,6 +90,7 @@ const DEFAULTS = {
   mode: "years",
   typeface: "system",
   reflection: false,
+  language: "auto",
 };
 
 /**
@@ -235,7 +236,7 @@ function migrateExpectancy(state, raw) {
  * forward without changing the age shown today. Records that predate the
  * actuarial-expectancy feature keep their flat number by being pinned to a
  * "custom" expectancy source (see migrateExpectancy).
- * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, expectancySource: string, sex: string|null, lifeTable: string, mode: string, typeface: string, reflection: boolean }>}
+ * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, expectancySource: string, sex: string|null, lifeTable: string, mode: string, typeface: string, reflection: boolean, language: string }>}
  */
 export async function load() {
   let stored;

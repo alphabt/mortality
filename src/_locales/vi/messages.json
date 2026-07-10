@@ -241,6 +241,14 @@
     "message": "Hiển thị",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Ngôn ngữ",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Mặc định của trình duyệt",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Chữ số",
     "description": "Numeral typeface setting label."

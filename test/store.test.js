@@ -226,6 +226,7 @@ describe("save / load with the localStorage fallback", () => {
       mode: "years",
       typeface: "system",
       reflection: false,
+      language: "auto",
     });
   });
 
@@ -242,6 +243,7 @@ describe("save / load with the localStorage fallback", () => {
       mode: "days",
       typeface: "mono",
       reflection: true,
+      language: "fr",
     };
     await save(state);
     await expect(load()).resolves.toEqual(state);
@@ -263,6 +265,7 @@ describe("save / load with the localStorage fallback", () => {
       mode: "years",
       typeface: "system",
       reflection: false,
+      language: "auto",
     });
   });
 
@@ -309,6 +312,7 @@ describe("save / load with the localStorage fallback", () => {
       mode: "years",
       typeface: "system",
       reflection: false,
+      language: "auto",
     });
   });
 
@@ -335,6 +339,7 @@ describe("save / load with the localStorage fallback", () => {
       mode: "years",
       typeface: "system",
       reflection: false,
+      language: "auto",
     });
   });
 });
@@ -527,6 +532,7 @@ describe("save / load against extension storage", () => {
       mode: "years",
       typeface: "system",
       reflection: false,
+      language: "auto",
     });
   });
 
@@ -568,6 +574,7 @@ describe("save / load against extension storage", () => {
       mode: "years",
       typeface: "system",
       reflection: false,
+      language: "auto",
     });
   });
 });

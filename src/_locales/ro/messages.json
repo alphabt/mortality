@@ -241,6 +241,14 @@
     "message": "Afișare",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Limbă",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Implicit al browserului",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Cifre",
     "description": "Numeral typeface setting label."

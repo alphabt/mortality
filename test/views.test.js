@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { renderSetup, renderCounter, renderSettings } from "../src/views.js";
 import { THEME_KEYS, PRESETS, cssDefault } from "../src/store.js";
+import { SUPPORTED_LANGUAGES } from "../src/i18n.js";
 
 let app;
 beforeEach(() => {
@@ -19,6 +20,32 @@ describe("renderSetup", () => {
     expect(app.querySelector("#birth-date")).not.toBeNull();
     expect(app.querySelector("#birth-time")).not.toBeNull();
     expect(app.querySelector("#start")).not.toBeNull();
+  });
+
+  it("offers every language on first run and preserves draft fields on change", () => {
+    const setLanguage = vi.fn();
+    renderSetup(
+      app,
+      { start: vi.fn(), setLanguage },
+      "1990-05-15T14:30",
+      "Asia/Tokyo",
+      "female",
+      "us",
+      "fr",
+    );
+    const language = app.querySelector("#setup-language");
+    expect(language.value).toBe("fr");
+    expect(language.options).toHaveLength(SUPPORTED_LANGUAGES.length + 1);
+    expect(language.options[0].textContent).toBe("Browser default");
+
+    language.value = "de";
+    language.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(setLanguage).toHaveBeenCalledWith("de", {
+      birth: "1990-05-15T14:30",
+      birthZone: "Asia/Tokyo",
+      sex: "female",
+      lifeTable: "us",
+    });
   });
 
   it("focuses the date field", () => {
@@ -269,6 +296,7 @@ describe("renderSettings", () => {
     setTypeface: vi.fn(),
     toggleReflection: vi.fn(),
     setZone: vi.fn(),
+    setLanguage: vi.fn(),
     exportData: vi.fn(),
     importData: vi.fn(),
   });
@@ -283,6 +311,7 @@ describe("renderSettings", () => {
     typeface: "system",
     reflection: false,
     birthZone: null,
+    language: "auto",
     ...over,
   });
 
@@ -402,6 +431,17 @@ describe("renderSettings", () => {
         .querySelector('[data-typeface="system"]')
         .getAttribute("aria-pressed"),
     ).toBe("false");
+  });
+
+  it("preselects the language and reports changes", () => {
+    const a = actions();
+    renderSettings(app, a, data({ language: "fr" }));
+    const language = app.querySelector("#settings-language");
+    expect(language.value).toBe("fr");
+    expect(language.options).toHaveLength(SUPPORTED_LANGUAGES.length + 1);
+    language.value = "ja";
+    language.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(a.setLanguage).toHaveBeenCalledWith("ja");
   });
 
   it("reports typeface changes when a segment button is clicked", () => {

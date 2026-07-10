@@ -241,6 +241,14 @@
     "message": "Tampilan",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Bahasa",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Default browser",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Angka",
     "description": "Numeral typeface setting label."

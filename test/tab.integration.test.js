@@ -39,6 +39,20 @@ function stored() {
   return JSON.parse(localStorage.getItem("mortality"));
 }
 
+function mockLanguageCatalog(messages) {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async () => ({
+      ok: true,
+      status: 200,
+      json: async () =>
+        Object.fromEntries(
+          Object.entries(messages).map(([key, message]) => [key, { message }]),
+        ),
+    })),
+  );
+}
+
 beforeEach(() => {
   vi.useFakeTimers();
   vi.setSystemTime(new Date("2020-01-01T00:00:00"));
@@ -50,6 +64,7 @@ afterEach(() => {
   vi.resetModules();
   delete globalThis.browser;
   delete globalThis.chrome;
+  vi.unstubAllGlobals();
 });
 
 describe("initial routing", () => {
@@ -100,6 +115,59 @@ describe("initial routing", () => {
       ].map((node) => node.textContent);
       expect(sectionLabels).toContain("de:sectionPresets");
       expect(sectionLabels).toContain("de:sectionLifeExpectancy");
+    });
+
+    it("changes language during setup without losing entered values", async () => {
+      mockLanguageCatalog({
+        pageTitle: "Mortality — Neuer Tab",
+        setupTitle: "Wann wurden Sie geboren?",
+        setupSubtitle: "Ihr Alter zählt in jedem neuen Tab live hoch.",
+        language: "Sprache",
+        languageAutomatic: "Browserstandard",
+      });
+      await boot();
+      document.querySelector("#birth-date").value = "1990-06-15";
+      document.querySelector("#birth-time").value = "09:30";
+
+      const language = document.querySelector("#setup-language");
+      language.value = "de";
+      language.dispatchEvent(new Event("change", { bubbles: true }));
+      await flush();
+
+      expect(stored().language).toBe("de");
+      expect(document.documentElement.lang).toBe("de");
+      expect(document.title).toBe("Mortality — Neuer Tab");
+      expect(document.querySelector(".screen-title").textContent).toBe(
+        "Wann wurden Sie geboren?",
+      );
+      expect(document.querySelector("#birth-date").value).toBe("1990-06-15");
+      expect(document.querySelector("#birth-time").value).toBe("09:30");
+    });
+
+    it("changes language from settings and keeps it on the counter", async () => {
+      mockLanguageCatalog({
+        pageTitle: "Mortality — Neuer Tab",
+        settings: "Einstellungen",
+        language: "Sprache",
+        languageAutomatic: "Browserstandard",
+        sectionDisplay: "Anzeige",
+        modeYears: "Alter",
+      });
+      seed({ birth: "2000-01-01T00:00", mode: "years" });
+      await boot();
+      document.querySelector("#gear").click();
+
+      const language = document.querySelector("#settings-language");
+      language.value = "de";
+      language.dispatchEvent(new Event("change", { bubbles: true }));
+      await flush();
+
+      expect(stored().language).toBe("de");
+      expect(document.querySelector(".screen-title").textContent).toBe(
+        "Einstellungen",
+      );
+      document.querySelector("#done").click();
+      expect(document.querySelector("#unit-label").textContent).toBe("Alter");
     });
   });
 

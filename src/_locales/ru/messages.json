@@ -241,6 +241,14 @@
     "message": "Отображение",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Язык",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "По умолчанию в браузере",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Цифры",
     "description": "Numeral typeface setting label."

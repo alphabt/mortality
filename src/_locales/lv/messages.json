@@ -241,6 +241,14 @@
     "message": "Attēlošana",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Valoda",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Pārlūka noklusējums",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Cipari",
     "description": "Numeral typeface setting label."

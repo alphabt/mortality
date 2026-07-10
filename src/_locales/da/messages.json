@@ -241,6 +241,14 @@
     "message": "Visning",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Sprog",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Browserens standard",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Cifre",
     "description": "Numeral typeface setting label."

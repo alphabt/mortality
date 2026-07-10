@@ -241,6 +241,14 @@
     "message": "Affichage",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Langue",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Langue du navigateur",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Chiffres",
     "description": "Numeral typeface setting label."

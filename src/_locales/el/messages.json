@@ -241,6 +241,14 @@
     "message": "Προβολή",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Γλώσσα",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Προεπιλογή προγράμματος περιήγησης",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Ψηφία",
     "description": "Numeral typeface setting label."

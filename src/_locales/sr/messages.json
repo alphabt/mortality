@@ -241,6 +241,14 @@
     "message": "Приказ",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Језик",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Подразумевано у прегледачу",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Цифре",
     "description": "Numeral typeface setting label."

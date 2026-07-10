@@ -248,7 +248,7 @@ never a bounce, never a glow-for-flavor.
 ### Inputs / Fields
 
 - **Style:** `1px` hairline border, canvas/field background, `0.25rem` radius. Date, time,
-  number, and color inputs share one vocabulary. `appearance: none`.
+  number, color, and language inputs share one vocabulary. `appearance: none`.
 - **Focus:** `2px solid` focus tone, `2px` offset.
 
 ### Preset Swatch

@@ -241,6 +241,14 @@
     "message": "Prikaz",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Jezik",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Privzeto v brskalniku",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Številke",
     "description": "Numeral typeface setting label."

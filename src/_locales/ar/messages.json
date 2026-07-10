@@ -241,6 +241,14 @@
     "message": "العرض",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "اللغة",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "لغة المتصفح الافتراضية",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "الأرقام",
     "description": "Numeral typeface setting label."

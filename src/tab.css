@@ -364,6 +364,12 @@ footer {
   text-align: start;
 }
 
+.setup-language {
+  width: min(22rem, 100%);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
 .setup-label {
   color: var(--label);
   font-size: 0.72rem;
