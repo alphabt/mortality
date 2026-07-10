@@ -482,6 +482,17 @@ footer {
   color: var(--input-text);
 }
 
+.row select {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  cursor: pointer;
+}
+
 .settings-label {
   margin: 0.4rem 0 0;
   color: var(--label);

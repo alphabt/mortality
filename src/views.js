@@ -76,6 +76,25 @@ function gearIcon() {
   );
 }
 
+// Sex-at-birth choices, shared by setup and settings. The empty value is the
+// privacy-respecting default and maps to `null` (no sex shared) at the boundary.
+const SEX_OPTIONS = [
+  ["", "Prefer not to say"],
+  ["female", "Female"],
+  ["male", "Male"],
+];
+
+/** A sex-at-birth <select>, pre-selecting `current` ("male"/"female"/null). */
+function sexSelect(id, current) {
+  const select = el(
+    "select",
+    { id },
+    SEX_OPTIONS.map(([value, label]) => el("option", { value }, label)),
+  );
+  select.value = current === "male" || current === "female" ? current : "";
+  return select;
+}
+
 /** Today as YYYY-MM-DD in local time, used to cap the birth-date field. */
 function todayISO() {
   const now = new Date();
@@ -90,8 +109,8 @@ function splitBirth(value) {
   return [date, time.slice(0, 5)];
 }
 
-/** Birthday entry screen. `current`/`savedZone` pre-fill the fields when editing. */
-export function renderSetup(app, { start }, current, savedZone) {
+/** Birthday entry screen. `current`/`savedZone`/`savedSex` pre-fill when editing. */
+export function renderSetup(app, { start }, current, savedZone, savedSex) {
   const dateEl = el("input", {
     type: "date",
     id: "birth-date",
@@ -115,6 +134,7 @@ export function renderSetup(app, { start }, current, savedZone) {
     ),
   );
   zoneEl.value = selectedZone;
+  const sexEl = sexSelect("birth-sex", savedSex);
   const startBtn = el("button", { id: "start" }, "Start");
   const errorEl = el("p", {
     class: "field-error",
@@ -149,6 +169,15 @@ export function renderSetup(app, { start }, current, savedZone) {
         "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
       ),
     ]),
+    el("div", { class: "setup-field" }, [
+      el("label", { class: "setup-label", for: "birth-sex" }, "Sex at birth"),
+      sexEl,
+      el(
+        "p",
+        { class: "hint" },
+        "Optional — sharpens the life-expectancy estimate.",
+      ),
+    ]),
     el("footer", {}, [startBtn]),
   ]);
   app.replaceChildren(form);
@@ -172,7 +201,7 @@ export function renderSetup(app, { start }, current, savedZone) {
       return;
     }
     errorEl.hidden = true;
-    start(birth, zoneEl.value);
+    start(birth, zoneEl.value, sexEl.value || null);
   }
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -183,7 +212,7 @@ export function renderSetup(app, { start }, current, savedZone) {
       errorEl.hidden = true;
     }),
   );
-  [dateEl, timeEl, zoneEl].forEach((input) =>
+  [dateEl, timeEl, zoneEl, sexEl].forEach((input) =>
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -275,7 +304,16 @@ export function renderCounter(
 export function renderSettings(
   app,
   actions,
-  { theme, expectancy, typeface, reflection, birthZone },
+  {
+    theme,
+    expectancy,
+    expectancySource,
+    sex,
+    estimate,
+    typeface,
+    reflection,
+    birthZone,
+  },
 ) {
   const colorInputs = {};
   const notes = {};
@@ -329,6 +367,53 @@ export function renderSettings(
     step: "1",
     value: expectancy,
   });
+
+  // Life expectancy: choose between an age-based actuarial estimate and a manual
+  // number. In "estimate" mode the manual input is hidden and a read-only line
+  // previews the figure in force; "custom" restores the editable Years input.
+  const useEstimate = expectancySource !== "custom";
+  const sourceButtons = [
+    ["estimate", "Estimate"],
+    ["custom", "Custom"],
+  ].map(([value, text]) => {
+    const btn = el(
+      "button",
+      {
+        type: "button",
+        "data-source": value,
+        "aria-pressed": String(useEstimate === (value === "estimate")),
+      },
+      text,
+    );
+    btn.addEventListener("click", () => actions.setExpectancySource(value));
+    return btn;
+  });
+  const sourceSegment = el(
+    "div",
+    {
+      class: "segment",
+      role: "group",
+      "aria-labelledby": "expectancy-source-label",
+    },
+    sourceButtons,
+  );
+  const estimateLine = el(
+    "p",
+    { class: "settings-hint", id: "expectancy-estimate" },
+    estimate != null
+      ? `\u2248 ${estimate} years \u2014 actuarial estimate for your age.`
+      : "Add your birthday to see an actuarial estimate.",
+  );
+  const customRow = el("div", { class: "row" }, [
+    el("label", { for: "expectancy" }, "Years"),
+    expectancyInput,
+  ]);
+  const sexEl = sexSelect("settings-sex", sex);
+  sexEl.addEventListener("change", () => actions.setSex(sexEl.value || null));
+  const sexRow = el("div", { class: "row" }, [
+    el("label", { for: "settings-sex" }, "Sex at birth"),
+    sexEl,
+  ]);
 
   // Display: numeral typeface (segmented control) + reflection-line toggle.
   const numeralsLabel = el("label", { id: "numerals-label" }, "Numerals");
@@ -424,9 +509,16 @@ export function renderSettings(
     ]),
     el("p", { class: "settings-label" }, "Life expectancy"),
     el("div", { class: "row" }, [
-      el("label", { for: "expectancy" }, "Years"),
-      expectancyInput,
+      el("label", { id: "expectancy-source-label" }, "Source"),
+      sourceSegment,
     ]),
+    useEstimate ? estimateLine : customRow,
+    sexRow,
+    el(
+      "p",
+      { class: "settings-hint" },
+      "Optional — sharpens the life-expectancy estimate.",
+    ),
     el("p", { class: "settings-label" }, "Time zone"),
     el("div", { class: "setup-field" }, [
       el("label", { class: "setup-label", for: "settings-zone" }, "Born in"),

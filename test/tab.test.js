@@ -116,6 +116,8 @@ describe("mergeImported", () => {
     birthZone: "Asia/Tokyo",
     theme: null,
     expectancy: 80,
+    expectancySource: "estimate",
+    sex: null,
     mode: "years",
     typeface: "system",
     reflection: false,
@@ -142,6 +144,27 @@ describe("mergeImported", () => {
     expect(mergeImported(current, { expectancy: 999 }).expectancy).toBe(150);
     expect(mergeImported(current, { expectancy: 0 }).expectancy).toBe(1);
     expect(mergeImported(current, { expectancy: "62" }).expectancy).toBe(62);
+  });
+
+  it("accepts a valid sex and coerces anything else to null", () => {
+    expect(mergeImported(current, { sex: "male" }).sex).toBe("male");
+    expect(mergeImported(current, { sex: "female" }).sex).toBe("female");
+    expect(mergeImported(current, { sex: "other" }).sex).toBeNull();
+    expect(mergeImported(current, { sex: 123 }).sex).toBeNull();
+    expect(mergeImported(current, { sex: null }).sex).toBeNull();
+  });
+
+  it("accepts a valid expectancy source and ignores an invalid one", () => {
+    expect(
+      mergeImported(current, { expectancySource: "custom" }).expectancySource,
+    ).toBe("custom");
+    expect(
+      mergeImported(current, { expectancySource: "estimate" }).expectancySource,
+    ).toBe("estimate");
+    // An unrecognised value keeps the current source rather than corrupting it.
+    expect(
+      mergeImported(current, { expectancySource: "banana" }).expectancySource,
+    ).toBe(current.expectancySource);
   });
 
   it("falls back to the system typeface for an unknown value", () => {

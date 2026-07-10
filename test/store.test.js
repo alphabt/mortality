@@ -12,6 +12,8 @@ import {
   bestOnColor,
   applyTheme,
   applyTypeface,
+  clampExpectancy,
+  effectiveExpectancy,
 } from "../src/store.js";
 
 // Independent WCAG contrast implementation, used to verify the PRESETS meet the
@@ -217,6 +219,8 @@ describe("save / load with the localStorage fallback", () => {
       birthZone: null,
       theme: null,
       expectancy: 80,
+      expectancySource: "estimate",
+      sex: null,
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -230,6 +234,8 @@ describe("save / load with the localStorage fallback", () => {
       birthZone: "America/New_York",
       theme: { bg: "#111111", label: "#aaa", count: "#fff", accent: "#f00" },
       expectancy: 70,
+      expectancySource: "custom",
+      sex: "female",
       mode: "days",
       typeface: "mono",
       reflection: true,
@@ -246,6 +252,10 @@ describe("save / load with the localStorage fallback", () => {
       birthZone: "Asia/Tokyo",
       theme: null,
       expectancy: 80,
+      // A record already on disk that predates the estimate feature is pinned to
+      // "custom" so its flat number never silently changes on update.
+      expectancySource: "custom",
+      sex: null,
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -289,6 +299,8 @@ describe("save / load with the localStorage fallback", () => {
       birthZone: null,
       theme: null,
       expectancy: 80,
+      expectancySource: "estimate",
+      sex: null,
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -312,10 +324,99 @@ describe("save / load with the localStorage fallback", () => {
       birthZone: null,
       theme: null,
       expectancy: 80,
+      expectancySource: "estimate",
+      sex: null,
       mode: "years",
       typeface: "system",
       reflection: false,
     });
+  });
+});
+
+describe("expectancy-source migration", () => {
+  it("defaults a brand-new install to the actuarial estimate source", async () => {
+    const result = await load();
+    expect(result.expectancySource).toBe("estimate");
+    expect(result.sex).toBe(null);
+  });
+
+  it("pins a pre-existing record without a source to custom", async () => {
+    // A record already on disk (pre-feature) keeps its flat number verbatim.
+    await save({ birth: "1980-01-01T00:00", birthZone: "UTC", expectancy: 66 });
+    const result = await load();
+    expect(result.expectancySource).toBe("custom");
+    expect(result.expectancy).toBe(66);
+    expect(result.sex).toBe(null);
+  });
+
+  it("preserves an explicit estimate source on an existing record", async () => {
+    await save({
+      birth: "1980-01-01T00:00",
+      birthZone: "UTC",
+      expectancySource: "estimate",
+      sex: "female",
+    });
+    const result = await load();
+    expect(result.expectancySource).toBe("estimate");
+    expect(result.sex).toBe("female");
+  });
+
+  it("migrates the legacy dob record to a custom source", async () => {
+    localStorage.setItem("dob", "1970-01-01");
+    const result = await load();
+    expect(result.expectancySource).toBe("custom");
+    expect(result.sex).toBe(null);
+  });
+
+  it("persists the migration so it stays stable on the next load", async () => {
+    await save({ birth: "1980-01-01T00:00", birthZone: "UTC", expectancy: 72 });
+    await load();
+    const persisted = JSON.parse(localStorage.getItem("mortality"));
+    expect(persisted.expectancySource).toBe("custom");
+    expect(persisted.sex).toBe(null);
+  });
+});
+
+describe("effectiveExpectancy", () => {
+  it("honours a custom number verbatim, clamped to range", () => {
+    expect(
+      effectiveExpectancy({ expectancySource: "custom", expectancy: 70 }, 40),
+    ).toBe(70);
+    expect(
+      effectiveExpectancy({ expectancySource: "custom", expectancy: 999 }, 40),
+    ).toBe(150);
+  });
+
+  it("derives an actuarial estimate from age and sex when set to estimate", () => {
+    const male = effectiveExpectancy(
+      { expectancySource: "estimate", sex: "male", expectancy: 80 },
+      70,
+    );
+    const female = effectiveExpectancy(
+      { expectancySource: "estimate", sex: "female", expectancy: 80 },
+      70,
+    );
+    expect(Number.isInteger(male)).toBe(true);
+    expect(male).toBeGreaterThanOrEqual(70); // never below current age
+    expect(female).toBeGreaterThanOrEqual(male); // female >= male
+  });
+
+  it("falls back to the clamped custom value when the age is unavailable", () => {
+    expect(
+      effectiveExpectancy(
+        { expectancySource: "estimate", expectancy: 66, sex: "male" },
+        NaN,
+      ),
+    ).toBe(66);
+  });
+});
+
+describe("clampExpectancy", () => {
+  it("clamps into the supported [1, 150] whole-year band", () => {
+    expect(clampExpectancy(80)).toBe(80);
+    expect(clampExpectancy(0)).toBe(1);
+    expect(clampExpectancy(999)).toBe(150);
+    expect(clampExpectancy("abc")).toBe(80);
   });
 });
 
@@ -364,6 +465,8 @@ describe("save / load against extension storage", () => {
       birthZone: "Europe/London",
       theme: null,
       expectancy: 95,
+      expectancySource: "custom",
+      sex: null,
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -402,6 +505,8 @@ describe("save / load against extension storage", () => {
       birthZone: null,
       theme: null,
       expectancy: 80,
+      expectancySource: "estimate",
+      sex: null,
       mode: "years",
       typeface: "system",
       reflection: false,
