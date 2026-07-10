@@ -42,14 +42,14 @@ To iterate visually, run `/impeccable live` (pre-configured for `src/tab.html`).
 
 ### Preview and browser verification
 
-- For the normal preview, use the app's **Run** button or `npm run dev`. Both use
-  [`scripts/preview.mjs`](../scripts/preview.mjs) through
-  [`.github/copilot-desktop.yml`](copilot-desktop.yml). Do not create an ad hoc server or
-  mutate Copilot app settings/database state.
+- For the normal preview, use `npm run dev`, which starts
+  [`scripts/preview.mjs`](../scripts/preview.mjs). The app's **Run** button is configured by
+  [`.github/copilot-desktop.yml`](copilot-desktop.yml) to invoke that npm command and open
+  its URL. Do not create an ad hoc server or mutate Copilot app settings/database state.
 - When starting the preview through a tool, keep it running as a detached process, wait for
-  the printed `Ready at ...` URL, verify it responds, then open that URL in the integrated
-  browser. If the panel is blank or stale, restart the preview or use a cache-busting URL
-  before diagnosing the extension code.
+  the printed `Mortality preview ready at ...` URL, verify it responds, then open that URL
+  in the integrated browser. If the panel is blank or stale, restart the preview or use a
+  cache-busting URL before diagnosing the extension code.
 - Always let the user try UI changes in the integrated browser before finalizing them. The
   shipping engines are Chrome/Edge (Chromium) and Firefox (Gecko), however, so reproduce
   rendering, caching, or keyboard behavior in a target browser before adding a workaround.
