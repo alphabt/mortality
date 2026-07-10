@@ -6,6 +6,8 @@ import {
   calendarAge,
   parseBirthParts,
   birthInstantMs,
+  nextBirthdayInstantMs,
+  countdownParts,
   isValidZone,
   detectZone,
   listTimeZones,
@@ -148,7 +150,14 @@ describe("parseBirthParts", () => {
   });
 
   it("returns null for malformed or out-of-range values", () => {
-    for (const value of ["", "not-a-date", "1990-13-01", "1990-05-32", null]) {
+    for (const value of [
+      "",
+      "not-a-date",
+      "1990-13-01",
+      "1990-05-32",
+      "1990-02-30",
+      null,
+    ]) {
       expect(parseBirthParts(value)).toBeNull();
     }
   });
@@ -170,6 +179,115 @@ describe("birthInstantMs", () => {
     expect(birthInstantMs("2000-01-01T00:00", "Not/AZone")).toBe(
       birthInstantMs("2000-01-01T00:00", detected),
     );
+  });
+});
+
+describe("nextBirthdayInstantMs", () => {
+  const birth = "1990-03-15T09:30";
+
+  it("targets this year's birthday when it is still ahead in the birth zone", () => {
+    const now = Date.parse("2024-03-14T00:00:00Z");
+    expect(nextBirthdayInstantMs(birth, now, "Asia/Tokyo")).toBe(
+      Date.parse("2024-03-15T09:30:00+09:00"),
+    );
+  });
+
+  it("targets next year's birthday after this year's birth time has passed", () => {
+    const now = Date.parse("2024-03-15T00:31:00Z");
+    expect(nextBirthdayInstantMs(birth, now, "Asia/Tokyo")).toBe(
+      Date.parse("2025-03-15T09:30:00+09:00"),
+    );
+  });
+
+  it("treats the exact birthday instant as reached and advances a year", () => {
+    const now = Date.parse("2024-03-15T09:30:00+09:00");
+    expect(nextBirthdayInstantMs(birth, now, "Asia/Tokyo")).toBe(
+      Date.parse("2025-03-15T09:30:00+09:00"),
+    );
+  });
+
+  it("uses the birth zone's calendar year rather than the viewer's", () => {
+    const now = Date.parse("2024-01-01T01:00:00Z");
+    const newYearBirth = "2000-01-01T00:00";
+
+    // It is already 1 January in Tokyo, but still 31 December in Los Angeles.
+    expect(nextBirthdayInstantMs(newYearBirth, now, "Asia/Tokyo")).toBe(
+      Date.parse("2025-01-01T00:00:00+09:00"),
+    );
+    expect(
+      nextBirthdayInstantMs(newYearBirth, now, "America/Los_Angeles"),
+    ).toBe(Date.parse("2024-01-01T00:00:00-08:00"));
+  });
+
+  it("preserves the birth wall-clock time and target-year DST offset", () => {
+    const now = Date.parse("2024-01-01T00:00:00Z");
+    expect(
+      nextBirthdayInstantMs("1990-07-04T18:45", now, "America/New_York"),
+    ).toBe(Date.parse("2024-07-04T18:45:00-04:00"));
+  });
+
+  it("observes a leap-day birth on 29 February in a leap target year", () => {
+    const now = Date.parse("2024-01-01T00:00:00Z");
+    expect(nextBirthdayInstantMs("2000-02-29T08:15", now, "UTC")).toBe(
+      Date.parse("2024-02-29T08:15:00Z"),
+    );
+  });
+
+  it("observes a leap-day birth on 28 February in a non-leap target year", () => {
+    const now = Date.parse("2023-01-01T00:00:00Z");
+    expect(nextBirthdayInstantMs("2000-02-29T08:15", now, "UTC")).toBe(
+      Date.parse("2023-02-28T08:15:00Z"),
+    );
+  });
+
+  it("returns NaN for malformed birth data", () => {
+    expect(
+      Number.isNaN(
+        nextBirthdayInstantMs("2000-02-30T08:15", Date.now(), "UTC"),
+      ),
+    ).toBe(true);
+  });
+
+  it("falls back to the detected zone when the supplied zone is invalid", () => {
+    const now = Date.parse("2024-01-01T00:00:00Z");
+    expect(nextBirthdayInstantMs(birth, now, "Not/AZone")).toBe(
+      nextBirthdayInstantMs(birth, now, detectZone()),
+    );
+  });
+});
+
+describe("countdownParts", () => {
+  it("rounds one remaining millisecond up to one second", () => {
+    expect(countdownParts(1)).toEqual({
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 1,
+    });
+  });
+
+  it("clamps zero, negative, and non-finite durations", () => {
+    const zero = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    expect(countdownParts(0)).toEqual(zero);
+    expect(countdownParts(-1)).toEqual(zero);
+    expect(countdownParts(NaN)).toEqual(zero);
+  });
+
+  it.each([
+    [60000, { days: 0, hours: 0, minutes: 1, seconds: 0 }],
+    [3600000, { days: 0, hours: 1, minutes: 0, seconds: 0 }],
+    [86400000, { days: 1, hours: 0, minutes: 0, seconds: 0 }],
+  ])("splits exact unit boundary %i", (remainingMs, expected) => {
+    expect(countdownParts(remainingMs)).toEqual(expected);
+  });
+
+  it("splits multiple days and rounds a partial second up", () => {
+    expect(countdownParts(2 * 86400000 + 3 * 3600000 + 4 * 60000 + 1)).toEqual({
+      days: 2,
+      hours: 3,
+      minutes: 4,
+      seconds: 1,
+    });
   });
 });
 

@@ -217,6 +217,12 @@ body.screen-counter #app {
   margin-right: 0;
 }
 
+/* Four-part birthday readout stays on one calm line at narrow tab widths. */
+.count.birthday-count {
+  font-size: clamp(2.25rem, 11vw, 5.5rem);
+  white-space: nowrap;
+}
+
 /* Life-elapsed meter + editorial anchor line under the number. */
 .meta {
   margin-top: 1.15rem;
@@ -480,6 +486,17 @@ footer {
   border-radius: 0.25rem;
   background-color: var(--input-bg);
   color: var(--input-text);
+}
+
+.row select {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  cursor: pointer;
 }
 
 .settings-label {

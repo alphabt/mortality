@@ -6,6 +6,8 @@ import {
   applyTheme,
   applyTypeface,
   cssDefault,
+  clampExpectancy,
+  effectiveExpectancy,
   THEME_KEYS,
   MODES,
   TYPEFACES,
@@ -20,10 +22,13 @@ import {
 import {
   birthInstantMs,
   calendarAge,
+  countdownParts,
   detectZone,
   isValidZone,
+  nextBirthdayInstantMs,
   parseBirthParts,
 } from "./time.js";
+import { estimateExpectancy } from "./lifetable.js";
 import { el } from "./dom.js";
 
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
@@ -33,6 +38,7 @@ const WEEK_MS = 7 * DAY_MS;
 const LABELS = {
   years: "Age",
   calendar: "Calendar age",
+  birthday: "Next birthday",
   days: "Days lived",
   weeks: "Weeks lived",
   yearsLeft: "Years left",
@@ -61,10 +67,16 @@ function setScreen(name) {
   document.body.className = name ? `screen-${name}` : "";
 }
 
-export function clampExpectancy(value) {
-  const n = parseInt(value, 10);
-  if (!Number.isFinite(n)) return 80;
-  return Math.min(150, Math.max(1, n));
+// clampExpectancy now lives in store.js (so the store's resolver and this
+// controller share one definition without a circular import); re-exported here
+// because it's part of tab.js's public test surface.
+export { clampExpectancy };
+
+// Attained age in whole-and-fractional years for a stored birth, or NaN when the
+// birth can't be parsed. Shared by the counter and weeks screens so both feed the
+// same number into effectiveExpectancy.
+function ageYearsFrom(bornMs, nowMs) {
+  return Number.isFinite(bornMs) ? (nowMs - bornMs) / YEAR_MS : NaN;
 }
 
 export function formatBorn(birth) {
@@ -105,6 +117,16 @@ export function reflectionLine(bornMs, nowMs, expectancy) {
   return `${lived} years behind you \u00b7 ${ahead} ahead, if the tables hold.`;
 }
 
+function birthdayAria({ days, hours, minutes, seconds }) {
+  const unit = (value, name) => `${value} ${name}${value === 1 ? "" : "s"}`;
+  return [
+    unit(days, "day"),
+    unit(hours, "hour"),
+    unit(minutes, "minute"),
+    unit(seconds, "second"),
+  ].join(", ");
+}
+
 // Fold an imported settings blob onto the current state, copying ONLY known keys
 // and sanitising each so a hand-edited or foreign file can't inject junk. Unknown
 // keys are ignored; a key the import omits keeps its current value. Pure.
@@ -117,6 +139,14 @@ export function mergeImported(current, imported) {
   if ("birthZone" in src) known.birthZone = src.birthZone;
   if ("theme" in src) known.theme = src.theme;
   if ("expectancy" in src) known.expectancy = clampExpectancy(src.expectancy);
+  if ("expectancySource" in src)
+    known.expectancySource = ["estimate", "custom"].includes(
+      src.expectancySource,
+    )
+      ? src.expectancySource
+      : current.expectancySource;
+  if ("sex" in src)
+    known.sex = src.sex === "male" || src.sex === "female" ? src.sex : null;
   if ("mode" in src && MODES.includes(src.mode)) known.mode = src.mode;
   if ("typeface" in src)
     known.typeface = TYPEFACES.includes(src.typeface) ? src.typeface : "system";
@@ -127,12 +157,13 @@ export function mergeImported(current, imported) {
 function showSetup() {
   stopTimer();
   setScreen("setup");
-  renderSetup(app, { start }, state.birth, state.birthZone);
+  renderSetup(app, { start }, state.birth, state.birthZone, state.sex);
 }
 
-function start(birth, zone) {
+function start(birth, zone, sex) {
   state.birth = birth;
   state.birthZone = zone || detectZone();
+  state.sex = sex === "male" || sex === "female" ? sex : null;
   save(state);
   showCounter();
 }
@@ -146,7 +177,14 @@ function showCounter() {
   // The same effective zone drives the calendar-age breakdown below.
   const zone = isValidZone(state.birthZone) ? state.birthZone : detectZone();
   const bornMs = birthInstantMs(state.birth, zone);
-  const expectancy = clampExpectancy(state.expectancy);
+  let birthdayTarget = nextBirthdayInstantMs(state.birth, Date.now(), zone);
+  // Resolve expectancy for the attained age: a custom number is honoured
+  // verbatim, otherwise it's an actuarial estimate that legitimately rises a
+  // little as the user ages (recomputed here, once per counter show).
+  const expectancy = effectiveExpectancy(
+    state,
+    ageYearsFrom(bornMs, Date.now()),
+  );
   let mode = MODES.includes(state.mode) ? state.mode : "years";
 
   // The reflection line changes at most once a year, so compute it once on show
@@ -167,13 +205,15 @@ function showCounter() {
   let lastPct = null;
   let lastFrac = -1;
   let lastCal = null;
+  let lastBirthday = null;
 
   function layout() {
     els.label.textContent = LABELS[mode];
-    if (mode === "calendar") {
+    els.count.classList.toggle("birthday-count", mode === "birthday");
+    if (mode === "calendar" || mode === "birthday") {
       intEl = null;
       fracEl = null;
-      // The y/m/d spans are (re)built in tick() whenever the value changes.
+      // Compound spans are (re)built in tick() only when their value changes.
       els.count.replaceChildren();
     } else {
       intEl = el("span", { class: "int" }, "0");
@@ -191,6 +231,7 @@ function showCounter() {
     }
     lastInt = null;
     lastCal = null;
+    lastBirthday = null;
   }
 
   function cycle() {
@@ -257,6 +298,40 @@ function showCounter() {
         lastCal = key;
         updateAria(`${y} years ${m} months ${d} days`);
       }
+    } else if (mode === "birthday") {
+      if (birthdayTarget <= now) {
+        birthdayTarget = nextBirthdayInstantMs(state.birth, now, zone);
+      }
+      const parts = countdownParts(birthdayTarget - now);
+      const key = `${parts.days}|${parts.hours}|${parts.minutes}|${parts.seconds}`;
+      // The 100ms ticker may run ten times per displayed second; keep the same
+      // nodes until the rounded-up countdown actually changes.
+      if (key !== lastBirthday) {
+        els.count.replaceChildren(
+          el("span", { class: "cal-num" }, String(parts.days)),
+          el("span", { class: "cal-unit" }, "d"),
+          el(
+            "span",
+            { class: "cal-num" },
+            String(parts.hours).padStart(2, "0"),
+          ),
+          el("span", { class: "cal-unit" }, "h"),
+          el(
+            "span",
+            { class: "cal-num" },
+            String(parts.minutes).padStart(2, "0"),
+          ),
+          el("span", { class: "cal-unit" }, "m"),
+          el(
+            "span",
+            { class: "cal-num" },
+            String(parts.seconds).padStart(2, "0"),
+          ),
+          el("span", { class: "cal-unit" }, "s"),
+        );
+        lastBirthday = key;
+        updateAria(`in ${birthdayAria(parts)}`);
+      }
     } else {
       let value;
       if (mode === "days") value = Math.floor(elapsed / DAY_MS);
@@ -304,7 +379,11 @@ function showWeeks() {
   setScreen("weeks");
   const zone = isValidZone(state.birthZone) ? state.birthZone : detectZone();
   const bornMs = birthInstantMs(state.birth, zone);
-  const { lived, total } = lifeWeeks(Date.now() - bornMs, state.expectancy);
+  const expectancy = effectiveExpectancy(
+    state,
+    ageYearsFrom(bornMs, Date.now()),
+  );
+  const { lived, total } = lifeWeeks(Date.now() - bornMs, expectancy);
   renderWeeks(
     app,
     { back: showCounter, openSettings: showSettings },
@@ -312,7 +391,7 @@ function showWeeks() {
       born: formatBorn(state.birth),
       lived,
       total,
-      expectancy: clampExpectancy(state.expectancy),
+      expectancy,
     },
   );
 }
@@ -341,6 +420,18 @@ function showSettings() {
       setExpectancy(value) {
         state.expectancy = clampExpectancy(value);
         save(state);
+      },
+      setExpectancySource(value) {
+        state.expectancySource = value === "custom" ? "custom" : "estimate";
+        save(state);
+        // Re-render so the manual Years input swaps with the read-only estimate.
+        showSettings();
+      },
+      setSex(value) {
+        state.sex = value === "male" || value === "female" ? value : null;
+        save(state);
+        // Re-render so the estimate line reflects the new sex immediately.
+        showSettings();
       },
       resetColors() {
         state.theme = null;
@@ -414,11 +505,28 @@ function showSettings() {
     {
       theme: state.theme,
       expectancy: clampExpectancy(state.expectancy),
+      expectancySource:
+        state.expectancySource === "custom" ? "custom" : "estimate",
+      sex: state.sex === "male" || state.sex === "female" ? state.sex : null,
+      estimate: settingsEstimate(),
       typeface: state.typeface,
       reflection: state.reflection,
       birthZone: state.birthZone,
     },
   );
+}
+
+// The actuarial estimate to preview in Settings, for the user's current age and
+// sex at birth — independent of whichever source is active, so the "Estimate"
+// option can always show the number it would apply. Null when there's no
+// birthday yet to derive an age from.
+function settingsEstimate() {
+  const zone = isValidZone(state.birthZone) ? state.birthZone : detectZone();
+  const bornMs = birthInstantMs(state.birth, zone);
+  const ageYears = ageYearsFrom(bornMs, Date.now());
+  return Number.isFinite(ageYears)
+    ? estimateExpectancy(ageYears, state.sex)
+    : null;
 }
 
 let ambientTimer = null;

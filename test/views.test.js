@@ -47,7 +47,7 @@ describe("renderSetup", () => {
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2000-03-04T09:15", zone);
+    expect(start).toHaveBeenCalledWith("2000-03-04T09:15", zone, null);
   });
 
   it("defaults an empty time to midnight", () => {
@@ -58,7 +58,7 @@ describe("renderSetup", () => {
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2010-10-10T00:00", zone);
+    expect(start).toHaveBeenCalledWith("2010-10-10T00:00", zone, null);
   });
 
   it("blocks submission and reports validity when the date is empty", () => {
@@ -79,7 +79,7 @@ describe("renderSetup", () => {
     app.querySelector("#birth-date").value = "1975-12-25";
     const zone = app.querySelector("#birth-zone").value;
     keydown(app.querySelector("#birth-date"), "Enter");
-    expect(start).toHaveBeenCalledWith("1975-12-25T00:00", zone);
+    expect(start).toHaveBeenCalledWith("1975-12-25T00:00", zone, null);
   });
 
   it("renders a birthplace time-zone select defaulting to the device zone", () => {
@@ -130,6 +130,34 @@ describe("renderSetup", () => {
     dateEl.value = "1990-01-01";
     dateEl.dispatchEvent(new Event("input", { bubbles: true }));
     expect(app.querySelector("#birth-error").hidden).toBe(true);
+  });
+
+  it("offers an optional sex-at-birth select defaulting to unspecified", () => {
+    renderSetup(app, { start: vi.fn() }, null);
+    const sex = app.querySelector("#birth-sex");
+    expect(sex).not.toBeNull();
+    expect(sex.tagName).toBe("SELECT");
+    expect(sex.value).toBe("");
+    const label = app.querySelector('label[for="birth-sex"]');
+    expect(label).not.toBeNull();
+    expect(label.textContent).toBe("Sex at birth");
+  });
+
+  it("pre-selects the saved sex when editing", () => {
+    renderSetup(app, { start: vi.fn() }, "1990-05-15T00:00", "UTC", "female");
+    expect(app.querySelector("#birth-sex").value).toBe("female");
+  });
+
+  it("passes the chosen sex through to start", () => {
+    const start = vi.fn();
+    renderSetup(app, { start }, null);
+    app.querySelector("#birth-date").value = "1980-07-08";
+    app.querySelector("#birth-sex").value = "male";
+    const zone = app.querySelector("#birth-zone").value;
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(start).toHaveBeenCalledWith("1980-07-08T00:00", zone, "male");
   });
 });
 
@@ -197,6 +225,8 @@ describe("renderSettings", () => {
     setColor: vi.fn(),
     applyPreset: vi.fn(),
     setExpectancy: vi.fn(),
+    setExpectancySource: vi.fn(),
+    setSex: vi.fn(),
     resetColors: vi.fn(),
     resetBirthday: vi.fn(),
     closeSettings: vi.fn(),
@@ -210,6 +240,9 @@ describe("renderSettings", () => {
   const data = (over = {}) => ({
     theme: null,
     expectancy: 80,
+    expectancySource: "custom",
+    sex: null,
+    estimate: 84,
     typeface: "system",
     reflection: false,
     birthZone: null,
@@ -249,7 +282,7 @@ describe("renderSettings", () => {
   });
 
   it("shows the current life expectancy", () => {
-    renderSettings(app, actions(), { theme: null, expectancy: 73 });
+    renderSettings(app, actions(), data({ expectancy: 73 }));
     expect(app.querySelector("#expectancy").value).toBe("73");
   });
 
@@ -272,7 +305,7 @@ describe("renderSettings", () => {
 
   it("reports life-expectancy edits", () => {
     const a = actions();
-    renderSettings(app, a, { theme: null, expectancy: 80 });
+    renderSettings(app, a, data());
     const input = app.querySelector("#expectancy");
     input.value = "42";
     input.dispatchEvent(new Event("input", { bubbles: true }));
@@ -371,5 +404,67 @@ describe("renderSettings", () => {
     app.querySelector("#import-data").click();
     expect(a.exportData).toHaveBeenCalledOnce();
     expect(a.importData).toHaveBeenCalledOnce();
+  });
+
+  it("renders the expectancy source segment reflecting the current source", () => {
+    renderSettings(app, actions(), data({ expectancySource: "custom" }));
+    expect(
+      app.querySelector('[data-source="custom"]').getAttribute("aria-pressed"),
+    ).toBe("true");
+    expect(
+      app
+        .querySelector('[data-source="estimate"]')
+        .getAttribute("aria-pressed"),
+    ).toBe("false");
+  });
+
+  it("shows the editable Years input and no estimate line in custom mode", () => {
+    renderSettings(app, actions(), data({ expectancySource: "custom" }));
+    expect(app.querySelector("#expectancy")).not.toBeNull();
+    expect(app.querySelector("#expectancy-estimate")).toBeNull();
+  });
+
+  it("hides the Years input and previews the estimate in estimate mode", () => {
+    renderSettings(
+      app,
+      actions(),
+      data({ expectancySource: "estimate", estimate: 84 }),
+    );
+    expect(app.querySelector("#expectancy")).toBeNull();
+    const line = app.querySelector("#expectancy-estimate");
+    expect(line).not.toBeNull();
+    expect(line.textContent).toContain("84");
+    expect(line.textContent).toContain("actuarial estimate");
+  });
+
+  it("prompts for a birthday when no estimate is available", () => {
+    renderSettings(
+      app,
+      actions(),
+      data({ expectancySource: "estimate", estimate: null }),
+    );
+    expect(app.querySelector("#expectancy-estimate").textContent).toContain(
+      "Add your birthday",
+    );
+  });
+
+  it("reports source changes when a segment button is clicked", () => {
+    const a = actions();
+    renderSettings(app, a, data({ expectancySource: "custom" }));
+    app.querySelector('[data-source="estimate"]').click();
+    expect(a.setExpectancySource).toHaveBeenCalledWith("estimate");
+  });
+
+  it("preselects the stored sex and reports changes, mapping blank to null", () => {
+    const a = actions();
+    renderSettings(app, a, data({ sex: "female" }));
+    const sex = app.querySelector("#settings-sex");
+    expect(sex.value).toBe("female");
+    sex.value = "male";
+    sex.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(a.setSex).toHaveBeenCalledWith("male");
+    sex.value = "";
+    sex.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(a.setSex).toHaveBeenCalledWith(null);
   });
 });

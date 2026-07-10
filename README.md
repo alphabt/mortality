@@ -9,8 +9,9 @@ A browser extension that replaces your new tab page with a live counter of your 
 ## Features
 
 - **Live age counter** — ticks in real time, down to fractional years.
-- **Multiple units** — switch between age, days lived, weeks lived, weeks left, and
-  percent of an expected lifetime elapsed.
+- **Multiple units** — switch between age, calendar age, a live next-birthday
+  countdown, days or weeks lived, time left, and percent of an expected lifetime
+  elapsed.
 - **Personalization** — light and dark themes that follow your system, color presets
   and custom colors, and an adjustable life expectancy.
 - **Accessible and calm** — WCAG 2.1 AA, a `prefers-reduced-motion` path, and full

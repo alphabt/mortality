@@ -3,6 +3,7 @@
 // via the localStorage fallback, and fake timers so the age ticker never loops.
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { PRESETS } from "../src/store.js";
+import { estimateExpectancy } from "../src/lifetable.js";
 
 const YEAR_MS = 31556900000; // must match tab.js
 const DAY_MS = 86400000;
@@ -88,6 +89,18 @@ describe("setup flow", () => {
     expect(document.body.className).toBe("screen-counter");
     expect(stored().birth).toBe("1990-06-15T00:00");
   });
+
+  it("persists the optional sex chosen at setup", async () => {
+    await boot();
+    document.querySelector("#birth-date").value = "1990-06-15";
+    document.querySelector("#birth-sex").value = "female";
+    document
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(stored().sex).toBe("female");
+    // A brand-new setup leaves the actuarial estimate as the active source.
+    expect(stored().expectancySource).toBe("estimate");
+  });
 });
 
 describe("counter interactions", () => {
@@ -95,14 +108,21 @@ describe("counter interactions", () => {
     seed({ birth: "2000-01-01T00:00", mode: "years" });
     await boot();
 
-    // years -> calendar (the new mode inserted after years).
+    // years -> calendar.
     document.querySelector("#count").click();
     expect(document.querySelector("#unit-label").textContent).toBe(
       "Calendar age",
     );
     expect(stored().mode).toBe("calendar");
 
-    // calendar -> days.
+    // calendar -> birthday (inserted immediately after calendar).
+    document.querySelector("#count").click();
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Next birthday",
+    );
+    expect(stored().mode).toBe("birthday");
+
+    // birthday -> days.
     document.querySelector("#count").click();
     expect(document.querySelector("#unit-label").textContent).toBe(
       "Days lived",
@@ -237,6 +257,90 @@ describe("counter interactions", () => {
       "Calendar age 20 years 0 months 0 days. Activate to change units.",
     );
   });
+
+  it("renders the next birthday in the birth zone with a readable label", async () => {
+    vi.setSystemTime(new Date("2024-03-14T00:00:00Z"));
+    seed({
+      birth: "2000-03-15T09:30",
+      birthZone: "Asia/Tokyo",
+      mode: "birthday",
+    });
+    await boot();
+
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Next birthday",
+    );
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["1", "00", "30", "00"]);
+    expect(
+      [...document.querySelectorAll("#count .cal-unit")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["d", "h", "m", "s"]);
+    expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
+      "Next birthday in 1 day, 0 hours, 30 minutes, 0 seconds. Activate to change units.",
+    );
+  });
+
+  it("decrements live without rebuilding inside the displayed second", async () => {
+    vi.setSystemTime(new Date("2019-12-31T23:59:54.100Z"));
+    seed({
+      birth: "2000-01-01T00:00",
+      birthZone: "UTC",
+      mode: "birthday",
+    });
+    await boot();
+
+    const firstDayNode = document.querySelector("#count .cal-num");
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["0", "00", "00", "06"]);
+
+    await vi.advanceTimersByTimeAsync(100);
+    expect(document.querySelector("#count .cal-num")).toBe(firstDayNode);
+
+    await vi.advanceTimersByTimeAsync(900);
+    expect(document.querySelector("#count .cal-num")).not.toBe(firstDayNode);
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["0", "00", "00", "05"]);
+  });
+
+  it("rolls directly to the following birthday at the target instant", async () => {
+    vi.setSystemTime(new Date("2019-12-31T23:59:59.500Z"));
+    seed({
+      birth: "2000-01-01T00:00",
+      birthZone: "UTC",
+      mode: "birthday",
+    });
+    await boot();
+
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["0", "00", "00", "01"]);
+    expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
+      "Next birthday in 0 days, 0 hours, 0 minutes, 1 second. Activate to change units.",
+    );
+
+    await vi.advanceTimersByTimeAsync(500);
+    expect(
+      [...document.querySelectorAll("#count .cal-num")].map(
+        (node) => node.textContent,
+      ),
+    ).toEqual(["366", "00", "00", "00"]);
+    expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
+      "Next birthday in 366 days, 0 hours, 0 minutes, 0 seconds. Activate to change units.",
+    );
+  });
 });
 
 describe("settings routing and edits", () => {
@@ -307,6 +411,91 @@ describe("settings routing and edits", () => {
     document.querySelector("#gear").click();
     document.querySelector("#reset-birthday").click();
     expect(document.body.className).toBe("screen-setup");
+  });
+});
+
+describe("settings: life-expectancy source and sex", () => {
+  const bornMs = new Date("2000-01-01T00:00").getTime();
+  const ageYears = (from) => (from - bornMs) / YEAR_MS;
+
+  it("uses the actuarial estimate as the counter denominator in estimate mode", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "estimate",
+      sex: "male",
+      mode: "years",
+    });
+    await boot();
+    const expected = estimateExpectancy(ageYears(Date.now()), "male");
+    const caption = document.querySelector("#pct").textContent;
+    const shown = Number(caption.match(/of (\d+) yrs lived/)[1]);
+    expect(shown).toBe(expected);
+    // A 20-year-old's conditional expectancy differs from the flat at-birth 80.
+    expect(shown).not.toBe(80);
+  });
+
+  it("reflects the chosen sex in the estimate denominator", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "estimate",
+      sex: "female",
+      mode: "years",
+    });
+    await boot();
+    const expected = estimateExpectancy(ageYears(Date.now()), "female");
+    const shown = Number(
+      document.querySelector("#pct").textContent.match(/of (\d+) yrs lived/)[1],
+    );
+    expect(shown).toBe(expected);
+  });
+
+  it("switches source to estimate from settings, swapping the manual input out", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "custom",
+      expectancy: 80,
+    });
+    await boot();
+    document.querySelector("#gear").click();
+    // Custom mode shows the editable Years input.
+    expect(document.querySelector("#expectancy")).not.toBeNull();
+
+    document.querySelector('[data-source="estimate"]').click();
+    expect(stored().expectancySource).toBe("estimate");
+    // Estimate mode hides the manual input and previews the figure instead.
+    expect(document.querySelector("#expectancy")).toBeNull();
+    expect(document.querySelector("#expectancy-estimate")).not.toBeNull();
+  });
+
+  it("switches back to custom, restoring the editable input", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "estimate",
+      sex: "male",
+    });
+    await boot();
+    document.querySelector("#gear").click();
+    expect(document.querySelector("#expectancy")).toBeNull();
+
+    document.querySelector('[data-source="custom"]').click();
+    expect(stored().expectancySource).toBe("custom");
+    expect(document.querySelector("#expectancy")).not.toBeNull();
+  });
+
+  it("changes the sex from settings and persists it", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "estimate",
+      sex: null,
+    });
+    await boot();
+    document.querySelector("#gear").click();
+    const sex = document.querySelector("#settings-sex");
+    sex.value = "male";
+    sex.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(stored().sex).toBe("male");
+    // The estimate line re-renders for the new sex.
+    expect(document.querySelector("#expectancy-estimate")).not.toBeNull();
   });
 });
 

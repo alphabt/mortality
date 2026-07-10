@@ -1,6 +1,7 @@
 // Persistence + theming. No dependencies, runs directly in the browser.
 
 import { detectZone } from "./time.js";
+import { estimateExpectancy } from "./lifetable.js";
 
 const KEY = "mortality";
 
@@ -15,6 +16,7 @@ export const TYPEFACES = ["system", "grotesk", "mono"];
 export const MODES = [
   "years",
   "calendar",
+  "birthday",
   "days",
   "weeks",
   "yearsLeft",
@@ -78,10 +80,45 @@ const DEFAULTS = {
   birthZone: null,
   theme: null,
   expectancy: 80,
+  expectancySource: "estimate",
+  sex: null,
   mode: "years",
   typeface: "system",
   reflection: false,
 };
+
+/**
+ * Clamp a life-expectancy value to the supported whole-year band [1, 150],
+ * parsing leading integers out of strings. Non-numeric input falls back to 80
+ * (the historical default). Lives here — not in the controller — so both the
+ * store's resolver and the controller can share one definition without a
+ * circular import (tab.js re-exports it).
+ * @param {unknown} value
+ * @returns {number}
+ */
+export function clampExpectancy(value) {
+  const n = parseInt(value, 10);
+  if (!Number.isFinite(n)) return 80;
+  return Math.min(150, Math.max(1, n));
+}
+
+/**
+ * Resolve the life expectancy actually in force for a given attained age. When
+ * the user pins a custom number we honour it verbatim (clamped); otherwise we
+ * derive an actuarial estimate from their age and optional sex at birth. Falls
+ * back to the clamped custom value whenever the age can't be computed (e.g. no
+ * birthday yet), so the counter always has a sane denominator. Pure.
+ * @param {{expectancySource?: string, expectancy?: unknown, sex?: string|null}} state
+ * @param {number} ageYears Attained age in years (may be fractional or NaN).
+ * @returns {number}
+ */
+export function effectiveExpectancy(state, ageYears) {
+  const source = state && state.expectancySource;
+  const custom = clampExpectancy(state && state.expectancy);
+  if (source === "custom") return custom;
+  if (!Number.isFinite(ageYears)) return custom;
+  return estimateExpectancy(ageYears, state ? state.sex : null);
+}
 
 // Extension storage.local persists across the privacy/history clearing that can
 // silently wipe localStorage on extension pages (Firefox especially, issue #16).
@@ -156,12 +193,33 @@ function backfillZone(state) {
 }
 
 /**
+ * Migrate a pre-existing record onto the actuarial-expectancy model. Only a
+ * BRAND-NEW install (raw === null) defaults `expectancySource` to "estimate";
+ * any record that already lived on disk before this feature lacked the field, so
+ * it's pinned to "custom" — preserving the exact number that user has always
+ * seen (their flat 80, or whatever they set) rather than silently swapping in an
+ * age-based estimate on update. `sex` is backfilled to null when absent. Returns
+ * the state unchanged (same reference) when there is nothing to migrate.
+ * @param {object} state  State already merged over DEFAULTS.
+ * @param {object|null|undefined} raw  The record as read from storage/legacy.
+ */
+function migrateExpectancy(state, raw) {
+  if (!raw) return state; // brand-new install → keep the DEFAULTS estimate
+  const patch = {};
+  if (!("expectancySource" in raw)) patch.expectancySource = "custom";
+  if (!("sex" in raw)) patch.sex = null;
+  return Object.keys(patch).length ? { ...state, ...patch } : state;
+}
+
+/**
  * Load persisted state, applying defaults and migrating older localStorage data
  * (the "mortality" JSON blob or the legacy "dob" string) on first run. Records
  * that predate timezone support get their birthZone backfilled with the
  * detected zone (see backfillZone) so the birth instant is anchored going
- * forward without changing the age shown today.
- * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, mode: string, typeface: string, reflection: boolean }>}
+ * forward without changing the age shown today. Records that predate the
+ * actuarial-expectancy feature keep their flat number by being pinned to a
+ * "custom" expectancy source (see migrateExpectancy).
+ * @returns {Promise<{ version: number, birth: string|null, birthZone: string|null, theme: Record<string,string>|null, expectancy: number, expectancySource: string, sex: string|null, mode: string, typeface: string, reflection: boolean }>}
  */
 export async function load() {
   let stored;
@@ -174,7 +232,10 @@ export async function load() {
   if (!stored) {
     const legacy = readLegacy();
     if (legacy) {
-      const migrated = backfillZone({ ...DEFAULTS, ...legacy });
+      const migrated = migrateExpectancy(
+        backfillZone({ ...DEFAULTS, ...legacy }),
+        legacy,
+      );
       await save(migrated);
       // Only clear localStorage when a real extension store now owns the data;
       // under the localStorage shim, KEY *is* the store we just wrote to.
@@ -184,7 +245,8 @@ export async function load() {
   }
 
   const state = { ...DEFAULTS, ...(stored || {}) };
-  const backfilled = backfillZone(state);
+  const migrated = migrateExpectancy(state, stored);
+  const backfilled = backfillZone(migrated);
   if (backfilled !== state) await save(backfilled);
   return backfilled;
 }
