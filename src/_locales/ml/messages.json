@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "പുതിയ ടാബ് പേജിനെ നിങ്ങളുടെ പ്രായത്തിന്റെ ഒരു കൗണ്ടർ കൊണ്ട് മാറ്റുന്നു",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — പുതിയ ടാബ്",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "നിങ്ങൾ എപ്പോൾ ജനിച്ചു?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "നിങ്ങളുടെ പ്രായം, ഓരോ പുതിയ ടാബിലും തത്സമയം ഉയരുന്നു.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "ജനന തീയതി",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "ജനന സമയം (ഓപ്ഷണൽ)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "ആരംഭിക്കുക",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "സമയം ഓപ്ഷണൽ ആണ് — ഇത് തത്സമയ എണ്ണത്തെ കൂടുതൽ കൃത്യമാക്കുന്നു.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "ഈ തീയതി ഭാവിയിലാണ് — നിങ്ങളുടെ ജനന തീയതി പരിശോധിക്കുക.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "നിങ്ങൾ എവിടെ ജനിച്ചു?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "സ്ഥിരസ്ഥിതിയായി നിങ്ങളുടെ നിലവിലെ ടൈം സോൺ ഉപയോഗിക്കുന്നു. നിങ്ങൾ മാറിയാലും പ്രായം കൃത്യമായി നിലനിൽക്കാൻ ഇത് നിങ്ങളുടെ ജനനസ്ഥലത്തേക്ക് സജ്ജമാക്കുക.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "ആയുർദൈർഘ്യ ഡാറ്റ സ്രോതസ്സ്",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "സ്ഥിരസ്ഥിതിയായി ലോക ഡാറ്റ. നിങ്ങളുടെ ടൈം സോൺ ഈ തിരഞ്ഞെടുപ്പ് ഒരിക്കലും മാറ്റുന്നില്ല.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "ഡാറ്റ സ്രോതസ്സ്",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "ലോകം — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "അമേരിക്ക — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "നിങ്ങളുടെ ടൈം സോൺ ഡാറ്റ സ്രോതസ്സ് ഒരിക്കലും മാറ്റുന്നില്ല. ജനന സമയത്തെ ലിംഗം ഓപ്ഷണൽ ആണ്.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "ജനന സമയത്തെ ലിംഗം",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "ഓപ്ഷണൽ — ഇത് ആയുർദൈർഘ്യ കണക്കാക്കൽ കൂടുതൽ കൃത്യമാക്കുന്നു.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "പറയാൻ താൽപ്പര്യമില്ല",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "സ്ത്രീ",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "പുരുഷൻ",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "പ്രായം",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "കലണ്ടർ പ്രായം",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "അടുത്ത ജന്മദിനം",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "ജീവിച്ച ദിനങ്ങൾ",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "ജീവിച്ച ആഴ്ചകൾ",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "ശേഷിക്കുന്ന വർഷങ്ങൾ",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "ശേഷിക്കുന്ന ദിനങ്ങൾ",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "ശേഷിക്കുന്ന ആഴ്ചകൾ",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "ക്രമീകരണങ്ങൾ",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "ആഴ്ചകളിലെ ജീവിതം",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "യൂണിറ്റുകൾ മാറ്റുക",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "യൂണിറ്റുകൾ മാറ്റാൻ സജീവമാക്കുക",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "യൂണിറ്റുകൾ മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "ജനിച്ചത് $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ ൽ",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ വർഷത്തിൽ $PERCENT$ ജീവിച്ചു",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ വർഷം പിന്നിൽ · പട്ടികകൾ ശരിയാണെങ്കിൽ $AHEAD$ മുന്നിലുണ്ട്.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "പ്രീസെറ്റുകൾ",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "ഒരു പ്രീസെറ്റ് നാല് നിറങ്ങളും ഒരുമിച്ച് സജ്ജമാക്കുന്നു.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "നിറങ്ങൾ",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "പശ്ചാത്തലം",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "ലേബൽ",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "കൗണ്ടർ",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "ആക്‌സന്റ്",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "പ്രദർശനം",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "അക്കങ്ങൾ",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "സിസ്റ്റം",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "കൗണ്ടറിന് താഴെയുള്ള ചിന്താ വരി",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "ആയുർദൈർഘ്യം",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "ഉറവിടം",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "എസ്റ്റിമേറ്റ്",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "ഇഷ്ടാനുസൃതം",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ വർഷം — നിങ്ങളുടെ പ്രായത്തെയും തിരഞ്ഞെടുത്ത ഡാറ്റയെയും അടിസ്ഥാനമാക്കി.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "എസ്റ്റിമേറ്റ് കാണാൻ നിങ്ങളുടെ ജനന തീയതി ചേർക്കുക.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "വർഷങ്ങൾ",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "ടൈം സോൺ",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "ജനനസ്ഥലം",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "നിങ്ങൾ യാത്ര ചെയ്യുമ്പോൾ പ്രായം കൃത്യമായി നിലനിൽക്കാൻ, നിങ്ങളുടെ ജന്മദിനത്തെ ഒരു നിശ്ചിത നിമിഷത്തിലേക്ക് ബന്ധിപ്പിക്കുന്നു.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "ഡാറ്റ",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "എക്സ്പോർട്ട്…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "ഇംപോർട്ട്…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "ജനന തീയതി മാറ്റുക",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "നിറങ്ങൾ പുനഃസജ്ജമാക്കുക",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "പൂർത്തിയായി",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "കുറഞ്ഞ കോൺട്രാസ്റ്റ് ($RATIO$:1). പശ്ചാത്തലത്തിനെതിരെ $TARGET$:1 ലക്ഷ്യമിടുക.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "ഇളം",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "ഇരുണ്ട",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "പേപ്പർ",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "ശൂന്യത",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "ടെർമിനൽ",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "ബ്ലൂപ്രിന്റ്",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "ആംബർ",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ തീം",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "പിന്നിലേക്ക്",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ ആഴ്ച ജീവിച്ചു · $AHEAD$ മുന്നിലുണ്ട് · $YEARS$ വർഷം",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "ജീവിച്ചു",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "ഈ ആഴ്ച",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "മുന്നിലുണ്ട്",
+    "description": "Legend label for future weeks."
+  }
+}

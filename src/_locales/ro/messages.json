@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Înlocuiește pagina filei noi cu un contor al vârstei tale",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Filă nouă",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Când te-ai născut?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Vârsta ta, care crește în timp real la fiecare filă nouă.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Data nașterii",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Ora nașterii (opțional)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Start",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Ora este opțională — precizează numărătoarea în timp real.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Data respectivă este în viitor — verifică-ți data nașterii.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Unde te-ai născut?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Se folosește implicit fusul tău orar actual. Setează-l la locul nașterii pentru ca vârsta ta să rămână exactă dacă te muți.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Sursa datelor privind speranța de viață",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Implicit, date globale. Fusul tău orar nu schimbă niciodată această alegere.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Sursa datelor",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Lume — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Statele Unite — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Fusul tău orar nu schimbă niciodată sursa datelor. Sexul la naștere este opțional.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Sex la naștere",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Opțional — precizează estimarea speranței de viață.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Prefer să nu spun",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Feminin",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Masculin",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Vârstă",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Vârstă calendaristică",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Următoarea aniversare",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Zile trăite",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Săptămâni trăite",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Ani rămași",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Zile rămase",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Săptămâni rămase",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Setări",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Viața în săptămâni",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Schimbă unitățile",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Activează pentru a schimba unitățile",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Fă clic pentru a schimba unitățile",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Născut/ă pe $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "în $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ din $YEARS$ ani trăiți",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ ani în urmă · $AHEAD$ înainte, dacă tabelele se confirmă.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Presetări",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "O presetare setează toate cele patru culori deodată.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Culori",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Fundal",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Etichetă",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Contor",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Accent",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Afișare",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Cifre",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Sistem",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Linie de reflecție sub contor",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Speranța de viață",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Sursă",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Estimare",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Personalizat",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ ani — pe baza vârstei tale și a datelor selectate.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Adaugă data nașterii pentru a vedea o estimare.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Ani",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Fus orar",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Născut/ă în",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Ancorează ziua ta de naștere la un moment fix, astfel încât vârsta ta să rămână exactă când călătorești.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Date",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Exportă…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importă…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Schimbă data nașterii",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Resetează culorile",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Terminat",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Contrast scăzut ($RATIO$:1). Vizează $TARGET$:1 față de fundal.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Luminos",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Întunecat",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Hârtie",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Vid",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Schiță",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Chihlimbar",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Tema $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Înapoi",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ săptămâni trăite · $AHEAD$ înainte · $YEARS$ ani",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Trăit",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Săptămâna aceasta",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Înainte",
+    "description": "Legend label for future weeks."
+  }
+}

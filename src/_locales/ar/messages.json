@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "يستبدل صفحة علامة التبويب الجديدة بعدّاد لعمرك",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — علامة تبويب جديدة",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "متى وُلدت؟",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "عمرك، يتزايد مباشرة في كل علامة تبويب جديدة.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "تاريخ الميلاد",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "وقت الميلاد (اختياري)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "بدء",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "الوقت اختياري — يزيد من دقة العدّاد المباشر.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "هذا التاريخ في المستقبل — يرجى التحقق من تاريخ ميلادك.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "أين وُلدت؟",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "يستخدم افتراضيًا المنطقة الزمنية الحالية. اضبطها على مكان ميلادك ليبقى عمرك دقيقًا إذا انتقلت.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "مصدر بيانات متوسط العمر المتوقع",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "بيانات العالم بشكل افتراضي. منطقتك الزمنية لا تغيّر هذا الاختيار أبدًا.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "مصدر البيانات",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "العالم — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "الولايات المتحدة — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "منطقتك الزمنية لا تغيّر مصدر البيانات أبدًا. الجنس عند الولادة اختياري.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "الجنس عند الولادة",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "اختياري — يزيد من دقة تقدير متوسط العمر المتوقع.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "أفضّل عدم الإفادة",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "أنثى",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "ذكر",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "العمر",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "العمر التقويمي",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "عيد الميلاد القادم",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "الأيام المعاشة",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "الأسابيع المعاشة",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "السنوات المتبقية",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "الأيام المتبقية",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "الأسابيع المتبقية",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "الإعدادات",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "الحياة بالأسابيع",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "تغيير الوحدات",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "فعّل لتغيير الوحدات",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "انقر لتغيير الوحدات",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "وُلد في $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "بعد $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ من $YEARS$ سنة معاشة",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ سنة خلفك · $AHEAD$ أمامك، إذا كانت الجداول صحيحة.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "الإعدادات المسبقة",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "يحدد الإعداد المسبق الألوان الأربعة كلها دفعة واحدة.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "الألوان",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "الخلفية",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "التسمية",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "العدّاد",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "اللون البارز",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "العرض",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "الأرقام",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "النظام",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "سطر تأمّلي أسفل العدّاد",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "متوسط العمر المتوقع",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "المصدر",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "تقدير",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "مخصص",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ سنة — بناءً على عمرك والبيانات المحددة.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "أضف تاريخ ميلادك لرؤية تقدير.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "سنوات",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "المنطقة الزمنية",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "مكان الميلاد",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "يربط عيد ميلادك بلحظة ثابتة، ليبقى عمرك دقيقًا عند السفر.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "البيانات",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "تصدير…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "استيراد…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "تغيير تاريخ الميلاد",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "إعادة تعيين الألوان",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "تم",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "تباين منخفض ($RATIO$:1). استهدف $TARGET$:1 مقارنةً بالخلفية.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "فاتح",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "داكن",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "ورقي",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "فراغ",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "طرفية",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "مخطط",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "كهرماني",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "سمة $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "رجوع",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ أسبوعًا معاشًا · $AHEAD$ أمامك · $YEARS$ سنة",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "معاش",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "هذا الأسبوع",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "أمامك",
+    "description": "Legend label for future weeks."
+  }
+}

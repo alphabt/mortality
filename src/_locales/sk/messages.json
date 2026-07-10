@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Nahradí stránku nová karta počítadlom vášho veku",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Nová karta",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Kedy ste sa narodili?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Váš vek, počítaný naživo pri každej novej karte.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Dátum narodenia",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Čas narodenia (nepovinné)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Štart",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Čas je nepovinný — spresňuje živé počítanie.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Tento dátum je v budúcnosti — skontrolujte svoj dátum narodenia.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Kde ste sa narodili?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Predvolene sa použije vaše aktuálne časové pásmo. Nastavte ho na miesto narodenia, aby váš vek zostal presný, keď sa presťahujete.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Zdroj údajov o očakávanej dĺžke života",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Predvolene sú svetové údaje. Vaše časové pásmo túto voľbu nikdy nezmení.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Zdroj údajov",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Svet — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Spojené štáty — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Vaše časové pásmo nikdy nezmení zdroj údajov. Pohlavie pri narodení je nepovinné.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Pohlavie pri narodení",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Nepovinné — spresňuje odhad dĺžky života.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Nechcem uviesť",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Žena",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Muž",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Vek",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Kalendárny vek",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Ďalšie narodeniny",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Prežité dni",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Prežité týždne",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Zostávajúce roky",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Zostávajúce dni",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Zostávajúce týždne",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Nastavenia",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Život v týždňoch",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Zmeniť jednotky",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Aktivovať na zmenu jednotiek",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Kliknutím zmeníte jednotky",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Narodený/á $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "za $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ z $YEARS$ rokov prežitých",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ rokov za vami · $AHEAD$ pred vami, ak tabuľky platia.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Predvoľby",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Predvoľba nastaví všetky štyri farby naraz.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Farby",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Pozadie",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Popisok",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Počítadlo",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Akcent",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Zobrazenie",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Číslice",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Systémové",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Riadok reflexie pod počítadlom",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Očakávaná dĺžka života",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Zdroj",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Odhad",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Vlastné",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ rokov — na základe vášho veku a vybraných údajov.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Zadajte dátum narodenia na zobrazenie odhadu.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Roky",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Časové pásmo",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Narodený/á v",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Ukotví vaše narodeniny k pevnému okamihu, aby váš vek zostal presný pri cestovaní.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Dáta",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Exportovať…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importovať…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Zmeniť dátum narodenia",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Obnoviť farby",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Hotovo",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Nízky kontrast ($RATIO$:1). Cieľom je $TARGET$:1 voči pozadiu.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Svetlý",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Tmavý",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Papier",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Prázdnota",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminál",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Návrh",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Ambra",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Motív $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Späť",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ týždňov prežitých · $AHEAD$ pred vami · $YEARS$ rokov",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Prežité",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Tento týždeň",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Pred vami",
+    "description": "Legend label for future weeks."
+  }
+}

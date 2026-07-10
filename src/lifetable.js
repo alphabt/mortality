@@ -119,10 +119,10 @@ export const WORLD_UNISEX = WORLD_BOTH;
 
 export const DEFAULT_LIFE_TABLE = "world";
 
-/** Stable state values and user-facing labels for actuarial baselines. */
+/** Stable state values and locale message keys for life-expectancy data sources. */
 export const LIFE_TABLE_OPTIONS = Object.freeze([
-  Object.freeze({ value: "world", label: "World — UN 2023" }),
-  Object.freeze({ value: "us", label: "United States — SSA 2023" }),
+  Object.freeze({ value: "world", messageKey: "lifeTableWorld" }),
+  Object.freeze({ value: "us", messageKey: "lifeTableUS" }),
 ]);
 
 const TABLES = {
@@ -164,7 +164,7 @@ function tableFor(sex, lifeTable) {
  *
  * @param {number} ageYears Attained age in years (may be fractional).
  * @param {"male"|"female"|null} [sex] Sex at birth; null/omitted uses UNISEX.
- * @param {"world"|"us"} [lifeTable] Actuarial baseline; defaults to World.
+ * @param {"world"|"us"} [lifeTable] Life-expectancy data source; defaults to World.
  * @returns {number} Whole-number total expected age at death.
  */
 export function estimateExpectancy(

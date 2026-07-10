@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "将新标签页替换为你的年龄计数器",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — 新标签页",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "你出生于何时？",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "你的年龄，随每个新标签页实时增长。",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "出生日期",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "出生时间（可选）",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "开始",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "时间为可选项 — 可让实时计数更精确。",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "该日期是未来日期 — 请检查你的出生日期。",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "你出生于何地？",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "默认使用你当前的时区。若你迁居，请将其设为出生地，以保持年龄准确。",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "预期寿命数据来源",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "默认为世界数据。你的时区绝不会改变此选择。",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "数据来源",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "世界 — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "美国 — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "你的时区绝不会改变数据来源。出生时的性别为可选项。",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "出生时的性别",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "可选 — 可让预期寿命的估算更精确。",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "不愿透露",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "女",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "男",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "年龄",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "周岁",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "下一个生日",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "已度过的天数",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "已度过的周数",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "剩余年数",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "剩余天数",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "剩余周数",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "设置",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "以周为单位的人生",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "切换单位",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "启用以切换单位",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "点击以切换单位",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$。$ACTION$。",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "出生于 $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$后",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "已度过 $YEARS$ 年中的 $PERCENT$",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "已过 $LIVED$ 年 · 若表格准确，还有 $AHEAD$ 年。",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "预设",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "一个预设可同时设置全部四种颜色。",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "颜色",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "背景",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "标签",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "计数器",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "强调色",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "显示",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "数字",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "系统",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "计数器下方的思考语句",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "预期寿命",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "来源",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "估算值",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "自定义",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ 年 — 基于你的年龄和所选数据。",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "添加你的出生日期以查看估算值。",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "年",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "时区",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "出生地",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "将你的生日与固定时刻关联，以便出行时年龄保持准确。",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "数据",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "导出…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "导入…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "更改出生日期",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "重置颜色",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "完成",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "对比度过低（$RATIO$:1）。请以背景为基准，力求达到 $TARGET$:1。",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "浅色",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "深色",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "纸质",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "虚空",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "终端",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "蓝图",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "琥珀",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$主题",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "返回",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "已度过 $LIVED$ 周 · 还有 $AHEAD$ · $YEARS$ 年",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "已度过",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "本周",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "还有",
+    "description": "Legend label for future weeks."
+  }
+}

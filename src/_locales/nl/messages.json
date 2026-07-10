@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Vervangt de nieuw-tabbladpagina door een teller van je leeftijd",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Nieuw tabblad",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Wanneer ben je geboren?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Je leeftijd, live oplopend op elk nieuw tabblad.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Geboortedatum",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Geboortetijd (optioneel)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Start",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "De tijd is optioneel — die verscherpt de live telling.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Die datum ligt in de toekomst — controleer je geboortedatum.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Waar ben je geboren?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Standaard je huidige tijdzone. Stel deze in op je geboorteplaats zodat je leeftijd exact blijft als je verhuist.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Gegevensbron voor levensverwachting",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Standaard wereldgegevens. Je tijdzone verandert deze keuze nooit.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Gegevensbron",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Wereld — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Verenigde Staten — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Je tijdzone verandert nooit de gegevensbron. Geslacht bij geboorte is optioneel.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Geslacht bij geboorte",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Optioneel — verscherpt de schatting van de levensverwachting.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Zeg ik liever niet",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Vrouw",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Man",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Leeftijd",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Kalenderleeftijd",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Volgende verjaardag",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Geleefde dagen",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Geleefde weken",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Resterende jaren",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Resterende dagen",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Resterende weken",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Instellingen",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Leven in weken",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Eenheden wijzigen",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Activeren om eenheden te wijzigen",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Klik om eenheden te wijzigen",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Geboren op $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "over $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ van $YEARS$ jaar geleefd",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ jaar achter je · $AHEAD$ nog te gaan, als de tabellen kloppen.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Voorinstellingen",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Een voorinstelling stelt alle vier de kleuren tegelijk in.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Kleuren",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Achtergrond",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Label",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Teller",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Accent",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Weergave",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Cijfers",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Systeem",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Reflectieregel onder de teller",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Levensverwachting",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Bron",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Schatting",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Aangepast",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ jaar — op basis van je leeftijd en de geselecteerde gegevens.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Voeg je geboortedatum toe om een schatting te zien.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Jaar",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Tijdzone",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Geboren in",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Verankert je verjaardag aan een vast moment, zodat je leeftijd exact blijft wanneer je reist.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Gegevens",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Exporteren…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importeren…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Geboortedatum wijzigen",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Kleuren resetten",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Klaar",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Laag contrast ($RATIO$:1). Streef naar $TARGET$:1 op de achtergrond.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Licht",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Donker",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Papier",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Leegte",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Blauwdruk",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Amber",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Thema $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Terug",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ weken geleefd · $AHEAD$ nog te gaan · $YEARS$ jaar",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Geleefd",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Deze week",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Nog te gaan",
+    "description": "Legend label for future weeks."
+  }
+}

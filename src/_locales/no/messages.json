@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Erstatter siden for ny fane med en teller for alderen din",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Ny fane",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Når er du født?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Alderen din, tellende live på hver nye fane.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Fødselsdato",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Fødselstidspunkt (valgfritt)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Start",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Tiden er valgfri — den skjerper den løpende tellingen.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Den datoen er i fremtiden — kontroller fødselsdatoen din.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Hvor er du født?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Bruker som standard din nåværende tidssone. Still den til fødestedet ditt så alderen din forblir nøyaktig hvis du flytter.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Datakilde for forventet levealder",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Verdensdata som standard. Tidssonen din endrer aldri dette valget.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Datakilde",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Verden — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "USA — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Tidssonen din endrer aldri datakilden. Kjønn ved fødsel er valgfritt.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Kjønn ved fødsel",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Valgfritt — skjerper anslaget for forventet levealder.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Foretrekker å ikke si",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Kvinne",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Mann",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Alder",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Kalenderalder",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Neste fødselsdag",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Dager levd",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Uker levd",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "År igjen",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Dager igjen",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Uker igjen",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Innstillinger",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Livet i uker",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Endre enheter",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Aktiver for å endre enheter",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Klikk for å endre enheter",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Født $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "om $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ av $YEARS$ år levd",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ år bak deg · $AHEAD$ igjen, hvis tabellene stemmer.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Forhåndsinnstillinger",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "En forhåndsinnstilling angir alle fire fargene samtidig.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Farger",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Bakgrunn",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Etikett",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Teller",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Aksent",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Visning",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Siffer",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "System",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Reflekterende linje under telleren",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Forventet levealder",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Kilde",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Anslag",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Tilpasset",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ år — basert på alderen din og de valgte dataene.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Legg til fødselsdatoen din for å se et anslag.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "År",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Tidssone",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Født i",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Forankrer fødselsdagen din til et fast tidspunkt, så alderen din forblir nøyaktig når du reiser.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Data",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Eksporter…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importer…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Endre fødselsdato",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Nullstill farger",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Ferdig",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Lav kontrast ($RATIO$:1). Sikt mot $TARGET$:1 mot bakgrunnen.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Lys",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Mørk",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Papir",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Tomrom",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Blåkopi",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Rav",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Temaet $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Tilbake",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ uker levd · $AHEAD$ igjen · $YEARS$ år",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Levd",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Denne uken",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Igjen",
+    "description": "Legend label for future weeks."
+  }
+}

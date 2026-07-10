@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Substitueix la pàgina de pestanya nova pel comptador de la teva edat",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Pestanya nova",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Quan vas néixer?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "La teva edat, augmentant en directe a cada pestanya nova.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Data de naixement",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Hora de naixement (opcional)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Comença",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "L'hora és opcional — fa que el comptatge en directe sigui més precís.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Aquesta data és en el futur — comprova la teva data de naixement.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "On vas néixer?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Per defecte s'utilitza la teva zona horària actual. Configura-la al teu lloc de naixement perquè la teva edat es mantingui precisa si et trasllades.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Font de dades d'esperança de vida",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Dades mundials per defecte. La teva zona horària mai no canvia aquesta elecció.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Font de dades",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Món — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Estats Units — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "La teva zona horària mai no canvia la font de dades. El sexe en néixer és opcional.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Sexe en néixer",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Opcional — fa que l'estimació de l'esperança de vida sigui més precisa.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Prefereixo no dir-ho",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Dona",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Home",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Edat",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Edat de calendari",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Proper aniversari",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Dies viscuts",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Setmanes viscudes",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Anys restants",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Dies restants",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Setmanes restants",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Configuració",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "La vida en setmanes",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Canvia les unitats",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Activa per canviar les unitats",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Fes clic per canviar les unitats",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Nascut/a el $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "D'aquí a $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ de $YEARS$ anys viscuts",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ anys enrere · $AHEAD$ per endavant, si les taules són correctes.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Preajustos",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Un preajust defineix els quatre colors alhora.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Colors",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Fons",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Etiqueta",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Comptador",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Accent",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Visualització",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Xifres",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Sistema",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Línia de reflexió sota el comptador",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Esperança de vida",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Font",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Estimació",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Personalitzat",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ anys — basat en la teva edat i les dades seleccionades.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Afegeix la teva data de naixement per veure una estimació.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Anys",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Zona horària",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Lloc de naixement",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Vincula el teu aniversari a un moment fix, perquè la teva edat es mantingui precisa quan viatgis.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Dades",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Exporta…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importa…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Canvia la data de naixement",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Restableix els colors",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Fet",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Contrast baix ($RATIO$:1). Intenta assolir $TARGET$:1 respecte al fons.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Clar",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Fosc",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Paper",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Buit",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Plànol",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Ambre",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Tema $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Enrere",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ setmanes viscudes · $AHEAD$ per endavant · $YEARS$ anys",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Viscut",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Aquesta setmana",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Per endavant",
+    "description": "Legend label for future weeks."
+  }
+}

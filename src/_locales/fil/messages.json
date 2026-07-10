@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Pinapalitan ang bagong tab page ng isang counter ng iyong edad",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Bagong Tab",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Kailan ka ipinanganak?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Ang edad mo, tumataas nang live sa bawat bagong tab.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Petsa ng kapanganakan",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Oras ng kapanganakan (opsyonal)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Simulan",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Opsyonal ang oras — pinapataas nito ang katumpakan ng live na bilang.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Ang petsang ito ay nasa hinaharap — pakisuri ang iyong petsa ng kapanganakan.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Saan ka ipinanganak?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Bilang default, ginagamit ang iyong kasalukuyang time zone. Itakda ito sa iyong lugar ng kapanganakan para manatiling tumpak ang edad mo kung lilipat ka.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Pinagmulan ng datos ng inaasahang tagal ng buhay",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Data ng mundo bilang default. Hindi kailanman babaguhin ng iyong time zone ang pagpiling ito.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Pinagmulan ng datos",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Mundo — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Estados Unidos — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Hindi kailanman babaguhin ng iyong time zone ang pinagmulan ng datos. Opsyonal ang kasarian sa kapanganakan.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Kasarian sa kapanganakan",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Opsyonal — pinapataas nito ang katumpakan ng tinatayang life expectancy.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Ayaw sabihin",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Babae",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Lalaki",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Edad",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Edad ayon sa kalendaryo",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Susunod na kaarawan",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Mga araw na nabuhay",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Mga linggo na nabuhay",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Mga taong natitira",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Mga araw na natitira",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Mga linggo na natitira",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Mga Setting",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Buhay sa mga linggo",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Palitan ang mga yunit",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "I-activate para palitan ang mga yunit",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "I-click para palitan ang mga yunit",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Ipinanganak noong $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "Sa loob ng $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ ng $YEARS$ taon ang nabuhay",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ taon na nakaraan · $AHEAD$ pa, kung tama ang mga talahanayan.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Mga Preset",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Isang preset ang nagtatakda ng lahat ng apat na kulay nang sabay-sabay.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Mga Kulay",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Background",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Label",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Counter",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Accent",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Display",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Mga Numero",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Sistema",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Linya ng pagninilay sa ibaba ng counter",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Life Expectancy",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Pinagmulan",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Tinantiya",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Pasadya",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ taon — batay sa iyong edad at sa piniling datos.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Idagdag ang petsa ng kapanganakan mo para makita ang tantiya.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Taon",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Time Zone",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Lugar ng kapanganakan",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Iniuugnay ang iyong kaarawan sa isang piniling sandali, para manatiling tumpak ang edad mo kapag naglalakbay ka.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Data",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "I-export…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "I-import…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Palitan ang petsa ng kapanganakan",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "I-reset ang mga kulay",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Tapos",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Mababang contrast ($RATIO$:1). Tumutok sa $TARGET$:1 laban sa background.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Maliwanag",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Madilim",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Papel",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Kawalan",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Blueprint",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Amber",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ na tema",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Bumalik",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ linggo na nabuhay · $AHEAD$ pa · $YEARS$ taon",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Nabuhay",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Ngayong linggo",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Pa",
+    "description": "Legend label for future weeks."
+  }
+}

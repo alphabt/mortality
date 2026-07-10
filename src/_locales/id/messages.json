@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Mengganti halaman tab baru dengan penghitung usia Anda",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Tab Baru",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Kapan Anda lahir?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Usia Anda, bertambah secara langsung di setiap tab baru.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Tanggal lahir",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Waktu lahir (opsional)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Mulai",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Waktu bersifat opsional — membuat hitungan langsung lebih akurat.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Tanggal ini berada di masa depan — silakan periksa tanggal lahir Anda.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Di mana Anda lahir?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Secara default menggunakan zona waktu Anda saat ini. Atur ke tempat lahir Anda agar usia tetap akurat jika Anda pindah.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Sumber data harapan hidup",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Data dunia secara default. Zona waktu Anda tidak pernah mengubah pilihan ini.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Sumber data",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Dunia — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Amerika Serikat — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Zona waktu Anda tidak pernah mengubah sumber data. Jenis kelamin saat lahir bersifat opsional.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Jenis kelamin saat lahir",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Opsional — membuat estimasi harapan hidup lebih akurat.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Tidak ingin menyebutkan",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Perempuan",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Laki-laki",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Usia",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Usia kalender",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Ulang tahun berikutnya",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Hari yang telah dijalani",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Minggu yang telah dijalani",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Tahun yang tersisa",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Hari yang tersisa",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Minggu yang tersisa",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Setelan",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Hidup dalam minggu",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Ubah satuan",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Aktifkan untuk mengubah satuan",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Klik untuk mengubah satuan",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Lahir $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "Dalam $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ dari $YEARS$ tahun telah dijalani",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ tahun telah berlalu · $AHEAD$ tahun lagi, jika tabel aktuaria benar.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Preset",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Satu preset mengatur keempat warna sekaligus.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Warna",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Latar belakang",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Label",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Penghitung",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Aksen",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Tampilan",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Angka",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Sistem",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Baris refleksi di bawah penghitung",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Harapan hidup",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Sumber",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Estimasi",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Kustom",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ tahun — berdasarkan usia Anda dan data yang dipilih.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Tambahkan tanggal lahir Anda untuk melihat estimasi.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Tahun",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Zona waktu",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Tempat lahir",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Mengaitkan ulang tahun Anda dengan momen yang tetap, agar usia Anda tetap akurat saat bepergian.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Data",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Ekspor…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Impor…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Ubah tanggal lahir",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Atur ulang warna",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Selesai",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Kontras rendah ($RATIO$:1). Targetkan $TARGET$:1 terhadap latar belakang.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Terang",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Gelap",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Kertas",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Kosong",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Cetak biru",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Amber",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Tema $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Kembali",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ minggu telah dijalani · $AHEAD$ lagi · $YEARS$ tahun",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Dijalani",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Minggu ini",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Lagi",
+    "description": "Legend label for future weeks."
+  }
+}

@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "ಹೊಸ ಟ್ಯಾಬ್ ಪುಟವನ್ನು ನಿಮ್ಮ ವಯಸ್ಸಿನ ಕೌಂಟರ್‌ನೊಂದಿಗೆ ಬದಲಾಯಿಸುತ್ತದೆ",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — ಹೊಸ ಟ್ಯಾಬ್",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "ನೀವು ಯಾವಾಗ ಜನಿಸಿದಿರಿ?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "ನಿಮ್ಮ ವಯಸ್ಸು, ಪ್ರತಿ ಹೊಸ ಟ್ಯಾಬ್‌ನಲ್ಲಿ ನೇರವಾಗಿ ಹೆಚ್ಚುತ್ತಿದೆ.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "ಜನ್ಮ ದಿನಾಂಕ",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "ಜನ್ಮ ಸಮಯ (ಆಯ್ಕೆಯುಳ್ಳ)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "ಪ್ರಾರಂಭಿಸಿ",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "ಸಮಯ ಆಯ್ಕೆಯುಳ್ಳದ್ದು — ಇದು ನೇರ ಎಣಿಕೆಯನ್ನು ಹೆಚ್ಚು ನಿಖರಗೊಳಿಸುತ್ತದೆ.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "ಈ ದಿನಾಂಕ ಭವಿಷ್ಯದಲ್ಲಿದೆ — ದಯವಿಟ್ಟು ನಿಮ್ಮ ಜನ್ಮ ದಿನಾಂಕವನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "ನೀವು ಎಲ್ಲಿ ಜನಿಸಿದಿರಿ?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸಮಯ ವಲಯವನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಸ್ಥಳಾಂತರಗೊಂಡರೂ ವಯಸ್ಸು ನಿಖರವಾಗಿ ಇರಲು ಇದನ್ನು ನಿಮ್ಮ ಜನ್ಮಸ್ಥಳಕ್ಕೆ ಹೊಂದಿಸಿ.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "ಜೀವಿತಾವಧಿ ದತ್ತಾಂಶ ಮೂಲ",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ವಿಶ್ವ ದತ್ತಾಂಶ. ನಿಮ್ಮ ಸಮಯ ವಲಯ ಈ ಆಯ್ಕೆಯನ್ನು ಎಂದಿಗೂ ಬದಲಾಯಿಸುವುದಿಲ್ಲ.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "ದತ್ತಾಂಶ ಮೂಲ",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "ವಿಶ್ವ — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "ಅಮೆರಿಕ — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "ನಿಮ್ಮ ಸಮಯ ವಲಯ ದತ್ತಾಂಶ ಮೂಲವನ್ನು ಎಂದಿಗೂ ಬದಲಾಯಿಸುವುದಿಲ್ಲ. ಜನನದ ಸಮಯದಲ್ಲಿ ಲಿಂಗ ಐಚ್ಛಿಕ.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "ಜನನದ ಸಮಯದಲ್ಲಿ ಲಿಂಗ",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "ಆಯ್ಕೆಯುಳ್ಳ — ಇದು ಜೀವಿತಾವಧಿ ಅಂದಾಜನ್ನು ಹೆಚ್ಚು ನಿಖರಗೊಳಿಸುತ್ತದೆ.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "ಹೇಳಲು ಬಯಸುವುದಿಲ್ಲ",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "ಹೆಣ್ಣು",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "ಗಂಡು",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "ವಯಸ್ಸು",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "ಕ್ಯಾಲೆಂಡರ್ ವಯಸ್ಸು",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "ಮುಂದಿನ ಹುಟ್ಟುಹಬ್ಬ",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "ಬಾಳಿದ ದಿನಗಳು",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "ಬಾಳಿದ ವಾರಗಳು",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "ಉಳಿದ ವರ್ಷಗಳು",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "ಉಳಿದ ದಿನಗಳು",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "ಉಳಿದ ವಾರಗಳು",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "ವಾರಗಳಲ್ಲಿ ಜೀವನ",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "ಘಟಕಗಳನ್ನು ಬದಲಾಯಿಸಿ",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "ಘಟಕಗಳನ್ನು ಬದಲಾಯಿಸಲು ಸಕ್ರಿಯಗೊಳಿಸಿ",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "ಘಟಕಗಳನ್ನು ಬದಲಾಯಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "ಜನಿಸಿದ ದಿನಾಂಕ $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ ನಲ್ಲಿ",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ ವರ್ಷಗಳಲ್ಲಿ $PERCENT$ ಬಾಳಿದೆ",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ ವರ್ಷಗಳು ಹಿಂದೆ · ಕೋಷ್ಟಕಗಳು ಸರಿಯಾಗಿದ್ದರೆ $AHEAD$ ಮುಂದೆ ಇದೆ.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "ಪ್ರೀಸೆಟ್‌ಗಳು",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "ಒಂದು ಪ್ರೀಸೆಟ್ ಎಲ್ಲಾ ನಾಲ್ಕು ಬಣ್ಣಗಳನ್ನು ಒಟ್ಟಿಗೆ ಹೊಂದಿಸುತ್ತದೆ.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "ಬಣ್ಣಗಳು",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "ಹಿನ್ನೆಲೆ",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "ಲೇಬಲ್",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "ಕೌಂಟರ್",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "ಆಕ್ಸೆಂಟ್",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "ಪ್ರದರ್ಶನ",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "ಅಂಕೆಗಳು",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "ಸಿಸ್ಟಮ್",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "ಕೌಂಟರ್ ಕೆಳಗೆ ಚಿಂತನೆ ಸಾಲು",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "ಜೀವಿತಾವಧಿ",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "ಮೂಲ",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "ಅಂದಾಜು",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "ಕಸ್ಟಮ್",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ ವರ್ಷಗಳು — ನಿಮ್ಮ ವಯಸ್ಸು ಮತ್ತು ಆಯ್ಕೆಮಾಡಿದ ದತ್ತಾಂಶವನ್ನು ಆಧರಿಸಿ.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "ಅಂದಾಜನ್ನು ನೋಡಲು ನಿಮ್ಮ ಜನ್ಮ ದಿನಾಂಕವನ್ನು ಸೇರಿಸಿ.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "ವರ್ಷಗಳು",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "ಸಮಯ ವಲಯ",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "ಜನ್ಮಸ್ಥಳ",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "ನೀವು ಪ್ರಯಾಣಿಸುವಾಗ ವಯಸ್ಸು ನಿಖರವಾಗಿ ಇರಲು, ನಿಮ್ಮ ಹುಟ್ಟುಹಬ್ಬವನ್ನು ಸ್ಥಿರ ಕ್ಷಣಕ್ಕೆ ಲಿಂಕ್ ಮಾಡುತ್ತದೆ.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "ಡೇಟಾ",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "ರಫ್ತು…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "ಆಮದು…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "ಜನ್ಮ ದಿನಾಂಕವನ್ನು ಬದಲಾಯಿಸಿ",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "ಬಣ್ಣಗಳನ್ನು ಮರುಹೊಂದಿಸಿ",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "ಮುಗಿದಿದೆ",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "ಕಡಿಮೆ ಕಾಂಟ್ರಾಸ್ಟ್ ($RATIO$:1). ಹಿನ್ನೆಲೆಗೆ ವಿರುದ್ಧವಾಗಿ $TARGET$:1 ಗುರಿಯಾಗಿಸಿ.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "ತಿಳಿ",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "ಗಾಢ",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "ಕಾಗದ",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "ಶೂನ್ಯತೆ",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "ಟರ್ಮಿನಲ್",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "ಬ್ಲೂಪ್ರಿಂಟ್",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "ಅಂಬರ್",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ ಥೀಮ್",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "ಹಿಂದೆ",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ ವಾರಗಳು ಬಾಳಿದೆ · $AHEAD$ ಮುಂದೆ ಇದೆ · $YEARS$ ವರ್ಷಗಳು",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "ಬಾಳಿದೆ",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "ಈ ವಾರ",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "ಮುಂದೆ ಇದೆ",
+    "description": "Legend label for future weeks."
+  }
+}

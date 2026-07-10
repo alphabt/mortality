@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Korvaa uuden välilehden sivun ikäsi laskurilla",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Uusi välilehti",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Milloin synnyit?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Ikäsi, joka kasvaa reaaliajassa jokaisella uudella välilehdellä.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Syntymäpäivämäärä",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Syntymäaika (valinnainen)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Aloita",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Aika on valinnainen — se tarkentaa reaaliaikaista laskentaa.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Tämä päivämäärä on tulevaisuudessa — tarkista syntymäaikasi.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Missä synnyit?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Oletuksena käytetään nykyistä aikavyöhykettäsi. Aseta se syntymäpaikkaasi, jotta ikäsi pysyy tarkkana, jos muutat.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Elinajanodotteen tietolähde",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Oletuksena maailman data. Aikavyöhykkeesi ei koskaan muuta tätä valintaa.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Tietolähde",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Maailma — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Yhdysvallat — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Aikavyöhykkeesi ei koskaan muuta tietolähdettä. Sukupuoli syntymässä on valinnainen.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Sukupuoli syntymässä",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Valinnainen — tarkentaa elinajanodotearviota.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "En halua kertoa",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Nainen",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Mies",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Ikä",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Kalenteri-ikä",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Seuraava syntymäpäivä",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Eletyt päivät",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Eletyt viikot",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Vuotta jäljellä",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Päivää jäljellä",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Viikkoa jäljellä",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Asetukset",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Elämä viikkoina",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Vaihda yksiköitä",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Aktivoi vaihtaaksesi yksiköitä",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Napsauta vaihtaaksesi yksiköitä",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Syntynyt $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ kuluttua",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ eletty $YEARS$ vuodesta",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ vuotta takana · $AHEAD$ edessä, jos taulukot pitävät.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Esiasetukset",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Esiasetus määrittää kaikki neljä väriä kerralla.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Värit",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Tausta",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Nimiö",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Laskuri",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Korostus",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Näyttö",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Numerot",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Järjestelmä",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Pohdintarivi laskurin alla",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Elinajanodote",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Lähde",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Arvio",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Mukautettu",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ vuotta — ikäsi ja valitun datan perusteella.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Lisää syntymäaikasi nähdäksesi arvion.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Vuotta",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Aikavyöhyke",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Syntynyt",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Ankkuroi syntymäpäiväsi kiinteään hetkeen, jotta ikäsi pysyy tarkkana matkustaessasi.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Tiedot",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Vie…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Tuo…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Vaihda syntymäaika",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Palauta värit",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Valmis",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Heikko kontrasti ($RATIO$:1). Tavoittele $TARGET$:1 taustaa vasten.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Vaalea",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Tumma",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Paperi",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Tyhjyys",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Sinikopio",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Meripihka",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Teema $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Takaisin",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ viikkoa eletty · $AHEAD$ edessä · $YEARS$ vuotta",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Eletty",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Tällä viikolla",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Edessä",
+    "description": "Legend label for future weeks."
+  }
+}

@@ -84,14 +84,14 @@ body.screen-counter {
 
 body.screen-counter #app {
   width: 100%;
-  text-align: left;
+  text-align: start;
   padding: clamp(1.5rem, 6vw, 5rem) clamp(1.5rem, 8vw, 7rem)
     clamp(2.5rem, 13vh, 8rem);
 }
 
 .counter {
   display: inline-block;
-  text-align: left;
+  text-align: start;
   animation: rise 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -147,6 +147,7 @@ body.screen-counter #app {
   font-family: var(--num-font, inherit);
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
+  unicode-bidi: isolate;
   cursor: pointer;
   user-select: none;
   border-radius: 0.5rem;
@@ -204,6 +205,15 @@ body.screen-counter #app {
   mask-image: linear-gradient(90deg, #000 0 60%, rgba(0, 0, 0, 0.28) 100%);
 }
 
+:dir(rtl) .count .fraction {
+  -webkit-mask-image: linear-gradient(
+    270deg,
+    #000 0 60%,
+    rgba(0, 0, 0, 0.28) 100%
+  );
+  mask-image: linear-gradient(270deg, #000 0 60%, rgba(0, 0, 0, 0.28) 100%);
+}
+
 /* Calendar-age breakdown: full-size figures with small superscript units
    (36 yr 3 mo 24 d), matching the counter's precise, tabular aesthetic. */
 .count .cal-num {
@@ -215,14 +225,12 @@ body.screen-counter #app {
   font-weight: 500;
   vertical-align: 0.95em;
   letter-spacing: 0.02em;
-  text-transform: lowercase;
   color: var(--label);
-  margin-left: 0.08em;
-  margin-right: 0.3em;
+  margin-inline: 0.08em 0.3em;
 }
 
 .count .cal-unit:last-child {
-  margin-right: 0;
+  margin-inline-end: 0;
 }
 
 /* Four-part birthday readout stays on one calm line at narrow tab widths. */
@@ -255,6 +263,10 @@ body.screen-counter #app {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+:dir(rtl) .progress-fill {
+  transform-origin: right center;
+}
+
 .meta-row {
   display: flex;
   justify-content: space-between;
@@ -268,7 +280,7 @@ body.screen-counter #app {
 }
 
 .meta-row .pct {
-  text-align: right;
+  text-align: end;
   white-space: nowrap;
 }
 
@@ -296,7 +308,7 @@ button {
 
 input[type="date"],
 input[type="time"] {
-  margin-right: 0.5rem;
+  margin-inline-end: 0.5rem;
   border: 1px solid var(--border);
   border-radius: 0.25rem;
   background-color: var(--input-bg);
@@ -349,7 +361,7 @@ footer {
   gap: 0.4rem;
   max-width: 22rem;
   margin: 1rem auto 0;
-  text-align: left;
+  text-align: start;
 }
 
 .setup-label {
@@ -405,7 +417,7 @@ footer {
 .gear {
   position: fixed;
   top: 0.75rem;
-  right: 0.75rem;
+  inset-inline-end: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -441,7 +453,7 @@ footer {
 .corner-controls {
   position: fixed;
   top: 0.75rem;
-  right: 0.75rem;
+  inset-inline-end: 0.75rem;
   display: flex;
   gap: 0.25rem;
 }
@@ -454,8 +466,9 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  min-width: 260px;
-  text-align: left;
+  width: min(28rem, calc(100vw - 2rem));
+  min-width: 0;
+  text-align: start;
 }
 
 .settings h1 {
@@ -468,11 +481,14 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  min-width: 0;
 }
 
 .row label {
   color: var(--label);
   font-size: 1rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .row input[type="color"] {
@@ -489,7 +505,7 @@ footer {
   width: 5rem;
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
-  text-align: right;
+  text-align: end;
   border: 1px solid var(--border);
   border-radius: 0.25rem;
   background-color: var(--input-bg);
@@ -577,6 +593,7 @@ footer {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
   margin-top: 0.25rem;
@@ -653,17 +670,77 @@ footer {
   content: "";
   position: absolute;
   top: 50%;
-  left: 0.18rem;
+  inset-inline-start: 0.18rem;
   width: 1.05rem;
   height: 1.05rem;
   border-radius: 50%;
   background: #fff;
   transform: translateY(-50%);
-  transition: left 0.15s ease;
+  transition: inset-inline-start 0.15s ease;
 }
 
 .switch[aria-checked="true"]::after {
-  left: calc(100% - 1.23rem);
+  inset-inline-start: calc(100% - 1.23rem);
+}
+
+.bidi-id {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+:dir(rtl) #weeks-back {
+  transform: scaleX(-1);
+}
+
+:is(
+    :lang(ar),
+    :lang(am),
+    :lang(bn),
+    :lang(fa),
+    :lang(gu),
+    :lang(he),
+    :lang(hi),
+    :lang(ja),
+    :lang(kn),
+    :lang(ko),
+    :lang(ml),
+    :lang(mr),
+    :lang(ta),
+    :lang(te),
+    :lang(th),
+    :lang(zh)
+  )
+  :is(
+    .age-label,
+    .unit-hint,
+    .meta-row,
+    .setup-label,
+    .settings-label,
+    .weeks-legend
+  ) {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+@media (max-width: 360px) {
+  #app {
+    padding-inline: 1rem;
+  }
+
+  .row {
+    gap: 0.65rem;
+  }
+
+  .segment button {
+    padding-inline: 0.5rem;
+  }
+
+  .weeks-legend {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
+  }
 }
 
 /* Life in weeks: a full-screen calendar where each row is a year and each cell a

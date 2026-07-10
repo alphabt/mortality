@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Inabadilisha ukurasa wa kichupo kipya na kihesabu cha umri wako",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Kichupo Kipya",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Ulizaliwa lini?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Umri wako, ukiongezeka moja kwa moja kwenye kila kichupo kipya.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Tarehe ya kuzaliwa",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Muda wa kuzaliwa (si lazima)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Anza",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Muda si wa lazima — unafanya hesabu ya moja kwa moja kuwa sahihi zaidi.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Tarehe hii ni ya wakati ujao — tafadhali angalia tarehe yako ya kuzaliwa.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Ulizaliwa wapi?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Kwa chaguo-msingi hutumia saa za eneo lako la sasa. Iweke kuwa mahali ulipozaliwa ili umri wako uendelee kuwa sahihi ukihamia.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Chanzo cha data ya matarajio ya maisha",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Data ya dunia kwa chaguo-msingi. Saa za eneo lako haziwahi kubadilisha chaguo hili.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Chanzo cha data",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Dunia — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Marekani — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Saa za eneo lako haziwahi kubadilisha chanzo cha data. Jinsia wakati wa kuzaliwa si lazima.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Jinsia wakati wa kuzaliwa",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Si lazima — inafanya makadirio ya matarajio ya maisha kuwa sahihi zaidi.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Sipendi kutaja",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Mwanamke",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Mwanaume",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Umri",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Umri wa kalenda",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Siku ya kuzaliwa inayokuja",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Siku zilizoishi",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Wiki zilizoishi",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Miaka iliyobaki",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Siku zilizobaki",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Wiki zilizobaki",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Mipangilio",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Maisha kwa wiki",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Badilisha vipimo",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Wezesha kubadilisha vipimo",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Bofya kubadilisha vipimo",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Alizaliwa $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "Baada ya $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "Umeishi $PERCENT$ ya miaka $YEARS$",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "Miaka $LIVED$ iliyopita · $AHEAD$ ijayo, iwapo majedwali ni sahihi.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Mipangilio tayari",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Mpangilio mmoja huweka rangi zote nne kwa pamoja.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Rangi",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Mandhari ya nyuma",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Lebo",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Kihesabu",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Rangi ya msisitizo",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Onyesho",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Nambari",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Mfumo",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Mstari wa tafakari chini ya kihesabu",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Matarajio ya maisha",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Chanzo",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Makadirio",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Maalum",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ Miaka $YEARS$ — kulingana na umri wako na data uliyochagua.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Ongeza tarehe yako ya kuzaliwa ili kuona makadirio.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Miaka",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Saa za eneo",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Mahali pa kuzaliwa",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Inaunganisha siku yako ya kuzaliwa na wakati thabiti, ili umri wako uendelee kuwa sahihi unaposafiri.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Data",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Hamisha nje…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Hamisha ndani…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Badilisha tarehe ya kuzaliwa",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Weka upya rangi",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Nimemaliza",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Utofautishaji dhaifu ($RATIO$:1). Lenga $TARGET$:1 kulingana na mandhari ya nyuma.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Mwangaza",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Giza",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Karatasi",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Utupu",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Ramani",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Amber",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Mandhari ya $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Rudi",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "Wiki $LIVED$ zilizoishi · $AHEAD$ ijayo · Miaka $YEARS$",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Umeishi",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Wiki hii",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Ijayo",
+    "description": "Legend label for future weeks."
+  }
+}

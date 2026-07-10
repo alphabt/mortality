@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Aizstāj jaunas cilnes lapu ar jūsu vecuma skaitītāju",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Jauna cilne",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Kad esat dzimis/dzimusi?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Jūsu vecums, kas tiek skaitīts tiešraidē katrā jaunā cilnē.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Dzimšanas datums",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Dzimšanas laiks (neobligāts)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Sākt",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Laiks nav obligāts — tas precizē tiešraides skaitīšanu.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Šis datums ir nākotnē — pārbaudiet savu dzimšanas datumu.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Kur esat dzimis/dzimusi?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Pēc noklusējuma tiek izmantota jūsu pašreizējā laika zona. Iestatiet to uz dzimšanas vietu, lai jūsu vecums paliktu precīzs, ja pārceļaties.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Paredzamā mūža ilguma datu avots",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Pēc noklusējuma pasaules dati. Jūsu laika zona nekad nemaina šo izvēli.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Datu avots",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Pasaule — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Amerikas Savienotās Valstis — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Jūsu laika zona nekad nemaina datu avotu. Dzimums pie dzimšanas ir neobligāts.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Dzimums pie dzimšanas",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Neobligāts — precizē paredzamā mūža ilguma novērtējumu.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Nevēlos norādīt",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Sieviete",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Vīrietis",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Vecums",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Kalendārais vecums",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Nākamā dzimšanas diena",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Nodzīvotās dienas",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Nodzīvotās nedēļas",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Atlikušie gadi",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Atlikušās dienas",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Atlikušās nedēļas",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Iestatījumi",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Dzīve nedēļās",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Mainīt vienības",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Aktivizējiet, lai mainītu vienības",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Noklikšķiniet, lai mainītu vienības",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Dzimis/-usi $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "pēc $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ no $YEARS$ gadiem nodzīvoti",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ gadi aiz jums · $AHEAD$ priekšā, ja tabulas ir pareizas.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Sākotnējie iestatījumi",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Sākotnējais iestatījums vienlaikus nosaka visas četras krāsas.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Krāsas",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Fons",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Etiķete",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Skaitītājs",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Akcents",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Attēlošana",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Cipari",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Sistēmas",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Pārdomu rindiņa zem skaitītāja",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Paredzamais mūža ilgums",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Avots",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Novērtējums",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Pielāgots",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ gadi — pamatojoties uz jūsu vecumu un atlasītajiem datiem.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Pievienojiet dzimšanas datumu, lai redzētu novērtējumu.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Gadi",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Laika zona",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Dzimšanas vieta",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Piesaista jūsu dzimšanas dienu fiksētam brīdim, lai jūsu vecums paliktu precīzs, ceļojot.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Dati",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Eksportēt…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importēt…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Mainīt dzimšanas datumu",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Atiestatīt krāsas",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Gatavs",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Zems kontrasts ($RATIO$:1). Tiecieties uz $TARGET$:1 pret fonu.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Gaišs",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Tumšs",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Papīrs",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Tukšums",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminālis",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Skice",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Dzintars",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Motīvs „$THEME$“",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Atpakaļ",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ nedēļas nodzīvotas · $AHEAD$ priekšā · $YEARS$ gadi",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Nodzīvots",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Šonedēļ",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Priekšā",
+    "description": "Legend label for future weeks."
+  }
+}

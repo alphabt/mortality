@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Yeni sekme sayfasını yaşınızın sayacıyla değiştirir",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Yeni Sekme",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Ne zaman doğdunuz?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Yaşınız, her yeni sekmede canlı olarak artar.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Doğum tarihi",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Doğum saati (isteğe bağlı)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Başla",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Saat isteğe bağlıdır — canlı sayımı netleştirir.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Bu tarih gelecekte — lütfen doğum tarihinizi kontrol edin.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Nerede doğdunuz?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Varsayılan olarak geçerli saat diliminizi kullanır. Taşınırsanız yaşınızın doğru kalması için doğum yerinize ayarlayın.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Yaşam beklentisi veri kaynağı",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Varsayılan olarak dünya verileri. Saat diliminiz bu seçimi asla değiştirmez.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Veri kaynağı",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Dünya — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Amerika Birleşik Devletleri — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Saat diliminiz veri kaynağını asla değiştirmez. Doğumda cinsiyet isteğe bağlıdır.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Doğumda cinsiyet",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "İsteğe bağlı — yaşam beklentisi tahminini netleştirir.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Belirtmek istemiyorum",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Kadın",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Erkek",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Yaş",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Takvim yaşı",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Sonraki doğum günü",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Yaşanan günler",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Yaşanan haftalar",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Kalan yıllar",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Kalan günler",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Kalan haftalar",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Ayarlar",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Haftalarda yaşam",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Birimleri değiştir",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Birimleri değiştirmek için etkinleştirin",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Birimleri değiştirmek için tıklayın",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "$DATE$ tarihinde doğdu",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ sonra",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ yılın $PERCENT$'i yaşandı",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ yıl geride · tablolar doğruysa $AHEAD$ yıl ileride.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Ön ayarlar",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Bir ön ayar, dört rengi birden ayarlar.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Renkler",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Arka plan",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Etiket",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Sayaç",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Vurgu",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Görünüm",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Rakamlar",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Sistem",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Sayaçın altındaki düşünce satırı",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Yaşam beklentisi",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Kaynak",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Tahmin",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Özel",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ yıl — yaşınıza ve seçilen verilere dayanır.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Bir tahmin görmek için doğum tarihinizi ekleyin.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Yıl",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Saat dilimi",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Doğum yeri",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Doğum gününüzü sabit bir ana bağlar, böylece seyahat ederken yaşınız doğru kalır.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Veriler",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Dışa aktar…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "İçe aktar…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Doğum tarihini değiştir",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Renkleri sıfırla",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Bitti",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Düşük kontrast ($RATIO$:1). Arka plana göre $TARGET$:1 hedefleyin.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Açık",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Koyu",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Kağıt",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Boşluk",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Taslak",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Kehribar",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ teması",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Geri",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ hafta yaşandı · $AHEAD$ ileride · $YEARS$ yıl",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Yaşandı",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Bu hafta",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "İleride",
+    "description": "Legend label for future weeks."
+  }
+}

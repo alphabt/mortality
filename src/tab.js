@@ -34,22 +34,34 @@ import {
   normalizeLifeTable,
 } from "./lifetable.js";
 import { el } from "./dom.js";
+import {
+  applyDocumentLocale,
+  formatDate,
+  formatFixedParts,
+  formatList,
+  formatNumber,
+  formatPercent,
+  formatUnit,
+  formatUnitParts,
+  msg,
+} from "./i18n.js";
 
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
 const DAY_MS = 86400000;
 const WEEK_MS = 7 * DAY_MS;
 
 const LABELS = {
-  years: "Age",
-  calendar: "Calendar age",
-  birthday: "Next birthday",
-  days: "Days lived",
-  weeks: "Weeks lived",
-  yearsLeft: "Years left",
-  daysLeft: "Days left",
-  weeksLeft: "Weeks left",
+  years: "modeYears",
+  calendar: "modeCalendar",
+  birthday: "modeBirthday",
+  days: "modeDays",
+  weeks: "modeWeeks",
+  yearsLeft: "modeYearsLeft",
+  daysLeft: "modeDaysLeft",
+  weeksLeft: "modeWeeksLeft",
 };
 
+applyDocumentLocale();
 const app = document.getElementById("app");
 let state;
 let timer = null;
@@ -90,14 +102,14 @@ export function formatBorn(birth) {
     // Format the wall-clock date exactly as entered by pinning it to UTC, so the
     // "Born …" line never slips a day when the viewer's zone differs from the
     // birth zone.
-    return (
-      "Born " +
-      new Intl.DateTimeFormat(undefined, {
+    return msg(
+      "born",
+      formatDate(Date.UTC(parts.year, parts.month - 1, parts.day), {
         day: "numeric",
         month: "long",
         year: "numeric",
         timeZone: "UTC",
-      }).format(Date.UTC(parts.year, parts.month - 1, parts.day))
+      }),
     );
   } catch {
     return "";
@@ -118,17 +130,40 @@ export function lifeWeeks(elapsedMs, expectancy) {
 export function reflectionLine(bornMs, nowMs, expectancy) {
   const lived = Math.max(0, Math.floor((nowMs - bornMs) / YEAR_MS));
   const ahead = Math.max(0, expectancy - lived);
-  return `${lived} years behind you \u00b7 ${ahead} ahead, if the tables hold.`;
+  return msg("reflectionLine", [formatNumber(lived), formatNumber(ahead)]);
 }
 
-function birthdayAria({ days, hours, minutes, seconds }) {
-  const unit = (value, name) => `${value} ${name}${value === 1 ? "" : "s"}`;
-  return [
-    unit(days, "day"),
-    unit(hours, "hour"),
-    unit(minutes, "minute"),
-    unit(seconds, "second"),
-  ].join(", ");
+export function formatProgressCaption(fraction, expectancy) {
+  const floored = Math.floor(Math.min(1, Math.max(0, fraction)) * 100) / 100;
+  return msg("progressCaption", [
+    formatPercent(floored, { maximumFractionDigits: 0 }),
+    formatNumber(expectancy),
+  ]);
+}
+
+function visualUnit(value, unit, options = {}) {
+  const numberTypes = new Set([
+    "integer",
+    "group",
+    "decimal",
+    "fraction",
+    "minusSign",
+    "plusSign",
+  ]);
+  return formatUnitParts(value, unit, options).map((part) =>
+    el(
+      "span",
+      {
+        class: numberTypes.has(part.type)
+          ? "cal-num"
+          : part.type === "unit"
+            ? "cal-unit"
+            : "cal-literal",
+        "aria-hidden": "true",
+      },
+      part.value,
+    ),
+  );
 }
 
 // Fold an imported settings blob onto the current state, copying ONLY known keys
@@ -226,7 +261,7 @@ function showCounter() {
   let lastBirthday = null;
 
   function layout() {
-    els.label.textContent = LABELS[mode];
+    els.label.textContent = msg(LABELS[mode]);
     els.count.classList.toggle("birthday-count", mode === "birthday");
     if (mode === "calendar" || mode === "birthday") {
       intEl = null;
@@ -237,11 +272,7 @@ function showCounter() {
       intEl = el("span", { class: "int" }, "0");
       if (mode === "years" || mode === "yearsLeft") {
         fracEl = el("span", { class: "fraction", "aria-hidden": "true" }, "0");
-        els.count.replaceChildren(
-          intEl,
-          el("span", { class: "sep" }, "."),
-          fracEl,
-        );
+        els.count.replaceChildren(intEl, el("span", { class: "sep" }), fracEl);
       } else {
         fracEl = null;
         els.count.replaceChildren(intEl);
@@ -281,7 +312,7 @@ function showCounter() {
   function updateAria(value) {
     els.count.setAttribute(
       "aria-label",
-      `${LABELS[mode]} ${value}. Activate to change units.`,
+      msg("counterAria", [msg(LABELS[mode]), value, msg("changeUnitsAction")]),
     );
   }
 
@@ -292,13 +323,20 @@ function showCounter() {
 
     if (mode === "years" || mode === "yearsLeft") {
       const shown = mode === "years" ? years : Math.max(0, expectancy - years);
-      const [whole, fraction] = shown.toFixed(9).split(".");
-      if (whole !== lastInt) {
-        intEl.textContent = whole;
-        lastInt = whole;
-        updateAria(whole + " years");
+      const fixed = formatFixedParts(shown, 9);
+      if (fixed.integer !== lastInt) {
+        intEl.textContent = fixed.integer;
+        lastInt = fixed.integer;
       }
-      fracEl.textContent = fraction;
+      els.count.querySelector(".sep").textContent = fixed.decimal;
+      fracEl.textContent = fixed.fraction;
+      updateAria(
+        formatUnit(shown, "year", {
+          minimumFractionDigits: 9,
+          maximumFractionDigits: 9,
+          useGrouping: false,
+        }),
+      );
     } else if (mode === "calendar") {
       const { y, m, d } = calendarAge(bornMs, now, zone);
       const key = `${y}|${m}|${d}`;
@@ -306,15 +344,18 @@ function showCounter() {
       // most once a day), so the node isn't rebuilt every 100ms.
       if (key !== lastCal) {
         els.count.replaceChildren(
-          el("span", { class: "cal-num" }, String(y)),
-          el("span", { class: "cal-unit" }, "yr"),
-          el("span", { class: "cal-num" }, String(m)),
-          el("span", { class: "cal-unit" }, "mo"),
-          el("span", { class: "cal-num" }, String(d)),
-          el("span", { class: "cal-unit" }, "d"),
+          ...visualUnit(y, "year"),
+          ...visualUnit(m, "month"),
+          ...visualUnit(d, "day"),
         );
         lastCal = key;
-        updateAria(`${y} years ${m} months ${d} days`);
+        updateAria(
+          formatList([
+            formatUnit(y, "year"),
+            formatUnit(m, "month"),
+            formatUnit(d, "day"),
+          ]),
+        );
       }
     } else if (mode === "birthday") {
       if (birthdayTarget <= now) {
@@ -326,29 +367,23 @@ function showCounter() {
       // nodes until the rounded-up countdown actually changes.
       if (key !== lastBirthday) {
         els.count.replaceChildren(
-          el("span", { class: "cal-num" }, String(parts.days)),
-          el("span", { class: "cal-unit" }, "d"),
-          el(
-            "span",
-            { class: "cal-num" },
-            String(parts.hours).padStart(2, "0"),
-          ),
-          el("span", { class: "cal-unit" }, "h"),
-          el(
-            "span",
-            { class: "cal-num" },
-            String(parts.minutes).padStart(2, "0"),
-          ),
-          el("span", { class: "cal-unit" }, "m"),
-          el(
-            "span",
-            { class: "cal-num" },
-            String(parts.seconds).padStart(2, "0"),
-          ),
-          el("span", { class: "cal-unit" }, "s"),
+          ...visualUnit(parts.days, "day"),
+          ...visualUnit(parts.hours, "hour", { minimumIntegerDigits: 2 }),
+          ...visualUnit(parts.minutes, "minute", { minimumIntegerDigits: 2 }),
+          ...visualUnit(parts.seconds, "second", { minimumIntegerDigits: 2 }),
         );
         lastBirthday = key;
-        updateAria(`in ${birthdayAria(parts)}`);
+        updateAria(
+          msg(
+            "birthdayCountdown",
+            formatList([
+              formatUnit(parts.days, "day"),
+              formatUnit(parts.hours, "hour"),
+              formatUnit(parts.minutes, "minute"),
+              formatUnit(parts.seconds, "second"),
+            ]),
+          ),
+        );
       }
     } else {
       let value;
@@ -364,11 +399,12 @@ function showCounter() {
           0,
           Math.round((expectancy * YEAR_MS - elapsed) / WEEK_MS),
         );
-      const text = value.toLocaleString();
+      const text = formatNumber(value);
       if (text !== lastInt) {
         intEl.textContent = text;
         lastInt = text;
-        updateAria(text);
+        const unit = mode === "days" || mode === "daysLeft" ? "day" : "week";
+        updateAria(formatUnit(value, unit));
       }
     }
 
@@ -377,7 +413,7 @@ function showCounter() {
       els.progressFill.style.transform = `scaleX(${frac.toFixed(4)})`;
       lastFrac = frac;
     }
-    const pct = `${Math.floor(frac * 100)}% of ${expectancy} yrs lived`;
+    const pct = formatProgressCaption(frac, expectancy);
     if (pct !== lastPct) {
       els.pct.textContent = pct;
       lastPct = pct;

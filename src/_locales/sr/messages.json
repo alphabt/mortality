@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Замењује страницу новог језичка бројачем ваших година",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Нови језичак",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Када сте рођени?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Ваше године, које се уживо броје на сваком новом језичку.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Датум рођења",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Време рођења (опционо)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Почни",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Време је опционо — изоштрава бројање уживо.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Тај датум је у будућности — проверите датум рођења.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Где сте рођени?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Подразумевано се користи ваша тренутна временска зона. Поставите је на место рођења да ваше године остану тачне ако се преселите.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Извор података о очекиваном трајању живота",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Подразумевано су светски подаци. Ваша временска зона никада не мења овај избор.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Извор података",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Свет — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Сједињене Државе — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Ваша временска зона никада не мења извор података. Пол при рођењу је опциони.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Пол при рођењу",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Опционо — изоштрава процену очекиваног трајања живота.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Не желим да наведем",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Женски",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Мушки",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Године",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Календарске године",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Следећи рођендан",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Проживљени дани",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Проживљене недеље",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Преостале године",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Преостали дани",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Преостале недеље",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Подешавања",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Живот у недељама",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Промени јединице",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Активирај за промену јединица",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Кликни за промену јединица",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Рођен/а $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "за $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ од $YEARS$ год. проживљено",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ година иза вас · $AHEAD$ пред вама, ако табеле важе.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Шаблони",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Шаблон одједном поставља сва четири боје.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Боје",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Позадина",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Ознака",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Бројач",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Акцент",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Приказ",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Цифре",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Системски",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Ред рефлексије испод бројача",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Очекивани животни век",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Извор",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Процена",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Прилагођено",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ год. — на основу ваших година и изабраних података.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Додајте датум рођења да бисте видели процену.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Године",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Временска зона",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Рођен/а у",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Везује ваш рођендан за фиксни тренутак, да ваше године остану тачне када путујете.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Подаци",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Извези…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Увези…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Промени датум рођења",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Ресетуј боје",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Готово",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Низак контраст ($RATIO$:1). Циљ је $TARGET$:1 у односу на позадину.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Светло",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Тамно",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Папир",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Празнина",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Терминал",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Нацрт",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Амбер",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Тема $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Назад",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ недеља проживљено · $AHEAD$ пред вама · $YEARS$ год.",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Проживљено",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Ове недеље",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Пред вама",
+    "description": "Legend label for future weeks."
+  }
+}

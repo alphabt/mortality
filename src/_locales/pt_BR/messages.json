@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Substitui a página de nova guia por um contador da sua idade",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Nova guia",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Quando você nasceu?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Sua idade, contando em tempo real a cada nova guia.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Data de nascimento",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Hora de nascimento (opcional)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Começar",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "A hora é opcional — ela refina a contagem em tempo real.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Essa data está no futuro — verifique sua data de nascimento.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Onde você nasceu?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Usa seu fuso horário atual por padrão. Defina-o para o local de nascimento para que sua idade permaneça exata se você se mudar.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Fonte de dados de expectativa de vida",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Dados mundiais por padrão. Seu fuso horário nunca muda essa escolha.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Fonte de dados",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Mundo — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Estados Unidos — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Seu fuso horário nunca muda a fonte de dados. O sexo de nascimento é opcional.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Sexo de nascimento",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Opcional — refina a estimativa de expectativa de vida.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Prefiro não dizer",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Feminino",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Masculino",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Idade",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Idade de calendário",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Próximo aniversário",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Dias vividos",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Semanas vividas",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Anos restantes",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Dias restantes",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Semanas restantes",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Configurações",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Vida em semanas",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Mudar unidades",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Ativar para mudar as unidades",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Clique para mudar as unidades",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Nascido(a) em $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "em $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ de $YEARS$ anos vividos",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ anos atrás de você · $AHEAD$ pela frente, se as tábuas estiverem certas.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Predefinições",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Uma predefinição ajusta as quatro cores de uma vez.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Cores",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Fundo",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Rótulo",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Contador",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Destaque",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Exibição",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Numerais",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Sistema",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Linha de reflexão abaixo do contador",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Expectativa de vida",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Fonte",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Estimativa",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Personalizada",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ anos — com base na sua idade e nos dados selecionados.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Adicione sua data de nascimento para ver uma estimativa.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Anos",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Fuso horário",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Nascido em",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Ancora seu aniversário a um instante fixo, para que sua idade permaneça exata quando você viajar.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Dados",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Exportar…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importar…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Mudar data de nascimento",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Redefinir cores",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Concluído",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Contraste baixo ($RATIO$:1). Busque $TARGET$:1 no fundo.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Claro",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Escuro",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Papel",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Vazio",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminal",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Projeto",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Âmbar",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Tema $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Voltar",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ semanas vividas · $AHEAD$ pela frente · $YEARS$ anos",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Vivido",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Esta semana",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Pela frente",
+    "description": "Legend label for future weeks."
+  }
+}

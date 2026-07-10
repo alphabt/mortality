@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "नवीन टॅब पेज तुमच्या वयाच्या काउंटरने बदलतो",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — नवीन टॅब",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "तुमचा जन्म कधी झाला?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "तुमचे वय, प्रत्येक नवीन टॅबवर लाइव्ह वाढत आहे.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "जन्मतारीख",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "जन्मवेळ (ऐच्छिक)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "सुरू करा",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "वेळ ऐच्छिक आहे — ती लाइव्ह मोजणी अधिक अचूक करते.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "ही तारीख भविष्यात आहे — कृपया तुमची जन्मतारीख तपासा.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "तुमचा जन्म कुठे झाला?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "डीफॉल्टनुसार तुमचा सध्याचा टाइम झोन वापरला जातो. तुम्ही स्थलांतरित झालात तरी वय अचूक राहावे यासाठी तो तुमच्या जन्मस्थळावर सेट करा.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "आयुर्मान डेटा स्रोत",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "डीफॉल्टनुसार जगाचा डेटा. तुमचा टाइम झोन हा पर्याय कधीही बदलत नाही.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "डेटा स्रोत",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "जग — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "अमेरिका — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "तुमचा टाइम झोन डेटा स्रोत कधीही बदलत नाही. जन्मावेळचे लिंग ऐच्छिक आहे.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "जन्मावेळचे लिंग",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "ऐच्छिक — हे आयुर्मान अंदाज अधिक अचूक करते.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "सांगायचे नाही",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "स्त्री",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "पुरुष",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "वय",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "कॅलेंडर वय",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "पुढील वाढदिवस",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "जगलेले दिवस",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "जगलेले आठवडे",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "उरलेली वर्षे",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "उरलेले दिवस",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "उरलेले आठवडे",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "सेटिंग्ज",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "आठवड्यांतील जीवन",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "एकके बदला",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "एकके बदलण्यासाठी सक्रिय करा",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "एकके बदलण्यासाठी क्लिक करा",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "जन्म $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ मध्ये",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ वर्षांपैकी $PERCENT$ जगले",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ वर्षे मागे · तक्ते बरोबर असल्यास $AHEAD$ पुढे आहे.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "प्रीसेट्स",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "एक प्रीसेट सर्व चार रंग एकाच वेळी सेट करतो.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "रंग",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "पार्श्वभूमी",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "लेबल",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "काउंटर",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "अ‍ॅक्सेंट",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "प्रदर्शन",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "अंक",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "सिस्टीम",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "काउंटरखालील विचार-ओळ",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "आयुर्मान",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "स्रोत",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "अंदाज",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "सानुकूल",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ वर्षे — तुमचे वय आणि निवडलेल्या डेटावर आधारित.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "अंदाज पाहण्यासाठी तुमची जन्मतारीख जोडा.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "वर्षे",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "टाइम झोन",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "जन्मस्थळ",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "तुम्ही प्रवास करता तेव्हा वय अचूक राहावे यासाठी, तुमचा वाढदिवस एका निश्चित क्षणाशी जोडतो.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "डेटा",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "एक्सपोर्ट…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "इम्पोर्ट…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "जन्मतारीख बदला",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "रंग रीसेट करा",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "पूर्ण",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "कमी कॉन्ट्रास्ट ($RATIO$:1). पार्श्वभूमीच्या तुलनेत $TARGET$:1 चे लक्ष्य ठेवा.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "फिकट",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "गडद",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "पेपर",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "शून्यता",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "टर्मिनल",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "ब्लूप्रिंट",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "अंबर",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ थीम",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "मागे",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ आठवडे जगले · $AHEAD$ पुढे आहे · $YEARS$ वर्षे",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "जगले",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "हा आठवडा",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "पुढे आहे",
+    "description": "Legend label for future weeks."
+  }
+}

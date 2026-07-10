@@ -81,6 +81,8 @@ beforeEach(() => {
   stubAnimate();
   document.documentElement.removeAttribute("style");
   document.documentElement.removeAttribute("class");
+  document.documentElement.lang = "en";
+  document.documentElement.removeAttribute("dir");
   document.body.className = "";
   document.body.innerHTML = "";
 });

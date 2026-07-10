@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Az új lap oldalát az életkorod számlálójával helyettesíti",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Új lap",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Mikor születtél?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Életkorod élőben növekszik minden új lapon.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Születési dátum",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Születési idő (opcionális)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Kezdés",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Az idő megadása nem kötelező — pontosítja az élő számlálást.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Ez a dátum a jövőben van — kérjük, ellenőrizd a születési dátumodat.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Hol születtél?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Alapértelmezés szerint a jelenlegi időzónádat használja. Állítsd a születési helyedre, hogy életkorod pontos maradjon, ha elköltözöl.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Várható élettartam adatforrása",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Alapértelmezés szerint világadatok. Az időzónád soha nem változtatja meg ezt a választást.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Adatforrás",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Világ — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Egyesült Államok — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Az időzónád soha nem változtatja meg az adatforrást. A nem a születéskor opcionális.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Nem a születéskor",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Opcionális — pontosítja a várható élettartam becslését.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Nem szeretném megadni",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Nő",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Férfi",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Életkor",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Naptári életkor",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Következő születésnap",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Megélt napok",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Megélt hetek",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Hátralévő évek",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Hátralévő napok",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Hátralévő hetek",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Beállítások",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Élet hetekben",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Mértékegység váltása",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Aktiváld a mértékegység váltásához",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Kattints a mértékegység váltásához",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Született: $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ múlva",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$YEARS$ évből $PERCENT$ megélve",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ év mögötted · $AHEAD$ előtted, ha a táblázatok igazak.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Előbeállítások",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Egy előbeállítás mind a négy színt egyszerre állítja be.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Színek",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Háttér",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Címke",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Számláló",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Kiemelés",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Megjelenítés",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Számjegyek",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Rendszer",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Reflexiós sor a számláló alatt",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Várható élettartam",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Forrás",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Becslés",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Egyéni",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ év — az életkorod és a kiválasztott adatok alapján.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Add meg a születési dátumodat a becslés megtekintéséhez.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Évek",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Időzóna",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Születési hely",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Rögzíti a születésnapodat egy fix pillanathoz, hogy életkorod pontos maradjon utazás közben.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Adatok",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Exportálás…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Importálás…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Születési dátum módosítása",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Színek visszaállítása",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Kész",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Alacsony kontraszt ($RATIO$:1). Törekedj $TARGET$:1 arányra a háttérhez.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Világos",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Sötét",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Papír",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Üresség",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Terminál",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Vázlat",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Borostyán",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "$THEME$ téma",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Vissza",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ hét megélve · $AHEAD$ előtted · $YEARS$ év",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Megélve",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Ezen a héten",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Előtted",
+    "description": "Legend label for future weeks."
+  }
+}

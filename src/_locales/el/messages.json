@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "Αντικαθιστά τη σελίδα νέας καρτέλας με έναν μετρητή της ηλικίας σου",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — Νέα καρτέλα",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "Πότε γεννήθηκες;",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "Η ηλικία σου, μετρώντας ζωντανά σε κάθε νέα καρτέλα.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "Ημερομηνία γέννησης",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "Ώρα γέννησης (προαιρετικό)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "Έναρξη",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "Η ώρα είναι προαιρετική — βελτιώνει την ακρίβεια της ζωντανής μέτρησης.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "Αυτή η ημερομηνία είναι στο μέλλον — έλεγξε την ημερομηνία γέννησης σου.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "Πού γεννήθηκες;",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "Χρησιμοποιεί εξ ορισμού την τρέχουσα ζώνη ώρας σου. Ρύθμισέ την στον τόπο γέννησης σου, ώστε η ηλικία σου να παραμείνει ακριβής αν μετακομίσεις.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "Πηγή δεδομένων προσδόκιμου ζωής",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "Δεδομένα κόσμου από προεπιλογή. Η ζώνη ώρας σου δεν αλλάζει ποτέ αυτήν την επιλογή.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "Πηγή δεδομένων",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "Κόσμος — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "Ηνωμένες Πολιτείες — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "Η ζώνη ώρας σου δεν αλλάζει ποτέ την πηγή δεδομένων. Το φύλο κατά τη γέννηση είναι προαιρετικό.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "Φύλο κατά τη γέννηση",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "Προαιρετικό — βελτιώνει την εκτίμηση προσδόκιμου ζωής.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "Προτιμώ να μην το πω",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "Θηλυκό",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "Αρσενικό",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "Ηλικία",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "Ημερολογιακή ηλικία",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "Επόμενα γενέθλια",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "Ημέρες που έζησες",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "Εβδομάδες που έζησες",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "Έτη που απομένουν",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "Ημέρες που απομένουν",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "Εβδομάδες που απομένουν",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "Ρυθμίσεις",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "Ζωή σε εβδομάδες",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "Αλλαγή μονάδων",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "Ενεργοποίησε για αλλαγή μονάδων",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "Κάντε κλικ για αλλαγή μονάδων",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "Γεννήθηκε στις $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "σε $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ από $YEARS$ έτη ζωής",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ χρόνια πίσω σου · $AHEAD$ μπροστά, αν οι πίνακες ισχύουν.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "Προεπιλογές",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "Μια προεπιλογή ορίζει όλα τα τέσσερα χρώματα ταυτόχρονα.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "Χρώματα",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "Φόντο",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "Ετικέτα",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "Μετρητής",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "Έμφαση",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "Προβολή",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "Ψηφία",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "Σύστημα",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "Γραμμή προβληματισμού κάτω από τον μετρητή",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "Προσδόκιμο ζωής",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "Πηγή",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "Εκτίμηση",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "Προσαρμοσμένο",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ έτη — με βάση την ηλικία σου και τα επιλεγμένα δεδομένα.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "Πρόσθεσε την ημερομηνία γέννησής σου για να δεις μια εκτίμηση.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "Έτη",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "Ζώνη ώρας",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "Γεννήθηκε στην",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "Αγκυρώνει τα γενέθλιά σου σε μια σταθερή στιγμή, ώστε η ηλικία σου να παραμένει ακριβής όταν ταξιδεύεις.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "Δεδομένα",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "Εξαγωγή…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "Εισαγωγή…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "Αλλαγή ημερομηνίας γέννησης",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "Επαναφορά χρωμάτων",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "Τέλος",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "Χαμηλή αντίθεση ($RATIO$:1). Στόχευσε σε $TARGET$:1 ως προς το φόντο.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "Φωτεινό",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "Σκοτεινό",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "Χαρτί",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "Κενό",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "Τερματικό",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "Σχέδιο",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "Κεχριμπάρι",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "Θέμα $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "Πίσω",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ εβδομάδες που έζησες · $AHEAD$ μπροστά · $YEARS$ έτη",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "Έζησες",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "Αυτή την εβδομάδα",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "Μπροστά",
+    "description": "Legend label for future weeks."
+  }
+}

@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "صفحه‌ی برگه‌ی جدید را با شمارنده‌ی سن شما جایگزین می‌کند",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — برگه جدید",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "کِی به دنیا آمدید؟",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "سن شما، که به‌صورت زنده در هر برگه‌ی جدید افزایش می‌یابد.",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "تاریخ تولد",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "ساعت تولد (اختیاری)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "شروع",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "ساعت اختیاری است — دقت شمارش زنده را افزایش می‌دهد.",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "این تاریخ در آینده است — لطفاً تاریخ تولد خود را بررسی کنید.",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "کجا به دنیا آمدید؟",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "به‌طور پیش‌فرض از منطقه‌ی زمانی فعلی شما استفاده می‌شود. آن را روی محل تولدتان تنظیم کنید تا سن شما هنگام نقل مکان دقیق بماند.",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "منبع داده امید به زندگی",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "به‌طور پیش‌فرض داده‌های جهانی. منطقهٔ زمانی شما هرگز این انتخاب را تغییر نمی‌دهد.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "منبع داده",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "جهان — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "ایالات متحده — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "منطقهٔ زمانی شما هرگز منبع داده را تغییر نمی‌دهد. جنسیت هنگام تولد اختیاری است.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "جنسیت هنگام تولد",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "اختیاری — دقت برآورد امید به زندگی را افزایش می‌دهد.",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "ترجیح می‌دهم نگویم",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "زن",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "مرد",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "سن",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "سن تقویمی",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "تولد بعدی",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "روزهای زیسته",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "هفته‌های زیسته",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "سال‌های باقی‌مانده",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "روزهای باقی‌مانده",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "هفته‌های باقی‌مانده",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "تنظیمات",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "زندگی بر حسب هفته",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "تغییر واحدها",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "برای تغییر واحدها فعال کنید",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "برای تغییر واحدها کلیک کنید",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$. $ACTION$.",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "تولد $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "$COUNTDOWN$ دیگر",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "$PERCENT$ از $YEARS$ سال زیسته",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "$LIVED$ سال پشت سر گذاشته‌اید · $AHEAD$ سال دیگر پیش رو، اگر جدول‌ها درست باشند.",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "پیش‌تنظیم‌ها",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "یک پیش‌تنظیم هر چهار رنگ را یک‌جا تعیین می‌کند.",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "رنگ‌ها",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "پس‌زمینه",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "برچسب",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "شمارنده",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "رنگ تأکیدی",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "نمایش",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "ارقام",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "سیستم",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "خط تأمل زیر شمارنده",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "امید به زندگی",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "منبع",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "برآورد",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "سفارشی",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ سال — بر اساس سن شما و داده‌های انتخاب‌شده.",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "تاریخ تولد خود را اضافه کنید تا برآوردی را ببینید.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "سال",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "منطقه‌ی زمانی",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "محل تولد",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "تولد شما را به یک لحظه‌ی ثابت متصل می‌کند تا سن شما هنگام سفر دقیق بماند.",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "داده‌ها",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "خروجی گرفتن…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "وارد کردن…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "تغییر تاریخ تولد",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "بازنشانی رنگ‌ها",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "پایان",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "کنتراست پایین ($RATIO$:1). هدف $TARGET$:1 نسبت به پس‌زمینه باشد.",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "روشن",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "تیره",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "کاغذی",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "خالی",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "ترمینال",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "طرح",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "کهربایی",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "پوسته‌ی $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "بازگشت",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "$LIVED$ هفته زیسته · $AHEAD$ پیش رو · $YEARS$ سال",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "زیسته",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "این هفته",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "پیش رو",
+    "description": "Legend label for future weeks."
+  }
+}

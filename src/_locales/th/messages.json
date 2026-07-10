@@ -1,0 +1,420 @@
+{
+  "extName": {
+    "message": "Mortality",
+    "description": "Extension name. Keep the product name unchanged."
+  },
+  "extDescription": {
+    "message": "แทนที่หน้าแท็บใหม่ด้วยตัวนับอายุของคุณ",
+    "description": "Short extension-store description."
+  },
+  "pageTitle": {
+    "message": "Mortality — แท็บใหม่",
+    "description": "Browser document title."
+  },
+  "setupTitle": {
+    "message": "คุณเกิดเมื่อไร?",
+    "description": "Heading on the initial birthday setup screen."
+  },
+  "setupSubtitle": {
+    "message": "อายุของคุณ เพิ่มขึ้นแบบสดในทุกแท็บใหม่",
+    "description": "Short explanation below the setup heading."
+  },
+  "birthDateAria": {
+    "message": "วันเกิด",
+    "description": "Accessible label for the birth-date input."
+  },
+  "birthTimeAria": {
+    "message": "เวลาเกิด (ไม่บังคับ)",
+    "description": "Accessible label for the optional birth-time input."
+  },
+  "start": {
+    "message": "เริ่ม",
+    "description": "Button that completes birthday setup."
+  },
+  "timeHint": {
+    "message": "เวลาเป็นทางเลือก — ช่วยให้การนับสดแม่นยำขึ้น",
+    "description": "Hint explaining why a birth time can be entered."
+  },
+  "futureDateError": {
+    "message": "วันที่นี้อยู่ในอนาคต — กรุณาตรวจสอบวันเกิดของคุณ",
+    "description": "Validation error for a future birth date."
+  },
+  "birthplaceLabel": {
+    "message": "คุณเกิดที่ไหน?",
+    "description": "Label for the birthplace time-zone selector."
+  },
+  "birthplaceHint": {
+    "message": "ค่าเริ่มต้นใช้เขตเวลาปัจจุบันของคุณ ตั้งเป็นสถานที่เกิดของคุณเพื่อให้อายุยังคงแม่นยำหากคุณย้ายที่อยู่",
+    "description": "Explains how the birthplace time zone anchors the age calculation."
+  },
+  "actuarialBaseline": {
+    "message": "แหล่งข้อมูลอายุขัยเฉลี่ย",
+    "description": "Label for the life-expectancy data-source selector during setup."
+  },
+  "baselineSetupHint": {
+    "message": "ค่าเริ่มต้นคือข้อมูลของโลก เขตเวลาของคุณไม่เคยเปลี่ยนตัวเลือกนี้",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
+  },
+  "baseline": {
+    "message": "แหล่งข้อมูล",
+    "description": "Short label for the life-expectancy data-source selector in settings."
+  },
+  "lifeTableWorld": {
+    "message": "โลก — UN 2023",
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
+  },
+  "lifeTableUS": {
+    "message": "สหรัฐอเมริกา — SSA 2023",
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
+  },
+  "baselineSettingsHint": {
+    "message": "เขตเวลาของคุณไม่เคยเปลี่ยนแหล่งข้อมูล เพศตอนเกิดเป็นทางเลือก",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
+  },
+  "sexAtBirth": {
+    "message": "เพศตอนเกิด",
+    "description": "Label for the optional sex-at-birth selector."
+  },
+  "sexHint": {
+    "message": "ไม่บังคับ — ช่วยให้การประมาณอายุขัยแม่นยำขึ้น",
+    "description": "Explains why sex at birth can be provided."
+  },
+  "sexUnspecified": {
+    "message": "ไม่ต้องการระบุ",
+    "description": "Privacy-preserving empty option in the sex-at-birth selector."
+  },
+  "sexFemale": {
+    "message": "หญิง",
+    "description": "Female sex-at-birth option."
+  },
+  "sexMale": {
+    "message": "ชาย",
+    "description": "Male sex-at-birth option."
+  },
+  "modeYears": {
+    "message": "อายุ",
+    "description": "Label for the fractional-years counter mode."
+  },
+  "modeCalendar": {
+    "message": "อายุตามปฏิทิน",
+    "description": "Label for the years/months/days counter mode."
+  },
+  "modeBirthday": {
+    "message": "วันเกิดครั้งต่อไป",
+    "description": "Label for the next-birthday countdown mode."
+  },
+  "modeDays": {
+    "message": "วันที่มีชีวิตอยู่",
+    "description": "Label for the days-lived counter mode."
+  },
+  "modeWeeks": {
+    "message": "สัปดาห์ที่มีชีวิตอยู่",
+    "description": "Label for the weeks-lived counter mode."
+  },
+  "modeYearsLeft": {
+    "message": "ปีที่เหลือ",
+    "description": "Label for estimated years remaining."
+  },
+  "modeDaysLeft": {
+    "message": "วันที่เหลือ",
+    "description": "Label for estimated days remaining."
+  },
+  "modeWeeksLeft": {
+    "message": "สัปดาห์ที่เหลือ",
+    "description": "Label for estimated weeks remaining."
+  },
+  "settings": {
+    "message": "การตั้งค่า",
+    "description": "Settings screen title and settings-button accessible label."
+  },
+  "lifeInWeeks": {
+    "message": "ชีวิตในหน่วยสัปดาห์",
+    "description": "Life-in-weeks view title and button accessible label."
+  },
+  "changeUnits": {
+    "message": "เปลี่ยนหน่วย",
+    "description": "Accessible action name for cycling counter units."
+  },
+  "changeUnitsAction": {
+    "message": "เปิดใช้เพื่อเปลี่ยนหน่วย",
+    "description": "Activation instruction at the end of the live counter accessible label."
+  },
+  "changeUnitsTitle": {
+    "message": "คลิกเพื่อเปลี่ยนหน่วย",
+    "description": "Visible hint and pointer tooltip for cycling counter units."
+  },
+  "counterAria": {
+    "message": "$LABEL$ $VALUE$ $ACTION$",
+    "description": "Full accessible label for the live counter.",
+    "placeholders": {
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
+    }
+  },
+  "born": {
+    "message": "เกิดเมื่อ $DATE$",
+    "description": "Birth date shown below the counter.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
+    }
+  },
+  "birthdayCountdown": {
+    "message": "ใน $COUNTDOWN$",
+    "description": "Accessible next-birthday countdown phrase.",
+    "placeholders": {
+      "countdown": {
+        "content": "$1",
+        "example": "1 day, 2 hours, 3 minutes, and 4 seconds"
+      }
+    }
+  },
+  "progressCaption": {
+    "message": "มีชีวิตอยู่แล้ว $PERCENT$ ของ $YEARS$ ปี",
+    "description": "Life-progress caption below the counter.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
+    }
+  },
+  "reflectionLine": {
+    "message": "ผ่านมาแล้ว $LIVED$ ปี · เหลืออีก $AHEAD$ ปี หากตารางถูกต้อง",
+    "description": "Optional reflective line below the counter.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
+    }
+  },
+  "sectionPresets": {
+    "message": "พรีเซ็ต",
+    "description": "Settings section heading."
+  },
+  "presetHint": {
+    "message": "พรีเซ็ตหนึ่งชุดตั้งค่าทั้งสี่สีพร้อมกัน",
+    "description": "Hint below theme presets."
+  },
+  "sectionColors": {
+    "message": "สี",
+    "description": "Settings section heading."
+  },
+  "colorBackground": {
+    "message": "พื้นหลัง",
+    "description": "Background color label."
+  },
+  "colorLabel": {
+    "message": "ป้ายกำกับ",
+    "description": "Secondary-label color label."
+  },
+  "colorCounter": {
+    "message": "ตัวนับ",
+    "description": "Counter color label."
+  },
+  "colorAccent": {
+    "message": "สีเน้น",
+    "description": "Accent color label."
+  },
+  "sectionDisplay": {
+    "message": "การแสดงผล",
+    "description": "Settings section heading."
+  },
+  "numerals": {
+    "message": "ตัวเลข",
+    "description": "Numeral typeface setting label."
+  },
+  "typefaceSystem": {
+    "message": "ระบบ",
+    "description": "System numeral typeface option."
+  },
+  "typefaceGrotesk": {
+    "message": "Grotesk",
+    "description": "Grotesk numeral typeface option."
+  },
+  "typefaceMono": {
+    "message": "Mono",
+    "description": "Monospace numeral typeface option."
+  },
+  "reflectionToggle": {
+    "message": "ข้อความไตร่ตรองใต้ตัวนับ",
+    "description": "Label for the optional reflection-line switch."
+  },
+  "sectionLifeExpectancy": {
+    "message": "อายุขัยที่คาดการณ์",
+    "description": "Settings section heading."
+  },
+  "source": {
+    "message": "แหล่งที่มา",
+    "description": "Life-expectancy source label."
+  },
+  "sourceEstimate": {
+    "message": "ประมาณการ",
+    "description": "Actuarial estimate source option."
+  },
+  "sourceCustom": {
+    "message": "กำหนดเอง",
+    "description": "Manual life-expectancy source option."
+  },
+  "estimateLine": {
+    "message": "≈ $YEARS$ ปี — โดยอิงจากอายุของคุณและข้อมูลที่เลือก",
+    "description": "Current life-expectancy estimate shown in settings.",
+    "placeholders": {
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
+    }
+  },
+  "estimateMissing": {
+    "message": "เพิ่มวันเกิดของคุณเพื่อดูค่าประมาณ",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
+  },
+  "years": {
+    "message": "ปี",
+    "description": "Manual life-expectancy field label."
+  },
+  "sectionTimeZone": {
+    "message": "เขตเวลา",
+    "description": "Settings section heading."
+  },
+  "bornIn": {
+    "message": "สถานที่เกิด",
+    "description": "Birth time-zone field label."
+  },
+  "zoneHint": {
+    "message": "เชื่อมวันเกิดของคุณกับช่วงเวลาที่แน่นอน เพื่อให้อายุยังคงแม่นยำเมื่อคุณเดินทาง",
+    "description": "Explains the stored birth time zone."
+  },
+  "sectionData": {
+    "message": "ข้อมูล",
+    "description": "Settings section heading."
+  },
+  "exportData": {
+    "message": "ส่งออก…",
+    "description": "Export settings button."
+  },
+  "importData": {
+    "message": "นำเข้า…",
+    "description": "Import settings button."
+  },
+  "changeBirthday": {
+    "message": "เปลี่ยนวันเกิด",
+    "description": "Return to birthday setup button."
+  },
+  "resetColors": {
+    "message": "รีเซ็ตสี",
+    "description": "Reset theme colors button."
+  },
+  "done": {
+    "message": "เสร็จสิ้น",
+    "description": "Close settings button."
+  },
+  "lowContrast": {
+    "message": "คอนทราสต์ต่ำ ($RATIO$:1) ควรตั้งเป้าที่ $TARGET$:1 เทียบกับพื้นหลัง",
+    "description": "Warning shown when a selected color misses WCAG contrast.",
+    "placeholders": {
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
+    }
+  },
+  "presetLight": {
+    "message": "สว่าง",
+    "description": "Light theme preset name."
+  },
+  "presetDark": {
+    "message": "มืด",
+    "description": "Dark theme preset name."
+  },
+  "presetPaper": {
+    "message": "กระดาษ",
+    "description": "Paper theme preset name."
+  },
+  "presetVoid": {
+    "message": "ความว่างเปล่า",
+    "description": "Void theme preset name."
+  },
+  "presetTerminal": {
+    "message": "เทอร์มินัล",
+    "description": "Terminal theme preset name."
+  },
+  "presetBlueprint": {
+    "message": "บลูพรินต์",
+    "description": "Blueprint theme preset name."
+  },
+  "presetAmber": {
+    "message": "อำพัน",
+    "description": "Amber theme preset name."
+  },
+  "themeAria": {
+    "message": "ธีม $THEME$",
+    "description": "Accessible label for a theme preset button.",
+    "placeholders": {
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
+    }
+  },
+  "back": {
+    "message": "กลับ",
+    "description": "Return from the life-in-weeks view."
+  },
+  "weeksSummary": {
+    "message": "มีชีวิตอยู่แล้ว $LIVED$ สัปดาห์ · เหลืออีก $AHEAD$ · $YEARS$ ปี",
+    "description": "Summary above the life-in-weeks grid.",
+    "placeholders": {
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
+    }
+  },
+  "legendLived": {
+    "message": "ผ่านไปแล้ว",
+    "description": "Legend label for elapsed weeks."
+  },
+  "legendThisWeek": {
+    "message": "สัปดาห์นี้",
+    "description": "Legend label for the current week."
+  },
+  "legendAhead": {
+    "message": "เหลืออีก",
+    "description": "Legend label for future weeks."
+  }
+}
