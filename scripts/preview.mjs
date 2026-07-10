@@ -24,11 +24,18 @@ const contentTypes = {
 };
 
 function respond(request, response, status, body, headers = {}) {
+  const contentLength =
+    typeof body === "string"
+      ? Buffer.byteLength(body)
+      : Buffer.isBuffer(body)
+        ? body.length
+        : undefined;
   response.writeHead(status, {
     "cache-control": "no-store",
     ...(typeof body === "string"
       ? { "content-type": "text/plain; charset=utf-8" }
       : {}),
+    ...(contentLength === undefined ? {} : { "content-length": contentLength }),
     ...headers,
   });
   response.end(request.method === "HEAD" ? undefined : body);
@@ -110,6 +117,10 @@ server.listen(port, host);
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
   process.once(signal, () => {
-    server.close(() => process.exit(0));
+    if (server.listening) {
+      server.close(() => process.exit(0));
+    } else {
+      process.exit(0);
+    }
   });
 }
