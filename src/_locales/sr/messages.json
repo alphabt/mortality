@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Актуарска основа",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Извор података о очекиваном трајању живота",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Подразумевано свет. Изричито изабрано — никада се не изводи из ваше временске зоне.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Подразумевано су светски подаци. Ваша временска зона никада не мења овај избор.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Основа",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Извор података",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Свет — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Сједињене Државе — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Основа се никада не изводи из ваше временске зоне. Пол при рођењу је опциони.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Ваша временска зона никада не мења извор података. Пол при рођењу је опциони.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Пол при рођењу",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ год. — актуарска процена за ваше године.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ год. — на основу ваших година и изабраних података.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Додајте датум рођења да бисте видели актуарску процену.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Додајте датум рођења да бисте видели процену.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Године",

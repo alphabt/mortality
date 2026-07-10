@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Actuarial baseline",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Life expectancy data source",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "World by default. Chosen explicitly — never inferred from your time zone.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "World data by default. Your time zone never changes this choice.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Baseline",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Data source",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "World — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "United States — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Baseline is never inferred from your time zone. Sex at birth is optional.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Your time zone never changes the data source. Sex at birth is optional.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Sex at birth",
@@ -251,15 +251,15 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ years — actuarial estimate for your age.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ years — based on your age and selected data.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": { "content": "$1", "example": "84" }
     }
   },
   "estimateMissing": {
-    "message": "Add your birthday to see an actuarial estimate.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Add your birthday to see an estimate.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Years",

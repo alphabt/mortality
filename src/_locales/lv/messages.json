@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Aktuārais pamats",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Paredzamā mūža ilguma datu avots",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Pēc noklusējuma pasaule. Izvēlēts skaidri — nekad netiek noteikts no jūsu laika zonas.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Pēc noklusējuma pasaules dati. Jūsu laika zona nekad nemaina šo izvēli.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Pamats",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Datu avots",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Pasaule — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Amerikas Savienotās Valstis — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Pamats nekad netiek noteikts no jūsu laika zonas. Dzimums pie dzimšanas ir neobligāts.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Jūsu laika zona nekad nemaina datu avotu. Dzimums pie dzimšanas ir neobligāts.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Dzimums pie dzimšanas",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ gadi — aktuārais novērtējums jūsu vecumam.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ gadi — pamatojoties uz jūsu vecumu un atlasītajiem datiem.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Pievienojiet dzimšanas datumu, lai redzētu aktuāro novērtējumu.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Pievienojiet dzimšanas datumu, lai redzētu novērtējumu.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Gadi",

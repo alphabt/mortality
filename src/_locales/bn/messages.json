@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "অ্যাকচুয়ারিয়াল ভিত্তি",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "আয়ুষ্কালের তথ্যের উৎস",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "ডিফল্টভাবে বিশ্ব। স্পষ্টভাবে নির্বাচিত — আপনার টাইম জোন থেকে কখনও অনুমান করা হয় না।",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "ডিফল্টভাবে বিশ্ব তথ্য। আপনার টাইম জোন এই পছন্দ কখনও পরিবর্তন করে না।",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "ভিত্তি",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "তথ্যের উৎস",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "বিশ্ব — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "যুক্তরাষ্ট্র — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "ভিত্তি আপনার টাইম জোন থেকে কখনও অনুমান করা হয় না। জন্মের সময় লিঙ্গ ঐচ্ছিক।",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "আপনার টাইম জোন তথ্যের উৎস কখনও পরিবর্তন করে না। জন্মের সময় লিঙ্গ ঐচ্ছিক।",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "জন্মের সময় লিঙ্গ",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ বছর — আপনার বয়সের জন্য অ্যাকচুয়ারিয়াল অনুমান।",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ বছর — আপনার বয়স এবং নির্বাচিত তথ্যের উপর ভিত্তি করে।",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "অ্যাকচুয়ারিয়াল অনুমান দেখতে আপনার জন্ম তারিখ যুক্ত করুন।",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "অনুমান দেখতে আপনার জন্ম তারিখ যুক্ত করুন।",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "বছর",

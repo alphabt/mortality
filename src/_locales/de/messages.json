@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Versicherungsmathematische Basis",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Datenquelle für die Lebenserwartung",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Standardmäßig Welt. Explizit gewählt — nie aus deiner Zeitzone abgeleitet.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Standardmäßig Weltdaten. Deine Zeitzone ändert diese Wahl nie.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Basis",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Datenquelle",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Welt — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Vereinigte Staaten — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Die Basis wird nie aus deiner Zeitzone abgeleitet. Geschlecht bei Geburt ist optional.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Deine Zeitzone ändert nie die Datenquelle. Geschlecht bei Geburt ist optional.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Geschlecht bei Geburt",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ Jahre — versicherungsmathematische Schätzung für dein Alter.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ Jahre — basierend auf deinem Alter und den ausgewählten Daten.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Gib dein Geburtsdatum ein, um eine versicherungsmathematische Schätzung zu sehen.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Gib dein Geburtsdatum ein, um eine Schätzung zu sehen.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Jahre",

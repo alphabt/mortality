@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "ആക്ച്വേറിയൽ അടിസ്ഥാനരേഖ",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "ആയുർദൈർഘ്യ ഡാറ്റ സ്രോതസ്സ്",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "സ്ഥിരസ്ഥിതിയായി ലോകം. വ്യക്തമായി തിരഞ്ഞെടുത്തത് — നിങ്ങളുടെ ടൈം സോണിൽ നിന്ന് ഒരിക്കലും ഊഹിക്കുന്നില്ല.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "സ്ഥിരസ്ഥിതിയായി ലോക ഡാറ്റ. നിങ്ങളുടെ ടൈം സോൺ ഈ തിരഞ്ഞെടുപ്പ് ഒരിക്കലും മാറ്റുന്നില്ല.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "അടിസ്ഥാനരേഖ",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "ഡാറ്റ സ്രോതസ്സ്",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "ലോകം — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "അമേരിക്ക — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "അടിസ്ഥാനരേഖ നിങ്ങളുടെ ടൈം സോണിൽ നിന്ന് ഒരിക്കലും ഊഹിക്കുന്നില്ല. ജനന സമയത്തെ ലിംഗം ഓപ്ഷണൽ ആണ്.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "നിങ്ങളുടെ ടൈം സോൺ ഡാറ്റ സ്രോതസ്സ് ഒരിക്കലും മാറ്റുന്നില്ല. ജനന സമയത്തെ ലിംഗം ഓപ്ഷണൽ ആണ്.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "ജനന സമയത്തെ ലിംഗം",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ വർഷം — നിങ്ങളുടെ പ്രായത്തിനുള്ള ആക്ച്വേറിയൽ എസ്റ്റിമേറ്റ്.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ വർഷം — നിങ്ങളുടെ പ്രായത്തെയും തിരഞ്ഞെടുത്ത ഡാറ്റയെയും അടിസ്ഥാനമാക്കി.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "ആക്ച്വേറിയൽ എസ്റ്റിമേറ്റ് കാണാൻ നിങ്ങളുടെ ജനന തീയതി ചേർക്കുക.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "എസ്റ്റിമേറ്റ് കാണാൻ നിങ്ങളുടെ ജനന തീയതി ചേർക്കുക.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "വർഷങ്ങൾ",

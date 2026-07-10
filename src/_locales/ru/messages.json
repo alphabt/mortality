@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Актуарная база",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Источник данных об ожидаемой продолжительности жизни",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "По умолчанию — мир. Выбирается явно — никогда не определяется по вашему часовому поясу.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "По умолчанию — мировые данные. Ваш часовой пояс никогда не меняет этот выбор.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "База",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Источник данных",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Мир — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "США — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "База никогда не определяется по вашему часовому поясу. Пол при рождении необязателен.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Ваш часовой пояс никогда не меняет источник данных. Пол при рождении необязателен.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Пол при рождении",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ лет — актуарная оценка для вашего возраста.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ лет — на основе вашего возраста и выбранных данных.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Добавьте дату рождения, чтобы увидеть актуарную оценку.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Добавьте дату рождения, чтобы увидеть оценку.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Лет",

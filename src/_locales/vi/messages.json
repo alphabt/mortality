@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Mức chuẩn tính toán bảo hiểm nhân thọ",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Nguồn dữ liệu tuổi thọ dự kiến",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Theo mặc định là thế giới. Được chọn rõ ràng — không bao giờ suy ra từ múi giờ của bạn.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Theo mặc định là dữ liệu thế giới. Múi giờ của bạn không bao giờ thay đổi lựa chọn này.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Mức chuẩn",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Nguồn dữ liệu",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Thế giới — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Hoa Kỳ — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Mức chuẩn không bao giờ được suy ra từ múi giờ của bạn. Giới tính khi sinh là không bắt buộc.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Múi giờ của bạn không bao giờ thay đổi nguồn dữ liệu. Giới tính khi sinh là không bắt buộc.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Giới tính khi sinh",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ năm — ước tính bảo hiểm nhân thọ cho tuổi của bạn.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ năm — dựa trên tuổi của bạn và dữ liệu đã chọn.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Thêm ngày sinh của bạn để xem ước tính bảo hiểm nhân thọ.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Thêm ngày sinh của bạn để xem ước tính.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Năm",

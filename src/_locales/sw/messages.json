@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Msingi wa kiakturia",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Chanzo cha data ya matarajio ya maisha",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Dunia kwa chaguo-msingi. Huchaguliwa moja kwa moja — haijawahi kudhaniwa kutoka saa za eneo lako.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Data ya dunia kwa chaguo-msingi. Saa za eneo lako haziwahi kubadilisha chaguo hili.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Msingi",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Chanzo cha data",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Dunia — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Marekani — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Msingi haujawahi kudhaniwa kutoka saa za eneo lako. Jinsia wakati wa kuzaliwa si lazima.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Saa za eneo lako haziwahi kubadilisha chanzo cha data. Jinsia wakati wa kuzaliwa si lazima.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Jinsia wakati wa kuzaliwa",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ Miaka $YEARS$ — makadirio ya kiakturia kwa umri wako.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ Miaka $YEARS$ — kulingana na umri wako na data uliyochagua.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Ongeza tarehe yako ya kuzaliwa ili kuona makadirio ya kiakturia.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Ongeza tarehe yako ya kuzaliwa ili kuona makadirio.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Miaka",

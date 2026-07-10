@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Actuariële basislijn",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Gegevensbron voor levensverwachting",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Standaard wereld. Expliciet gekozen — nooit afgeleid van je tijdzone.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Standaard wereldgegevens. Je tijdzone verandert deze keuze nooit.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Basislijn",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Gegevensbron",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Wereld — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Verenigde Staten — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "De basislijn wordt nooit afgeleid van je tijdzone. Geslacht bij geboorte is optioneel.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Je tijdzone verandert nooit de gegevensbron. Geslacht bij geboorte is optioneel.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Geslacht bij geboorte",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ jaar — actuariële schatting voor jouw leeftijd.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ jaar — op basis van je leeftijd en de geselecteerde gegevens.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Voeg je geboortedatum toe om een actuariële schatting te zien.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Voeg je geboortedatum toe om een schatting te zien.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Jaar",

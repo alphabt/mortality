@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "保険数理の基準",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "平均寿命データの出典",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "デフォルトは世界です。明示的に選択され、タイムゾーンから推測されることはありません。",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "デフォルトは世界のデータです。タイムゾーンによってこの選択が変わることはありません。",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "基準",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "データソース",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "世界 — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "アメリカ合衆国 — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "基準はタイムゾーンから推測されることはありません。出生時の性別は任意です。",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "タイムゾーンによってデータソースが変わることはありません。出生時の性別は任意です。",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "出生時の性別",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ 年 — あなたの年齢に基づく保険数理上の推定値。",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ 年 — あなたの年齢と選択したデータに基づく推定値。",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "保険数理上の推定値を見るには生年月日を追加してください。",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "推定値を見るには生年月日を追加してください。",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "年",

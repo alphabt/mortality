@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Aktuarmæssig basislinje",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Datakilde for forventet levealder",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Verden som standard. Valgt explicit — udledes aldrig af din tidszone.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Verdensdata som standard. Din tidszone ændrer aldrig dette valg.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Basislinje",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Datakilde",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Verden — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "USA — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Basislinjen udledes aldrig af din tidszone. Køn ved fødslen er valgfrit.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Din tidszone ændrer aldrig datakilden. Køn ved fødslen er valgfrit.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Køn ved fødslen",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ år — aktuarmæssigt estimat for din alder.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ år — baseret på din alder og de valgte data.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Tilføj din fødselsdato for at se et aktuarmæssigt estimat.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Tilføj din fødselsdato for at se et estimat.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "År",

@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "காப்பீட்டியல் அடிப்படைக்கோடு",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "ஆயுட்காலத் தரவு மூலம்",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "இயல்பாக உலகம். வெளிப்படையாக தேர்ந்தெடுக்கப்பட்டது — உங்கள் நேர மண்டலத்தில் இருந்து ஒருபோதும் ஊகிக்கப்படாது.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "இயல்பாக உலகத் தரவு. உங்கள் நேர மண்டலம் இந்தத் தேர்வை ஒருபோதும் மாற்றாது.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "அடிப்படைக்கோடு",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "தரவு மூலம்",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "உலகம் — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "அமெரிக்கா — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "அடிப்படைக்கோடு உங்கள் நேர மண்டலத்தில் இருந்து ஒருபோதும் ஊகிக்கப்படாது. பிறப்பின்போது பாலினம் விருப்பமானது.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "உங்கள் நேர மண்டலம் தரவு மூலத்தை ஒருபோதும் மாற்றாது. பிறப்பின்போது பாலினம் விருப்பமானது.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "பிறப்பின்போது பாலினம்",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ ஆண்டுகள் — உங்கள் வயதுக்கான காப்பீட்டியல் மதிப்பீடு.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ ஆண்டுகள் — உங்கள் வயது மற்றும் தேர்ந்தெடுத்த தரவின் அடிப்படையில்.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "காப்பீட்டியல் மதிப்பீட்டைக் காண உங்கள் பிறந்த தேதியைச் சேர்க்கவும்.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "மதிப்பீட்டைக் காண உங்கள் பிறந்த தேதியைச் சேர்க்கவும்.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "ஆண்டுகள்",

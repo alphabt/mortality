@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "خط پایه بیمه‌سنجی",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "منبع داده امید به زندگی",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "پیش‌فرض جهان است. به‌صورت صریح انتخاب می‌شود — هرگز از منطقهٔ زمانی شما استنباط نمی‌شود.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "به‌طور پیش‌فرض داده‌های جهانی. منطقهٔ زمانی شما هرگز این انتخاب را تغییر نمی‌دهد.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "خط پایه",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "منبع داده",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "جهان — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "ایالات متحده — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "خط پایه هرگز از منطقهٔ زمانی شما استنباط نمی‌شود. جنسیت هنگام تولد اختیاری است.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "منطقهٔ زمانی شما هرگز منبع داده را تغییر نمی‌دهد. جنسیت هنگام تولد اختیاری است.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "جنسیت هنگام تولد",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ سال — برآورد بیمه‌سنجی برای سن شما.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ سال — بر اساس سن شما و داده‌های انتخاب‌شده.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "تاریخ تولد خود را اضافه کنید تا برآورد بیمه‌سنجی را ببینید.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "تاریخ تولد خود را اضافه کنید تا برآوردی را ببینید.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "سال",

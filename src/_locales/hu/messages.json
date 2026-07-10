@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Aktuáriusi alapérték",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Várható élettartam adatforrása",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Alapértelmezés szerint a világ. Kifejezetten kiválasztva — sosem az időzónádból következtetve.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Alapértelmezés szerint világadatok. Az időzónád soha nem változtatja meg ezt a választást.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Alapérték",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Adatforrás",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Világ — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Egyesült Államok — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Az alapértéket soha nem az időzónádból következtetjük ki. A nem a születéskor opcionális.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Az időzónád soha nem változtatja meg az adatforrást. A nem a születéskor opcionális.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Nem a születéskor",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ év — aktuáriusi becslés az életkorodhoz.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ év — az életkorod és a kiválasztott adatok alapján.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Add meg a születési dátumodat az aktuáriusi becslés megtekintéséhez.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Add meg a születési dátumodat a becslés megtekintéséhez.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Évek",

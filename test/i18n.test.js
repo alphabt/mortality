@@ -168,6 +168,57 @@ describe("locale catalogs", () => {
     }
   });
 
+  it("uses plain data-source language and removes the superseded copy", () => {
+    expect({
+      actuarialBaseline: EN_MESSAGES.actuarialBaseline,
+      baselineSetupHint: EN_MESSAGES.baselineSetupHint,
+      baseline: EN_MESSAGES.baseline,
+      estimateLine: EN_MESSAGES.estimateLine,
+      estimateMissing: EN_MESSAGES.estimateMissing,
+      baselineSettingsHint: EN_MESSAGES.baselineSettingsHint,
+    }).toEqual({
+      actuarialBaseline: "Life expectancy data source",
+      baselineSetupHint:
+        "World data by default. Your time zone never changes this choice.",
+      baseline: "Data source",
+      estimateLine: "≈ $YEARS$ years — based on your age and selected data.",
+      estimateMissing: "Add your birthday to see an estimate.",
+      baselineSettingsHint:
+        "Your time zone never changes the data source. Sex at birth is optional.",
+    });
+
+    const superseded = [
+      "Actuarial baseline",
+      "World by default. Chosen explicitly — never inferred from your time zone.",
+      "Baseline",
+      "≈ $YEARS$ years — actuarial estimate for your age.",
+      "Add your birthday to see an actuarial estimate.",
+      "Baseline is never inferred from your time zone. Sex at birth is optional.",
+    ];
+    const descriptionKeys = [
+      "actuarialBaseline",
+      "baselineSetupHint",
+      "baseline",
+      "lifeTableWorld",
+      "lifeTableUS",
+      "baselineSettingsHint",
+      "estimateLine",
+      "estimateMissing",
+    ];
+    for (const locale of LOCALES) {
+      const translated = catalog(locale);
+      const messages = Object.values(translated).map(({ message }) => message);
+      for (const phrase of superseded) {
+        expect(messages, `${locale}: ${phrase}`).not.toContain(phrase);
+      }
+      for (const key of descriptionKeys) {
+        expect(translated[key].description, `${locale}.${key}`).toBe(
+          english[key].description,
+        );
+      }
+    }
+  });
+
   it("does not wholesale-copy English into non-English catalogs", () => {
     const exceptions = new Set(["en", "en_AU", "en_GB", "en_US"]);
     for (const locale of LOCALES.filter((code) => !exceptions.has(code))) {
@@ -311,8 +362,8 @@ describe("localized rendering", () => {
       timeHint: "Die Zeitangabe ist optional.",
       birthplaceLabel: "Wo wurden Sie geboren?",
       birthplaceHint: "Standardmäßig wird Ihre aktuelle Zeitzone verwendet.",
-      actuarialBaseline: "Versicherungsmathematische Grundlage",
-      baselineSetupHint: "Standardmäßig weltweit.",
+      actuarialBaseline: "Datenquelle zur Lebenserwartung",
+      baselineSetupHint: "Standardmäßig weltweite Daten.",
       lifeTableWorld: "Welt — UN 2023",
       lifeTableUS: "Vereinigte Staaten — SSA 2023",
       sexAtBirth: "Bei der Geburt zugewiesenes Geschlecht",
@@ -328,6 +379,6 @@ describe("localized rendering", () => {
     );
     expect(app.textContent).not.toContain("When were you born?");
     expect(app.textContent).not.toContain("Where were you born?");
-    expect(app.textContent).not.toContain("Actuarial baseline");
+    expect(app.textContent).not.toContain("Life expectancy data source");
   });
 });

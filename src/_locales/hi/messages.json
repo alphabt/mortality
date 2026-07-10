@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "बीमांकिक आधार रेखा",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "जीवन प्रत्याशा डेटा स्रोत",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "डिफ़ॉल्ट रूप से विश्व। स्पष्ट रूप से चुना गया — आपके टाइम ज़ोन से कभी अनुमानित नहीं।",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "डिफ़ॉल्ट रूप से विश्व डेटा। आपका टाइम ज़ोन इस विकल्प को कभी नहीं बदलता।",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "आधार रेखा",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "डेटा स्रोत",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "विश्व — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "संयुक्त राज्य अमेरिका — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "आधार रेखा आपके टाइम ज़ोन से कभी अनुमानित नहीं होती। जन्म के समय लिंग वैकल्पिक है।",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "आपका टाइम ज़ोन डेटा स्रोत को कभी नहीं बदलता। जन्म के समय लिंग वैकल्पिक है।",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "जन्म के समय लिंग",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ वर्ष — आपकी उम्र के लिए बीमांकिक अनुमान।",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ वर्ष — आपकी उम्र और चुने गए डेटा के आधार पर।",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "बीमांकिक अनुमान देखने के लिए अपनी जन्म तिथि जोड़ें।",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "अनुमान देखने के लिए अपनी जन्म तिथि जोड़ें।",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "वर्ष",

@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "קו בסיס אקטוארי",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "מקור נתוני תוחלת החיים",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "כברירת מחדל, העולם. נבחר באופן מפורש — לעולם לא נגזר מאזור הזמן שלך.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "נתוני העולם כברירת מחדל. אזור הזמן שלך לעולם לא משנה את הבחירה הזו.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "קו בסיס",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "מקור הנתונים",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "העולם — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "ארצות הברית — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "קו הבסיס לעולם לא נגזר מאזור הזמן שלך. מגדר בלידה הוא אופציונלי.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "אזור הזמן שלך לעולם לא משנה את מקור הנתונים. מגדר בלידה הוא אופציונלי.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "מגדר בלידה",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ שנים — הערכה אקטוארית לגילך.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ שנים — בהתבסס על גילך ועל הנתונים שנבחרו.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "הוסף את תאריך הלידה שלך כדי לראות הערכה אקטוארית.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "הוסף את תאריך הלידה שלך כדי לראות הערכה.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "שנים",

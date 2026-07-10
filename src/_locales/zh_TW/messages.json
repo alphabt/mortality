@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "精算基準",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "預期壽命資料來源",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "預設為世界。明確選擇——絕不會從你的時區推斷。",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "預設為世界資料。你的時區絕不會改變此選擇。",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "基準",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "資料來源",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "世界 — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "美國 — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "基準絕不會從你的時區推斷。出生時的性別為選填。",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "你的時區絕不會改變資料來源。出生時的性別為選填。",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "出生時的性別",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ 年 — 依你年齡計算的精算估算值。",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ 年 — 根據你的年齡與所選資料計算。",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "新增你的出生日期以查看精算估算值。",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "新增你的出生日期以查看估算值。",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "年",

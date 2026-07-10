@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Base actuarial",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Font de dades d'esperança de vida",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Món per defecte. Triat explícitament — mai s'infereix de la teva zona horària.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Dades mundials per defecte. La teva zona horària mai no canvia aquesta elecció.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Base",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Font de dades",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Món — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Estats Units — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "La base mai s'infereix de la teva zona horària. El sexe en néixer és opcional.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "La teva zona horària mai no canvia la font de dades. El sexe en néixer és opcional.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Sexe en néixer",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ anys — estimació actuarial per a la teva edat.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ anys — basat en la teva edat i les dades seleccionades.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Afegeix la teva data de naixement per veure una estimació actuarial.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Afegeix la teva data de naixement per veure una estimació.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Anys",

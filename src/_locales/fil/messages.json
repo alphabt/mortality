@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Aktwaryal na batayan",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Pinagmulan ng datos ng inaasahang tagal ng buhay",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Mundo bilang default. Pinili nang tahasan — hindi kailanman hinuhalaw mula sa iyong time zone.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Data ng mundo bilang default. Hindi kailanman babaguhin ng iyong time zone ang pagpiling ito.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Batayan",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Pinagmulan ng datos",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Mundo — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Estados Unidos — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Ang batayan ay hindi kailanman hinuhalaw mula sa iyong time zone. Opsyonal ang kasarian sa kapanganakan.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Hindi kailanman babaguhin ng iyong time zone ang pinagmulan ng datos. Opsyonal ang kasarian sa kapanganakan.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Kasarian sa kapanganakan",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ taon — aktwaryal na tantiya para sa iyong edad.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ taon — batay sa iyong edad at sa piniling datos.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Idagdag ang petsa ng kapanganakan mo para makita ang aktwaryal na tantiya.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Idagdag ang petsa ng kapanganakan mo para makita ang tantiya.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Taon",

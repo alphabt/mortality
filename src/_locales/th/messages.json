@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "ค่าฐานเชิงคณิตศาสตร์ประกันภัย",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "แหล่งข้อมูลอายุขัยเฉลี่ย",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "ค่าเริ่มต้นคือโลก เลือกอย่างชัดเจน — ไม่เคยอนุมานจากเขตเวลาของคุณ",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "ค่าเริ่มต้นคือข้อมูลของโลก เขตเวลาของคุณไม่เคยเปลี่ยนตัวเลือกนี้",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "ค่าฐาน",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "แหล่งข้อมูล",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "โลก — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "สหรัฐอเมริกา — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "ค่าฐานไม่เคยอนุมานจากเขตเวลาของคุณ เพศตอนเกิดเป็นทางเลือก",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "เขตเวลาของคุณไม่เคยเปลี่ยนแหล่งข้อมูล เพศตอนเกิดเป็นทางเลือก",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "เพศตอนเกิด",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ ปี — ค่าประมาณเชิงคณิตศาสตร์ประกันภัยสำหรับอายุของคุณ",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ ปี — โดยอิงจากอายุของคุณและข้อมูลที่เลือก",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "เพิ่มวันเกิดของคุณเพื่อดูค่าประมาณเชิงคณิตศาสตร์ประกันภัย",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "เพิ่มวันเกิดของคุณเพื่อดูค่าประมาณ",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "ปี",

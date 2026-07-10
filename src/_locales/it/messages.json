@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Base attuariale",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Fonte dei dati sull'aspettativa di vita",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Mondo per impostazione predefinita. Scelto esplicitamente: non viene mai dedotto dal tuo fuso orario.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Dati mondiali per impostazione predefinita. Il tuo fuso orario non cambia mai questa scelta.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Base",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Fonte dei dati",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Mondo — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Stati Uniti — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "La base non viene mai dedotta dal tuo fuso orario. Il sesso alla nascita è opzionale.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Il tuo fuso orario non cambia mai la fonte dei dati. Il sesso alla nascita è opzionale.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Sesso alla nascita",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ anni — stima attuariale per la tua età.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ anni — in base alla tua età e ai dati selezionati.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Aggiungi la tua data di nascita per vedere una stima attuariale.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Aggiungi la tua data di nascita per vedere una stima.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Anni",

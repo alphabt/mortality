@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Aktuarinis pagrindas",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Tikėtinos gyvenimo trukmės duomenų šaltinis",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Pagal nutylėjimą – pasaulis. Pasirinkta aiškiai — niekada nesprendžiama pagal jūsų laiko zoną.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Pagal nutylėjimą – pasaulio duomenys. Jūsų laiko zona niekada nepakeičia šio pasirinkimo.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Pagrindas",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Duomenų šaltinis",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Pasaulis — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Jungtinės Valstijos — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Pagrindas niekada nenustatomas pagal jūsų laiko zoną. Lytis gimus yra neprivaloma.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Jūsų laiko zona niekada nepakeičia duomenų šaltinio. Lytis gimus yra neprivaloma.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Lytis gimus",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ metai — aktuarinis įvertis jūsų amžiui.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ metai — pagal jūsų amžių ir pasirinktus duomenis.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Įveskite gimimo datą, kad pamatytumėte aktuarinį įvertį.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Įveskite gimimo datą, kad pamatytumėte įvertį.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Metai",

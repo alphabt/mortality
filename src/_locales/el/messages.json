@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Αναλογιστική βάση",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Πηγή δεδομένων προσδόκιμου ζωής",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Ο κόσμος από προεπιλογή. Επιλέγεται ρητά — δεν συνάγεται ποτέ από τη ζώνη ώρας σου.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Δεδομένα κόσμου από προεπιλογή. Η ζώνη ώρας σου δεν αλλάζει ποτέ αυτήν την επιλογή.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Βάση",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Πηγή δεδομένων",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Κόσμος — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Ηνωμένες Πολιτείες — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Η βάση δεν συνάγεται ποτέ από τη ζώνη ώρας σου. Το φύλο κατά τη γέννηση είναι προαιρετικό.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Η ζώνη ώρας σου δεν αλλάζει ποτέ την πηγή δεδομένων. Το φύλο κατά τη γέννηση είναι προαιρετικό.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Φύλο κατά τη γέννηση",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ έτη — αναλογιστική εκτίμηση για την ηλικία σου.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ έτη — με βάση την ηλικία σου και τα επιλεγμένα δεδομένα.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Πρόσθεσε την ημερομηνία γέννησης σου για να δεις μια αναλογιστική εκτίμηση.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Πρόσθεσε την ημερομηνία γέννησής σου για να δεις μια εκτίμηση.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Έτη",

@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Aktuarialny poziom odniesienia",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Źródło danych o długości życia",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Domyślnie świat. Wybierany jawnie — nigdy nie jest wywnioskowany z Twojej strefy czasowej.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Domyślnie dane światowe. Twoja strefa czasowa nigdy nie zmienia tego wyboru.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Poziom odniesienia",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Źródło danych",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Świat — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Stany Zjednoczone — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Poziom odniesienia nigdy nie jest wywnioskowany z Twojej strefy czasowej. Płeć przy urodzeniu jest opcjonalna.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Twoja strefa czasowa nigdy nie zmienia źródła danych. Płeć przy urodzeniu jest opcjonalna.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Płeć przy urodzeniu",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ lat — szacunek aktuarialny dla Twojego wieku.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ lat — na podstawie Twojego wieku i wybranych danych.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Dodaj datę urodzenia, aby zobaczyć szacunek aktuarialny.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Dodaj datę urodzenia, aby zobaczyć szacunkową wartość.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Lata",

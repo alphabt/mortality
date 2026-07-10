@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Garis dasar aktuari",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Sumber data jangka hayat",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Dunia secara lalai. Dipilih secara jelas — tidak pernah disimpulkan daripada zon waktu anda.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Data dunia secara lalai. Zon waktu anda tidak pernah mengubah pilihan ini.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Garis dasar",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Sumber data",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Dunia — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Amerika Syarikat — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Garis dasar tidak pernah disimpulkan daripada zon waktu anda. Jantina semasa lahir adalah pilihan.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Zon waktu anda tidak pernah mengubah sumber data. Jantina semasa lahir adalah pilihan.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Jantina semasa lahir",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ tahun — anggaran aktuari untuk usia anda.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ tahun — berdasarkan usia anda dan data yang dipilih.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Tambah tarikh lahir anda untuk melihat anggaran aktuari.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Tambah tarikh lahir anda untuk melihat anggaran.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Tahun",

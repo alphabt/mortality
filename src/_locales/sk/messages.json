@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Poistno-matematický základ",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Zdroj údajov o očakávanej dĺžke života",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Predvolene svet. Vybraté explicitne — nikdy neodvodené z vášho časového pásma.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Predvolene sú svetové údaje. Vaše časové pásmo túto voľbu nikdy nezmení.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Základ",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Zdroj údajov",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Svet — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Spojené štáty — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Základ sa nikdy neodvodzuje z vášho časového pásma. Pohlavie pri narodení je nepovinné.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Vaše časové pásmo nikdy nezmení zdroj údajov. Pohlavie pri narodení je nepovinné.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Pohlavie pri narodení",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ rokov — poistno-matematický odhad pre váš vek.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ rokov — na základe vášho veku a vybraných údajov.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Zadajte dátum narodenia na zobrazenie poistno-matematického odhadu.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Zadajte dátum narodenia na zobrazenie odhadu.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Roky",

@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "خط الأساس الاكتواري",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "مصدر بيانات متوسط العمر المتوقع",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "العالم افتراضيًا. يُختار صراحةً — ولا يُستنتج مطلقًا من منطقتك الزمنية.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "بيانات العالم بشكل افتراضي. منطقتك الزمنية لا تغيّر هذا الاختيار أبدًا.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "خط الأساس",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "مصدر البيانات",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "العالم — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "الولايات المتحدة — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "لا يُستنتج خط الأساس مطلقًا من منطقتك الزمنية. الجنس عند الولادة اختياري.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "منطقتك الزمنية لا تغيّر مصدر البيانات أبدًا. الجنس عند الولادة اختياري.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "الجنس عند الولادة",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ سنة — تقدير اكتواري لعمرك.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ سنة — بناءً على عمرك والبيانات المحددة.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "أضف تاريخ ميلادك لرؤية تقدير اكتواري.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "أضف تاريخ ميلادك لرؤية تقدير.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "سنوات",

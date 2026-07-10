@@ -48,28 +48,28 @@
     "description": "Explains how the birthplace time zone anchors the age calculation."
   },
   "actuarialBaseline": {
-    "message": "Aktüeryal taban değer",
-    "description": "Label for the actuarial life-table selector during setup."
+    "message": "Yaşam beklentisi veri kaynağı",
+    "description": "Label for the life-expectancy data-source selector during setup."
   },
   "baselineSetupHint": {
-    "message": "Varsayılan olarak Dünya. Açıkça seçilir — saat diliminizden asla çıkarılmaz.",
-    "description": "Explains the default and privacy behavior of the actuarial baseline during setup."
+    "message": "Varsayılan olarak dünya verileri. Saat diliminiz bu seçimi asla değiştirmez.",
+    "description": "Explains the default and that time zone does not select the life-expectancy data source."
   },
   "baseline": {
-    "message": "Taban değer",
-    "description": "Short label for the actuarial life-table selector in settings."
+    "message": "Veri kaynağı",
+    "description": "Short label for the life-expectancy data-source selector in settings."
   },
   "lifeTableWorld": {
     "message": "Dünya — UN 2023",
-    "description": "Display name for the global United Nations 2023 actuarial baseline."
+    "description": "Display name for the global United Nations 2023 life-expectancy data source."
   },
   "lifeTableUS": {
     "message": "Amerika Birleşik Devletleri — SSA 2023",
-    "description": "Display name for the United States Social Security Administration 2023 actuarial baseline."
+    "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
   "baselineSettingsHint": {
-    "message": "Taban değer saat diliminizden asla çıkarılmaz. Doğumda cinsiyet isteğe bağlıdır.",
-    "description": "Privacy explanation below the actuarial estimate settings."
+    "message": "Saat diliminiz veri kaynağını asla değiştirmez. Doğumda cinsiyet isteğe bağlıdır.",
+    "description": "Privacy explanation below the life-expectancy estimate settings."
   },
   "sexAtBirth": {
     "message": "Doğumda cinsiyet",
@@ -278,8 +278,8 @@
     "description": "Manual life-expectancy source option."
   },
   "estimateLine": {
-    "message": "≈ $YEARS$ yıl — yaşınız için aktüeryal tahmin.",
-    "description": "Current actuarial estimate shown in settings.",
+    "message": "≈ $YEARS$ yıl — yaşınıza ve seçilen verilere dayanır.",
+    "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
       "years": {
         "content": "$1",
@@ -288,8 +288,8 @@
     }
   },
   "estimateMissing": {
-    "message": "Aktüeryal bir tahmin görmek için doğum tarihinizi ekleyin.",
-    "description": "Shown when an actuarial estimate cannot be calculated."
+    "message": "Bir tahmin görmek için doğum tarihinizi ekleyin.",
+    "description": "Shown when a life-expectancy estimate cannot be calculated."
   },
   "years": {
     "message": "Yıl",
