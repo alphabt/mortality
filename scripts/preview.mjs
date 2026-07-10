@@ -26,6 +26,9 @@ const contentTypes = {
 function respond(response, status, body, headers = {}) {
   response.writeHead(status, {
     "cache-control": "no-store",
+    ...(typeof body === "string"
+      ? { "content-type": "text/plain; charset=utf-8" }
+      : {}),
     ...headers,
   });
   response.end(body);
