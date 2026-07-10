@@ -12,8 +12,10 @@ A browser extension that replaces your new tab page with a live counter of your 
 - **Multiple units** — switch between age, calendar age, a live next-birthday
   countdown, days or weeks lived, time left, and percent of an expected lifetime
   elapsed.
+- **Actuarial estimate** — conditions expected lifespan on your current age, using an
+  explicitly selected World (UN 2023) or United States (SSA 2023) baseline.
 - **Personalization** — light and dark themes that follow your system, color presets
-  and custom colors, and an adjustable life expectancy.
+  and custom colors, plus a fully custom life expectancy.
 - **Accessible and calm** — WCAG 2.1 AA, a `prefers-reduced-motion` path, and full
   keyboard support.
 

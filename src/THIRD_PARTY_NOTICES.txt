@@ -1,0 +1,31 @@
+Mortality includes data from the following sources:
+
+UNITED NATIONS WORLD POPULATION PROSPECTS 2024
+
+United Nations, Department of Economic and Social Affairs, Population
+Division (2024). World Population Prospects 2024.
+https://population.un.org/wpp/
+
+The embedded World 2023 male, female, and both-sexes
+life-expectancy-at-age (ex) series were extracted from these complete
+life-table CSV files and converted to JavaScript arrays:
+
+https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Life_Table_Complete_Medium_Male_1950-2023.csv.gz
+https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Life_Table_Complete_Medium_Female_1950-2023.csv.gz
+https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Life_Table_Complete_Medium_Both_1950-2023.csv.gz
+
+Licensed under Creative Commons Attribution 3.0 IGO:
+https://creativecommons.org/licenses/by/3.0/igo/
+
+The data may be shared and adapted with attribution. Mortality is not
+endorsed by the United Nations.
+
+
+U.S. SOCIAL SECURITY ADMINISTRATION PERIOD LIFE TABLE 2023
+
+U.S. Social Security Administration, Actuarial Life Table, Period Life
+Table 2023 (as used in the 2026 Trustees Report).
+https://www.ssa.gov/oact/STATS/table4c6.html
+
+This table is a work of the U.S. federal government and is in the public
+domain under 17 U.S.C. Section 105.

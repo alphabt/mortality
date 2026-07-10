@@ -118,6 +118,7 @@ describe("mergeImported", () => {
     expectancy: 80,
     expectancySource: "estimate",
     sex: null,
+    lifeTable: "world",
     mode: "years",
     typeface: "system",
     reflection: false,
@@ -165,6 +166,16 @@ describe("mergeImported", () => {
     expect(
       mergeImported(current, { expectancySource: "banana" }).expectancySource,
     ).toBe(current.expectancySource);
+  });
+
+  it("accepts known life tables and ignores an unknown one", () => {
+    expect(mergeImported(current, { lifeTable: "us" }).lifeTable).toBe("us");
+    expect(mergeImported(current, { lifeTable: "world" }).lifeTable).toBe(
+      "world",
+    );
+    expect(mergeImported(current, { lifeTable: "timezone" }).lifeTable).toBe(
+      current.lifeTable,
+    );
   });
 
   it("falls back to the system typeface for an unknown value", () => {

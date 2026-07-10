@@ -1,16 +1,35 @@
 import { describe, it, expect } from "vitest";
-import { MALE, FEMALE, UNISEX, estimateExpectancy } from "../src/lifetable.js";
+import {
+  DEFAULT_LIFE_TABLE,
+  FEMALE,
+  LIFE_TABLE_OPTIONS,
+  MALE,
+  UNISEX,
+  WORLD_BOTH,
+  WORLD_FEMALE,
+  WORLD_MALE,
+  WORLD_UNISEX,
+  estimateExpectancy,
+  normalizeLifeTable,
+} from "../src/lifetable.js";
 
-const AGES = Array.from({ length: 120 }, (_, x) => x);
+const US_AGES = Array.from({ length: 120 }, (_, age) => age);
+const WORLD_AGES = Array.from({ length: 101 }, (_, age) => age);
+
+function expectTotalAgeToRise(table) {
+  for (let age = 1; age < table.length; age++) {
+    expect(age + table[age]).toBeGreaterThanOrEqual(age - 1 + table[age - 1]);
+  }
+}
 
 describe("life table data", () => {
-  it("covers integer ages 0..119 for both sexes", () => {
+  it("covers SSA integer ages 0..119", () => {
     expect(MALE.length).toBe(120);
     expect(FEMALE.length).toBe(120);
     expect(UNISEX.length).toBe(120);
   });
 
-  it("matches the SSA source spot values (Period Life Table, 2023)", () => {
+  it("matches SSA Period Life Table 2023 spot values", () => {
     expect(MALE[0]).toBeCloseTo(75.79, 2);
     expect(MALE[65]).toBeCloseTo(18.12, 2);
     expect(MALE[100]).toBeCloseTo(2.04, 2);
@@ -19,76 +38,154 @@ describe("life table data", () => {
     expect(FEMALE[100]).toBeCloseTo(2.23, 2);
   });
 
-  it("derives UNISEX as the simple average of MALE and FEMALE", () => {
-    for (const x of AGES) {
-      expect(UNISEX[x]).toBeCloseTo((MALE[x] + FEMALE[x]) / 2, 10);
+  it("covers UN World ages 0..99 plus the 100+ endpoint", () => {
+    expect(WORLD_MALE.length).toBe(101);
+    expect(WORLD_FEMALE.length).toBe(101);
+    expect(WORLD_BOTH.length).toBe(101);
+    expect(WORLD_UNISEX.length).toBe(101);
+  });
+
+  it("matches UN WPP 2024 World 2023 spot values", () => {
+    expect(WORLD_MALE[0]).toBeCloseTo(70.5472, 4);
+    expect(WORLD_MALE[65]).toBeCloseTo(16.0083, 4);
+    expect(WORLD_MALE[100]).toBeCloseTo(2.0733, 4);
+    expect(WORLD_FEMALE[0]).toBeCloseTo(75.8857, 4);
+    expect(WORLD_FEMALE[65]).toBeCloseTo(18.9811, 4);
+    expect(WORLD_FEMALE[100]).toBeCloseTo(2.269, 4);
+    expect(WORLD_BOTH[0]).toBeCloseTo(73.1694, 4);
+    expect(WORLD_BOTH[65]).toBeCloseTo(17.5661, 4);
+    expect(WORLD_BOTH[100]).toBeCloseTo(2.2298, 4);
+  });
+
+  it("derives the SSA unisex table as the simple male/female average", () => {
+    for (const age of US_AGES) {
+      expect(UNISEX[age]).toBeCloseTo((MALE[age] + FEMALE[age]) / 2, 10);
     }
   });
 
-  it("has a non-increasing e(x) with age (remaining life shrinks)", () => {
-    for (const table of [MALE, FEMALE, UNISEX]) {
-      for (let x = 1; x < table.length; x++) {
-        expect(table[x]).toBeLessThanOrEqual(table[x - 1] + 1e-9);
-      }
+  it("uses the official UN both-sexes series for the World unisex table", () => {
+    for (const age of WORLD_AGES) {
+      expect(WORLD_UNISEX[age]).toBe(WORLD_BOTH[age]);
+      expect(WORLD_UNISEX[age]).toBeGreaterThanOrEqual(WORLD_MALE[age]);
+      expect(WORLD_UNISEX[age]).toBeLessThanOrEqual(WORLD_FEMALE[age]);
     }
   });
 
-  it("keeps female e(x) at or above male e(x) at every age", () => {
-    for (const x of AGES) {
-      expect(FEMALE[x]).toBeGreaterThanOrEqual(MALE[x]);
+  it("keeps total expected age non-decreasing in every table", () => {
+    for (const table of [
+      MALE,
+      FEMALE,
+      UNISEX,
+      WORLD_MALE,
+      WORLD_FEMALE,
+      WORLD_BOTH,
+      WORLD_UNISEX,
+    ]) {
+      expectTotalAgeToRise(table);
+    }
+  });
+
+  it("keeps female e(x) at or above male e(x) in each baseline", () => {
+    for (const age of US_AGES) {
+      expect(FEMALE[age]).toBeGreaterThanOrEqual(MALE[age]);
+    }
+    for (const age of WORLD_AGES) {
+      expect(WORLD_FEMALE[age]).toBeGreaterThanOrEqual(WORLD_MALE[age]);
     }
   });
 });
 
+describe("life-table baseline metadata", () => {
+  it("defaults to World and exposes explicit World and U.S. choices", () => {
+    expect(DEFAULT_LIFE_TABLE).toBe("world");
+    expect(LIFE_TABLE_OPTIONS.map(({ value }) => value)).toEqual([
+      "world",
+      "us",
+    ]);
+    expect(LIFE_TABLE_OPTIONS[0].label).toContain("UN 2023");
+    expect(LIFE_TABLE_OPTIONS[1].label).toContain("SSA 2023");
+  });
+
+  it("normalizes unknown values to World", () => {
+    expect(normalizeLifeTable("world")).toBe("world");
+    expect(normalizeLifeTable("us")).toBe("us");
+    expect(normalizeLifeTable("unknown")).toBe("world");
+    expect(normalizeLifeTable(null)).toBe("world");
+  });
+});
+
 describe("estimateExpectancy", () => {
-  it("returns a plausible at-birth expectancy for each sex", () => {
-    // Recent SSA period tables: e(0) male ~73-76, female ~79-82.
-    expect(estimateExpectancy(0, "male")).toBeGreaterThanOrEqual(73);
-    expect(estimateExpectancy(0, "male")).toBeLessThanOrEqual(76);
-    expect(estimateExpectancy(0, "female")).toBeGreaterThanOrEqual(79);
-    expect(estimateExpectancy(0, "female")).toBeLessThanOrEqual(82);
+  it("uses the World baseline by default", () => {
+    expect(estimateExpectancy(0, "male")).toBe(
+      estimateExpectancy(0, "male", "world"),
+    );
+    expect(estimateExpectancy(0, "male")).toBe(71);
+    expect(estimateExpectancy(0, "female")).toBe(76);
+  });
+
+  it("can select the U.S. SSA baseline explicitly", () => {
+    expect(estimateExpectancy(0, "male", "us")).toBe(76);
+    expect(estimateExpectancy(0, "female", "us")).toBe(81);
+    expect(estimateExpectancy(65, "male", "us")).toBe(83);
+  });
+
+  it("falls back to World for an unknown baseline", () => {
+    expect(estimateExpectancy(40, null, "unknown")).toBe(
+      estimateExpectancy(40, null, "world"),
+    );
   });
 
   it("always returns a whole number", () => {
-    for (const x of [0, 12.4, 40, 65.5, 90, 119]) {
+    for (const age of [0, 12.4, 40, 65.5, 90, 119]) {
       for (const sex of ["male", "female", null]) {
-        expect(Number.isInteger(estimateExpectancy(x, sex))).toBe(true);
+        for (const lifeTable of ["world", "us"]) {
+          expect(
+            Number.isInteger(estimateExpectancy(age, sex, lifeTable)),
+          ).toBe(true);
+        }
       }
     }
   });
 
-  it("never returns less than the attained age", () => {
-    for (const x of AGES) {
-      expect(estimateExpectancy(x, "male")).toBeGreaterThanOrEqual(x);
-      expect(estimateExpectancy(x, "female")).toBeGreaterThanOrEqual(x);
-      expect(estimateExpectancy(x, null)).toBeGreaterThanOrEqual(x);
+  it("never returns less than the attained age inside the app range", () => {
+    for (const age of [0, 40.5, 100, 119, 149]) {
+      for (const lifeTable of ["world", "us"]) {
+        expect(
+          estimateExpectancy(age, "male", lifeTable),
+        ).toBeGreaterThanOrEqual(Math.ceil(age));
+      }
     }
   });
 
   it("has a total expected age that rises with attained age", () => {
-    for (const sex of ["male", "female", null]) {
-      for (let x = 1; x < 120; x++) {
-        expect(estimateExpectancy(x, sex)).toBeGreaterThanOrEqual(
-          estimateExpectancy(x - 1, sex),
-        );
+    for (const lifeTable of ["world", "us"]) {
+      for (const sex of ["male", "female", null]) {
+        for (let age = 1; age < 120; age++) {
+          expect(
+            estimateExpectancy(age, sex, lifeTable),
+          ).toBeGreaterThanOrEqual(estimateExpectancy(age - 1, sex, lifeTable));
+        }
       }
     }
   });
 
-  it("estimates a higher total for older users than the flat at-birth figure", () => {
-    // Conditioning on survival: a 70-year-old outlives the at-birth average.
-    expect(estimateExpectancy(70, "male")).toBeGreaterThan(
-      estimateExpectancy(0, "male"),
-    );
+  it("conditions on survival instead of keeping the at-birth figure flat", () => {
+    for (const lifeTable of ["world", "us"]) {
+      expect(estimateExpectancy(70, "male", lifeTable)).toBeGreaterThan(
+        estimateExpectancy(0, "male", lifeTable),
+      );
+    }
   });
 
-  it("orders the sexes: female >= unisex >= male at a given age", () => {
-    for (const x of [0, 25, 50, 70, 90]) {
-      const male = estimateExpectancy(x, "male");
-      const female = estimateExpectancy(x, "female");
-      const unisex = estimateExpectancy(x, null);
-      expect(female).toBeGreaterThanOrEqual(unisex);
-      expect(unisex).toBeGreaterThanOrEqual(male);
+  it("orders the sexes: female >= unisex >= male", () => {
+    for (const lifeTable of ["world", "us"]) {
+      for (const age of [0, 25, 50, 70, 90]) {
+        const male = estimateExpectancy(age, "male", lifeTable);
+        const female = estimateExpectancy(age, "female", lifeTable);
+        const unisex = estimateExpectancy(age, null, lifeTable);
+        expect(female).toBeGreaterThanOrEqual(unisex);
+        expect(unisex).toBeGreaterThanOrEqual(male);
+      }
     }
   });
 
@@ -100,27 +197,32 @@ describe("estimateExpectancy", () => {
   });
 
   it("interpolates e(x) smoothly between integer ages", () => {
-    // The half-year point sits between the two bracketing integer totals.
-    const lo = estimateExpectancy(40, "male");
-    const hi = estimateExpectancy(41, "male");
-    const mid = estimateExpectancy(40.5, "male");
-    expect(mid).toBeGreaterThanOrEqual(Math.min(lo, hi));
-    expect(mid).toBeLessThanOrEqual(Math.max(lo, hi));
+    for (const lifeTable of ["world", "us"]) {
+      const lo = estimateExpectancy(40, "male", lifeTable);
+      const hi = estimateExpectancy(41, "male", lifeTable);
+      const mid = estimateExpectancy(40.5, "male", lifeTable);
+      expect(mid).toBeGreaterThanOrEqual(Math.min(lo, hi));
+      expect(mid).toBeLessThanOrEqual(Math.max(lo, hi));
+    }
   });
 
-  it("clamps the attained age to the table bounds", () => {
-    // Below 0 and above the last index resolve to the endpoint estimates.
-    expect(estimateExpectancy(-10, "male")).toBe(estimateExpectancy(0, "male"));
-    expect(estimateExpectancy(500, "male")).toBe(
-      estimateExpectancy(119, "male"),
+  it("clamps table lookup at each source's endpoint without going below age", () => {
+    expect(estimateExpectancy(-10, "male", "world")).toBe(
+      estimateExpectancy(0, "male", "world"),
     );
+    expect(estimateExpectancy(105, "male", "world")).toBeGreaterThanOrEqual(
+      105,
+    );
+    expect(estimateExpectancy(125, "male", "us")).toBeGreaterThanOrEqual(125);
   });
 
   it("keeps the result inside the app's [1, 150] band", () => {
-    for (const x of [-100, 0, 60, 119, 1000]) {
-      const value = estimateExpectancy(x, "female");
-      expect(value).toBeGreaterThanOrEqual(1);
-      expect(value).toBeLessThanOrEqual(150);
+    for (const age of [-100, 0, 60, 119, 1000]) {
+      for (const lifeTable of ["world", "us"]) {
+        const value = estimateExpectancy(age, "female", lifeTable);
+        expect(value).toBeGreaterThanOrEqual(1);
+        expect(value).toBeLessThanOrEqual(150);
+      }
     }
   });
 

@@ -222,6 +222,7 @@ describe("save / load with the localStorage fallback", () => {
       expectancy: 80,
       expectancySource: "estimate",
       sex: null,
+      lifeTable: "world",
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -237,6 +238,7 @@ describe("save / load with the localStorage fallback", () => {
       expectancy: 70,
       expectancySource: "custom",
       sex: "female",
+      lifeTable: "us",
       mode: "days",
       typeface: "mono",
       reflection: true,
@@ -257,6 +259,7 @@ describe("save / load with the localStorage fallback", () => {
       // "custom" so its flat number never silently changes on update.
       expectancySource: "custom",
       sex: null,
+      lifeTable: "world",
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -302,6 +305,7 @@ describe("save / load with the localStorage fallback", () => {
       expectancy: 80,
       expectancySource: "estimate",
       sex: null,
+      lifeTable: "world",
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -327,6 +331,7 @@ describe("save / load with the localStorage fallback", () => {
       expectancy: 80,
       expectancySource: "estimate",
       sex: null,
+      lifeTable: "world",
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -339,6 +344,7 @@ describe("expectancy-source migration", () => {
     const result = await load();
     expect(result.expectancySource).toBe("estimate");
     expect(result.sex).toBe(null);
+    expect(result.lifeTable).toBe("world");
   });
 
   it("pins a pre-existing record without a source to custom", async () => {
@@ -348,6 +354,7 @@ describe("expectancy-source migration", () => {
     expect(result.expectancySource).toBe("custom");
     expect(result.expectancy).toBe(66);
     expect(result.sex).toBe(null);
+    expect(result.lifeTable).toBe("world");
   });
 
   it("preserves an explicit estimate source on an existing record", async () => {
@@ -356,10 +363,12 @@ describe("expectancy-source migration", () => {
       birthZone: "UTC",
       expectancySource: "estimate",
       sex: "female",
+      lifeTable: "us",
     });
     const result = await load();
     expect(result.expectancySource).toBe("estimate");
     expect(result.sex).toBe("female");
+    expect(result.lifeTable).toBe("us");
   });
 
   it("migrates the legacy dob record to a custom source", async () => {
@@ -367,6 +376,7 @@ describe("expectancy-source migration", () => {
     const result = await load();
     expect(result.expectancySource).toBe("custom");
     expect(result.sex).toBe(null);
+    expect(result.lifeTable).toBe("world");
   });
 
   it("persists the migration so it stays stable on the next load", async () => {
@@ -375,6 +385,28 @@ describe("expectancy-source migration", () => {
     const persisted = JSON.parse(localStorage.getItem("mortality"));
     expect(persisted.expectancySource).toBe("custom");
     expect(persisted.sex).toBe(null);
+    expect(persisted.lifeTable).toBe("world");
+  });
+
+  it("normalizes an unknown stored life table to World", async () => {
+    await save({
+      birth: "1980-01-01T00:00",
+      birthZone: "UTC",
+      expectancySource: "estimate",
+      lifeTable: "timezone-derived",
+    });
+    const result = await load();
+    expect(result.lifeTable).toBe("world");
+  });
+
+  it("never infers an actuarial baseline from the birth time zone", async () => {
+    await save({
+      birth: "1980-01-01T00:00",
+      birthZone: "America/New_York",
+      expectancySource: "estimate",
+    });
+    const result = await load();
+    expect(result.lifeTable).toBe("world");
   });
 });
 
@@ -400,6 +432,29 @@ describe("effectiveExpectancy", () => {
     expect(Number.isInteger(male)).toBe(true);
     expect(male).toBeGreaterThanOrEqual(70); // never below current age
     expect(female).toBeGreaterThanOrEqual(male); // female >= male
+  });
+
+  it("uses the explicitly selected actuarial baseline", () => {
+    const world = effectiveExpectancy(
+      {
+        expectancySource: "estimate",
+        sex: "male",
+        lifeTable: "world",
+        expectancy: 80,
+      },
+      40,
+    );
+    const us = effectiveExpectancy(
+      {
+        expectancySource: "estimate",
+        sex: "male",
+        lifeTable: "us",
+        expectancy: 80,
+      },
+      40,
+    );
+    expect(world).not.toBe(us);
+    expect(us).toBeGreaterThan(world);
   });
 
   it("falls back to the clamped custom value when the age is unavailable", () => {
@@ -468,6 +523,7 @@ describe("save / load against extension storage", () => {
       expectancy: 95,
       expectancySource: "custom",
       sex: null,
+      lifeTable: "world",
       mode: "years",
       typeface: "system",
       reflection: false,
@@ -508,6 +564,7 @@ describe("save / load against extension storage", () => {
       expectancy: 80,
       expectancySource: "estimate",
       sex: null,
+      lifeTable: "world",
       mode: "years",
       typeface: "system",
       reflection: false,
