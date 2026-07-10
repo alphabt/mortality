@@ -241,6 +241,14 @@
     "message": "प्रदर्शन",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "भाषा",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "ब्राउज़र डिफ़ॉल्ट",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "अंक",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "आगे",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "समय क्षेत्र खोजें",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "कोई मिलता-जुलता समय क्षेत्र नहीं",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

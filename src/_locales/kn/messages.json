@@ -241,6 +241,14 @@
     "message": "ಪ್ರದರ್ಶನ",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "ಭಾಷೆ",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "ಬ್ರೌಸರ್ ಡೀಫಾಲ್ಟ್",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "ಅಂಕೆಗಳು",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "ಮುಂದೆ ಇದೆ",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "ಸಮಯ ವಲಯಗಳನ್ನು ಹುಡುಕಿ",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "ಹೊಂದಿಕೆಯಾಗುವ ಸಮಯ ವಲಯಗಳಿಲ್ಲ",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

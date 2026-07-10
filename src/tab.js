@@ -34,6 +34,8 @@ import {
 } from "./lifetable.js";
 import { el } from "./dom.js";
 import {
+  AUTOMATIC_LANGUAGE,
+  activateLanguage,
   applyDocumentLocale,
   formatDate,
   formatFixedParts,
@@ -43,6 +45,7 @@ import {
   formatUnit,
   formatUnitParts,
   msg,
+  normalizeLanguage,
 } from "./i18n.js";
 
 const YEAR_MS = 31556900000; // milliseconds per year (preserved from v1.2)
@@ -60,7 +63,6 @@ const LABELS = {
   weeksLeft: "modeWeeksLeft",
 };
 
-applyDocumentLocale();
 const app = document.getElementById("app");
 let state;
 let timer = null;
@@ -212,6 +214,7 @@ export function mergeImported(current, imported) {
   if ("typeface" in src)
     known.typeface = TYPEFACES.includes(src.typeface) ? src.typeface : "system";
   if ("reflection" in src) known.reflection = Boolean(src.reflection);
+  if ("language" in src) known.language = normalizeLanguage(src.language);
   return { ...current, ...known };
 }
 
@@ -239,16 +242,56 @@ export function parseImportedSettings(current, imported, now = Date.now()) {
   return Number.isFinite(bornMs) && bornMs <= now ? merged : null;
 }
 
-function showSetup() {
+async function changeLanguage(value, afterChange) {
+  const language = normalizeLanguage(value);
+  try {
+    const activated = await activateLanguage(language);
+    if (!activated) return;
+  } catch (error) {
+    console.error(`Mortality: could not load the ${language} language`, error);
+    afterChange();
+    return;
+  }
+  state.language = language;
+  save(state);
+  applyDocumentLocale();
+  afterChange();
+}
+
+async function activateStateLanguage() {
+  const language = normalizeLanguage(state.language);
+  try {
+    const activated = await activateLanguage(language);
+    if (!activated) return;
+    state.language = language;
+  } catch (error) {
+    console.error(`Mortality: could not load the ${language} language`, error);
+    state.language = AUTOMATIC_LANGUAGE;
+    await activateLanguage(AUTOMATIC_LANGUAGE);
+  }
+  applyDocumentLocale();
+}
+
+function showSetup(draft = null) {
   stopTimer();
   setScreen("setup");
+  const value = (key) =>
+    draft && Object.prototype.hasOwnProperty.call(draft, key)
+      ? draft[key]
+      : state[key];
   renderSetup(
     app,
-    { start },
-    state.birth,
-    state.birthZone,
-    state.sex,
-    state.lifeTable,
+    {
+      start,
+      setLanguage(language, nextDraft) {
+        changeLanguage(language, () => showSetup(nextDraft));
+      },
+    },
+    value("birth"),
+    value("birthZone"),
+    value("sex"),
+    value("lifeTable"),
+    state.language,
   );
 }
 
@@ -572,6 +615,9 @@ function showSettings(focusSelector = "#settings-title") {
         state.birthZone = value;
         save(state);
       },
+      setLanguage(value) {
+        changeLanguage(value, showSettings);
+      },
       exportData() {
         const blob = new Blob([JSON.stringify(state, null, 2)], {
           type: "application/json",
@@ -612,6 +658,7 @@ function showSettings(focusSelector = "#settings-title") {
             return;
           }
           state = imported;
+          await activateStateLanguage();
           save(state);
           applyTheme(state.theme);
           applyTypeface(state.typeface);
@@ -637,6 +684,7 @@ function showSettings(focusSelector = "#settings-title") {
       typeface: state.typeface,
       reflection: state.reflection,
       birthZone: state.birthZone,
+      language: state.language,
     },
   );
   focusApp(focusSelector);
@@ -815,6 +863,7 @@ function updateAmbient() {
 
 async function init() {
   state = await load();
+  await activateStateLanguage();
   applyTheme(state.theme);
   applyTypeface(state.typeface);
 

@@ -131,6 +131,7 @@ describe("mergeImported", () => {
     mode: "years",
     typeface: "system",
     reflection: false,
+    language: "auto",
   };
 
   it("copies known keys from the import", () => {
@@ -146,6 +147,7 @@ describe("mergeImported", () => {
       mode: "days",
       typeface: "mono",
       reflection: true,
+      language: "pt-BR",
     });
     expect(merged.birth).toBe("1990-05-15T09:00");
     expect(merged.birthZone).toBe("Europe/London");
@@ -158,6 +160,7 @@ describe("mergeImported", () => {
     expect(merged.mode).toBe("days");
     expect(merged.typeface).toBe("mono");
     expect(merged.reflection).toBe(true);
+    expect(merged.language).toBe("pt_BR");
   });
 
   it("clamps an imported expectancy into range", () => {
@@ -208,6 +211,12 @@ describe("mergeImported", () => {
     expect(mergeImported(current, { reflection: "" }).reflection).toBe(false);
   });
 
+  it("falls back to the browser language for an unknown imported language", () => {
+    expect(mergeImported(current, { language: "klingon" }).language).toBe(
+      "auto",
+    );
+  });
+
   it("keeps a non-string birth from corrupting state", () => {
     expect(mergeImported(current, { birth: 12345 }).birth).toBe(current.birth);
   });
@@ -229,6 +238,7 @@ describe("mergeImported", () => {
     expect(merged.expectancy).toBe(current.expectancy);
     expect(merged.typeface).toBe(current.typeface);
     expect(merged.reflection).toBe(current.reflection);
+    expect(merged.language).toBe(current.language);
   });
 
   it("tolerates a non-object import", () => {

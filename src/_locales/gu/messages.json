@@ -241,6 +241,14 @@
     "message": "ડિસ્પ્લે",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "ભાષા",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "બ્રાઉઝર ડિફૉલ્ટ",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "આંકડા",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "આગળ છે",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "સમય ઝોન શોધો",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "કોઈ મેળ ખાતો સમય ઝોન નથી",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

@@ -241,6 +241,14 @@
     "message": "Wyświetlanie",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Język",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Domyślny język przeglądarki",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Cyfry",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Przed Tobą",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Szukaj stref czasowych",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Brak pasujących stref czasowych",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

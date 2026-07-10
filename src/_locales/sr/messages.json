@@ -241,6 +241,14 @@
     "message": "Приказ",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Језик",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Подразумевано у прегледачу",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Цифре",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Пред вама",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Претражи временске зоне",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Нема одговарајућих временских зона",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

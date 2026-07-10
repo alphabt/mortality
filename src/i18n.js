@@ -14,6 +14,8 @@ export const EN_MESSAGES = {
   birthplaceLabel: "Where were you born?",
   birthplaceHint:
     "Defaults to your current time zone. Set it to where you were born so your age stays exact if you move.",
+  searchTimeZones: "Search time zones",
+  noTimeZones: "No matching time zones",
   actuarialBaseline: "Life expectancy data source",
   baselineSetupHint:
     "World data by default. Your time zone never changes this choice.",
@@ -54,6 +56,8 @@ export const EN_MESSAGES = {
   colorCounter: "Counter",
   colorAccent: "Accent",
   sectionDisplay: "Display",
+  language: "Language",
+  languageAutomatic: "Browser default",
   numerals: "Numerals",
   typefaceSystem: "System",
   typefaceGrotesk: "Grotesk",
@@ -106,16 +110,87 @@ const PLACEHOLDERS = {
   weeksSummary: { LIVED: 0, AHEAD: 1, YEARS: 2 },
 };
 
+export const AUTOMATIC_LANGUAGE = "auto";
+
+// Chrome's complete supported WebExtension locale set. Locale catalogs use
+// underscores on disk, while Intl expects BCP 47 hyphens.
+export const SUPPORTED_LANGUAGES = [
+  "am",
+  "ar",
+  "bg",
+  "bn",
+  "ca",
+  "cs",
+  "da",
+  "de",
+  "el",
+  "en",
+  "en_AU",
+  "en_GB",
+  "en_US",
+  "es",
+  "es_419",
+  "et",
+  "fa",
+  "fi",
+  "fil",
+  "fr",
+  "gu",
+  "he",
+  "hi",
+  "hr",
+  "hu",
+  "id",
+  "it",
+  "ja",
+  "kn",
+  "ko",
+  "lt",
+  "lv",
+  "ml",
+  "mr",
+  "ms",
+  "nl",
+  "no",
+  "pl",
+  "pt_BR",
+  "pt_PT",
+  "ro",
+  "ru",
+  "sk",
+  "sl",
+  "sr",
+  "sv",
+  "sw",
+  "ta",
+  "te",
+  "th",
+  "tr",
+  "uk",
+  "vi",
+  "zh_CN",
+  "zh_TW",
+];
+
+let activeLocale = null;
+let activeCatalog = null;
+let activationRequest = 0;
+const catalogCache = new Map();
+
 function extensionI18n() {
   return globalThis.browser?.i18n ?? globalThis.chrome?.i18n ?? null;
 }
 
-function substituteFallback(key, substitutions) {
-  const values = Array.isArray(substitutions)
+function substitutionValues(substitutions) {
+  return Array.isArray(substitutions)
     ? substitutions
     : substitutions == null
       ? []
       : [substitutions];
+}
+
+function substituteFallback(key, substitutions) {
+  const values = substitutionValues(substitutions);
   const placeholders = PLACEHOLDERS[key] ?? {};
   return EN_MESSAGES[key].replace(/\$([A-Z][A-Z0-9_]*)\$/g, (token, name) => {
     const index = placeholders[name];
@@ -123,7 +198,25 @@ function substituteFallback(key, substitutions) {
   });
 }
 
+function substituteCatalog(entry, substitutions) {
+  const values = substitutionValues(substitutions);
+  const placeholders = entry.placeholders ?? {};
+  return entry.message.replace(
+    /\$([A-Z][A-Z0-9_]*)\$/gi,
+    (token, placeholderName) => {
+      const content = placeholders[placeholderName.toLowerCase()]?.content;
+      const match = typeof content === "string" && content.match(/^\$(\d+)$/);
+      return match ? String(values[Number(match[1]) - 1] ?? "") : token;
+    },
+  );
+}
+
 export function msg(key, substitutions) {
+  if (activeCatalog) {
+    const entry = activeCatalog[key];
+    if (entry?.message) return substituteCatalog(entry, substitutions);
+    return EN_MESSAGES[key] ? substituteFallback(key, substitutions) : "";
+  }
   const api = extensionI18n();
   if (api?.getMessage) {
     const localized = api.getMessage(key, substitutions);
@@ -132,16 +225,96 @@ export function msg(key, substitutions) {
   return EN_MESSAGES[key] ? substituteFallback(key, substitutions) : "";
 }
 
-function validLocale(value) {
-  const normalized = String(value || "en").replaceAll("_", "-");
+function canonicalLocale(value) {
+  const normalized = String(value || "").replaceAll("_", "-");
   try {
-    return Intl.getCanonicalLocales(normalized)[0] || "en";
+    return Intl.getCanonicalLocales(normalized)[0] || null;
   } catch {
-    return "en";
+    return null;
   }
 }
 
+function validLocale(value) {
+  return canonicalLocale(value) || "en";
+}
+
+const LANGUAGE_BY_LOCALE = new Map(
+  SUPPORTED_LANGUAGES.map((language) => [
+    validLocale(language).toLowerCase(),
+    language,
+  ]),
+);
+
+export function normalizeLanguage(value) {
+  if (!value || value === AUTOMATIC_LANGUAGE) return AUTOMATIC_LANGUAGE;
+  const locale = canonicalLocale(value);
+  return locale
+    ? LANGUAGE_BY_LOCALE.get(locale.toLowerCase()) || AUTOMATIC_LANGUAGE
+    : AUTOMATIC_LANGUAGE;
+}
+
+export function languageName(language) {
+  const locale = validLocale(language);
+  try {
+    return (
+      new Intl.DisplayNames([locale], { type: "language" }).of(locale) || locale
+    );
+  } catch {
+    return locale;
+  }
+}
+
+async function loadCatalog(language) {
+  if (!catalogCache.has(language)) {
+    catalogCache.set(
+      language,
+      (async () => {
+        const response = await fetch(
+          new URL(`./_locales/${language}/messages.json`, import.meta.url),
+        );
+        if (!response.ok) {
+          throw new Error(
+            `Could not load ${language} translations (${response.status})`,
+          );
+        }
+        const catalog = await response.json();
+        if (!catalog || typeof catalog !== "object" || Array.isArray(catalog)) {
+          throw new TypeError(`Invalid ${language} translation catalog`);
+        }
+        return catalog;
+      })(),
+    );
+  }
+  try {
+    return await catalogCache.get(language);
+  } catch (error) {
+    catalogCache.delete(language);
+    throw error;
+  }
+}
+
+/**
+ * Activate a bundled locale, or return to the browser's locale with "auto".
+ * Returns null when a newer activation supersedes this request.
+ */
+export async function activateLanguage(value) {
+  const request = ++activationRequest;
+  const language = normalizeLanguage(value);
+  if (language === AUTOMATIC_LANGUAGE) {
+    activeLocale = null;
+    activeCatalog = null;
+    return language;
+  }
+
+  const catalog = await loadCatalog(language);
+  if (request !== activationRequest) return null;
+  activeLocale = validLocale(language);
+  activeCatalog = catalog;
+  return language;
+}
+
 export function getLocale() {
+  if (activeLocale) return activeLocale;
   const api = extensionI18n();
   let locale = api?.getUILanguage?.() || api?.getMessage?.("@@ui_locale");
   if (!locale) locale = globalThis.navigator?.language || "en";
@@ -149,6 +322,9 @@ export function getLocale() {
 }
 
 export function getDirection() {
+  if (activeLocale) {
+    return /^(ar|fa|he)(-|$)/i.test(activeLocale) ? "rtl" : "ltr";
+  }
   const apiDirection = extensionI18n()?.getMessage?.("@@bidi_dir");
   if (apiDirection === "rtl" || apiDirection === "ltr") return apiDirection;
   return /^(ar|fa|he)(-|$)/i.test(getLocale()) ? "rtl" : "ltr";

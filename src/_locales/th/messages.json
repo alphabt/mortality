@@ -241,6 +241,14 @@
     "message": "การแสดงผล",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "ภาษา",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "ค่าเริ่มต้นของเบราว์เซอร์",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "ตัวเลข",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "เหลืออีก",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "ค้นหาเขตเวลา",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "ไม่พบเขตเวลาที่ตรงกัน",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

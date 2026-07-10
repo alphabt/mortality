@@ -241,6 +241,14 @@
     "message": "显示",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "语言",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "浏览器默认",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "数字",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "还有",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "搜索时区",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "没有匹配的时区",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

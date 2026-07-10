@@ -241,6 +241,14 @@
     "message": "Weergave",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Taal",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Browserstandaard",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Cijfers",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Nog te gaan",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Tijdzones zoeken",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Geen overeenkomende tijdzones",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

@@ -241,6 +241,14 @@
     "message": "Hiển thị",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Ngôn ngữ",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Mặc định của trình duyệt",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Chữ số",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Còn lại",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Tìm kiếm múi giờ",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Không có múi giờ phù hợp",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

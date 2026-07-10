@@ -241,6 +241,14 @@
     "message": "Visning",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Sprog",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Browserens standard",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Cifre",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Tilbage",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Søg efter tidszoner",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Ingen matchende tidszoner",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

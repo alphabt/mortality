@@ -1,8 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderSetup, renderCounter, renderSettings } from "../src/views.js";
 import { THEME_KEYS, PRESETS, cssDefault } from "../src/store.js";
+import { detectZone } from "../src/time.js";
+import { SUPPORTED_LANGUAGES } from "../src/i18n.js";
 
 let app;
+const detectedZone = detectZone();
 beforeEach(() => {
   app = document.createElement("div");
   app.id = "app";
@@ -17,7 +20,13 @@ afterEach(() => {
 });
 
 function keydown(el, key) {
-  el.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true }));
+  const event = new KeyboardEvent("keydown", {
+    key,
+    bubbles: true,
+    cancelable: true,
+  });
+  el.dispatchEvent(event);
+  return event;
 }
 
 describe("renderSetup", () => {
@@ -26,6 +35,32 @@ describe("renderSetup", () => {
     expect(app.querySelector("#birth-date")).not.toBeNull();
     expect(app.querySelector("#birth-time")).not.toBeNull();
     expect(app.querySelector("#start")).not.toBeNull();
+  });
+
+  it("offers every language on first run and preserves draft fields on change", () => {
+    const setLanguage = vi.fn();
+    renderSetup(
+      app,
+      { start: vi.fn(), setLanguage },
+      "1990-05-15T14:30",
+      "Asia/Tokyo",
+      "female",
+      "us",
+      "fr",
+    );
+    const language = app.querySelector("#setup-language");
+    expect(language.value).toBe("fr");
+    expect(language.options).toHaveLength(SUPPORTED_LANGUAGES.length + 1);
+    expect(language.options[0].textContent).toBe("Browser default");
+
+    language.value = "de";
+    language.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(setLanguage).toHaveBeenCalledWith("de", {
+      birth: "1990-05-15T14:30",
+      birthZone: "Asia/Tokyo",
+      sex: "female",
+      lifeTable: "us",
+    });
   });
 
   it("focuses the date field", () => {
@@ -50,22 +85,30 @@ describe("renderSetup", () => {
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "2000-03-04";
     app.querySelector("#birth-time").value = "09:15";
-    const zone = app.querySelector("#birth-zone").value;
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2000-03-04T09:15", zone, null, "world");
+    expect(start).toHaveBeenCalledWith(
+      "2000-03-04T09:15",
+      detectedZone,
+      null,
+      "world",
+    );
   });
 
   it("defaults an empty time to midnight", () => {
     const start = vi.fn();
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "2010-10-10";
-    const zone = app.querySelector("#birth-zone").value;
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("2010-10-10T00:00", zone, null, "world");
+    expect(start).toHaveBeenCalledWith(
+      "2010-10-10T00:00",
+      detectedZone,
+      null,
+      "world",
+    );
   });
 
   it("blocks submission and reports validity when the date is empty", () => {
@@ -84,17 +127,27 @@ describe("renderSetup", () => {
     const start = vi.fn();
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "1975-12-25";
-    const zone = app.querySelector("#birth-zone").value;
     keydown(app.querySelector("#birth-date"), "Enter");
-    expect(start).toHaveBeenCalledWith("1975-12-25T00:00", zone, null, "world");
+    expect(start).toHaveBeenCalledWith(
+      "1975-12-25T00:00",
+      detectedZone,
+      null,
+      "world",
+    );
   });
 
-  it("renders a birthplace time-zone select defaulting to the device zone", () => {
+  it("renders a birthplace time-zone combobox defaulting to the device zone", () => {
     renderSetup(app, { start: vi.fn() }, null);
     const zone = app.querySelector("#birth-zone");
     expect(zone).not.toBeNull();
-    expect(zone.tagName).toBe("SELECT");
-    expect(zone.value).toBe(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    expect(zone.tagName).toBe("INPUT");
+    expect(zone.getAttribute("role")).toBe("combobox");
+    expect(zone.value).toContain(
+      detectedZone
+        .split("/")
+        .map((part) => part.replaceAll("_", " "))
+        .join(" / "),
+    );
     // The visible label is associated with the control for accessibility.
     const label = app.querySelector('label[for="birth-zone"]');
     expect(label).not.toBeNull();
@@ -103,7 +156,49 @@ describe("renderSetup", () => {
 
   it("pre-selects the saved birth zone when editing", () => {
     renderSetup(app, { start: vi.fn() }, "1990-05-15T00:00", "Asia/Tokyo");
-    expect(app.querySelector("#birth-zone").value).toBe("Asia/Tokyo");
+    expect(app.querySelector("#birth-zone").value).toBe(
+      "Asia / Tokyo · UTC+09:00",
+    );
+  });
+
+  it("keeps invalid zone text from replacing the selected canonical value", () => {
+    const start = vi.fn();
+    renderSetup(app, { start }, "1990-05-15T00:00", "Asia/Tokyo");
+    const zone = app.querySelector("#birth-zone");
+    zone.value = "not a zone";
+    zone.dispatchEvent(new Event("input", { bubbles: true }));
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(start).toHaveBeenCalledWith(
+      "1990-05-15T00:00",
+      "Asia/Tokyo",
+      null,
+      "world",
+    );
+    expect(zone.value).toBe("Asia / Tokyo · UTC+09:00");
+  });
+
+  it("selects an open zone result with Enter without submitting setup", () => {
+    const start = vi.fn();
+    renderSetup(app, { start }, null, "UTC");
+    app.querySelector("#birth-date").value = "1990-05-15";
+    const zone = app.querySelector("#birth-zone");
+    zone.value = "tokyo";
+    zone.dispatchEvent(new Event("input", { bubbles: true }));
+    const enter = keydown(zone, "Enter");
+    expect(enter.defaultPrevented).toBe(true);
+    expect(start).not.toHaveBeenCalled();
+
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(start).toHaveBeenCalledWith(
+      "1990-05-15T00:00",
+      "Asia/Tokyo",
+      null,
+      "world",
+    );
   });
 
   it("offers an explicit actuarial baseline defaulting to World", () => {
@@ -141,7 +236,8 @@ describe("renderSetup", () => {
     expect(date.max).toBe("2024-01-01");
 
     zone.value = "America/Los_Angeles";
-    zone.dispatchEvent(new Event("change", { bubbles: true }));
+    zone.dispatchEvent(new Event("input", { bubbles: true }));
+    keydown(zone, "Enter");
     expect(date.max).toBe("2023-12-31");
     now.mockRestore();
   });
@@ -210,13 +306,12 @@ describe("renderSetup", () => {
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "1980-07-08";
     app.querySelector("#birth-sex").value = "male";
-    const zone = app.querySelector("#birth-zone").value;
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
     expect(start).toHaveBeenCalledWith(
       "1980-07-08T00:00",
-      zone,
+      detectedZone,
       "male",
       "world",
     );
@@ -227,11 +322,15 @@ describe("renderSetup", () => {
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "1980-07-08";
     app.querySelector("#birth-life-table").value = "us";
-    const zone = app.querySelector("#birth-zone").value;
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    expect(start).toHaveBeenCalledWith("1980-07-08T00:00", zone, null, "us");
+    expect(start).toHaveBeenCalledWith(
+      "1980-07-08T00:00",
+      detectedZone,
+      null,
+      "us",
+    );
   });
 });
 
@@ -308,6 +407,7 @@ describe("renderSettings", () => {
     setTypeface: vi.fn(),
     toggleReflection: vi.fn(),
     setZone: vi.fn(),
+    setLanguage: vi.fn(),
     exportData: vi.fn(),
     importData: vi.fn(),
   });
@@ -322,6 +422,7 @@ describe("renderSettings", () => {
     typeface: "system",
     reflection: false,
     birthZone: null,
+    language: "auto",
     ...over,
   });
 
@@ -468,6 +569,17 @@ describe("renderSettings", () => {
     ).toBe("false");
   });
 
+  it("preselects the language and reports changes", () => {
+    const a = actions();
+    renderSettings(app, a, data({ language: "fr" }));
+    const language = app.querySelector("#settings-language");
+    expect(language.value).toBe("fr");
+    expect(language.options).toHaveLength(SUPPORTED_LANGUAGES.length + 1);
+    language.value = "ja";
+    language.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(a.setLanguage).toHaveBeenCalledWith("ja");
+  });
+
   it("reports typeface changes when a segment button is clicked", () => {
     const a = actions();
     renderSettings(app, a, data());
@@ -489,13 +601,32 @@ describe("renderSettings", () => {
     const a = actions();
     renderSettings(app, a, data({ birthZone: "Asia/Tokyo" }));
     const zone = app.querySelector("#settings-zone");
-    expect(zone.value).toBe("Asia/Tokyo");
-    const other = [...zone.options]
-      .map((o) => o.value)
-      .find((v) => v !== zone.value);
-    zone.value = other;
-    zone.dispatchEvent(new Event("change", { bubbles: true }));
-    expect(a.setZone).toHaveBeenCalledWith(other);
+    expect(zone.value).toBe("Asia / Tokyo · UTC+09:00");
+    zone.value = "new york";
+    zone.dispatchEvent(new Event("input", { bubbles: true }));
+    document.querySelector('[role="option"]').click();
+    expect(a.setZone).toHaveBeenCalledOnce();
+    expect(a.setZone).toHaveBeenCalledWith("America/New_York");
+  });
+
+  it("cleans up an open zone popup before settings re-render", () => {
+    const abort = vi.spyOn(AbortController.prototype, "abort");
+    renderSettings(app, actions(), data({ birthZone: "Asia/Tokyo" }));
+    const input = app.querySelector("#settings-zone");
+    keydown(input, "ArrowDown");
+    renderSettings(app, actions(), data({ birthZone: "Asia/Tokyo" }));
+    expect(abort).toHaveBeenCalledOnce();
+    expect(document.querySelectorAll(".search-select-popup")).toHaveLength(1);
+  });
+
+  it("keeps IANA options left-to-right in an RTL document", () => {
+    document.documentElement.dir = "rtl";
+    renderSettings(app, actions(), data({ birthZone: "Asia/Tokyo" }));
+    const input = app.querySelector("#settings-zone");
+    keydown(input, "ArrowDown");
+    expect(input.dir).toBe("ltr");
+    expect(document.querySelector(".search-select-popup").dir).toBe("rtl");
+    expect(document.querySelector('[role="option"]').dir).toBe("ltr");
   });
 
   it("wires the data export and import buttons", () => {

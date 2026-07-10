@@ -241,6 +241,14 @@
     "message": "Відображення",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Мова",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "За замовчуванням у браузері",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Цифри",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Попереду",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Пошук часових поясів",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Немає відповідних часових поясів",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

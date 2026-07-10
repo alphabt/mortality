@@ -241,6 +241,14 @@
     "message": "Exibição",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Idioma",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Padrão do navegador",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Numerais",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Pela frente",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Pesquisar fusos horários",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Nenhum fuso horário correspondente",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

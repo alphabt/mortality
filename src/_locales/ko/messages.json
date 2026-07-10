@@ -241,6 +241,14 @@
     "message": "표시",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "언어",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "브라우저 기본값",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "숫자",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "앞으로",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "시간대 검색",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "일치하는 시간대가 없습니다",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

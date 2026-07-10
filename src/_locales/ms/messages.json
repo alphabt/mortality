@@ -241,6 +241,14 @@
     "message": "Paparan",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Bahasa",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Lalai penyemak imbas",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Nombor",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Lagi",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Cari zon waktu",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Tiada zon waktu yang sepadan",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

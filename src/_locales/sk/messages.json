@@ -241,6 +241,14 @@
     "message": "Zobrazenie",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Jazyk",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Predvolené nastavenie prehliadača",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Číslice",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Pred vami",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Hľadať časové pásma",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Žiadne zodpovedajúce časové pásma",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

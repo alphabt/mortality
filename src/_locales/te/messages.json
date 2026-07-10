@@ -241,6 +241,14 @@
     "message": "ప్రదర్శన",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "భాష",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "బ్రౌజర్ డిఫాల్ట్",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "సంఖ్యలు",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "ముందు ఉంది",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "సమయ మండలాలను వెతకండి",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "సరిపోలే సమయ మండలాలు లేవు",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

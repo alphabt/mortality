@@ -241,6 +241,14 @@
     "message": "Visualització",
     "description": "Settings section heading."
   },
+  "language": {
+    "message": "Idioma",
+    "description": "Language setting label."
+  },
+  "languageAutomatic": {
+    "message": "Valor predeterminat del navegador",
+    "description": "Option that follows the browser's language."
+  },
   "numerals": {
     "message": "Xifres",
     "description": "Numeral typeface setting label."
@@ -420,5 +428,13 @@
   "legendAhead": {
     "message": "Per endavant",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Cerca zones horàries",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "No hi ha cap zona horària coincident",
+    "description": "Empty result shown when no time zones match the search."
   }
 }
