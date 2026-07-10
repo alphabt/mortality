@@ -28,3 +28,10 @@ Quick reference:
   `prefers-reduced-motion` path for every animation · **WCAG 2.1 AA**.
 
 To iterate visually, run `/impeccable live` (pre-configured for `src/tab.html`).
+
+## Workflow
+
+- **UI changes:** always open the integrated browser (preview `src/tab.html`, or the dev
+  server) so the change can be tried out live before it's finalized.
+- **Pull requests:** always capture screenshots of the affected UI and attach them to the
+  PR description.
