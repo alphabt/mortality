@@ -161,6 +161,22 @@ describe("renderSetup", () => {
     );
   });
 
+  it("falls back from an invalid saved birth zone", () => {
+    const start = vi.fn();
+    renderSetup(app, { start }, "1990-05-15T00:00", "Mars/Olympus");
+    const zone = app.querySelector("#birth-zone");
+    expect(zone.value).not.toContain("Mars");
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    expect(start).toHaveBeenCalledWith(
+      "1990-05-15T00:00",
+      detectedZone,
+      null,
+      "world",
+    );
+  });
+
   it("keeps invalid zone text from replacing the selected canonical value", () => {
     const start = vi.fn();
     renderSetup(app, { start }, "1990-05-15T00:00", "Asia/Tokyo");
@@ -607,6 +623,11 @@ describe("renderSettings", () => {
     document.querySelector('[role="option"]').click();
     expect(a.setZone).toHaveBeenCalledOnce();
     expect(a.setZone).toHaveBeenCalledWith("America/New_York");
+  });
+
+  it("falls back from an invalid settings birth zone", () => {
+    renderSettings(app, actions(), data({ birthZone: "Mars/Olympus" }));
+    expect(app.querySelector("#settings-zone").value).not.toContain("Mars");
   });
 
   it("cleans up an open zone popup before settings re-render", () => {

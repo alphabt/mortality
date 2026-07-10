@@ -193,7 +193,7 @@ export function renderSetup(
 ) {
   cleanupView(app);
   const detected = detectZone();
-  const selectedZone = savedZone || detected;
+  const selectedZone = isValidZone(savedZone) ? savedZone : detected;
   const dateEl = el("input", {
     type: "date",
     id: "birth-date",
@@ -579,7 +579,7 @@ export function renderSettings(
 
   // Time zone: re-anchor the birth instant to a different zone after setup.
   const detected = detectZone();
-  const selectedZone = birthZone || detected;
+  const selectedZone = isValidZone(birthZone) ? birthZone : detected;
   const zoneControl = createSearchSelect({
     id: "settings-zone",
     options: buildTimeZoneOptions(selectedZone, detected),
