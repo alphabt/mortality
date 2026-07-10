@@ -108,7 +108,7 @@ describe("renderSetup", () => {
       [...lifeTable.options].map(({ textContent }) => textContent),
     ).toEqual(["World — UN 2023", "United States — SSA 2023"]);
     expect(app.querySelector('label[for="birth-life-table"]').textContent).toBe(
-      "Actuarial baseline",
+      "Life expectancy data source",
     );
   });
 
@@ -473,7 +473,7 @@ describe("renderSettings", () => {
     const line = app.querySelector("#expectancy-estimate");
     expect(line).not.toBeNull();
     expect(line.textContent).toContain("84");
-    expect(line.textContent).toContain("actuarial estimate");
+    expect(line.textContent).toContain("based on your age");
   });
 
   it("prompts for a birthday when no estimate is available", () => {
@@ -511,7 +511,7 @@ describe("renderSettings", () => {
     expect(a.setSex).toHaveBeenCalledWith(null);
   });
 
-  it("preselects and reports the actuarial baseline in estimate mode", () => {
+  it("preselects and reports the life-expectancy data source", () => {
     const a = actions();
     renderSettings(
       app,
@@ -519,6 +519,9 @@ describe("renderSettings", () => {
       data({ expectancySource: "estimate", lifeTable: "us" }),
     );
     const lifeTable = app.querySelector("#settings-life-table");
+    expect(
+      app.querySelector('label[for="settings-life-table"]').textContent,
+    ).toBe("Data source");
     expect(lifeTable.value).toBe("us");
     lifeTable.value = "world";
     lifeTable.dispatchEvent(new Event("change", { bubbles: true }));

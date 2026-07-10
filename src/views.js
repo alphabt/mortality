@@ -199,13 +199,13 @@ export function renderSetup(
       el(
         "label",
         { class: "setup-label", for: "birth-life-table" },
-        "Actuarial baseline",
+        "Life expectancy data source",
       ),
       lifeTableEl,
       el(
         "p",
         { class: "hint" },
-        "World by default. Chosen explicitly — never inferred from your time zone.",
+        "World data by default. Your time zone never changes this choice.",
       ),
     ]),
     el("div", { class: "setup-field" }, [
@@ -441,8 +441,8 @@ export function renderSettings(
     "p",
     { class: "settings-hint", id: "expectancy-estimate" },
     estimate != null
-      ? `\u2248 ${estimate} years \u2014 actuarial estimate for your age.`
-      : "Add your birthday to see an actuarial estimate.",
+      ? `\u2248 ${estimate} years \u2014 based on your age and selected data.`
+      : "Add your birthday to see an estimate.",
   );
   const customRow = el("div", { class: "row" }, [
     el("label", { for: "expectancy" }, "Years"),
@@ -453,7 +453,7 @@ export function renderSettings(
     actions.setLifeTable(lifeTableEl.value),
   );
   const lifeTableRow = el("div", { class: "row" }, [
-    el("label", { for: "settings-life-table" }, "Baseline"),
+    el("label", { for: "settings-life-table" }, "Data source"),
     lifeTableEl,
   ]);
   const sexEl = sexSelect("settings-sex", sex);
@@ -568,7 +568,7 @@ export function renderSettings(
           el(
             "p",
             { class: "settings-hint" },
-            "Baseline is never inferred from your time zone. Sex at birth is optional.",
+            "Your time zone never changes the data source. Sex at birth is optional.",
           ),
         ]
       : [customRow]),
