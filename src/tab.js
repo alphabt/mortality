@@ -28,11 +28,7 @@ import {
   nextBirthdayInstantMs,
   parseBirthParts,
 } from "./time.js";
-import {
-  estimateExpectancy,
-  LIFE_TABLE_OPTIONS,
-  normalizeLifeTable,
-} from "./lifetable.js";
+import { estimateExpectancy, normalizeLifeTable } from "./lifetable.js";
 import { el } from "./dom.js";
 import {
   AUTOMATIC_LANGUAGE,
@@ -188,12 +184,7 @@ export function mergeImported(current, imported) {
       : current.expectancySource;
   if ("sex" in src)
     known.sex = src.sex === "male" || src.sex === "female" ? src.sex : null;
-  if ("lifeTable" in src)
-    known.lifeTable = LIFE_TABLE_OPTIONS.some(
-      ({ value }) => value === src.lifeTable,
-    )
-      ? src.lifeTable
-      : current.lifeTable;
+  if ("lifeTable" in src) known.lifeTable = normalizeLifeTable(src.lifeTable);
   if ("mode" in src && MODES.includes(src.mode)) known.mode = src.mode;
   if ("typeface" in src)
     known.typeface = TYPEFACES.includes(src.typeface) ? src.typeface : "system";

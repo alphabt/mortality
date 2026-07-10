@@ -67,6 +67,24 @@
     "message": "United States — SSA 2023",
     "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
+  "lifeTableCountry": {
+    "message": "$COUNTRY$ — UN 2023",
+    "description": "Template for a localized UN country or area data-source name.",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "Japan"
+      }
+    }
+  },
+  "searchCountriesAreas": {
+    "message": "Search countries and areas",
+    "description": "Placeholder for the searchable country and area data-source picker."
+  },
+  "noCountriesAreas": {
+    "message": "No matching countries or areas",
+    "description": "Empty state when the country and area search has no matches."
+  },
   "baselineSettingsHint": {
     "message": "Your time zone never changes the data source. Sex at birth is optional.",
     "description": "Privacy explanation below the life-expectancy estimate settings."
@@ -147,16 +165,28 @@
     "message": "$LABEL$ $VALUE$. $ACTION$.",
     "description": "Full accessible label for the live counter.",
     "placeholders": {
-      "label": { "content": "$1", "example": "Calendar age" },
-      "value": { "content": "$2", "example": "20 years, 3 months, and 2 days" },
-      "action": { "content": "$3", "example": "Change units" }
+      "label": {
+        "content": "$1",
+        "example": "Calendar age"
+      },
+      "value": {
+        "content": "$2",
+        "example": "20 years, 3 months, and 2 days"
+      },
+      "action": {
+        "content": "$3",
+        "example": "Change units"
+      }
     }
   },
   "born": {
     "message": "Born $DATE$",
     "description": "Birth date shown below the counter.",
     "placeholders": {
-      "date": { "content": "$1", "example": "15 May 1990" }
+      "date": {
+        "content": "$1",
+        "example": "15 May 1990"
+      }
     }
   },
   "birthdayCountdown": {
@@ -173,16 +203,28 @@
     "message": "$PERCENT$ of $YEARS$ yrs lived",
     "description": "Life-progress caption below the counter.",
     "placeholders": {
-      "percent": { "content": "$1", "example": "25%" },
-      "years": { "content": "$2", "example": "80" }
+      "percent": {
+        "content": "$1",
+        "example": "25%"
+      },
+      "years": {
+        "content": "$2",
+        "example": "80"
+      }
     }
   },
   "reflectionLine": {
     "message": "$LIVED$ years behind you · $AHEAD$ ahead, if the tables hold.",
     "description": "Optional reflective line below the counter.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "30" },
-      "ahead": { "content": "$2", "example": "50" }
+      "lived": {
+        "content": "$1",
+        "example": "30"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "50"
+      }
     }
   },
   "sectionPresets": {
@@ -209,7 +251,10 @@
     "message": "Counter",
     "description": "Counter color label."
   },
-  "colorAccent": { "message": "Accent", "description": "Accent color label." },
+  "colorAccent": {
+    "message": "Accent",
+    "description": "Accent color label."
+  },
   "sectionDisplay": {
     "message": "Display",
     "description": "Settings section heading."
@@ -262,7 +307,10 @@
     "message": "≈ $YEARS$ years — based on your age and selected data.",
     "description": "Current life-expectancy estimate shown in settings.",
     "placeholders": {
-      "years": { "content": "$1", "example": "84" }
+      "years": {
+        "content": "$1",
+        "example": "84"
+      }
     }
   },
   "estimateMissing": {
@@ -305,25 +353,40 @@
     "message": "Reset colors",
     "description": "Reset theme colors button."
   },
-  "done": { "message": "Done", "description": "Close settings button." },
+  "done": {
+    "message": "Done",
+    "description": "Close settings button."
+  },
   "lowContrast": {
     "message": "Low contrast ($RATIO$:1). Aim for $TARGET$:1 on the background.",
     "description": "Warning shown when a selected color misses WCAG contrast.",
     "placeholders": {
-      "ratio": { "content": "$1", "example": "2.5" },
-      "target": { "content": "$2", "example": "4.5" }
+      "ratio": {
+        "content": "$1",
+        "example": "2.5"
+      },
+      "target": {
+        "content": "$2",
+        "example": "4.5"
+      }
     }
   },
   "presetLight": {
     "message": "Light",
     "description": "Light theme preset name."
   },
-  "presetDark": { "message": "Dark", "description": "Dark theme preset name." },
+  "presetDark": {
+    "message": "Dark",
+    "description": "Dark theme preset name."
+  },
   "presetPaper": {
     "message": "Paper",
     "description": "Paper theme preset name."
   },
-  "presetVoid": { "message": "Void", "description": "Void theme preset name." },
+  "presetVoid": {
+    "message": "Void",
+    "description": "Void theme preset name."
+  },
   "presetTerminal": {
     "message": "Terminal",
     "description": "Terminal theme preset name."
@@ -340,7 +403,10 @@
     "message": "$THEME$ theme",
     "description": "Accessible label for a theme preset button.",
     "placeholders": {
-      "theme": { "content": "$1", "example": "Paper" }
+      "theme": {
+        "content": "$1",
+        "example": "Paper"
+      }
     }
   },
   "back": {
@@ -351,9 +417,18 @@
     "message": "$LIVED$ weeks lived · $AHEAD$ ahead · $YEARS$ yrs",
     "description": "Summary above the life-in-weeks grid.",
     "placeholders": {
-      "lived": { "content": "$1", "example": "1040" },
-      "ahead": { "content": "$2", "example": "3120" },
-      "years": { "content": "$3", "example": "80" }
+      "lived": {
+        "content": "$1",
+        "example": "1040"
+      },
+      "ahead": {
+        "content": "$2",
+        "example": "3120"
+      },
+      "years": {
+        "content": "$3",
+        "example": "80"
+      }
     }
   },
   "legendLived": {

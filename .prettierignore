@@ -4,3 +4,4 @@ src/icons/
 coverage/
 package-lock.json
 *.zip
+src/data/un-life-tables.js

@@ -22,6 +22,9 @@ export const EN_MESSAGES = {
   baseline: "Data source",
   lifeTableWorld: "World — UN 2023",
   lifeTableUS: "United States — SSA 2023",
+  lifeTableCountry: "$COUNTRY$ — UN 2023",
+  searchCountriesAreas: "Search countries and areas",
+  noCountriesAreas: "No matching countries or areas",
   baselineSettingsHint:
     "Your time zone never changes the data source. Sex at birth is optional.",
   sexAtBirth: "Sex at birth",
@@ -107,6 +110,7 @@ const PLACEHOLDERS = {
   lowContrast: { RATIO: 0, TARGET: 1 },
   themeAria: { THEME: 0 },
   weeksSummary: { LIVED: 0, AHEAD: 1, YEARS: 2 },
+  lifeTableCountry: { COUNTRY: 0 },
 };
 
 export const AUTOMATIC_LANGUAGE = "auto";
@@ -175,6 +179,8 @@ let activeLocale = null;
 let activeCatalog = null;
 let activationRequest = 0;
 const catalogCache = new Map();
+const collatorCache = new Map();
+const displayNamesCache = new Map();
 
 function extensionI18n() {
   return globalThis.browser?.i18n ?? globalThis.chrome?.i18n ?? null;
@@ -260,6 +266,49 @@ export function languageName(language) {
     );
   } catch {
     return locale;
+  }
+}
+
+/** Localized region name, retaining the official UN English name as fallback. */
+export function regionName(iso2, fallback) {
+  const code =
+    typeof iso2 === "string" && /^[A-Z]{2}$/.test(iso2) ? iso2 : null;
+  if (!code) return fallback;
+  const locale = getLocale();
+  try {
+    if (!displayNamesCache.has(locale)) {
+      displayNamesCache.set(
+        locale,
+        new Intl.DisplayNames([locale], { type: "region" }),
+      );
+    }
+    const localized = displayNamesCache.get(locale).of(code);
+    return localized && localized.toUpperCase() !== code ? localized : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+/** Compare display labels with the currently active locale's collation rules. */
+export function compareLocaleText(left, right) {
+  const locale = getLocale();
+  try {
+    if (!collatorCache.has(locale)) {
+      collatorCache.set(
+        locale,
+        new Intl.Collator(locale, {
+          usage: "sort",
+          sensitivity: "base",
+          numeric: true,
+        }),
+      );
+    }
+    return collatorCache.get(locale).compare(left, right);
+  } catch {
+    return String(left).localeCompare(String(right), "en", {
+      sensitivity: "base",
+      numeric: true,
+    });
   }
 }
 

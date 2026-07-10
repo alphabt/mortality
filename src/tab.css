@@ -487,6 +487,8 @@ footer {
   color: var(--label);
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
   white-space: nowrap;
 }
 
@@ -584,6 +586,12 @@ footer {
   width: min(28rem, calc(100vw - 2rem));
   min-width: 0;
   text-align: start;
+}
+
+.settings .life-table-field {
+  width: 100%;
+  max-width: none;
+  margin-top: 0;
 }
 
 .settings h1 {

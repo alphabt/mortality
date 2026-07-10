@@ -67,6 +67,24 @@
     "message": "Marekani — SSA 2023",
     "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
+  "lifeTableCountry": {
+    "message": "$COUNTRY$ — UN 2023",
+    "description": "Template for a localized UN country or area data-source name.",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "Japan"
+      }
+    }
+  },
+  "searchCountriesAreas": {
+    "message": "Tafuta nchi na maeneo",
+    "description": "Placeholder for the searchable country and area data-source picker."
+  },
+  "noCountriesAreas": {
+    "message": "Hakuna nchi au maeneo yanayolingana",
+    "description": "Empty state when the country and area search has no matches."
+  },
   "baselineSettingsHint": {
     "message": "Saa za eneo lako haziwahi kubadilisha chanzo cha data. Jinsia wakati wa kuzaliwa si lazima.",
     "description": "Privacy explanation below the life-expectancy estimate settings."
