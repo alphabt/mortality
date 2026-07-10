@@ -447,6 +447,50 @@
     "message": "Meklēt laika joslas",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Ierīču sinhronizācija",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sinhronizēt preferences starp ierīcēm",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Izmantojot pārlūkprogrammas kontu, sinhronizē motīvu, ciparu stilu, pārdomu rindu, valodu un skaitītāja režīmu.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sinhronizēt arī dzimšanas dienas un paredzamā mūža ilguma datus",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Sinhronizē arī dzimšanas datumu un laiku, dzimšanas laika joslu, dzimšanas brīdī noteikto dzimumu un izvēlēto paredzamā mūža ilguma datu avotu vai pielāgotu gadu skaitu. Šī informācija ir personiskāka.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Izslēgta",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Notiek sinhronizācija…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sinhronizēts",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Saglabāts šajā ierīcē. Sinhronizāciju neizdevās atjaunināt.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Ierīču sinhronizācija šajā pārlūkprogrammā nav pieejama.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Mēģināt sinhronizēt vēlreiz",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Nav atbilstošu laika joslu",
     "description": "Empty result shown when no time zones match the search."

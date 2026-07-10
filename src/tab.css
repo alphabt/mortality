@@ -741,7 +741,7 @@ footer {
   border-color: var(--count);
 }
 
-/* Display section: segmented numeral-typeface control + a reflection toggle. */
+/* Display and sync sections share the same segmented and switch vocabulary. */
 .segment {
   display: inline-flex;
   border: 1px solid var(--border);
@@ -774,17 +774,33 @@ footer {
 
 .switch {
   position: relative;
-  width: 2.6rem;
-  height: 1.5rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--label) 18%, transparent);
+  flex: 0 0 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  background: transparent;
   cursor: pointer;
   padding: 0;
-  transition: background 0.15s ease;
+  filter: none;
 }
 
-.switch[aria-checked="true"] {
+.switch::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-start: calc(50% - 1.3rem);
+  width: 2.6rem;
+  height: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--label) 18%, transparent);
+  transform: translateY(-50%);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.switch[aria-checked="true"]::before {
   background: var(--accent);
   border-color: var(--accent);
 }
@@ -793,7 +809,7 @@ footer {
   content: "";
   position: absolute;
   top: 50%;
-  inset-inline-start: 0.18rem;
+  inset-inline-start: calc(50% - 1.12rem);
   width: 1.05rem;
   height: 1.05rem;
   border-radius: 50%;
@@ -803,7 +819,60 @@ footer {
 }
 
 .switch[aria-checked="true"]::after {
-  inset-inline-start: calc(100% - 1.23rem);
+  inset-inline-start: calc(50% + 0.07rem);
+}
+
+.switch:hover::before {
+  border-color: var(--count);
+}
+
+.switch:active::before {
+  filter: brightness(0.92);
+}
+
+.switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.switch:disabled::before {
+  border-color: var(--border);
+  filter: none;
+}
+
+.sync-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sync-option .row {
+  min-height: 2.75rem;
+}
+
+.sync-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+}
+
+.sync-status {
+  margin: 0;
+  color: var(--label);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.sync-status.is-error {
+  color: var(--count);
+}
+
+#retry-sync {
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+  font-size: 0.9rem;
 }
 
 :dir(rtl) #weeks-back {

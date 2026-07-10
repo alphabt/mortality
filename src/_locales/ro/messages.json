@@ -447,6 +447,50 @@
     "message": "Caută fusuri orare",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Sincronizarea dispozitivelor",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sincronizează preferințele între dispozitive",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Sincronizează tema, stilul cifrelor, rândul de reflecție, limba și modul contorului prin contul de browser.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sincronizează și ziua de naștere și datele despre speranța de viață",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Sincronizează și data și ora nașterii, fusul orar al nașterii, sexul la naștere și sursa de date selectată pentru speranța de viață sau numărul personalizat de ani. Aceste informații sunt mai personale.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Dezactivată",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Se sincronizează…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sincronizat",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Salvat pe acest dispozitiv. Sincronizarea nu s-a putut actualiza.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Sincronizarea dispozitivelor nu este disponibilă în acest browser.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Reîncearcă sincronizarea",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Niciun fus orar corespunzător",
     "description": "Empty result shown when no time zones match the search."

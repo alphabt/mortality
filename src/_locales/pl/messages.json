@@ -447,6 +447,50 @@
     "message": "Szukaj stref czasowych",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Synchronizacja urządzeń",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Synchronizuj preferencje między urządzeniami",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Synchronizuje motyw, styl cyfr, zdanie do refleksji, język i tryb licznika za pośrednictwem konta przeglądarki.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Synchronizuj także urodziny i dane o oczekiwanej długości życia",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Synchronizuje także datę i godzinę urodzenia, strefę czasową urodzenia, płeć przy urodzeniu oraz wybrane źródło danych o oczekiwanej długości życia lub własną liczbę lat. Te informacje są bardziej osobiste.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Wyłączona",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Synchronizowanie…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Zsynchronizowano",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Zapisano na tym urządzeniu. Nie udało się zaktualizować synchronizacji.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Synchronizacja urządzeń nie jest dostępna w tej przeglądarce.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Ponów synchronizację",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Brak pasujących stref czasowych",
     "description": "Empty result shown when no time zones match the search."

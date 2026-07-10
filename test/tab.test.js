@@ -223,6 +223,18 @@ describe("mergeImported", () => {
     expect(merged).not.toHaveProperty("foo");
   });
 
+  it("never imports sync configuration or writer metadata", () => {
+    const merged = mergeImported(current, {
+      sync: { preferences: true, profile: true },
+      "mortality.sync.config": { preferences: true, profile: true },
+      "mortality.sync.metadata": { writerId: "foreign-device" },
+    });
+    expect(merged).toEqual(current);
+    expect(merged).not.toHaveProperty("sync");
+    expect(merged).not.toHaveProperty("mortality.sync.config");
+    expect(merged).not.toHaveProperty("mortality.sync.metadata");
+  });
+
   it("keeps the current value for any key the import omits", () => {
     const merged = mergeImported(current, { mode: "weeks" });
     expect(merged.birth).toBe(current.birth);

@@ -447,6 +447,50 @@
     "message": "समय क्षेत्र खोजें",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "डिवाइस सिंक",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "डिवाइसों के बीच प्राथमिकताएँ सिंक करें",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "आपके ब्राउज़र खाते के ज़रिए थीम, अंकों की शैली, चिंतन पंक्ति, भाषा और काउंटर मोड को सिंक करता है।",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "जन्मदिन और जीवन प्रत्याशा का विवरण भी सिंक करें",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "आपकी जन्म तिथि और समय, जन्म का समय क्षेत्र, जन्म के समय लिंग और चुने गए जीवन प्रत्याशा डेटा स्रोत या मनचाहे वर्षों को भी सिंक करता है। यह जानकारी अधिक निजी है।",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "बंद",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "सिंक हो रहा है…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "सिंक हो गया",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "इस डिवाइस पर सहेजा गया। सिंक अपडेट नहीं हो सका।",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "इस ब्राउज़र में डिवाइस सिंक उपलब्ध नहीं है।",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "फिर से सिंक करने की कोशिश करें",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "कोई मिलता-जुलता समय क्षेत्र नहीं",
     "description": "Empty result shown when no time zones match the search."

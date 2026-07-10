@@ -447,6 +447,50 @@
     "message": "搜索时区",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "设备同步",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "跨设备同步偏好设置",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "通过浏览器账号同步您的主题、数字样式、感悟文字、语言和计数器模式。",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "同时同步生日和预期寿命详细信息",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "还会同步您的出生日期和时间、出生地时区、出生时性别，以及所选的预期寿命数据源或自定义年数。这些信息较为私密。",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "关闭",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "正在同步…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "已同步",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "已保存在此设备上。同步无法更新。",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "此浏览器不支持设备同步。",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "重试同步",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "没有匹配的时区",
     "description": "Empty result shown when no time zones match the search."

@@ -447,6 +447,50 @@
     "message": "Időzónák keresése",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Eszközszinkronizálás",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Beállítások szinkronizálása az eszközök között",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "A böngészőfiókján keresztül szinkronizálja a témát, a számjegystílust, az elmélkedési sort, a nyelvet és a számláló módját.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "A születésnap és a várható élettartam adatainak szinkronizálása is",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Szinkronizálja a születési dátumot és időt, a születési időzónát, a születési nemet, valamint a várható élettartam kiválasztott adatforrását vagy az egyéni évszámot is. Ezek személyesebb adatok.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Kikapcsolva",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Szinkronizálás…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Szinkronizálva",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Mentve ezen az eszközön. A szinkronizálás nem frissült.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Az eszközszinkronizálás nem érhető el ebben a böngészőben.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Szinkronizálás újrapróbálása",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Nincs megfelelő időzóna",
     "description": "Empty result shown when no time zones match the search."

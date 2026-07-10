@@ -447,6 +447,50 @@
     "message": "സമയ മേഖലകൾ തിരയുക",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "ഉപകരണ സമന്വയം",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "ഉപകരണങ്ങളിലുടനീളം മുൻഗണനകൾ സമന്വയിപ്പിക്കുക",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "നിങ്ങളുടെ ബ്രൗസർ അക്കൗണ്ടിലൂടെ തീം, അക്ക ശൈലി, ചിന്താവരി, ഭാഷ, കൗണ്ടർ രീതി എന്നിവ സമന്വയിപ്പിക്കുന്നു.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "ജന്മദിനവും പ്രതീക്ഷിത ആയുസ്സിന്റെ വിവരങ്ങളും കൂടി സമന്വയിപ്പിക്കുക",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "നിങ്ങളുടെ ജനനത്തീയതിയും സമയവും, ജനന സമയമേഖല, ജനനസമയത്തെ ലിംഗം, തിരഞ്ഞെടുത്ത പ്രതീക്ഷിത ആയുസ്സ് ഡാറ്റ ഉറവിടം അല്ലെങ്കിൽ ഇഷ്ടാനുസൃത വർഷങ്ങൾ എന്നിവയും സമന്വയിപ്പിക്കുന്നു. ഈ വിവരങ്ങൾ കൂടുതൽ വ്യക്തിപരമാണ്.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "ഓഫ്",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "സമന്വയിപ്പിക്കുന്നു…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "സമന്വയിപ്പിച്ചു",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "ഈ ഉപകരണത്തിൽ സംരക്ഷിച്ചു. സമന്വയം പുതുക്കാനായില്ല.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "ഈ ബ്രൗസറിൽ ഉപകരണ സമന്വയം ലഭ്യമല്ല.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "സമന്വയം വീണ്ടും ശ്രമിക്കുക",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "പൊരുത്തപ്പെടുന്ന സമയ മേഖലകളില്ല",
     "description": "Empty result shown when no time zones match the search."

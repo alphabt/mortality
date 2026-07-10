@@ -158,6 +158,7 @@ const storage = hasExtStorage
         }
       },
     };
+let saveQueue = null;
 
 /** Read any pre-storage data still sitting in localStorage, or null. */
 function readLegacy() {
@@ -268,9 +269,23 @@ export async function load() {
   return backfilled;
 }
 
-/** Persist state. */
-export async function save(state) {
-  await storage.set({ [KEY]: state });
+/**
+ * Persist an immutable snapshot in call order. Most controller callers do not
+ * await save(), so serializing here prevents a slower earlier write from
+ * overwriting a newer state.
+ */
+export function save(state) {
+  const snapshot = JSON.parse(JSON.stringify(state));
+  const write = () => storage.set({ [KEY]: snapshot });
+  if (!hasExtStorage) return write();
+  const operation = saveQueue ? saveQueue.catch(() => {}).then(write) : write();
+  saveQueue = operation;
+  operation
+    .finally(() => {
+      if (saveQueue === operation) saveQueue = null;
+    })
+    .catch(() => {});
+  return operation;
 }
 
 /** Current effective value of a --<key> CSS custom property (hex). */

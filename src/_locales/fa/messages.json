@@ -447,6 +447,50 @@
     "message": "جست‌وجوی منطقه‌های زمانی",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "همگام‌سازی دستگاه‌ها",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "همگام‌سازی ترجیحات میان دستگاه‌ها",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "پوسته، سبک ارقام، خط تأمل، زبان و حالت شمارنده را از طریق حساب مرورگر شما همگام می‌کند.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "جزئیات تولد و امید به زندگی نیز همگام شود",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "تاریخ و زمان تولد، منطقه زمانی محل تولد، جنسیت هنگام تولد و منبع داده انتخاب‌شده برای امید به زندگی یا تعداد سال‌های سفارشی شما را نیز همگام می‌کند. این اطلاعات شخصی‌تر هستند.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "غیرفعال",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "در حال همگام‌سازی…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "همگام شد",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "در این دستگاه ذخیره شد. همگام‌سازی به‌روزرسانی نشد.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "همگام‌سازی دستگاه‌ها در این مرورگر در دسترس نیست.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "تلاش دوباره برای همگام‌سازی",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "منطقه زمانی منطبقی یافت نشد",
     "description": "Empty result shown when no time zones match the search."

@@ -447,6 +447,50 @@
     "message": "タイムゾーンを検索",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "デバイス間同期",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "デバイス間で設定を同期",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "ブラウザーアカウントを介して、テーマ、数字スタイル、振り返りの一文、言語、カウンターモードを同期します。",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "誕生日と平均余命の詳細も同期",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "生年月日と出生時刻、出生地のタイムゾーン、出生時の性別、選択した平均余命データソースまたはカスタム年数も同期します。これらはより個人的な情報です。",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "オフ",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "同期中…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "同期済み",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "このデバイスに保存しました。同期を更新できませんでした。",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "このブラウザーではデバイス間同期を利用できません。",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "同期を再試行",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "一致するタイムゾーンはありません",
     "description": "Empty result shown when no time zones match the search."

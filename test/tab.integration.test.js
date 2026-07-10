@@ -4,6 +4,16 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { PRESETS } from "../src/store.js";
 import { estimateExpectancy } from "../src/lifetable.js";
+import {
+  SYNC_CONFIG_KEY,
+  SYNC_METADATA_KEY,
+  SYNC_PREFERENCES_KEY,
+  SYNC_PROFILE_KEY,
+  createConfigEnvelope,
+  createSyncEnvelope,
+  preferencePayload,
+  profilePayload,
+} from "../src/sync.js";
 
 const YEAR_MS = 31556900000; // must match tab.js
 const DAY_MS = 86400000;
@@ -51,6 +61,61 @@ function mockLanguageCatalog(messages) {
         ),
     })),
   );
+}
+
+function extensionStorage(localState, syncState) {
+  const localData = {
+    mortality: structuredClone(localState),
+    [SYNC_METADATA_KEY]: { version: 1, writerId: "local-writer" },
+  };
+  const syncData = structuredClone(syncState);
+  const listeners = new Set();
+  const selected = (query, data) => {
+    const keys =
+      typeof query === "string"
+        ? [query]
+        : Array.isArray(query)
+          ? query
+          : Object.keys(data);
+    return Object.fromEntries(
+      keys
+        .filter((key) => Object.prototype.hasOwnProperty.call(data, key))
+        .map((key) => [key, structuredClone(data[key])]),
+    );
+  };
+  const api = {
+    local: {
+      get: vi.fn(async (query) => selected(query, localData)),
+      set: vi.fn(async (items) =>
+        Object.assign(localData, structuredClone(items)),
+      ),
+    },
+    sync: {
+      get: vi.fn(async (query) => selected(query, syncData)),
+      set: vi.fn(async (items) =>
+        Object.assign(syncData, structuredClone(items)),
+      ),
+      remove: vi.fn(async (query) => {
+        for (const key of Array.isArray(query) ? query : [query]) {
+          delete syncData[key];
+        }
+      }),
+    },
+    onChanged: {
+      addListener: vi.fn((listener) => listeners.add(listener)),
+      removeListener: vi.fn((listener) => listeners.delete(listener)),
+    },
+  };
+  globalThis.chrome = { storage: api };
+  return {
+    api,
+    localData,
+    syncData,
+    emit(changes) {
+      for (const listener of listeners) listener(changes, "sync");
+    },
+    listenerCount: () => listeners.size,
+  };
 }
 
 beforeEach(() => {
@@ -758,6 +823,163 @@ describe("reduced motion", () => {
     document.querySelector("#count").click();
 
     expect(animateSpy).not.toHaveBeenCalled();
+  });
+});
+
+describe("device sync controller integration", () => {
+  const local = {
+    version: 1,
+    birth: null,
+    birthZone: null,
+    theme: null,
+    expectancy: 80,
+    expectancySource: "estimate",
+    sex: null,
+    lifeTable: "world",
+    mode: "years",
+    typeface: "system",
+    reflection: false,
+    language: "auto",
+  };
+  const remote = {
+    ...local,
+    birth: "1990-06-15T09:30",
+    birthZone: "Asia/Tokyo",
+    theme: PRESETS.Void,
+    expectancy: 91,
+    expectancySource: "custom",
+    sex: "female",
+    lifeTable: "un:392",
+    mode: "days",
+    typeface: "mono",
+    reflection: true,
+  };
+
+  it("applies enabled preference and profile payloads before the first render", async () => {
+    const storage = extensionStorage(local, {
+      [SYNC_CONFIG_KEY]: createConfigEnvelope(
+        { preferences: true, profile: true },
+        "remote-writer",
+      ),
+      [SYNC_PREFERENCES_KEY]: createSyncEnvelope(
+        "preferences",
+        preferencePayload(remote),
+        "remote-writer",
+      ),
+      [SYNC_PROFILE_KEY]: createSyncEnvelope(
+        "profile",
+        profilePayload(remote),
+        "remote-writer",
+      ),
+    });
+    await boot();
+
+    expect(document.body.className).toBe("screen-counter");
+    expect(document.querySelector("#unit-label").textContent).toBe(
+      "Days lived",
+    );
+    expect(document.documentElement.style.getPropertyValue("--accent")).toBe(
+      PRESETS.Void.accent,
+    );
+    expect(
+      document.documentElement.style.getPropertyValue("--num-font"),
+    ).toContain("ui-monospace");
+    expect(storage.localData.mortality).toMatchObject({
+      birth: remote.birth,
+      lifeTable: "un:392",
+      mode: "days",
+    });
+    expect(storage.listenerCount()).toBe(1);
+  });
+
+  it("applies a remote preference event live without republishing it", async () => {
+    mockLanguageCatalog({
+      pageTitle: "Mortality — Neuer Tab",
+      settings: "Einstellungen",
+      language: "Sprache",
+      languageAutomatic: "Browserstandard",
+      sectionDeviceSync: "Gerätesynchronisierung",
+      syncPreferences: "Einstellungen geräteübergreifend synchronisieren",
+      syncPreferencesHint: "Über Ihr Browserkonto.",
+      syncProfile: "Auch persönliche Details synchronisieren",
+      syncProfileHint: "Diese Angaben sind persönlicher.",
+      syncStatusSynced: "Synchronisiert",
+      retrySync: "Erneut versuchen",
+    });
+    const initial = { ...remote, language: "auto" };
+    const storage = extensionStorage(initial, {
+      [SYNC_CONFIG_KEY]: createConfigEnvelope(
+        { preferences: true, profile: false },
+        "remote-writer",
+      ),
+      [SYNC_PREFERENCES_KEY]: createSyncEnvelope(
+        "preferences",
+        preferencePayload(initial),
+        "remote-writer",
+      ),
+    });
+    await boot();
+    document.querySelector("#gear").click();
+    storage.api.sync.set.mockClear();
+
+    const changed = {
+      ...initial,
+      theme: PRESETS.Amber,
+      language: "de",
+      mode: "weeks",
+    };
+    const envelope = createSyncEnvelope(
+      "preferences",
+      preferencePayload(changed),
+      "other-device",
+    );
+    storage.syncData[SYNC_PREFERENCES_KEY] = structuredClone(envelope);
+    storage.emit({
+      [SYNC_PREFERENCES_KEY]: { newValue: envelope },
+    });
+    await flush();
+
+    expect(document.body.className).toBe("screen-settings");
+    expect(document.documentElement.lang).toBe("de");
+    expect(document.querySelector(".screen-title").textContent).toBe(
+      "Einstellungen",
+    );
+    expect(document.documentElement.style.getPropertyValue("--accent")).toBe(
+      PRESETS.Amber.accent,
+    );
+    expect(storage.api.sync.set).not.toHaveBeenCalled();
+  });
+
+  it("routes safely to setup when a synced profile removes the birthday", async () => {
+    const storage = extensionStorage(remote, {
+      [SYNC_CONFIG_KEY]: createConfigEnvelope(
+        { preferences: true, profile: true },
+        "remote-writer",
+      ),
+      [SYNC_PREFERENCES_KEY]: createSyncEnvelope(
+        "preferences",
+        preferencePayload(remote),
+        "remote-writer",
+      ),
+      [SYNC_PROFILE_KEY]: createSyncEnvelope(
+        "profile",
+        profilePayload(remote),
+        "remote-writer",
+      ),
+    });
+    await boot();
+    const withoutBirth = { ...remote, birth: null, birthZone: null };
+    const envelope = createSyncEnvelope(
+      "profile",
+      profilePayload(withoutBirth),
+      "other-device",
+    );
+    storage.syncData[SYNC_PROFILE_KEY] = structuredClone(envelope);
+    storage.emit({ [SYNC_PROFILE_KEY]: { newValue: envelope } });
+    await flush();
+
+    expect(document.body.className).toBe("screen-setup");
+    expect(document.querySelector("#birth-date")).not.toBeNull();
   });
 });
 

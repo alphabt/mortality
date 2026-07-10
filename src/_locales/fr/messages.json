@@ -447,6 +447,50 @@
     "message": "Rechercher des fuseaux horaires",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Synchronisation entre appareils",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Synchroniser les préférences entre les appareils",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Synchronise votre thème, le style des chiffres, la phrase de réflexion, la langue et le mode du compteur via votre compte de navigateur.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Synchroniser aussi l’anniversaire et les données d’espérance de vie",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Synchronise aussi vos date et heure de naissance, le fuseau horaire de naissance, le sexe à la naissance et la source de données d’espérance de vie sélectionnée ou le nombre d’années personnalisé. Ces informations sont plus personnelles.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Désactivée",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Synchronisation…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Synchronisé",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Enregistré sur cet appareil. La synchronisation n’a pas pu être mise à jour.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "La synchronisation entre appareils n’est pas disponible dans ce navigateur.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Réessayer la synchronisation",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Aucun fuseau horaire correspondant",
     "description": "Empty result shown when no time zones match the search."

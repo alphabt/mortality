@@ -447,6 +447,50 @@
     "message": "시간대 검색",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "기기 동기화",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "기기 간 환경설정 동기화",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "브라우저 계정을 통해 테마, 숫자 스타일, 성찰 문구, 언어 및 카운터 모드를 동기화합니다.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "생일 및 기대 수명 세부 정보도 동기화",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "출생 날짜와 시간, 출생 시간대, 출생 시 성별, 선택한 기대 수명 데이터 원본 또는 사용자 지정 연수도 동기화합니다. 이 정보는 좀 더 개인적입니다.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "사용 안 함",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "동기화 중…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "동기화됨",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "이 기기에 저장했습니다. 동기화를 업데이트하지 못했습니다.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "이 브라우저에서는 기기 동기화를 사용할 수 없습니다.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "동기화 다시 시도",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "일치하는 시간대가 없습니다",
     "description": "Empty result shown when no time zones match the search."

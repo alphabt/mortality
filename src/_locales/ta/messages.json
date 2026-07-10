@@ -447,6 +447,50 @@
     "message": "நேர மண்டலங்களைத் தேடுக",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "சாதன ஒத்திசைவு",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "சாதனங்களுக்கு இடையே விருப்பத்தேர்வுகளை ஒத்திசைக்கவும்",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "உங்கள் உலாவிக் கணக்கு மூலம் தோற்றம், எண் வடிவம், சிந்தனை வரி, மொழி மற்றும் எண்ணி முறை ஆகியவற்றை ஒத்திசைக்கிறது.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "பிறந்தநாள் மற்றும் எதிர்பார்க்கப்படும் ஆயுட்கால விவரங்களையும் ஒத்திசைக்கவும்",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "உங்கள் பிறந்த தேதி மற்றும் நேரம், பிறந்த நேர மண்டலம், பிறப்பின்போதைய பாலினம், தேர்ந்தெடுத்த எதிர்பார்க்கப்படும் ஆயுட்காலத் தரவு மூலம் அல்லது தனிப்பயன் ஆண்டுகள் ஆகியவற்றையும் ஒத்திசைக்கிறது. இந்தத் தகவல் மேலும் தனிப்பட்டது.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "முடக்கம்",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "ஒத்திசைக்கிறது…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "ஒத்திசைக்கப்பட்டது",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "இந்தச் சாதனத்தில் சேமிக்கப்பட்டது. ஒத்திசைவைப் புதுப்பிக்க முடியவில்லை.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "இந்த உலாவியில் சாதன ஒத்திசைவு கிடைக்கவில்லை.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "ஒத்திசைவை மீண்டும் முயலவும்",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "பொருந்தும் நேர மண்டலங்கள் இல்லை",
     "description": "Empty result shown when no time zones match the search."

@@ -447,6 +447,50 @@
     "message": "Pretraži vremenske zone",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Sinkronizacija uređaja",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sinkroniziraj postavke na svim uređajima",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Sinkronizira temu, stil znamenki, redak za razmišljanje, jezik i način brojača putem vašeg računa preglednika.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sinkroniziraj i rođendan te podatke o očekivanom životnom vijeku",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Sinkronizira i datum i vrijeme rođenja, vremensku zonu rođenja, spol pri rođenju te odabrani izvor podataka o očekivanom životnom vijeku ili prilagođeni broj godina. Ti su podaci osobniji.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Isključeno",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Sinkronizacija…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sinkronizirano",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Spremljeno na ovom uređaju. Sinkronizacija se nije mogla ažurirati.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Sinkronizacija uređaja nije dostupna u ovom pregledniku.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Pokušaj ponovno sinkronizirati",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Nema odgovarajućih vremenskih zona",
     "description": "Empty result shown when no time zones match the search."

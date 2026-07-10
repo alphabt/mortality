@@ -447,6 +447,50 @@
     "message": "Maghanap ng mga time zone",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Pag-synchronize ng mga aparato",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "I-synchronize ang mga kagustuhan sa lahat ng aparato",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Sini-synchronize ang iyong tema, estilo ng mga numero, linya ng pagninilay, wika, at paraan ng pagbibilang sa pamamagitan ng iyong account sa browser.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "I-synchronize din ang kaarawan at mga detalye ng inaasahang haba ng buhay",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Sini-synchronize din ang petsa at oras ng iyong kapanganakan, sona ng oras ng kapanganakan, kasarian noong ipinanganak, at napiling pinagmulan ng datos para sa inaasahang haba ng buhay o pasadyang bilang ng taon. Mas personal ang impormasyong ito.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Hindi aktibo",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Nagsi-synchronize…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Na-synchronize",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Naimbak sa aparatong ito. Hindi na-update ang pag-synchronize.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Hindi magagamit sa browser na ito ang pag-synchronize ng mga aparato.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Subukang muli ang pag-synchronize",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Walang tumutugmang time zone",
     "description": "Empty result shown when no time zones match the search."

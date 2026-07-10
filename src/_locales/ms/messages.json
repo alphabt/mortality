@@ -447,6 +447,50 @@
     "message": "Cari zon waktu",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Penyegerakan peranti",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Segerakkan keutamaan merentas peranti",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Menyegerakkan tema, gaya angka, baris renungan, bahasa dan mod pengira anda melalui akaun pelayar anda.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Segerakkan juga hari lahir dan butiran jangka hayat",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Turut menyegerakkan tarikh dan masa lahir, zon waktu kelahiran, jantina ketika lahir serta sumber data jangka hayat yang dipilih atau bilangan tahun tersuai. Maklumat ini lebih bersifat peribadi.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Dimatikan",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Menyegerakkan…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Disegerakkan",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Disimpan pada peranti ini. Penyegerakan tidak dapat dikemas kini.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Penyegerakan peranti tidak tersedia dalam pelayar ini.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Cuba segerakkan lagi",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Tiada zon waktu yang sepadan",
     "description": "Empty result shown when no time zones match the search."

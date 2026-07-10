@@ -447,6 +447,50 @@
     "message": "Tafuta maeneo ya saa",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Usawazishaji wa vifaa",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sawazisha mapendeleo kati ya vifaa",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Husawazisha mandhari, mtindo wa tarakimu, mstari wa tafakari, lugha na hali ya kihesabu kupitia akaunti yako ya kivinjari.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sawazisha pia siku ya kuzaliwa na maelezo ya umri wa kuishi unaotarajiwa",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Husawazisha pia tarehe na saa ya kuzaliwa, ukanda wa saa wa kuzaliwa, jinsia wakati wa kuzaliwa na chanzo kilichochaguliwa cha data ya umri wa kuishi unaotarajiwa au miaka maalum. Taarifa hii ni ya kibinafsi zaidi.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Imezimwa",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Inasawazisha…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Imesawazishwa",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Imehifadhiwa kwenye kifaa hiki. Usawazishaji haukuweza kusasishwa.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Usawazishaji wa vifaa haupatikani katika kivinjari hiki.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Jaribu kusawazisha tena",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Hakuna maeneo ya saa yanayolingana",
     "description": "Empty result shown when no time zones match the search."

@@ -447,6 +447,50 @@
     "message": "Tìm kiếm múi giờ",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Đồng bộ thiết bị",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Đồng bộ tùy chọn giữa các thiết bị",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Đồng bộ giao diện, kiểu chữ số, dòng suy ngẫm, ngôn ngữ và chế độ bộ đếm thông qua tài khoản trình duyệt của bạn.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Đồng bộ cả ngày sinh và thông tin tuổi thọ dự kiến",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Đồng bộ cả ngày giờ sinh, múi giờ nơi sinh, giới tính khi sinh và nguồn dữ liệu tuổi thọ dự kiến đã chọn hoặc số năm tùy chỉnh. Đây là thông tin mang tính cá nhân hơn.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Tắt",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Đang đồng bộ…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Đã đồng bộ",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Đã lưu trên thiết bị này. Không thể cập nhật đồng bộ.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Trình duyệt này không hỗ trợ đồng bộ thiết bị.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Thử đồng bộ lại",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Không có múi giờ phù hợp",
     "description": "Empty result shown when no time zones match the search."
