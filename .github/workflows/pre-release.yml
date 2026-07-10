@@ -1,12 +1,12 @@
 name: "pre-release"
 
-# Rolling development build. Every push to master runs the full quality gate and,
+# Rolling development build. Every push to main runs the full quality gate and,
 # if green, refreshes the single "latest" pre-release with the freshly packaged
 # extension. Pull requests are covered by ci.yml, so this only runs post-merge.
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

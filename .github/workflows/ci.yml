@@ -6,7 +6,7 @@ name: "ci"
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
   workflow_call:
 
 permissions:
