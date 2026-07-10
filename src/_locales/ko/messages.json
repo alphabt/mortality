@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "앞으로",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "시간대 검색",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "일치하는 시간대가 없습니다",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

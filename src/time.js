@@ -290,3 +290,47 @@ export function listTimeZones(...ensure) {
   }
   return [...set].sort();
 }
+
+/** Turn an IANA id into a readable but deliberately non-localized label. */
+export function humanizeTimeZone(zone) {
+  return String(zone)
+    .split("/")
+    .map((part) => part.replaceAll("_", " "))
+    .join(" / ");
+}
+
+/** Format a UTC offset, preserving half- and quarter-hour offsets. */
+export function formatUtcOffset(offsetMs) {
+  if (!Number.isFinite(offsetMs)) {
+    throw new TypeError("Time-zone offset must be finite");
+  }
+  const totalMinutes = Math.round(offsetMs / 60000);
+  if (totalMinutes === 0) return "UTC";
+  const sign = totalMinutes < 0 ? "-" : "+";
+  const absolute = Math.abs(totalMinutes);
+  const hours = String(Math.floor(absolute / 60)).padStart(2, "0");
+  const minutes = String(absolute % 60).padStart(2, "0");
+  return `UTC${sign}${hours}:${minutes}`;
+}
+
+/**
+ * Search-select records for every supported time zone at one frozen instant.
+ * Canonical values are never humanized or otherwise altered.
+ */
+export function buildTimeZoneOptions(selected, detected, nowMs = Date.now()) {
+  return listTimeZones(selected, detected).map((zone) => {
+    const label = humanizeTimeZone(zone);
+    const offset = isValidZone(zone)
+      ? formatUtcOffset(zoneOffsetMsAt(nowMs, zone))
+      : "";
+    const meta = label === "UTC" && offset === "UTC" ? "" : offset;
+    return {
+      value: zone,
+      label,
+      meta,
+      displayText: [label, meta].filter(Boolean).join(" \u00b7 "),
+      searchText: `${zone} ${label} ${meta}`,
+      dir: "ltr",
+    };
+  });
+}

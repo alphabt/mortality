@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Pa",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Maghanap ng mga time zone",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Walang tumutugmang time zone",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

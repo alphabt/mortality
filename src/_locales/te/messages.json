@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "ముందు ఉంది",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "సమయ మండలాలను వెతకండి",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "సరిపోలే సమయ మండలాలు లేవు",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

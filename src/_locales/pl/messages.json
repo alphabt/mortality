@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Przed Tobą",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Szukaj stref czasowych",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Brak pasujących stref czasowych",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

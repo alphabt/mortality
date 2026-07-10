@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "മുന്നിലുണ്ട്",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "സമയ മേഖലകൾ തിരയുക",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "പൊരുത്തപ്പെടുന്ന സമയ മേഖലകളില്ല",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

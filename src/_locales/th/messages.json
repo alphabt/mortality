@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "เหลืออีก",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "ค้นหาเขตเวลา",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "ไม่พบเขตเวลาที่ตรงกัน",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

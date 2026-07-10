@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Nog te gaan",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Tijdzones zoeken",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Geen overeenkomende tijdzones",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

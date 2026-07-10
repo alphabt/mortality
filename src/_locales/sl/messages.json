@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Pred vami",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Iskanje časovnih pasov",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Ni ujemajočih se časovnih pasov",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

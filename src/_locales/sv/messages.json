@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Kvar",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Sök efter tidszoner",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Inga matchande tidszoner",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

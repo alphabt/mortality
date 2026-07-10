@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "সামনে",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "সময় অঞ্চল খুঁজুন",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "কোনো মিলে যাওয়া সময় অঞ্চল নেই",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Igjen",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Søk etter tidssoner",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Ingen samsvarende tidssoner",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

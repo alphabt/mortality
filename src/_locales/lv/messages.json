@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Priekšā",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Meklēt laika joslas",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Nav atbilstošu laika joslu",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

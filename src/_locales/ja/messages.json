@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "あと",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "タイムゾーンを検索",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "一致するタイムゾーンはありません",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

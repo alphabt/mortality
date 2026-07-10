@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Ees",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Otsi ajavööndeid",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Sobivaid ajavööndeid ei leitud",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

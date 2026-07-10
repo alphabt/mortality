@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Priekyje",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Ieškoti laiko juostų",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Atitinkančių laiko juostų nėra",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

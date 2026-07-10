@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "ಮುಂದೆ ಇದೆ",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "ಸಮಯ ವಲಯಗಳನ್ನು ಹುಡುಕಿ",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "ಹೊಂದಿಕೆಯಾಗುವ ಸಮಯ ವಲಯಗಳಿಲ್ಲ",
+    "description": "Empty result shown when no time zones match the search."
   }
 }

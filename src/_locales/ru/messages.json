@@ -424,5 +424,13 @@
   "legendAhead": {
     "message": "Впереди",
     "description": "Legend label for future weeks."
+  },
+  "searchTimeZones": {
+    "message": "Поиск часовых поясов",
+    "description": "Placeholder for the searchable time-zone field."
+  },
+  "noTimeZones": {
+    "message": "Нет подходящих часовых поясов",
+    "description": "Empty result shown when no time zones match the search."
   }
 }
