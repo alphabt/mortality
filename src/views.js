@@ -208,7 +208,7 @@ export function renderCounter(
   const weeksBtn = el(
     "button",
     {
-      class: "gear corner-left",
+      class: "gear",
       id: "weeks-btn",
       title: "Life in weeks",
       "aria-label": "Life in weeks",
@@ -250,7 +250,14 @@ export function renderCounter(
   if (reflection) {
     counter.append(el("p", { class: "reflection" }, reflection));
   }
-  app.replaceChildren(weeksBtn, gear, counter);
+  // Both chrome controls share one top-right cluster so the rest of the canvas
+  // (and the whole top-left) stays clear — the gear keeps the corner, the
+  // life-in-weeks toggle sits just inboard of it.
+  const cornerControls = el("div", { class: "corner-controls" }, [
+    weeksBtn,
+    gear,
+  ]);
+  app.replaceChildren(cornerControls, counter);
 
   gear.addEventListener("click", openSettings);
   weeksBtn.addEventListener("click", openWeeks);
@@ -508,7 +515,7 @@ export function renderWeeks(
   const backBtn = el(
     "button",
     {
-      class: "gear corner-left",
+      class: "gear",
       id: "weeks-back",
       title: "Back",
       "aria-label": "Back",
@@ -548,7 +555,13 @@ export function renderWeeks(
     ]),
   ]);
 
-  app.replaceChildren(backBtn, gear, wrap);
+  // Same top-right cluster as the counter: the Back arrow takes the exact slot
+  // the grid toggle used to enter this view, so you leave from where you came in.
+  const cornerControls = el("div", { class: "corner-controls" }, [
+    backBtn,
+    gear,
+  ]);
+  app.replaceChildren(cornerControls, wrap);
 
   backBtn.addEventListener("click", back);
   gear.addEventListener("click", openSettings);

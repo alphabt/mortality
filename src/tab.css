@@ -419,11 +419,21 @@ footer {
   display: block;
 }
 
-/* Second corner button (life-in-weeks entry, weeks-view back): reuses every
-   .gear rule, just mirrored to the top-left. */
-.gear.corner-left {
-  right: auto;
-  left: 0.75rem;
+/* Top-right control cluster, shared by the counter and life-in-weeks screens.
+   The gear keeps the exact corner; the button to its left is a same-slot toggle
+   (opens the weeks view from the counter, returns from it on the weeks screen),
+   so you always leave from where you entered. Buttons go static inside the
+   fixed cluster. */
+.corner-controls {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.corner-controls .gear {
+  position: static;
 }
 
 .settings {

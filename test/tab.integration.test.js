@@ -417,3 +417,35 @@ describe("life in weeks", () => {
     expect(document.body.className).toBe("screen-counter");
   });
 });
+
+describe("keyboard dismissal", () => {
+  it("returns to the counter when Escape is pressed in the weeks view", async () => {
+    seed({ birth: "2000-01-01T00:00", expectancy: 80 });
+    await boot();
+
+    document.querySelector('[aria-label="Life in weeks"]').click();
+    expect(document.body.className).toBe("screen-weeks");
+
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    expect(document.body.className).toBe("screen-counter");
+  });
+
+  it("returns to the counter when Escape is pressed in settings", async () => {
+    seed({ birth: "2000-01-01T00:00" });
+    await boot();
+
+    document.querySelector('[aria-label="Settings"]').click();
+    expect(document.body.className).toBe("screen-settings");
+
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    expect(document.body.className).toBe("screen-counter");
+  });
+
+  it("ignores Escape on the setup screen, where there is no counter yet", async () => {
+    await boot();
+    expect(document.body.className).toBe("screen-setup");
+
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    expect(document.body.className).toBe("screen-setup");
+  });
+});
