@@ -159,10 +159,14 @@ describe("bestOnColor", () => {
     expect(bestOnColor("#fafaf8")).toBe("#141414");
   });
 
-  it("returns one of the two ink colors for any accent", () => {
-    for (const preset of Object.values(PRESETS)) {
-      expect(["#ffffff", "#141414"]).toContain(bestOnColor(preset.accent));
+  it("always returns normal-text contrast for accepted accents", () => {
+    for (const accent of [
+      ...Object.values(PRESETS).map(({ accent }) => accent),
+      "#7a7a7a",
+    ]) {
+      expect(contrast(bestOnColor(accent), accent)).toBeGreaterThanOrEqual(4.5);
     }
+    expect(bestOnColor("#7a7a7a")).toBe("#000000");
   });
 });
 

@@ -820,6 +820,30 @@ describe("settings: display, reflection, and zone", () => {
     document.querySelector('[role="option"]').click();
     expect(stored().birthZone).toBe("Asia/Tokyo");
   });
+
+  it("rejects a zone that would move the stored birth into the future", async () => {
+    vi.setSystemTime(new Date("2020-01-01T00:30:00Z"));
+    seed({
+      birth: "2020-01-01T08:00",
+      birthZone: "Asia/Tokyo",
+      theme: PRESETS.Light,
+    });
+    await boot();
+    expect(document.body.className).toBe("screen-counter");
+    document.querySelector("#gear").click();
+    const zone = document.querySelector("#settings-zone");
+    zone.value = "los angeles";
+    zone.dispatchEvent(new Event("input", { bubbles: true }));
+    document.querySelector('[role="option"]').click();
+
+    expect(stored().birthZone).toBe("Asia/Tokyo");
+    const error = document.querySelector("#settings-zone-error");
+    expect(error.hidden).toBe(false);
+    expect(document.querySelector("#settings-zone").value).toContain("Tokyo");
+    expect(document.activeElement).toBe(
+      document.querySelector("#settings-zone"),
+    );
+  });
 });
 
 describe("count transition and reduced motion", () => {

@@ -436,6 +436,7 @@ export function renderSettings(
     typeface,
     reflection,
     birthZone,
+    zoneError,
     language,
   },
 ) {
@@ -591,6 +592,16 @@ export function renderSettings(
   // Time zone: re-anchor the birth instant to a different zone after setup.
   const detected = detectZone();
   const selectedZone = isValidZone(birthZone) ? birthZone : detected;
+  const zoneErrorEl = el(
+    "p",
+    {
+      class: "field-error",
+      id: "settings-zone-error",
+      role: "alert",
+      hidden: !zoneError,
+    },
+    zoneError || "",
+  );
   const zoneControl = createSearchSelect({
     id: "settings-zone",
     options: buildTimeZoneOptions(selectedZone, detected),
@@ -598,8 +609,14 @@ export function renderSettings(
     placeholder: msg("searchTimeZones"),
     noResults: msg("noTimeZones"),
     inputDir: "ltr",
-    onSelect: actions.setZone,
+    onSelect(value) {
+      zoneErrorEl.hidden = true;
+      zoneControl.input.setAttribute("aria-invalid", "false");
+      actions.setZone(value);
+    },
   });
+  zoneControl.input.setAttribute("aria-describedby", "settings-zone-error");
+  zoneControl.input.setAttribute("aria-invalid", String(Boolean(zoneError)));
 
   // Data: export the whole state as JSON, or import a previously saved file.
   const exportBtn = el(
@@ -680,6 +697,7 @@ export function renderSettings(
         msg("bornIn"),
       ),
       zoneControl.element,
+      zoneErrorEl,
       el("p", { class: "hint" }, msg("zoneHint")),
     ]),
     el("p", { class: "settings-label" }, msg("sectionData")),

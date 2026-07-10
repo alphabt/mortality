@@ -537,7 +537,7 @@ function showWeeks(focusSelector = "#weeks-title") {
   focusApp(focusSelector);
 }
 
-function showSettings(focusSelector = "#settings-title") {
+function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
   stopTimer();
   setScreen("settings");
   renderSettings(
@@ -603,6 +603,13 @@ function showSettings(focusSelector = "#settings-title") {
         showSettings("#reflection-switch");
       },
       setZone(value) {
+        const bornMs = isValidZone(value)
+          ? birthInstantMs(state.birth, value)
+          : NaN;
+        if (!Number.isFinite(bornMs) || bornMs > Date.now()) {
+          showSettings("#settings-zone", "futureDateError");
+          return;
+        }
         state.birthZone = value;
         save(state);
       },
@@ -675,6 +682,7 @@ function showSettings(focusSelector = "#settings-title") {
       typeface: state.typeface,
       reflection: state.reflection,
       birthZone: state.birthZone,
+      zoneError: zoneErrorKey ? msg(zoneErrorKey) : "",
       language: state.language,
     },
   );

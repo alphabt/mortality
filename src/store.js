@@ -380,11 +380,13 @@ export function normalizeTheme(theme) {
   return normalized;
 }
 
-/** Pick black or white ink for legible text on top of an accent fill. */
+/** Pick a preferred ink that always meets normal-text contrast on an accent. */
 export function bestOnColor(hex) {
-  return contrast("#ffffff", hex) >= contrast("#141414", hex)
-    ? "#ffffff"
-    : "#141414";
+  const light = contrast("#ffffff", hex);
+  const dark = contrast("#141414", hex);
+  if (light >= 4.5 && light >= dark) return "#ffffff";
+  if (dark >= 4.5) return "#141414";
+  return "#000000";
 }
 
 /**

@@ -677,6 +677,20 @@ describe("renderSettings", () => {
     expect(app.querySelector("#settings-zone").value).not.toContain("Mars");
   });
 
+  it("surfaces a rejected settings zone as an accessible error", () => {
+    renderSettings(
+      app,
+      actions(),
+      data({ zoneError: "Birth date cannot be in the future." }),
+    );
+    const input = app.querySelector("#settings-zone");
+    const error = app.querySelector("#settings-zone-error");
+    expect(error.hidden).toBe(false);
+    expect(error.getAttribute("role")).toBe("alert");
+    expect(input.getAttribute("aria-describedby")).toBe("settings-zone-error");
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+  });
+
   it("cleans up an open zone popup before settings re-render", () => {
     const abort = vi.spyOn(AbortController.prototype, "abort");
     renderSettings(app, actions(), data({ birthZone: "Asia/Tokyo" }));
