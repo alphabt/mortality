@@ -20,6 +20,7 @@ import {
   msg,
   normalizeLanguage,
 } from "./i18n.js";
+import { lifeGridRows } from "./life-grid.js";
 import { createSearchSelect } from "./search-select.js";
 
 const COLOR_LABELS = {
@@ -733,9 +734,8 @@ export function renderSettings(
 }
 
 /**
- * Life-in-weeks grid: every row is a year of the expectancy, every cell a week —
- * lived weeks filled, the current week accented, the rest dim. Static per open;
- * the grid is decorative (aria-hidden) and the subtitle carries the real counts.
+ * Life-in-weeks plot: fixed 52-cell bands with quiet age ticks and one accented
+ * current cell. The plot stays decorative; the subtitle carries the real counts.
  */
 export function renderWeeks(
   app,
@@ -764,13 +764,49 @@ export function renderWeeks(
     gearIcon(),
   );
 
-  const grid = el("div", { class: "weeks-grid", "aria-hidden": "true" });
-  const cells = document.createDocumentFragment();
-  for (let i = 0; i < total; i++) {
-    const cls = i < lived ? "lived" : i === lived ? "now" : "future";
-    cells.append(el("i", { class: cls }));
+  const plot = el("div", { class: "weeks-plot", "aria-hidden": "true" });
+  const rows = document.createDocumentFragment();
+
+  for (const row of lifeGridRows(total)) {
+    const band = el("div", { class: "weeks-band" });
+    const cells = document.createDocumentFragment();
+    for (let offset = 0; offset < row.cellCount; offset++) {
+      const index = row.startIndex + offset;
+      const state =
+        index < lived ? "lived" : index === lived ? "now" : "future";
+      const cell = document.createElement("i");
+      cell.className = state;
+      cells.append(cell);
+    }
+    band.append(cells);
+
+    const cadenceClass = row.isDecade
+      ? " decade-label"
+      : row.showLabel
+        ? " five-year-label"
+        : "";
+    const age = formatNumber(row.age);
+    rows.append(
+      el(
+        "div",
+        {
+          class: `weeks-row${row.isDecade ? " decade-row" : ""}`,
+          "data-age": row.age,
+        },
+        [
+          el(
+            "span",
+            {
+              class: `age-tick${cadenceClass}`,
+            },
+            row.showLabel ? age : "",
+          ),
+          band,
+        ],
+      ),
+    );
   }
-  grid.append(cells);
+  plot.append(rows);
 
   const wrap = el("div", { class: "weeks-wrap" }, [
     el("div", { class: "weeks-head" }, [
@@ -785,7 +821,7 @@ export function renderWeeks(
         ]),
       ),
     ]),
-    grid,
+    plot,
     el("div", { class: "weeks-legend" }, [
       el("span", {}, [el("i", { class: "lived" }), msg("legendLived")]),
       el("span", {}, [el("i", { class: "now" }), msg("legendThisWeek")]),

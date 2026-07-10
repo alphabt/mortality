@@ -775,11 +775,13 @@ describe("life in weeks", () => {
     const bornMs = new Date("2000-01-01T00:00").getTime();
     const lived = Math.floor((Date.now() - bornMs) / WEEK_MS);
 
-    const grid = document.querySelector(".weeks-grid");
-    expect(grid.querySelectorAll("i").length).toBe(total);
+    const grid = document.querySelector(".weeks-plot");
+    expect(grid.querySelectorAll(".weeks-row")).toHaveLength(80);
+    expect(grid.querySelectorAll(".weeks-band i").length).toBe(total);
     expect(grid.querySelectorAll("i.lived").length).toBe(lived);
     expect(grid.querySelectorAll("i.now").length).toBe(1);
     expect(grid.querySelectorAll("i.future").length).toBe(total - lived - 1);
+    expect(grid.querySelectorAll("[tabindex]")).toHaveLength(0);
 
     document.querySelector('[aria-label="Back"]').click();
     expect(document.body.className).toBe("screen-counter");
