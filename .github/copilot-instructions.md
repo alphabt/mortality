@@ -36,4 +36,4 @@ To iterate visually, run `/impeccable live` (pre-configured for `src/tab.html`).
 - **Pull requests:** describe UI changes in words in the PR description — do **not** commit
   image files or park them on a throwaway asset branch just to embed screenshots from the
   CLI; never do that. If a reviewer wants visual proof, attach screenshots by hand via
-  drag-and-drop in the browser GitHub UI.
+  drag-and-drop in the GitHub web UI.
