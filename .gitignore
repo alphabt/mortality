@@ -33,4 +33,6 @@ pnpm-debug.log*
 /artifacts
 
 # impeccable design-skill local cache
-.impeccable/
+# Keep only the shared, reviewable config (detector ignores) tracked.
+.impeccable/*
+!.impeccable/config.json
