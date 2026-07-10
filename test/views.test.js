@@ -29,6 +29,17 @@ function keydown(el, key) {
   return event;
 }
 
+function chooseSearchOption(input, query, optionText) {
+  input.value = query;
+  input.dispatchEvent(new Event("input", { bubbles: true }));
+  const listbox = document.getElementById(input.getAttribute("aria-controls"));
+  const option = [...listbox.querySelectorAll('[role="option"]')].find((node) =>
+    node.textContent.includes(optionText),
+  );
+  expect(option).not.toBeUndefined();
+  option.click();
+}
+
 describe("renderSetup", () => {
   it("renders the date, time, and start controls", () => {
     renderSetup(app, { start: vi.fn() }, null);
@@ -221,9 +232,18 @@ describe("renderSetup", () => {
     renderSetup(app, { start: vi.fn() }, null);
     const lifeTable = app.querySelector("#birth-life-table");
     expect(lifeTable).not.toBeNull();
-    expect(lifeTable.value).toBe("world");
+    expect(lifeTable.tagName).toBe("INPUT");
+    expect(lifeTable.getAttribute("role")).toBe("combobox");
+    expect(lifeTable.value).toBe("World — UN 2023");
+    keydown(lifeTable, "ArrowDown");
+    const listbox = document.getElementById(
+      lifeTable.getAttribute("aria-controls"),
+    );
+    expect(listbox.querySelectorAll('[role="option"]')).toHaveLength(239);
     expect(
-      [...lifeTable.options].map(({ textContent }) => textContent),
+      [...listbox.querySelectorAll('[role="option"]')]
+        .slice(0, 2)
+        .map(({ textContent }) => textContent),
     ).toEqual(["World — UN 2023", "United States — SSA 2023"]);
     expect(app.querySelector('label[for="birth-life-table"]').textContent).toBe(
       "Life expectancy data source",
@@ -232,7 +252,30 @@ describe("renderSetup", () => {
 
   it("pre-selects a saved U.S. baseline when editing", () => {
     renderSetup(app, { start: vi.fn() }, "1990-05-15T00:00", "UTC", null, "us");
-    expect(app.querySelector("#birth-life-table").value).toBe("us");
+    expect(app.querySelector("#birth-life-table").value).toBe(
+      "United States — SSA 2023",
+    );
+  });
+
+  it("lets country labels follow an RTL document while isolating metadata", () => {
+    const previousDir = document.documentElement.getAttribute("dir");
+    try {
+      document.documentElement.dir = "rtl";
+      renderSetup(app, { start: vi.fn() }, null);
+      const lifeTable = app.querySelector("#birth-life-table");
+      expect(lifeTable.getAttribute("dir")).toBeNull();
+      chooseSearchOption(lifeTable, "Japan", "Japan");
+      lifeTable.value = "Japan";
+      lifeTable.dispatchEvent(new Event("input", { bubbles: true }));
+      const listbox = document.getElementById(
+        lifeTable.getAttribute("aria-controls"),
+      );
+      expect(listbox.closest(".search-select-popup").dir).toBe("rtl");
+      expect(listbox.querySelector(".search-select-option-meta").dir).toBe("");
+    } finally {
+      if (previousDir == null) document.documentElement.removeAttribute("dir");
+      else document.documentElement.dir = previousDir;
+    }
   });
 
   it("caps the birth date at today", () => {
@@ -337,7 +380,11 @@ describe("renderSetup", () => {
     const start = vi.fn();
     renderSetup(app, { start }, null);
     app.querySelector("#birth-date").value = "1980-07-08";
-    app.querySelector("#birth-life-table").value = "us";
+    chooseSearchOption(
+      app.querySelector("#birth-life-table"),
+      "SSA",
+      "United States",
+    );
     app
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
@@ -748,9 +795,24 @@ describe("renderSettings", () => {
     expect(
       app.querySelector('label[for="settings-life-table"]').textContent,
     ).toBe("Data source");
-    expect(lifeTable.value).toBe("us");
-    lifeTable.value = "world";
-    lifeTable.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(lifeTable.value).toBe("United States — SSA 2023");
+    chooseSearchOption(lifeTable, "World", "World");
     expect(a.setLifeTable).toHaveBeenCalledWith("world");
+  });
+
+  it("reports one canonical UN country selection and then rerenders cleanly", () => {
+    const a = actions();
+    renderSettings(
+      app,
+      a,
+      data({ expectancySource: "estimate", lifeTable: "world" }),
+    );
+    chooseSearchOption(
+      app.querySelector("#settings-life-table"),
+      "Japan JPN",
+      "Japan",
+    );
+    expect(a.setLifeTable).toHaveBeenCalledOnce();
+    expect(a.setLifeTable).toHaveBeenCalledWith("un:392");
   });
 });

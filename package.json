@@ -5,6 +5,8 @@
   "description": "A browser extension that replaces the new tab page with a live counter of your age.",
   "license": "MIT",
   "scripts": {
+    "start": "node scripts/preview.mjs",
+    "dev": "node scripts/preview.mjs",
     "zip": "bash scripts/pack.sh",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -67,6 +67,24 @@
     "message": "अमेरिका — SSA 2023",
     "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
+  "lifeTableCountry": {
+    "message": "$COUNTRY$ — संयुक्त राष्ट्र 2023",
+    "description": "Template for a localized UN country or area data-source name.",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "Japan"
+      }
+    }
+  },
+  "searchCountriesAreas": {
+    "message": "देश आणि क्षेत्रे शोधा",
+    "description": "Placeholder for the searchable country and area data-source picker."
+  },
+  "noCountriesAreas": {
+    "message": "जुळणारे देश किंवा क्षेत्रे नाहीत",
+    "description": "Empty state when the country and area search has no matches."
+  },
   "baselineSettingsHint": {
     "message": "तुमचा टाइम झोन डेटा स्रोत कधीही बदलत नाही. जन्मावेळचे लिंग ऐच्छिक आहे.",
     "description": "Privacy explanation below the life-expectancy estimate settings."

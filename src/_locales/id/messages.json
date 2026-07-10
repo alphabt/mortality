@@ -67,6 +67,24 @@
     "message": "Amerika Serikat — SSA 2023",
     "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
+  "lifeTableCountry": {
+    "message": "$COUNTRY$ — PBB 2023",
+    "description": "Template for a localized UN country or area data-source name.",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "Japan"
+      }
+    }
+  },
+  "searchCountriesAreas": {
+    "message": "Cari negara dan wilayah",
+    "description": "Placeholder for the searchable country and area data-source picker."
+  },
+  "noCountriesAreas": {
+    "message": "Tidak ada negara atau wilayah yang cocok",
+    "description": "Empty state when the country and area search has no matches."
+  },
   "baselineSettingsHint": {
     "message": "Zona waktu Anda tidak pernah mengubah sumber data. Jenis kelamin saat lahir bersifat opsional.",
     "description": "Privacy explanation below the life-expectancy estimate settings."

@@ -111,6 +111,7 @@ describe("life-table baseline metadata", () => {
   it("normalizes unknown values to World", () => {
     expect(normalizeLifeTable("world")).toBe("world");
     expect(normalizeLifeTable("us")).toBe("us");
+    expect(normalizeLifeTable("un:392")).toBe("un:392");
     expect(normalizeLifeTable("unknown")).toBe("world");
     expect(normalizeLifeTable(null)).toBe("world");
   });
@@ -131,6 +132,12 @@ describe("estimateExpectancy", () => {
     expect(estimateExpectancy(65, "male", "us")).toBe(83);
   });
 
+  it("can select a generated UN country or area explicitly", () => {
+    expect(estimateExpectancy(0, "male", "un:392")).toBe(82);
+    expect(estimateExpectancy(0, "male", "un:566")).toBe(54);
+    expect(estimateExpectancy(65, "female", "un:276")).toBe(86);
+  });
+
   it("falls back to World for an unknown baseline", () => {
     expect(estimateExpectancy(40, null, "unknown")).toBe(
       estimateExpectancy(40, null, "world"),
@@ -140,7 +147,7 @@ describe("estimateExpectancy", () => {
   it("always returns a whole number", () => {
     for (const age of [0, 12.4, 40, 65.5, 90, 119]) {
       for (const sex of ["male", "female", null]) {
-        for (const lifeTable of ["world", "us"]) {
+        for (const lifeTable of ["world", "us", "un:392"]) {
           expect(
             Number.isInteger(estimateExpectancy(age, sex, lifeTable)),
           ).toBe(true);
@@ -151,7 +158,7 @@ describe("estimateExpectancy", () => {
 
   it("never returns less than the attained age inside the app range", () => {
     for (const age of [0, 40.5, 100, 119, 149]) {
-      for (const lifeTable of ["world", "us"]) {
+      for (const lifeTable of ["world", "us", "un:392"]) {
         expect(
           estimateExpectancy(age, "male", lifeTable),
         ).toBeGreaterThanOrEqual(Math.ceil(age));
@@ -160,7 +167,7 @@ describe("estimateExpectancy", () => {
   });
 
   it("has a total expected age that rises with attained age", () => {
-    for (const lifeTable of ["world", "us"]) {
+    for (const lifeTable of ["world", "us", "un:392"]) {
       for (const sex of ["male", "female", null]) {
         for (let age = 1; age < 120; age++) {
           expect(
@@ -172,7 +179,7 @@ describe("estimateExpectancy", () => {
   });
 
   it("conditions on survival instead of keeping the at-birth figure flat", () => {
-    for (const lifeTable of ["world", "us"]) {
+    for (const lifeTable of ["world", "us", "un:392"]) {
       expect(estimateExpectancy(70, "male", lifeTable)).toBeGreaterThan(
         estimateExpectancy(0, "male", lifeTable),
       );
@@ -180,7 +187,7 @@ describe("estimateExpectancy", () => {
   });
 
   it("orders the sexes: female >= unisex >= male", () => {
-    for (const lifeTable of ["world", "us"]) {
+    for (const lifeTable of ["world", "us", "un:392"]) {
       for (const age of [0, 25, 50, 70, 90]) {
         const male = estimateExpectancy(age, "male", lifeTable);
         const female = estimateExpectancy(age, "female", lifeTable);
@@ -199,7 +206,7 @@ describe("estimateExpectancy", () => {
   });
 
   it("interpolates e(x) smoothly between integer ages", () => {
-    for (const lifeTable of ["world", "us"]) {
+    for (const lifeTable of ["world", "us", "un:392"]) {
       const lo = estimateExpectancy(40, "male", lifeTable);
       const hi = estimateExpectancy(41, "male", lifeTable);
       const mid = estimateExpectancy(40.5, "male", lifeTable);

@@ -20,7 +20,11 @@ import {
   languageName,
   msg,
   normalizeLanguage,
+  regionName,
+  compareLocaleText,
 } from "../src/i18n.js";
+import { buildLifeTableOptions } from "../src/life-table-options.js";
+import { filterSearchOptions } from "../src/search-select.js";
 import { renderSetup } from "../src/views.js";
 import { formatBorn } from "../src/tab.js";
 
@@ -306,6 +310,62 @@ describe("message lookup and document locale", () => {
     expect(languageName("de")).toMatch(/Deutsch/i);
   });
 
+  it("localizes ISO2 region names and falls back to official UN English", () => {
+    mockLocale("de");
+    expect(regionName("JP", "Japan")).toBe("Japan");
+    expect(regionName("US", "United States of America")).toMatch(
+      /Vereinigte Staaten/,
+    );
+    mockLocale("ar");
+    expect(regionName("JP", "Japan")).toMatch(/اليابان/);
+    expect(regionName(null, "Channel Islands")).toBe("Channel Islands");
+    expect(regionName("bad", "Official fallback")).toBe("Official fallback");
+  });
+
+  it("reuses one region display-name formatter per locale", () => {
+    mockLocale("ca");
+    const displayNames = vi.spyOn(Intl, "DisplayNames");
+    regionName("JP", "Japan");
+    regionName("US", "United States of America");
+    expect(displayNames).toHaveBeenCalledTimes(1);
+    displayNames.mockRestore();
+  });
+
+  it("uses locale-aware collation", () => {
+    mockLocale("sv");
+    expect(["Öland", "Albanien", "Åland"].sort(compareLocaleText)).toEqual([
+      "Albanien",
+      "Åland",
+      "Öland",
+    ]);
+  });
+
+  it("reuses one collator for repeated comparisons in the same locale", () => {
+    mockLocale("ca");
+    const collator = vi.spyOn(Intl, "Collator");
+    compareLocaleText("Barcelona", "Àlaba");
+    compareLocaleText("Girona", "Barcelona");
+    expect(collator).toHaveBeenCalledTimes(1);
+    collator.mockRestore();
+  });
+
+  it("builds pinned, localized, searchable country and area options", () => {
+    mockLocale("ar");
+    const options = buildLifeTableOptions();
+    expect(options).toHaveLength(239);
+    expect(options.slice(0, 2).map(({ value }) => value)).toEqual([
+      "world",
+      "us",
+    ]);
+    expect(options.find(({ value }) => value === "un:392").label).toMatch(
+      /اليابان/,
+    );
+    expect(filterSearchOptions(options, "اليابان")).toHaveLength(1);
+    expect(filterSearchOptions(options, "Japan")).toHaveLength(1);
+    expect(filterSearchOptions(options, "JPN 392")).toHaveLength(1);
+    expect(filterSearchOptions(options, "UN 2023 Japan")).toHaveLength(1);
+  });
+
   it("loads a manually selected catalog instead of the browser locale", async () => {
     mockLocale("en", { settings: "Browser settings" });
     vi.stubGlobal(
@@ -353,6 +413,21 @@ describe("message lookup and document locale", () => {
     expect(getDirection()).toBe("rtl");
     expect(document.documentElement.lang).toBe("ar");
     expect(document.documentElement.dir).toBe("rtl");
+  });
+
+  it("uses a manual language override for country display names", async () => {
+    mockLocale("en");
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => ({
+        ok: true,
+        json: async () => ({}),
+      })),
+    );
+    await activateLanguage("de");
+    expect(regionName("US", "United States of America")).toMatch(
+      /Vereinigte Staaten/,
+    );
   });
 });
 

@@ -517,10 +517,26 @@ describe("expectancy-source migration", () => {
       sex: "female",
       lifeTable: "us",
     });
+
     const result = await load();
     expect(result.expectancySource).toBe("estimate");
     expect(result.sex).toBe("female");
     expect(result.lifeTable).toBe("us");
+  });
+
+  it("preserves a valid generated UN country source", async () => {
+    await save({
+      birth: "1980-01-01T00:00",
+      birthZone: "UTC",
+      expectancySource: "estimate",
+      sex: "female",
+      lifeTable: "un:392",
+    });
+    await expect(load()).resolves.toMatchObject({
+      expectancySource: "estimate",
+      sex: "female",
+      lifeTable: "un:392",
+    });
   });
 
   it("migrates the legacy dob record to a custom source", async () => {
@@ -584,6 +600,20 @@ describe("effectiveExpectancy", () => {
     expect(Number.isInteger(male)).toBe(true);
     expect(male).toBeGreaterThanOrEqual(70); // never below current age
     expect(female).toBeGreaterThanOrEqual(male); // female >= male
+  });
+
+  it("derives an estimate from a generated country table", () => {
+    expect(
+      effectiveExpectancy(
+        {
+          expectancySource: "estimate",
+          expectancy: 80,
+          sex: "male",
+          lifeTable: "un:392",
+        },
+        0,
+      ),
+    ).toBe(82);
   });
 
   it("uses the explicitly selected actuarial baseline", () => {

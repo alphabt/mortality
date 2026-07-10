@@ -6,9 +6,9 @@ United Nations, Department of Economic and Social Affairs, Population
 Division (2024). World Population Prospects 2024.
 https://population.un.org/wpp/
 
-The embedded World 2023 male, female, and both-sexes
-life-expectancy-at-age (ex) series were extracted from these complete
-life-table CSV files and converted to JavaScript arrays:
+The embedded World series and country/area derivatives use 2023,
+Medium-variant male, female, and both-sexes life-expectancy-at-age
+(ex) values from these complete life-table CSV files:
 
 https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Life_Table_Complete_Medium_Male_1950-2023.csv.gz
 https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Life_Table_Complete_Medium_Female_1950-2023.csv.gz
@@ -19,6 +19,23 @@ https://creativecommons.org/licenses/by/3.0/igo/
 
 The data may be shared and adapted with attribution. Mortality is not
 endorsed by the United Nations.
+
+Country/area extraction was performed on 2026-07-10 with
+LocTypeName=Country/Area, Variant=Medium, and Time=2023. The retained
+columns are LocID, ISO2_code, ISO3_code, Location, Sex, AgeGrpStart,
+and ex. All 237 matching locations with complete male, female, and
+both-sexes age coverage (ages 0..99 and the official 100+ endpoint)
+are included. Country series are rounded to hundredths of a year,
+stored as unsigned 16-bit little-endian values, and Base64 encoded.
+
+Source file SHA-256 checksums:
+
+Male:
+e304a776352e5899ff45a1e0c059bdbaa32e8a8249d36d8f4627b2afaf6358be
+Female:
+0e23ba8cc2daabd9aa40839b02e21917205f29ea45791c2b1a87bd42705b1458
+Both sexes:
+7ad8748f4dec567dcfd74fb7161a369e09f6501489c49bce1cd0572c16484058
 
 
 U.S. SOCIAL SECURITY ADMINISTRATION PERIOD LIFE TABLE 2023

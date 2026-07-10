@@ -67,6 +67,24 @@
     "message": "Jungtinės Valstijos — SSA 2023",
     "description": "Display name for the United States Social Security Administration 2023 life-expectancy data source."
   },
+  "lifeTableCountry": {
+    "message": "$COUNTRY$ — JT 2023",
+    "description": "Template for a localized UN country or area data-source name.",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "Japan"
+      }
+    }
+  },
+  "searchCountriesAreas": {
+    "message": "Ieškoti šalių ir teritorijų",
+    "description": "Placeholder for the searchable country and area data-source picker."
+  },
+  "noCountriesAreas": {
+    "message": "Atitinkančių šalių ar teritorijų nėra",
+    "description": "Empty state when the country and area search has no matches."
+  },
   "baselineSettingsHint": {
     "message": "Jūsų laiko zona niekada nepakeičia duomenų šaltinio. Lytis gimus yra neprivaloma.",
     "description": "Privacy explanation below the life-expectancy estimate settings."

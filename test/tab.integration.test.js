@@ -213,7 +213,13 @@ describe("setup flow", () => {
   it("persists an explicitly selected U.S. actuarial baseline", async () => {
     await boot();
     document.querySelector("#birth-date").value = "1990-06-15";
-    document.querySelector("#birth-life-table").value = "us";
+    const source = document.querySelector("#birth-life-table");
+    source.value = "SSA";
+    source.dispatchEvent(new Event("input", { bubbles: true }));
+    document
+      .getElementById(source.getAttribute("aria-controls"))
+      .querySelector('[role="option"]')
+      .click();
     document
       .querySelector("form")
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
@@ -716,11 +722,38 @@ describe("settings: life-expectancy source, baseline, and sex", () => {
     await boot();
     document.querySelector("#gear").click();
     const lifeTable = document.querySelector("#settings-life-table");
-    expect(lifeTable.value).toBe("world");
-    lifeTable.value = "us";
-    lifeTable.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(lifeTable.value).toBe("World — UN 2023");
+    lifeTable.value = "SSA";
+    lifeTable.dispatchEvent(new Event("input", { bubbles: true }));
+    document
+      .getElementById(lifeTable.getAttribute("aria-controls"))
+      .querySelector('[role="option"]')
+      .click();
     expect(stored().lifeTable).toBe("us");
-    expect(document.querySelector("#settings-life-table").value).toBe("us");
+    expect(document.querySelector("#settings-life-table").value).toBe(
+      "United States — SSA 2023",
+    );
+  });
+
+  it("selects and persists a country-specific UN source", async () => {
+    seed({
+      birth: "2000-01-01T00:00",
+      expectancySource: "estimate",
+      lifeTable: "world",
+    });
+    await boot();
+    document.querySelector("#gear").click();
+    const lifeTable = document.querySelector("#settings-life-table");
+    lifeTable.value = "Japan JPN";
+    lifeTable.dispatchEvent(new Event("input", { bubbles: true }));
+    document
+      .getElementById(lifeTable.getAttribute("aria-controls"))
+      .querySelector('[role="option"]')
+      .click();
+    expect(stored().lifeTable).toBe("un:392");
+    expect(document.querySelector("#settings-life-table").value).toContain(
+      "Japan",
+    );
   });
 });
 

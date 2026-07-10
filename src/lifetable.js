@@ -30,6 +30,8 @@
 // UN World male e(0)=70.5472, e(65)=16.0083; UN World female e(0)=75.8857,
 // e(65)=18.9811.
 
+import { decodeUnLifeTable, isUnLifeTable } from "./un-life-tables.js";
+
 /** Male expectation of remaining life e(x), by integer age x = 0..119 (years). */
 export const MALE = [
   75.79, 75.25, 74.28, 73.31, 72.33, 71.34, 70.35, 69.36, 68.37, 67.38, 66.39,
@@ -137,14 +139,19 @@ const TABLES = {
 /** Normalize persisted/imported table ids; unknown values use the World baseline. */
 export function normalizeLifeTable(value) {
   return typeof value === "string" &&
-    Object.prototype.hasOwnProperty.call(TABLES, value)
+    (Object.prototype.hasOwnProperty.call(TABLES, value) ||
+      isUnLifeTable(value))
     ? value
     : DEFAULT_LIFE_TABLE;
 }
 
 /** The e(x) table for a given sex and baseline; unknown/null sex uses unisex. */
 function tableFor(sex, lifeTable) {
-  const tables = TABLES[normalizeLifeTable(lifeTable)];
+  const normalized = normalizeLifeTable(lifeTable);
+  if (isUnLifeTable(normalized)) {
+    return decodeUnLifeTable(normalized, sex);
+  }
+  const tables = TABLES[normalized];
   if (sex === "male") return tables.male;
   if (sex === "female") return tables.female;
   return tables.unisex;
@@ -164,7 +171,7 @@ function tableFor(sex, lifeTable) {
  *
  * @param {number} ageYears Attained age in years (may be fractional).
  * @param {"male"|"female"|null} [sex] Sex at birth; null/omitted uses UNISEX.
- * @param {"world"|"us"} [lifeTable] Life-expectancy data source; defaults to World.
+ * @param {string} [lifeTable] Life-expectancy data source; defaults to World.
  * @returns {number} Whole-number total expected age at death.
  */
 export function estimateExpectancy(

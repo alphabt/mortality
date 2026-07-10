@@ -190,13 +190,16 @@ describe("mergeImported", () => {
     ).toBe(current.expectancySource);
   });
 
-  it("accepts known life tables and ignores an unknown one", () => {
+  it("accepts known life tables and resets an unknown one to World", () => {
     expect(mergeImported(current, { lifeTable: "us" }).lifeTable).toBe("us");
     expect(mergeImported(current, { lifeTable: "world" }).lifeTable).toBe(
       "world",
     );
+    expect(mergeImported(current, { lifeTable: "un:392" }).lifeTable).toBe(
+      "un:392",
+    );
     expect(mergeImported(current, { lifeTable: "timezone" }).lifeTable).toBe(
-      current.lifeTable,
+      "world",
     );
   });
 
