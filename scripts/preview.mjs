@@ -23,7 +23,7 @@ const contentTypes = {
   ".txt": "text/plain; charset=utf-8",
 };
 
-function respond(response, status, body, headers = {}) {
+function respond(request, response, status, body, headers = {}) {
   response.writeHead(status, {
     "cache-control": "no-store",
     ...(typeof body === "string"
@@ -31,12 +31,14 @@ function respond(response, status, body, headers = {}) {
       : {}),
     ...headers,
   });
-  response.end(body);
+  response.end(request.method === "HEAD" ? undefined : body);
 }
 
 const server = createServer(async (request, response) => {
   if (request.method !== "GET" && request.method !== "HEAD") {
-    respond(response, 405, "Method not allowed", { allow: "GET, HEAD" });
+    respond(request, response, 405, "Method not allowed", {
+      allow: "GET, HEAD",
+    });
     return;
   }
 
@@ -47,7 +49,7 @@ const server = createServer(async (request, response) => {
     );
   } catch (error) {
     console.error("Invalid preview request URL:", error);
-    respond(response, 400, "Bad request");
+    respond(request, response, 400, "Bad request");
     return;
   }
 
@@ -55,7 +57,7 @@ const server = createServer(async (request, response) => {
     pathname === "/" ? "tab.html" : pathname.replace(/^\/+/, "");
   const filePath = resolve(root, relativePath);
   if (filePath !== root && !filePath.startsWith(`${root}${sep}`)) {
-    respond(response, 403, "Forbidden");
+    respond(request, response, 403, "Forbidden");
     return;
   }
 
@@ -64,16 +66,16 @@ const server = createServer(async (request, response) => {
     const contentType =
       contentTypes[extname(filePath).toLowerCase()] ||
       "application/octet-stream";
-    respond(response, 200, request.method === "HEAD" ? undefined : body, {
+    respond(request, response, 200, body, {
       "content-type": contentType,
     });
   } catch (error) {
     if (error?.code === "ENOENT" || error?.code === "EISDIR") {
-      respond(response, 404, "Not found");
+      respond(request, response, 404, "Not found");
       return;
     }
     console.error(`Could not serve ${pathname}:`, error);
-    respond(response, 500, "Internal server error");
+    respond(request, response, 500, "Internal server error");
   }
 });
 
@@ -95,7 +97,8 @@ server.on("listening", () => {
   const address = server.address();
   const activePort =
     typeof address === "object" && address ? address.port : port;
-  console.log(`Mortality preview ready at http://${host}:${activePort}/`);
+  const urlHost = host.includes(":") ? `[${host}]` : host;
+  console.log(`Mortality preview ready at http://${urlHost}:${activePort}/`);
 });
 
 server.listen(port, host);
