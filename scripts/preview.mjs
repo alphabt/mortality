@@ -6,8 +6,8 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("../src/", import.meta.url)));
 const host = process.env.HOST || "127.0.0.1";
 const defaultPort = 4173;
-const configuredPort = process.env.PORT;
-let port = Number(configuredPort || defaultPort);
+const configuredPort = process.env.PORT?.trim() || undefined;
+let port = Number(configuredPort ?? defaultPort);
 
 if (!Number.isInteger(port) || port < 0 || port > 65535) {
   throw new RangeError(`Invalid PORT: ${process.env.PORT}`);
