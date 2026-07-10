@@ -136,7 +136,10 @@ const TABLES = {
 
 /** Normalize persisted/imported table ids; unknown values use the World baseline. */
 export function normalizeLifeTable(value) {
-  return value === "us" ? "us" : DEFAULT_LIFE_TABLE;
+  return typeof value === "string" &&
+    Object.prototype.hasOwnProperty.call(TABLES, value)
+    ? value
+    : DEFAULT_LIFE_TABLE;
 }
 
 /** The e(x) table for a given sex and baseline; unknown/null sex uses unisex. */
