@@ -451,6 +451,50 @@
     "message": "Hae aikavyöhykkeitä",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Laitteiden synkronointi",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Synkronoi asetukset laitteiden välillä",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Synkronoi teeman, numeroiden tyylin, pohdintarivin, kielen ja laskuritilan selaintilisi kautta.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Synkronoi myös syntymäpäivä ja elinajanodotteen tiedot",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Synkronoi myös syntymäpäiväsi ja -aikasi, syntymäpaikan aikavyöhykkeen, syntymässä määritetyn sukupuolen sekä valitun elinajanodotteen tietolähteen tai mukautetun vuosimäärän. Nämä tiedot ovat henkilökohtaisempia.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Pois",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Synkronoidaan…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Synkronoitu",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Tallennettu tälle laitteelle. Synkronointia ei voitu päivittää.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Laitteiden synkronointi ei ole käytettävissä tässä selaimessa.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Yritä synkronointia uudelleen",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Vastaavia aikavyöhykkeitä ei löytynyt",
     "description": "Empty result shown when no time zones match the search."

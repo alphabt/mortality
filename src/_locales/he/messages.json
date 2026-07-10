@@ -451,6 +451,50 @@
     "message": "חיפוש אזורי זמן",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "סנכרון בין מכשירים",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "סנכרון העדפות בין מכשירים",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "מסנכרן את ערכת הנושא, סגנון הספרות, שורת ההרהור, השפה ומצב המונה דרך חשבון הדפדפן שלך.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "סנכרון גם של פרטי יום ההולדת ותוחלת החיים",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "מסנכרן גם את תאריך ושעת הלידה, אזור הזמן בלידה, המין בלידה ומקור נתוני תוחלת החיים שנבחר או מספר שנים מותאם אישית. מידע זה אישי יותר.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "כבוי",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "מתבצע סנכרון…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "סונכרן",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "נשמר במכשיר הזה. לא ניתן היה לעדכן את הסנכרון.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "סנכרון בין מכשירים אינו זמין בדפדפן הזה.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "ניסיון סנכרון נוסף",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "לא נמצאו אזורי זמן תואמים",
     "description": "Empty result shown when no time zones match the search."

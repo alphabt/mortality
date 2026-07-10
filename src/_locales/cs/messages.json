@@ -451,6 +451,50 @@
     "message": "Hledat časová pásma",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Synchronizace zařízení",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Synchronizovat předvolby mezi zařízeními",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Synchronizuje motiv, styl číslic, řádek k zamyšlení, jazyk a režim počítadla prostřednictvím účtu prohlížeče.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Synchronizovat také narozeniny a údaje o délce života",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Synchronizuje také datum a čas narození, časové pásmo narození, pohlaví při narození a vybraný zdroj údajů o očekávané délce života nebo vlastní počet let. Tyto informace jsou osobnější.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Vypnuto",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Synchronizace…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Synchronizováno",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Uloženo v tomto zařízení. Synchronizaci se nepodařilo aktualizovat.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Synchronizace zařízení není v tomto prohlížeči dostupná.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Opakovat synchronizaci",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Žádná odpovídající časová pásma",
     "description": "Empty result shown when no time zones match the search."

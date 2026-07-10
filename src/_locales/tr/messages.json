@@ -451,6 +451,50 @@
     "message": "Saat dilimlerinde ara",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Cihaz eşitleme",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Tercihleri cihazlar arasında eşitle",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Temanızı, sayı stilinizi, düşünce satırınızı, dilinizi ve sayaç modunuzu tarayıcı hesabınız üzerinden eşitler.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Doğum günü ve yaşam beklentisi ayrıntılarını da eşitle",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Doğum tarihinizi ve saatinizi, doğum saati diliminizi, doğumdaki cinsiyetinizi ve seçilen yaşam beklentisi veri kaynağını veya özel yıl sayısını da eşitler. Bu bilgiler daha kişiseldir.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Kapalı",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Eşitleniyor…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Eşitlendi",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Bu cihaza kaydedildi. Eşitleme güncellenemedi.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Cihaz eşitleme bu tarayıcıda kullanılamıyor.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Eşitlemeyi yeniden dene",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Eşleşen saat dilimi yok",
     "description": "Empty result shown when no time zones match the search."

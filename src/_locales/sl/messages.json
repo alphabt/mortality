@@ -451,6 +451,50 @@
     "message": "Iskanje časovnih pasov",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Sinhronizacija naprav",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sinhroniziraj nastavitve med napravami",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Prek računa brskalnika sinhronizira temo, slog številk, vrstico za razmislek, jezik in način števca.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sinhroniziraj tudi rojstni dan in podatke o pričakovani življenjski dobi",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Sinhronizira tudi datum in čas rojstva, časovni pas rojstva, spol ob rojstvu ter izbrani vir podatkov o pričakovani življenjski dobi ali prilagojeno število let. Ti podatki so bolj osebni.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Izklopljeno",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Sinhroniziranje…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sinhronizirano",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Shranjeno v tej napravi. Sinhronizacije ni bilo mogoče posodobiti.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Sinhronizacija naprav v tem brskalniku ni na voljo.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Ponovi sinhronizacijo",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Ni ujemajočih se časovnih pasov",
     "description": "Empty result shown when no time zones match the search."

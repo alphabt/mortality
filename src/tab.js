@@ -16,6 +16,7 @@ import {
   renderSetup,
   renderCounter,
   renderSettings,
+  updateSyncSettings,
   renderWeeks,
 } from "./views.js";
 import {
@@ -29,6 +30,7 @@ import {
 } from "./time.js";
 import { estimateExpectancy, normalizeLifeTable } from "./lifetable.js";
 import { el } from "./dom.js";
+import { createSyncManager } from "./sync.js";
 import {
   AUTOMATIC_LANGUAGE,
   activateLanguage,
@@ -62,6 +64,22 @@ const LABELS = {
 const app = document.getElementById("app");
 let state;
 let timer = null;
+let syncManager = null;
+let syncModel = {
+  available: false,
+  preferences: false,
+  profile: false,
+  status: "unavailable",
+  error: null,
+  busy: false,
+};
+
+function persistState() {
+  save(state).catch((error) => {
+    console.error("Mortality: local settings could not be saved", error);
+  });
+  syncManager?.stateChanged(state);
+}
 
 function stopTimer() {
   if (timer) {
@@ -244,7 +262,7 @@ async function changeLanguage(value, afterChange) {
     return;
   }
   state.language = language;
-  save(state);
+  persistState();
   applyDocumentLocale();
   afterChange();
 }
@@ -291,7 +309,7 @@ function start(birth, zone, sex, lifeTable) {
   state.birthZone = zone || detectZone();
   state.sex = sex === "male" || sex === "female" ? sex : null;
   state.lifeTable = normalizeLifeTable(lifeTable);
-  save(state);
+  persistState();
   showCounter();
 }
 
@@ -366,7 +384,7 @@ function showCounter(focusSelector = null) {
   function cycle() {
     mode = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
     state.mode = mode;
-    save(state);
+    persistState();
     layout();
     fadeCount();
     stopTimer(); // cancel the in-flight tick so loops don't stack up per click
@@ -547,7 +565,7 @@ function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
         const normalized = normalizeTheme(theme);
         if (!normalized) return;
         state.theme = normalized;
-        save(state);
+        persistState();
         applyTheme(state.theme);
         scheduleAmbient();
       },
@@ -555,35 +573,35 @@ function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
         const preset = PRESETS[name];
         if (!preset) return;
         state.theme = { ...preset };
-        save(state);
+        persistState();
         applyTheme(state.theme);
         scheduleAmbient();
         showSettings(`[data-preset="${name}"]`);
       },
       setExpectancy(value) {
         state.expectancy = clampExpectancy(value);
-        save(state);
+        persistState();
       },
       setExpectancySource(value) {
         state.expectancySource = value === "custom" ? "custom" : "estimate";
-        save(state);
+        persistState();
         // Re-render so the manual Years input swaps with the read-only estimate.
         showSettings(`[data-source="${value}"]`);
       },
       setSex(value) {
         state.sex = value === "male" || value === "female" ? value : null;
-        save(state);
+        persistState();
         // Re-render so the estimate line reflects the new sex immediately.
         showSettings("#settings-sex");
       },
       setLifeTable(value) {
         state.lifeTable = normalizeLifeTable(value);
-        save(state);
+        persistState();
         showSettings("#settings-life-table");
       },
       resetColors() {
         state.theme = null;
-        save(state);
+        persistState();
         applyTheme(null);
         scheduleAmbient();
         showSettings("#reset-colors");
@@ -593,13 +611,13 @@ function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
       },
       setTypeface(value) {
         state.typeface = value;
-        save(state);
+        persistState();
         applyTypeface(value);
         showSettings(`[data-typeface="${value}"]`);
       },
       toggleReflection() {
         state.reflection = !state.reflection;
-        save(state);
+        persistState();
         showSettings("#reflection-switch");
       },
       setZone(value) {
@@ -611,7 +629,7 @@ function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
           return;
         }
         state.birthZone = value;
-        save(state);
+        persistState();
       },
       setLanguage(value) {
         changeLanguage(value, showSettings);
@@ -657,7 +675,7 @@ function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
           }
           state = imported;
           await activateStateLanguage();
-          save(state);
+          persistState();
           applyTheme(state.theme);
           applyTypeface(state.typeface);
           if (state.birth) showCounter("#count");
@@ -669,6 +687,15 @@ function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
       },
       closeSettings() {
         showCounter("#gear");
+      },
+      toggleSyncPreferences(enabled) {
+        void syncManager?.togglePreferences(enabled);
+      },
+      toggleSyncProfile(enabled) {
+        void syncManager?.toggleProfile(enabled);
+      },
+      retrySync() {
+        void syncManager?.retry();
       },
     },
     {
@@ -684,6 +711,7 @@ function showSettings(focusSelector = "#settings-title", zoneErrorKey = null) {
       birthZone: state.birthZone,
       zoneError: zoneErrorKey ? msg(zoneErrorKey) : "",
       language: state.language,
+      sync: syncModel,
     },
   );
   focusApp(focusSelector);
@@ -860,8 +888,36 @@ function updateAmbient() {
   cv.style.opacity = "1";
 }
 
+async function applySyncedState(nextState) {
+  const activeScreen = document.body.className;
+  state = nextState;
+  await activateStateLanguage();
+  applyTheme(state.theme);
+  applyTypeface(state.typeface);
+  scheduleAmbient();
+
+  if (!parseBirthParts(state.birth)) {
+    showSetup();
+  } else if (activeScreen === "screen-settings") {
+    showSettings();
+  } else if (activeScreen === "screen-weeks") {
+    showWeeks();
+  } else {
+    showCounter();
+  }
+}
+
 async function init() {
   state = await load();
+  syncManager = createSyncManager({
+    persistLocal: save,
+    onRemoteState: applySyncedState,
+    onStatus(model) {
+      syncModel = model;
+      updateSyncSettings(app, model);
+    },
+  });
+  state = await syncManager.initialize(state);
   await activateStateLanguage();
   applyTheme(state.theme);
   applyTypeface(state.typeface);

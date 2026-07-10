@@ -690,6 +690,30 @@ describe("save / load against extension storage", () => {
     expect(storageMock.set).toHaveBeenCalledWith({ mortality: state });
   });
 
+  it("serializes unawaited extension writes so an older save cannot finish last", async () => {
+    const releases = [];
+    storageMock.set.mockImplementation(
+      () => new Promise((resolve) => releases.push(resolve)),
+    );
+    const store = await importFreshStore();
+    const first = store.save({ mode: "years" });
+    const second = store.save({ mode: "weeks" });
+
+    expect(storageMock.set).toHaveBeenCalledTimes(1);
+    expect(storageMock.set).toHaveBeenLastCalledWith({
+      mortality: { mode: "years" },
+    });
+    releases.shift()();
+    await first;
+    await Promise.resolve();
+    expect(storageMock.set).toHaveBeenCalledTimes(2);
+    expect(storageMock.set).toHaveBeenLastCalledWith({
+      mortality: { mode: "weeks" },
+    });
+    releases.shift()();
+    await second;
+  });
+
   it("load reads existing state from extension storage", async () => {
     storageMock.get.mockResolvedValue({
       mortality: {

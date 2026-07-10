@@ -451,6 +451,50 @@
     "message": "वेळ क्षेत्रे शोधा",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "उपकरणांमधील समक्रमण",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "प्राधान्ये उपकरणांमध्ये समक्रमित करा",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "तुमच्या ब्राउझर खात्यामार्फत दृश्यरूप, अंकशैली, चिंतन ओळ, भाषा आणि गणक मोड समक्रमित करते.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "वाढदिवस आणि अपेक्षित आयुर्मानाचे तपशीलही समक्रमित करा",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "तुमची जन्मतारीख आणि वेळ, जन्माचे वेळ क्षेत्र, जन्माच्या वेळी असलेले लिंग आणि निवडलेला अपेक्षित आयुर्मानाचा डेटा स्रोत किंवा सानुकूल वर्षेही समक्रमित करते. ही माहिती अधिक वैयक्तिक आहे.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "बंद",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "समक्रमित होत आहे…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "समक्रमित झाले",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "या उपकरणावर जतन केले. समक्रमण अद्ययावत होऊ शकले नाही.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "या ब्राउझरमध्ये उपकरण समक्रमण उपलब्ध नाही.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "समक्रमणाचा पुन्हा प्रयत्न करा",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "जुळणारे वेळ क्षेत्र नाही",
     "description": "Empty result shown when no time zones match the search."

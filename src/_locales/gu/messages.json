@@ -451,6 +451,50 @@
     "message": "સમય ઝોન શોધો",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "ઉપકરણ સમન્વય",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "ઉપકરણો વચ્ચે પસંદગીઓ સમન્વિત કરો",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "તમારા બ્રાઉઝર ખાતા દ્વારા તમારી થીમ, અંક શૈલી, ચિંતન પંક્તિ, ભાષા અને કાઉન્ટર મોડને સમન્વિત કરે છે.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "જન્મદિવસ અને અપેક્ષિત આયુષ્યની વિગતો પણ સમન્વિત કરો",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "તમારી જન્મ તારીખ અને સમય, જન્મ સમય ક્ષેત્ર, જન્મ સમયેનું લિંગ અને પસંદ કરેલો અપેક્ષિત આયુષ્યનો ડેટા સ્રોત અથવા કસ્ટમ વર્ષો પણ સમન્વિત કરે છે. આ માહિતી વધુ વ્યક્તિગત છે.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "બંધ",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "સમન્વિત થઈ રહ્યું છે…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "સમન્વિત થયું",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "આ ઉપકરણ પર સાચવ્યું. સમન્વય અપડેટ થઈ શક્યો નહીં.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "આ બ્રાઉઝરમાં ઉપકરણ સમન્વય ઉપલબ્ધ નથી.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "સમન્વયનો ફરી પ્રયાસ કરો",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "કોઈ મેળ ખાતો સમય ઝોન નથી",
     "description": "Empty result shown when no time zones match the search."

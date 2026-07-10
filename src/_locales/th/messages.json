@@ -451,6 +451,50 @@
     "message": "ค้นหาเขตเวลา",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "การซิงค์อุปกรณ์",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "ซิงค์การตั้งค่าระหว่างอุปกรณ์",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "ซิงค์ธีม รูปแบบตัวเลข ข้อความชวนคิด ภาษา และโหมดตัวนับผ่านบัญชีเบราว์เซอร์ของคุณ",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "ซิงค์วันเกิดและรายละเอียดอายุคาดเฉลี่ยด้วย",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "ซิงค์วันที่และเวลาเกิด เขตเวลาที่เกิด เพศเมื่อแรกเกิด และแหล่งข้อมูลอายุคาดเฉลี่ยที่เลือกหรือจำนวนปีที่กำหนดเองด้วย ข้อมูลเหล่านี้มีความเป็นส่วนตัวมากกว่า",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "ปิด",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "กำลังซิงค์…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "ซิงค์แล้ว",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "บันทึกไว้ในอุปกรณ์นี้แล้ว แต่ไม่สามารถอัปเดตการซิงค์ได้",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "เบราว์เซอร์นี้ไม่รองรับการซิงค์อุปกรณ์",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "ลองซิงค์อีกครั้ง",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "ไม่พบเขตเวลาที่ตรงกัน",
     "description": "Empty result shown when no time zones match the search."

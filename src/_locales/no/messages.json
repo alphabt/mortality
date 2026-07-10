@@ -451,6 +451,50 @@
     "message": "Søk etter tidssoner",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Enhetssynkronisering",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Synkroniser innstillinger mellom enheter",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Synkroniserer temaet, tallstilen, refleksjonslinjen, språket og tellermodusen via nettleserkontoen din.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Synkroniser også fødselsdag og opplysninger om forventet levealder",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Synkroniserer også fødselsdato og -tid, tidssonen ved fødselen, kjønn ved fødselen og valgt datakilde for forventet levealder eller egendefinert antall år. Denne informasjonen er mer personlig.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Av",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Synkroniserer…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Synkronisert",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Lagret på denne enheten. Synkroniseringen kunne ikke oppdateres.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Enhetssynkronisering er ikke tilgjengelig i denne nettleseren.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Prøv synkronisering på nytt",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Ingen samsvarende tidssoner",
     "description": "Empty result shown when no time zones match the search."

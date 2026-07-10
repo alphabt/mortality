@@ -451,6 +451,50 @@
     "message": "ಸಮಯ ವಲಯಗಳನ್ನು ಹುಡುಕಿ",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "ಸಾಧನ ಸಿಂಕ್",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "ಸಾಧನಗಳ ನಡುವೆ ಆದ್ಯತೆಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಿ",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "ನಿಮ್ಮ ಬ್ರೌಸರ್ ಖಾತೆಯ ಮೂಲಕ ಥೀಮ್, ಅಂಕಿಗಳ ಶೈಲಿ, ಚಿಂತನೆಯ ಸಾಲು, ಭಾಷೆ ಮತ್ತು ಕೌಂಟರ್ ವಿಧಾನವನ್ನು ಸಿಂಕ್ ಮಾಡುತ್ತದೆ.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "ಹುಟ್ಟುಹಬ್ಬ ಮತ್ತು ನಿರೀಕ್ಷಿತ ಜೀವಿತಾವಧಿಯ ವಿವರಗಳನ್ನೂ ಸಿಂಕ್ ಮಾಡಿ",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "ನಿಮ್ಮ ಜನ್ಮ ದಿನಾಂಕ ಮತ್ತು ಸಮಯ, ಜನನದ ಸಮಯ ವಲಯ, ಜನನದ ಸಮಯದ ಲಿಂಗ ಮತ್ತು ಆಯ್ಕೆಮಾಡಿದ ನಿರೀಕ್ಷಿತ ಜೀವಿತಾವಧಿಯ ಡೇಟಾ ಮೂಲ ಅಥವಾ ಕಸ್ಟಮ್ ವರ್ಷಗಳನ್ನೂ ಸಿಂಕ್ ಮಾಡುತ್ತದೆ. ಈ ಮಾಹಿತಿ ಹೆಚ್ಚು ವೈಯಕ್ತಿಕವಾಗಿದೆ.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "ಆಫ್",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "ಸಿಂಕ್ ಆಗುತ್ತಿದೆ…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "ಸಿಂಕ್ ಆಗಿದೆ",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "ಈ ಸಾಧನದಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ. ಸಿಂಕ್ ಅನ್ನು ನವೀಕರಿಸಲಾಗಲಿಲ್ಲ.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಸಾಧನ ಸಿಂಕ್ ಲಭ್ಯವಿಲ್ಲ.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "ಮತ್ತೆ ಸಿಂಕ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "ಹೊಂದಿಕೆಯಾಗುವ ಸಮಯ ವಲಯಗಳಿಲ್ಲ",
     "description": "Empty result shown when no time zones match the search."

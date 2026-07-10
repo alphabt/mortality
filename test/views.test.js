@@ -3,6 +3,7 @@ import {
   renderSetup,
   renderCounter,
   renderSettings,
+  updateSyncSettings,
   renderWeeks,
 } from "../src/views.js";
 import { THEME_KEYS, PRESETS, cssDefault } from "../src/store.js";
@@ -543,6 +544,9 @@ describe("renderSettings", () => {
     setLanguage: vi.fn(),
     exportData: vi.fn(),
     importData: vi.fn(),
+    toggleSyncPreferences: vi.fn(),
+    toggleSyncProfile: vi.fn(),
+    retrySync: vi.fn(),
   });
 
   const data = (over = {}) => ({
@@ -556,6 +560,14 @@ describe("renderSettings", () => {
     reflection: false,
     birthZone: null,
     language: "auto",
+    sync: {
+      available: false,
+      preferences: false,
+      profile: false,
+      status: "unavailable",
+      error: null,
+      busy: false,
+    },
     ...over,
   });
 
@@ -798,6 +810,147 @@ describe("renderSettings", () => {
     expect(
       app.querySelector("#import-data").getAttribute("aria-describedby"),
     ).toBe("import-status");
+  });
+
+  it("renders explicit preference and personal-profile sync scopes", () => {
+    renderSettings(
+      app,
+      actions(),
+      data({
+        sync: {
+          available: true,
+          preferences: false,
+          profile: false,
+          status: "off",
+          error: null,
+          busy: false,
+        },
+      }),
+    );
+    expect(app.querySelector("#sync-preferences").getAttribute("role")).toBe(
+      "switch",
+    );
+    expect(app.querySelector("#sync-profile").getAttribute("role")).toBe(
+      "switch",
+    );
+    expect(app.querySelector("#sync-preferences-hint").textContent).toContain(
+      "browser account",
+    );
+    expect(app.querySelector("#sync-profile-hint").textContent).toContain(
+      "more personal",
+    );
+    expect(app.querySelector("#sync-status").getAttribute("role")).toBe(
+      "status",
+    );
+  });
+
+  it("keeps profile sync dependent on preference sync", () => {
+    const a = actions();
+    renderSettings(
+      app,
+      a,
+      data({
+        sync: {
+          available: true,
+          preferences: false,
+          profile: false,
+          status: "off",
+          error: null,
+          busy: false,
+        },
+      }),
+    );
+    const preferences = app.querySelector("#sync-preferences");
+    const profile = app.querySelector("#sync-profile");
+    expect(preferences.disabled).toBe(false);
+    expect(profile.disabled).toBe(true);
+    expect(profile.getAttribute("aria-disabled")).toBe("true");
+    preferences.click();
+    expect(a.toggleSyncPreferences).toHaveBeenCalledWith(true);
+    profile.click();
+    expect(a.toggleSyncProfile).not.toHaveBeenCalled();
+  });
+
+  it("uses the live switch state after an in-place status update", () => {
+    const a = actions();
+    renderSettings(
+      app,
+      a,
+      data({
+        sync: {
+          available: true,
+          preferences: true,
+          profile: false,
+          status: "synced",
+          error: null,
+          busy: false,
+        },
+      }),
+    );
+    updateSyncSettings(app, {
+      available: true,
+      preferences: false,
+      profile: false,
+      status: "off",
+      error: null,
+      busy: false,
+    });
+    app.querySelector("#sync-preferences").click();
+    expect(a.toggleSyncPreferences).toHaveBeenCalledWith(true);
+  });
+
+  it("disables both switches while syncing to prevent toggle races", () => {
+    renderSettings(
+      app,
+      actions(),
+      data({
+        sync: {
+          available: true,
+          preferences: true,
+          profile: false,
+          status: "syncing",
+          error: null,
+          busy: true,
+        },
+      }),
+    );
+    expect(app.querySelector("#sync-preferences").disabled).toBe(true);
+    expect(app.querySelector("#sync-profile").disabled).toBe(true);
+    expect(app.querySelector("#sync-status").textContent).toBe("Syncing…");
+  });
+
+  it("shows retry only for a surfaced sync error", () => {
+    const a = actions();
+    renderSettings(
+      app,
+      a,
+      data({
+        sync: {
+          available: true,
+          preferences: true,
+          profile: false,
+          status: "error",
+          error: "quota",
+          busy: false,
+        },
+      }),
+    );
+    const retry = app.querySelector("#retry-sync");
+    expect(app.querySelector("#sync-status").textContent).toBe(
+      "Saved on this device. Sync couldn't update.",
+    );
+    expect(retry.hidden).toBe(false);
+    retry.click();
+    expect(a.retrySync).toHaveBeenCalledOnce();
+  });
+
+  it("disables sync controls when browser sync storage is unavailable", () => {
+    renderSettings(app, actions(), data());
+    expect(app.querySelector("#sync-preferences").disabled).toBe(true);
+    expect(app.querySelector("#sync-profile").disabled).toBe(true);
+    expect(app.querySelector("#sync-status").textContent).toContain(
+      "isn't available",
+    );
   });
 
   it("renders the expectancy source segment reflecting the current source", () => {

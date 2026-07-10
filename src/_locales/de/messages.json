@@ -451,6 +451,50 @@
     "message": "Zeitzonen durchsuchen",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Gerätesynchronisierung",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Einstellungen geräteübergreifend synchronisieren",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Synchronisiert Design, Ziffernstil, Reflexionszeile, Sprache und Zählermodus über Ihr Browserkonto.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Auch Geburtstag und Angaben zur Lebenserwartung synchronisieren",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Synchronisiert außerdem Geburtsdatum und -uhrzeit, Geburtszeitzone, bei der Geburt zugewiesenes Geschlecht sowie die ausgewählte Datenquelle zur Lebenserwartung oder benutzerdefinierte Jahre. Diese Informationen sind persönlicher.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Aus",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Wird synchronisiert…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Synchronisiert",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Auf diesem Gerät gespeichert. Die Synchronisierung konnte nicht aktualisiert werden.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Die Gerätesynchronisierung ist in diesem Browser nicht verfügbar.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Synchronisierung wiederholen",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Keine passenden Zeitzonen",
     "description": "Empty result shown when no time zones match the search."
