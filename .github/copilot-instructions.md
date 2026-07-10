@@ -4,6 +4,15 @@ Mortality is a zero-dependency browser extension (Chrome / Firefox / Edge, MV3) 
 replaces the new tab page with a live counter of your age. There is **no build step**: the
 files in [`src/`](../src) _are_ the extension (vanilla ES modules, plain CSS, HTML).
 
+## Development and validation
+
+- Full test suite: `npm test`.
+- Focused test file: `npx vitest run test/<file>.test.js`.
+- Formatting gate: `npm run format:check`; use `npm run format` to apply fixes.
+- Package gate: `npm run zip`.
+- There is no build or lint script. Do not probe generic build/lint commands or pass
+  Jest-only flags such as `--runInBand` to Vitest.
+
 ## Design Context
 
 This project uses the **impeccable** design skill. Before changing any UI, read the two
@@ -31,8 +40,38 @@ To iterate visually, run `/impeccable live` (pre-configured for `src/tab.html`).
 
 ## Workflow
 
-- **UI changes:** always open the integrated browser (preview `src/tab.html`, or the dev
-  server) so the change can be tried out live before it's finalized.
+### Preview and browser verification
+
+- For the normal preview, use the app's **Run** button or `npm run dev`. Both use
+  [`scripts/preview.mjs`](../scripts/preview.mjs) through
+  [`.github/copilot-desktop.yml`](copilot-desktop.yml). Do not create an ad hoc server or
+  mutate Copilot app settings/database state.
+- When starting the preview through a tool, keep it running as a detached process, wait for
+  the printed `Ready at ...` URL, verify it responds, then open that URL in the integrated
+  browser. If the panel is blank or stale, restart the preview or use a cache-busting URL
+  before diagnosing the extension code.
+- Always let the user try UI changes in the integrated browser before finalizing them. The
+  shipping engines are Chrome/Edge (Chromium) and Firefox (Gecko), however, so reproduce
+  rendering, caching, or keyboard behavior in a target browser before adding a workaround.
+  Do not complicate the extension for behavior caused only by the app preview or by a
+  shortcut captured by its host UI.
+
+### Stacked pull requests
+
+- Before acting on or pushing a layer, run `git fetch origin --prune` and inspect the live
+  base PR, branch head, and merge state. A SHA supplied at kickoff is a snapshot, not a
+  durable source of truth; live remote state wins over stale cross-session messages.
+- Keep each PR limited to its layer's delta. Do not duplicate, revert, or silently modify
+  lower-layer behavior.
+- If a lower PR is squash-merged and its branch is deleted, replay only the current layer's
+  commits onto the merged `origin/main`, verify the resulting layer-only diff, and retarget
+  as needed. Do not recreate the deleted branch or retain an empty/no-content bridge commit.
+- Do not restack for every transient review commit. Unless the upper layer is blocked, wait
+  for the dependency's checks and review to settle, then send dependent sessions one
+  consolidated update containing only material base or API changes.
+
+### Pull requests
+
 - **Pull requests:** describe UI changes in words in the PR description — do **not** commit
   image files or park them on a throwaway asset branch just to embed screenshots from the
   CLI; never do that. If a reviewer wants visual proof, attach screenshots by hand via
