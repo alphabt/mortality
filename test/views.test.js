@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { renderSetup, renderCounter, renderSettings } from "../src/views.js";
+import {
+  renderSetup,
+  renderCounter,
+  renderSettings,
+  renderWeeks,
+} from "../src/views.js";
 import { THEME_KEYS, PRESETS, cssDefault } from "../src/store.js";
 import { detectZone } from "../src/time.js";
 import { SUPPORTED_LANGUAGES } from "../src/i18n.js";
@@ -17,6 +22,7 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
 });
 
 function keydown(el, key) {
@@ -453,6 +459,70 @@ describe("renderCounter", () => {
     const hint = app.querySelector(".unit-hint");
     expect(hint).not.toBeNull();
     expect(hint.getAttribute("aria-hidden")).toBe("true");
+  });
+});
+
+describe("renderWeeks", () => {
+  const actions = { back: vi.fn(), openSettings: vi.fn() };
+
+  function render(overrides = {}) {
+    renderWeeks(app, actions, {
+      born: "Born 1 January 2000",
+      lived: 53,
+      total: 104,
+      expectancy: 2,
+      ...overrides,
+    });
+  }
+
+  it("renders fixed 52-cell rows with the expected state classes", () => {
+    render();
+    expect(app.querySelectorAll(".weeks-row")).toHaveLength(2);
+    expect(app.querySelectorAll(".weeks-band i")).toHaveLength(104);
+    expect(app.querySelectorAll(".weeks-band i.lived")).toHaveLength(53);
+    expect(app.querySelectorAll(".weeks-band i.now")).toHaveLength(1);
+    expect(app.querySelectorAll(".weeks-band i.future")).toHaveLength(50);
+  });
+
+  it("shows five-year labels with stronger decade metadata", () => {
+    render({ total: 11 * 52, lived: 100 });
+    expect(app.querySelector('[data-age="0"] .age-tick').classList).toContain(
+      "decade-label",
+    );
+    expect(app.querySelector('[data-age="5"] .age-tick').textContent).toBe("5");
+    expect(app.querySelector('[data-age="10"]').classList).toContain(
+      "decade-row",
+    );
+    expect(app.querySelector('[data-age="10"] .age-tick').classList).toContain(
+      "decade-label",
+    );
+  });
+
+  it("keeps the decorative plot out of the tab order", () => {
+    render();
+    expect(app.querySelector(".weeks-plot").getAttribute("aria-hidden")).toBe(
+      "true",
+    );
+    expect(app.querySelectorAll(".weeks-plot [tabindex]")).toHaveLength(0);
+  });
+
+  it("keeps exactly one accent current cell", () => {
+    render({ lived: 10 });
+    expect(app.querySelectorAll(".weeks-band i.now")).toHaveLength(1);
+  });
+
+  it("uses RTL flow and localized age digits", () => {
+    document.documentElement.dir = "rtl";
+    vi.stubGlobal("chrome", {
+      i18n: {
+        getUILanguage: () => "ar",
+        getMessage: () => "",
+      },
+    });
+    render();
+
+    expect(document.documentElement.dir).toBe("rtl");
+    expect(app.querySelector('[data-age="0"] .age-tick').textContent).toBe("٠");
   });
 });
 
