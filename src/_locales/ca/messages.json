@@ -319,6 +319,10 @@
     "message": "Importa…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "La importació ha fallat. Trieu un fitxer de configuració de Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Canvia la data de naixement",
     "description": "Return to birthday setup button."

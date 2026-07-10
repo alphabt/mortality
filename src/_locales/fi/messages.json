@@ -319,6 +319,10 @@
     "message": "Tuo…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Tuonti epäonnistui. Valitse Mortalityn asetustiedosto.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Vaihda syntymäaika",
     "description": "Return to birthday setup button."

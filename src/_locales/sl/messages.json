@@ -319,6 +319,10 @@
     "message": "Uvozi…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Uvoz ni uspel. Izberite datoteko z nastavitvami za Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Spremeni datum rojstva",
     "description": "Return to birthday setup button."

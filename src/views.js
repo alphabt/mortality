@@ -3,12 +3,18 @@
 
 import {
   THEME_KEYS,
+  CONTRAST_MIN,
   cssDefault,
   PRESETS,
   contrast,
-  bestOnColor,
 } from "./store.js";
-import { listTimeZones, detectZone } from "./time.js";
+import {
+  birthInstantMs,
+  detectZone,
+  isValidZone,
+  listTimeZones,
+  zonedParts,
+} from "./time.js";
 import {
   DEFAULT_LIFE_TABLE,
   LIFE_TABLE_OPTIONS,
@@ -41,9 +47,6 @@ const PRESET_LABELS = {
   Blueprint: "presetBlueprint",
   Amber: "presetAmber",
 };
-
-// Guarded colours and their minimum WCAG contrast ratio against the background.
-const CONTRAST_MIN = { count: 4.5, label: 4.5, accent: 3 };
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -124,12 +127,17 @@ function lifeTableSelect(id, current) {
   return select;
 }
 
-/** Today as YYYY-MM-DD in local time, used to cap the birth-date field. */
-function todayISO() {
-  const now = new Date();
-  return new Date(now.getTime() - now.getTimezoneOffset() * 60000)
-    .toISOString()
-    .slice(0, 10);
+/** Today as YYYY-MM-DD in the selected birth zone. */
+function todayISO(timeZone) {
+  const zone = isValidZone(timeZone) ? timeZone : detectZone();
+  const { year, month, day } = zonedParts(Date.now(), zone);
+  return [year, month, day]
+    .map((value, index) =>
+      index === 0
+        ? String(value).padStart(4, "0")
+        : String(value).padStart(2, "0"),
+    )
+    .join("-");
 }
 
 /** Split a stored birth ("YYYY-MM-DD" or "YYYY-MM-DDTHH:mm") into [date, time]. */
@@ -147,12 +155,14 @@ export function renderSetup(
   savedSex,
   savedLifeTable,
 ) {
+  const detected = detectZone();
+  const selectedZone = savedZone || detected;
   const dateEl = el("input", {
     type: "date",
     id: "birth-date",
     "aria-label": msg("birthDateAria"),
     autocomplete: "bday",
-    max: todayISO(),
+    max: todayISO(selectedZone),
     required: true,
   });
   const timeEl = el("input", {
@@ -160,8 +170,6 @@ export function renderSetup(
     id: "birth-time",
     "aria-label": msg("birthTimeAria"),
   });
-  const detected = detectZone();
-  const selectedZone = savedZone || detected;
   const zoneEl = el(
     "select",
     { id: "birth-zone", class: "bidi-id" },
@@ -227,7 +235,8 @@ export function renderSetup(
       return;
     }
     const birth = `${dateEl.value}T${timeEl.value || "00:00"}`;
-    if (new Date(birth).getTime() > Date.now()) {
+    const bornMs = birthInstantMs(birth, zoneEl.value);
+    if (!Number.isFinite(bornMs) || bornMs > Date.now()) {
       errorEl.textContent = msg("futureDateError");
       errorEl.hidden = false;
       dateEl.focus();
@@ -245,6 +254,10 @@ export function renderSetup(
       errorEl.hidden = true;
     }),
   );
+  zoneEl.addEventListener("change", () => {
+    dateEl.max = todayISO(zoneEl.value);
+    errorEl.hidden = true;
+  });
   [dateEl, timeEl, zoneEl, lifeTableEl, sexEl].forEach((input) =>
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
@@ -520,9 +533,20 @@ export function renderSettings(
   );
   const importBtn = el(
     "button",
-    { type: "button", id: "import-data", class: "btn-secondary" },
+    {
+      type: "button",
+      id: "import-data",
+      class: "btn-secondary",
+      "aria-describedby": "import-status",
+    },
     msg("importData"),
   );
+  const importStatus = el("p", {
+    class: "field-error import-status",
+    id: "import-status",
+    role: "alert",
+    hidden: true,
+  });
   exportBtn.addEventListener("click", actions.exportData);
   importBtn.addEventListener("click", actions.importData);
 
@@ -539,7 +563,11 @@ export function renderSettings(
   const doneBtn = el("button", { id: "done" }, msg("done"));
 
   const settings = el("div", { class: "settings" }, [
-    el("h1", { class: "screen-title" }, msg("settings")),
+    el(
+      "h1",
+      { class: "screen-title", id: "settings-title", tabindex: "-1" },
+      msg("settings"),
+    ),
     el("p", { class: "settings-label" }, msg("sectionPresets")),
     el("div", { class: "presets" }, swatches),
     el("p", { class: "settings-hint" }, msg("presetHint")),
@@ -576,6 +604,7 @@ export function renderSettings(
     ]),
     el("p", { class: "settings-label" }, msg("sectionData")),
     el("div", { class: "actions" }, [exportBtn, importBtn]),
+    importStatus,
     el("div", { class: "actions" }, [resetBirthdayBtn, resetColorsBtn]),
     el("div", { class: "actions" }, [doneBtn]),
   ]);
@@ -602,11 +631,15 @@ export function renderSettings(
   }
   function refreshWarnings() {
     const bg = colorInputs.bg.value;
+    let valid = true;
     THEME_KEYS.forEach((key) => {
       const note = notes[key];
       if (!note) return;
       const ratio = contrast(colorInputs[key].value, bg);
-      if (ratio < CONTRAST_MIN[key]) {
+      const invalid = ratio < CONTRAST_MIN[key];
+      colorInputs[key].setAttribute("aria-invalid", String(invalid));
+      if (invalid) {
+        valid = false;
         note.textContent = msg("lowContrast", [
           formatNumber(ratio, {
             minimumFractionDigits: 1,
@@ -617,19 +650,26 @@ export function renderSettings(
             maximumFractionDigits: 1,
           }),
         ]);
-        note.style.color = bestOnColor(bg);
         note.hidden = false;
       } else {
         note.hidden = true;
       }
     });
+    doneBtn.disabled = !valid;
+    return valid;
+  }
+
+  function draftTheme() {
+    return Object.fromEntries(
+      THEME_KEYS.map((key) => [key, colorInputs[key].value]),
+    );
   }
 
   THEME_KEYS.forEach((key) => {
-    colorInputs[key].addEventListener("input", (event) => {
-      actions.setColor(key, event.target.value);
-      refreshWarnings();
+    colorInputs[key].addEventListener("input", () => {
+      const valid = refreshWarnings();
       refreshActive();
+      if (valid) actions.setTheme(draftTheme());
     });
   });
   swatches.forEach((btn) => {
@@ -689,7 +729,11 @@ export function renderWeeks(
 
   const wrap = el("div", { class: "weeks-wrap" }, [
     el("div", { class: "weeks-head" }, [
-      el("h1", { class: "age-label" }, msg("lifeInWeeks")),
+      el(
+        "h1",
+        { class: "age-label", id: "weeks-title", tabindex: "-1" },
+        msg("lifeInWeeks"),
+      ),
       el(
         "p",
         { class: "hint" },

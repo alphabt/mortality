@@ -319,6 +319,10 @@
     "message": "Importovať…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Import sa nepodaril. Vyberte súbor nastavení Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Zmeniť dátum narodenia",
     "description": "Return to birthday setup button."

@@ -319,6 +319,10 @@
     "message": "इम्पोर्ट…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "इंपोर्ट अयशस्वी झाला. Mortality सेटिंग्ज फाइल निवडा.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "जन्मतारीख बदला",
     "description": "Return to birthday setup button."

@@ -319,6 +319,10 @@
     "message": "Impordi…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Importimine nurjus. Valige Mortality seadete fail.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Muuda sünnikuupäeva",
     "description": "Return to birthday setup button."

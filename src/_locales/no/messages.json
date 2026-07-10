@@ -319,6 +319,10 @@
     "message": "Importer…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Import mislyktes. Velg en innstillingsfil for Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Endre fødselsdato",
     "description": "Return to birthday setup button."

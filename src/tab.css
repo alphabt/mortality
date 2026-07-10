@@ -91,6 +91,7 @@ body.screen-counter #app {
 
 .counter {
   display: inline-block;
+  max-width: 100%;
   text-align: start;
   animation: rise 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -151,11 +152,6 @@ body.screen-counter #app {
   cursor: pointer;
   user-select: none;
   border-radius: 0.5rem;
-  transition: opacity 0.15s ease;
-}
-
-.count:hover {
-  opacity: 0.9;
 }
 
 .count:focus-visible {
@@ -196,22 +192,7 @@ body.screen-counter #app {
   font-weight: 500;
   vertical-align: 0.82em;
   letter-spacing: 0.01em;
-  color: color-mix(in srgb, var(--count) 68%, var(--bg));
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    #000 0 60%,
-    rgba(0, 0, 0, 0.28) 100%
-  );
-  mask-image: linear-gradient(90deg, #000 0 60%, rgba(0, 0, 0, 0.28) 100%);
-}
-
-:dir(rtl) .count .fraction {
-  -webkit-mask-image: linear-gradient(
-    270deg,
-    #000 0 60%,
-    rgba(0, 0, 0, 0.28) 100%
-  );
-  mask-image: linear-gradient(270deg, #000 0 60%, rgba(0, 0, 0, 0.28) 100%);
+  color: var(--count);
 }
 
 /* Calendar-age breakdown: full-size figures with small superscript units
@@ -220,23 +201,35 @@ body.screen-counter #app {
   color: var(--count);
 }
 
+.count .cal-part {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.count .cal-part + .cal-part {
+  margin-inline-start: 0.22em;
+}
+
 .count .cal-unit {
   font-size: 0.32em;
   font-weight: 500;
   vertical-align: 0.95em;
   letter-spacing: 0.02em;
   color: var(--label);
-  margin-inline: 0.08em 0.3em;
+  margin-inline: 0.08em;
 }
 
-.count .cal-unit:last-child {
-  margin-inline-end: 0;
-}
-
-/* Four-part birthday readout stays on one calm line at narrow tab widths. */
+/* Keep each localized quantity intact, but let the four-part birthday readout
+   reflow as a unit-aware line when a narrow canvas cannot hold it. */
 .count.birthday-count {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  width: fit-content;
+  max-width: 100%;
   font-size: clamp(2.25rem, 11vw, 5.5rem);
-  white-space: nowrap;
+  line-height: 1.08;
+  row-gap: 0.18em;
 }
 
 /* Life-elapsed meter + editorial anchor line under the number. */
@@ -287,7 +280,7 @@ body.screen-counter #app {
 /* Optional editorial line under the meter (Settings → Display → Reflection). */
 .reflection {
   margin-top: 1.1rem;
-  color: color-mix(in srgb, var(--label) 82%, transparent);
+  color: var(--label);
   font-size: 0.82rem;
   font-style: italic;
   letter-spacing: 0.01em;
@@ -300,10 +293,17 @@ label {
 
 input,
 button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   padding: 0.375rem 0.75rem;
   font-size: 1.5rem;
   font-family: inherit;
   appearance: none;
+}
+
+select {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
 }
 
 input[type="date"],
@@ -322,15 +322,20 @@ button {
   border: none;
   border-radius: 0.25rem;
   background-color: var(--accent);
-  transition: filter 0.15s ease;
 }
 
-button:hover {
-  filter: brightness(1.08);
+button:not(.gear):not(.preset):not(.switch):not(:disabled):hover {
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
 }
 
-button:active {
-  filter: brightness(0.92);
+button:not(.gear):not(.preset):not(.switch):not(:disabled):active {
+  text-decoration-thickness: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 :where(button, input, select):focus-visible {
@@ -493,7 +498,7 @@ footer {
 
 .row input[type="color"] {
   width: 2.75rem;
-  height: 2.25rem;
+  height: 2.75rem;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 0.25rem;
@@ -545,14 +550,12 @@ footer {
   justify-content: center;
   gap: 0.22rem;
   width: 3.25rem;
-  height: 2.25rem;
+  height: 2.75rem;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 0.4rem;
   cursor: pointer;
-  transition:
-    transform 0.12s ease,
-    filter 0.12s ease;
+  transition: transform 0.12s ease;
 }
 
 .preset:hover {
@@ -613,7 +616,6 @@ footer {
 }
 
 .btn-secondary:hover {
-  filter: none;
   color: var(--count);
   border-color: var(--count);
 }
@@ -651,26 +653,44 @@ footer {
 
 .switch {
   position: relative;
-  width: 2.6rem;
-  height: 1.5rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--label) 18%, transparent);
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  background: transparent;
   cursor: pointer;
   padding: 0;
-  transition: background 0.15s ease;
 }
 
-.switch[aria-checked="true"] {
+.switch::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.6rem;
+  height: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--label) 18%, transparent);
+  transform: translate(-50%, -50%);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.switch[aria-checked="true"]::before {
   background: var(--accent);
   border-color: var(--accent);
+}
+
+.switch:hover::before {
+  border-color: var(--count);
 }
 
 .switch::after {
   content: "";
   position: absolute;
   top: 50%;
-  inset-inline-start: 0.18rem;
+  inset-inline-start: 0.25rem;
   width: 1.05rem;
   height: 1.05rem;
   border-radius: 50%;
@@ -680,7 +700,7 @@ footer {
 }
 
 .switch[aria-checked="true"]::after {
-  inset-inline-start: calc(100% - 1.23rem);
+  inset-inline-start: calc(100% - 1.31rem);
 }
 
 .bidi-id {
@@ -736,6 +756,15 @@ footer {
     padding-inline: 0.5rem;
   }
 
+  .meta-row {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+  }
+
+  .meta-row .pct {
+    white-space: normal;
+  }
+
   .weeks-legend {
     flex-wrap: wrap;
     justify-content: center;
@@ -788,7 +817,7 @@ body.screen-weeks {
 
 .weeks-grid i.now {
   background: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
+  outline: 1px solid var(--accent);
 }
 
 .weeks-grid i.future {

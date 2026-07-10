@@ -319,6 +319,10 @@
     "message": "นำเข้า…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "นำเข้าไม่สำเร็จ โปรดเลือกไฟล์การตั้งค่าของ Mortality",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "เปลี่ยนวันเกิด",
     "description": "Return to birthday setup button."

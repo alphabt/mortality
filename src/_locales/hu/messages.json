@@ -319,6 +319,10 @@
     "message": "Importálás…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Az importálás sikertelen volt. Válasszon egy Mortality-beállításfájlt.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Születési dátum módosítása",
     "description": "Return to birthday setup button."

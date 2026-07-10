@@ -5,10 +5,9 @@ import {
   save,
   applyTheme,
   applyTypeface,
-  cssDefault,
   clampExpectancy,
   effectiveExpectancy,
-  THEME_KEYS,
+  normalizeTheme,
   MODES,
   TYPEFACES,
   PRESETS,
@@ -73,14 +72,13 @@ function stopTimer() {
   }
 }
 
-function snapshotTheme() {
-  const theme = {};
-  THEME_KEYS.forEach((key) => (theme[key] = cssDefault(key)));
-  return theme;
-}
-
 function setScreen(name) {
   document.body.className = name ? `screen-${name}` : "";
+}
+
+function focusApp(selector) {
+  if (typeof selector !== "string" || !selector) return;
+  app.querySelector(selector)?.focus({ preventScroll: true });
 }
 
 // clampExpectancy now lives in store.js (so the store's resolver and this
@@ -150,18 +148,21 @@ function visualUnit(value, unit, options = {}) {
     "minusSign",
     "plusSign",
   ]);
-  return formatUnitParts(value, unit, options).map((part) =>
-    el(
-      "span",
-      {
-        class: numberTypes.has(part.type)
-          ? "cal-num"
-          : part.type === "unit"
-            ? "cal-unit"
-            : "cal-literal",
-        "aria-hidden": "true",
-      },
-      part.value,
+  return el(
+    "span",
+    { class: "cal-part", "aria-hidden": "true" },
+    formatUnitParts(value, unit, options).map((part) =>
+      el(
+        "span",
+        {
+          class: numberTypes.has(part.type)
+            ? "cal-num"
+            : part.type === "unit"
+              ? "cal-unit"
+              : "cal-literal",
+        },
+        part.value,
+      ),
     ),
   );
 }
@@ -170,13 +171,28 @@ function visualUnit(value, unit, options = {}) {
 // and sanitising each so a hand-edited or foreign file can't inject junk. Unknown
 // keys are ignored; a key the import omits keeps its current value. Pure.
 export function mergeImported(current, imported) {
-  const src = imported && typeof imported === "object" ? imported : {};
+  const src =
+    imported && typeof imported === "object" && !Array.isArray(imported)
+      ? imported
+      : {};
   const known = {};
   if ("version" in src) known.version = src.version;
-  if ("birth" in src)
-    known.birth = typeof src.birth === "string" ? src.birth : null;
-  if ("birthZone" in src) known.birthZone = src.birthZone;
-  if ("theme" in src) known.theme = src.theme;
+  if ("birth" in src) {
+    if (src.birth === null) known.birth = null;
+    else if (parseBirthParts(src.birth)) known.birth = src.birth;
+  }
+  if ("birthZone" in src) {
+    if (src.birthZone === null || isValidZone(src.birthZone)) {
+      known.birthZone = src.birthZone;
+    }
+  }
+  if ("theme" in src) {
+    if (src.theme === null) known.theme = null;
+    else {
+      const theme = normalizeTheme(src.theme);
+      if (theme) known.theme = theme;
+    }
+  }
   if ("expectancy" in src) known.expectancy = clampExpectancy(src.expectancy);
   if ("expectancySource" in src)
     known.expectancySource = ["estimate", "custom"].includes(
@@ -197,6 +213,30 @@ export function mergeImported(current, imported) {
     known.typeface = TYPEFACES.includes(src.typeface) ? src.typeface : "system";
   if ("reflection" in src) known.reflection = Boolean(src.reflection);
   return { ...current, ...known };
+}
+
+export function parseImportedSettings(current, imported, now = Date.now()) {
+  if (!imported || typeof imported !== "object" || Array.isArray(imported)) {
+    return null;
+  }
+  if (
+    ("birth" in imported &&
+      imported.birth !== null &&
+      !parseBirthParts(imported.birth)) ||
+    ("birthZone" in imported &&
+      imported.birthZone !== null &&
+      !isValidZone(imported.birthZone)) ||
+    ("theme" in imported &&
+      imported.theme !== null &&
+      !normalizeTheme(imported.theme))
+  ) {
+    return null;
+  }
+  const merged = mergeImported(current, imported);
+  if (!merged.birth) return merged;
+  const zone = isValidZone(merged.birthZone) ? merged.birthZone : detectZone();
+  const bornMs = birthInstantMs(merged.birth, zone);
+  return Number.isFinite(bornMs) && bornMs <= now ? merged : null;
 }
 
 function showSetup() {
@@ -221,7 +261,7 @@ function start(birth, zone, sex, lifeTable) {
   showCounter();
 }
 
-function showCounter() {
+function showCounter(focusSelector = null) {
   stopTimer();
   setScreen("counter");
 
@@ -248,7 +288,11 @@ function showCounter() {
 
   const els = renderCounter(
     app,
-    { openSettings: showSettings, onCycle: cycle, openWeeks: showWeeks },
+    {
+      openSettings: () => showSettings(),
+      onCycle: cycle,
+      openWeeks: () => showWeeks(),
+    },
     { born: formatBorn(state.birth), reflection },
   );
 
@@ -259,6 +303,7 @@ function showCounter() {
   let lastFrac = -1;
   let lastCal = null;
   let lastBirthday = null;
+  let lastAria = null;
 
   function layout() {
     els.label.textContent = msg(LABELS[mode]);
@@ -281,6 +326,7 @@ function showCounter() {
     lastInt = null;
     lastCal = null;
     lastBirthday = null;
+    lastAria = null;
   }
 
   function cycle() {
@@ -301,19 +347,20 @@ function showCounter() {
       return;
     }
     els.count.animate(
-      [
-        { opacity: 0.3, transform: "translateY(0.16em)" },
-        { opacity: 1, transform: "none" },
-      ],
+      [{ transform: "translateY(0.16em)" }, { transform: "none" }],
       { duration: 300, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
     );
   }
 
   function updateAria(value) {
-    els.count.setAttribute(
-      "aria-label",
-      msg("counterAria", [msg(LABELS[mode]), value, msg("changeUnitsAction")]),
-    );
+    const label = msg("counterAria", [
+      msg(LABELS[mode]),
+      value,
+      msg("changeUnitsAction"),
+    ]);
+    if (label === lastAria) return;
+    els.count.setAttribute("aria-label", label);
+    lastAria = label;
   }
 
   function tick() {
@@ -332,8 +379,7 @@ function showCounter() {
       fracEl.textContent = fixed.fraction;
       updateAria(
         formatUnit(shown, "year", {
-          minimumFractionDigits: 9,
-          maximumFractionDigits: 9,
+          maximumFractionDigits: 3,
           useGrouping: false,
         }),
       );
@@ -344,9 +390,9 @@ function showCounter() {
       // most once a day), so the node isn't rebuilt every 100ms.
       if (key !== lastCal) {
         els.count.replaceChildren(
-          ...visualUnit(y, "year"),
-          ...visualUnit(m, "month"),
-          ...visualUnit(d, "day"),
+          visualUnit(y, "year"),
+          visualUnit(m, "month"),
+          visualUnit(d, "day"),
         );
         lastCal = key;
         updateAria(
@@ -367,20 +413,22 @@ function showCounter() {
       // nodes until the rounded-up countdown actually changes.
       if (key !== lastBirthday) {
         els.count.replaceChildren(
-          ...visualUnit(parts.days, "day"),
-          ...visualUnit(parts.hours, "hour", { minimumIntegerDigits: 2 }),
-          ...visualUnit(parts.minutes, "minute", { minimumIntegerDigits: 2 }),
-          ...visualUnit(parts.seconds, "second", { minimumIntegerDigits: 2 }),
+          visualUnit(parts.days, "day"),
+          visualUnit(parts.hours, "hour", { minimumIntegerDigits: 2 }),
+          visualUnit(parts.minutes, "minute", { minimumIntegerDigits: 2 }),
+          visualUnit(parts.seconds, "second", { minimumIntegerDigits: 2 }),
         );
         lastBirthday = key;
+        const spoken = countdownParts(
+          Math.ceil(Math.max(0, birthdayTarget - now) / 60000) * 60000,
+        );
         updateAria(
           msg(
             "birthdayCountdown",
             formatList([
-              formatUnit(parts.days, "day"),
-              formatUnit(parts.hours, "hour"),
-              formatUnit(parts.minutes, "minute"),
-              formatUnit(parts.seconds, "second"),
+              formatUnit(spoken.days, "day"),
+              formatUnit(spoken.hours, "hour"),
+              formatUnit(spoken.minutes, "minute"),
             ]),
           ),
         );
@@ -424,11 +472,12 @@ function showCounter() {
 
   layout();
   tick();
+  focusApp(focusSelector);
 }
 
 // Full-screen life calendar: one row per year, one cell per week. Static per
 // open (no ticker) — stopTimer() cancels the counter loop before we switch.
-function showWeeks() {
+function showWeeks(focusSelector = "#weeks-title") {
   stopTimer();
   setScreen("weeks");
   const zone = isValidZone(state.birthZone) ? state.birthZone : detectZone();
@@ -440,7 +489,10 @@ function showWeeks() {
   const { lived, total } = lifeWeeks(Date.now() - bornMs, expectancy);
   renderWeeks(
     app,
-    { back: showCounter, openSettings: showSettings },
+    {
+      back: () => showCounter("#weeks-btn"),
+      openSettings: () => showSettings(),
+    },
     {
       born: formatBorn(state.birth),
       lived,
@@ -448,16 +500,19 @@ function showWeeks() {
       expectancy,
     },
   );
+  focusApp(focusSelector);
 }
 
-function showSettings() {
+function showSettings(focusSelector = "#settings-title") {
   stopTimer();
   setScreen("settings");
   renderSettings(
     app,
     {
-      setColor(key, value) {
-        state.theme = { ...(state.theme || snapshotTheme()), [key]: value };
+      setTheme(theme) {
+        const normalized = normalizeTheme(theme);
+        if (!normalized) return;
+        state.theme = normalized;
         save(state);
         applyTheme(state.theme);
         scheduleAmbient();
@@ -469,7 +524,7 @@ function showSettings() {
         save(state);
         applyTheme(state.theme);
         scheduleAmbient();
-        showSettings();
+        showSettings(`[data-preset="${name}"]`);
       },
       setExpectancy(value) {
         state.expectancy = clampExpectancy(value);
@@ -479,25 +534,25 @@ function showSettings() {
         state.expectancySource = value === "custom" ? "custom" : "estimate";
         save(state);
         // Re-render so the manual Years input swaps with the read-only estimate.
-        showSettings();
+        showSettings(`[data-source="${value}"]`);
       },
       setSex(value) {
         state.sex = value === "male" || value === "female" ? value : null;
         save(state);
         // Re-render so the estimate line reflects the new sex immediately.
-        showSettings();
+        showSettings("#settings-sex");
       },
       setLifeTable(value) {
         state.lifeTable = normalizeLifeTable(value);
         save(state);
-        showSettings();
+        showSettings("#settings-life-table");
       },
       resetColors() {
         state.theme = null;
         save(state);
         applyTheme(null);
         scheduleAmbient();
-        showSettings();
+        showSettings("#reset-colors");
       },
       resetBirthday() {
         showSetup();
@@ -506,12 +561,12 @@ function showSettings() {
         state.typeface = value;
         save(state);
         applyTypeface(value);
-        showSettings();
+        showSettings(`[data-typeface="${value}"]`);
       },
       toggleReflection() {
         state.reflection = !state.reflection;
         save(state);
-        showSettings();
+        showSettings("#reflection-switch");
       },
       setZone(value) {
         state.birthZone = value;
@@ -538,27 +593,37 @@ function showSettings() {
         });
         input.addEventListener("change", async () => {
           const file = input.files && input.files[0];
-          input.remove();
-          if (!file) return;
+          if (!file) {
+            input.remove();
+            return;
+          }
           let parsed;
           try {
             parsed = JSON.parse(await file.text());
-          } catch (err) {
-            console.warn("Mortality: could not read imported settings", err);
+          } catch {
+            input.remove();
+            reportImportError();
             return;
           }
-          state = mergeImported(state, parsed);
+          input.remove();
+          const imported = parseImportedSettings(state, parsed);
+          if (!imported) {
+            reportImportError();
+            return;
+          }
+          state = imported;
           save(state);
           applyTheme(state.theme);
           applyTypeface(state.typeface);
-          if (state.birth) showCounter();
+          if (state.birth) showCounter("#count");
           else showSetup();
         });
+        input.addEventListener("cancel", () => input.remove(), { once: true });
         document.body.append(input);
         input.click();
       },
       closeSettings() {
-        showCounter();
+        showCounter("#gear");
       },
     },
     {
@@ -574,6 +639,14 @@ function showSettings() {
       birthZone: state.birthZone,
     },
   );
+  focusApp(focusSelector);
+
+  function reportImportError() {
+    const status = app.querySelector("#import-status");
+    status.textContent = msg("importError");
+    status.hidden = false;
+    focusApp("#import-data");
+  }
 }
 
 // The actuarial estimate to preview in Settings, for the user's current age and
@@ -747,12 +820,11 @@ async function init() {
 
   // Escape returns to the counter from the weeks and settings screens, so those
   // views are dismissable from the keyboard, not only via the corner control.
-  document.addEventListener("keydown", (event) => {
+  app.addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || !state || !state.birth) return;
     const screen = document.body.className;
-    if (screen === "screen-weeks" || screen === "screen-settings") {
-      showCounter();
-    }
+    if (screen === "screen-weeks") showCounter("#weeks-btn");
+    else if (screen === "screen-settings") showCounter("#gear");
   });
 
   setupAmbient();

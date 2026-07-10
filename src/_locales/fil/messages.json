@@ -319,6 +319,10 @@
     "message": "I-import…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Hindi nagtagumpay ang pag-import. Pumili ng file ng mga setting ng Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Palitan ang petsa ng kapanganakan",
     "description": "Return to birthday setup button."

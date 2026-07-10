@@ -319,6 +319,10 @@
     "message": "Importă…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Importul a eșuat. Alegeți un fișier de setări Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Schimbă data nașterii",
     "description": "Return to birthday setup button."

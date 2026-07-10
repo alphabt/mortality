@@ -319,6 +319,10 @@
     "message": "Εισαγωγή…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Η εισαγωγή απέτυχε. Επιλέξτε ένα αρχείο ρυθμίσεων του Mortality.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Αλλαγή ημερομηνίας γέννησης",
     "description": "Return to birthday setup button."

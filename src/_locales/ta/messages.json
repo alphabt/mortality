@@ -319,6 +319,10 @@
     "message": "இறக்குமதி…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "இறக்குமதி தோல்வியடைந்தது. Mortality அமைப்புகள் கோப்பைத் தேர்ந்தெடுக்கவும்.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "பிறந்த தேதியை மாற்று",
     "description": "Return to birthday setup button."

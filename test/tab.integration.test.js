@@ -325,7 +325,7 @@ describe("counter interactions", () => {
       ),
     ).toEqual(["d", "h", "m", "s"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
-      "Next birthday in 1 day, 0 hours, 30 minutes, and 0 seconds. Activate to change units.",
+      "Next birthday in 1 day, 0 hours, and 30 minutes. Activate to change units.",
     );
   });
 
@@ -372,7 +372,7 @@ describe("counter interactions", () => {
       ),
     ).toEqual(["0", "00", "00", "01"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
-      "Next birthday in 0 days, 0 hours, 0 minutes, and 1 second. Activate to change units.",
+      "Next birthday in 0 days, 0 hours, and 1 minute. Activate to change units.",
     );
 
     await vi.advanceTimersByTimeAsync(500);
@@ -382,14 +382,63 @@ describe("counter interactions", () => {
       ),
     ).toEqual(["366", "00", "00", "00"]);
     expect(document.querySelector("#count").getAttribute("aria-label")).toBe(
-      "Next birthday in 366 days, 0 hours, 0 minutes, and 0 seconds. Activate to change units.",
+      "Next birthday in 366 days, 0 hours, and 0 minutes. Activate to change units.",
     );
+  });
+
+  it("keeps the years accessible name stable while the visual fraction ticks", async () => {
+    seed({ birth: "2000-01-01T00:00", mode: "years" });
+    await boot();
+    const count = document.querySelector("#count");
+    const fraction = count.querySelector(".fraction");
+    const beforeFraction = fraction.textContent;
+    const beforeLabel = count.getAttribute("aria-label");
+    let ariaMutations = 0;
+    const observer = new MutationObserver((records) => {
+      ariaMutations += records.filter(
+        (record) =>
+          record.type === "attributes" && record.attributeName === "aria-label",
+      ).length;
+    });
+    observer.observe(count, { attributes: true });
+
+    await vi.advanceTimersByTimeAsync(1000);
+    await flush();
+    observer.disconnect();
+
+    expect(fraction.textContent).not.toBe(beforeFraction);
+    expect(count.getAttribute("aria-label")).toBe(beforeLabel);
+    expect(beforeLabel).not.toMatch(/\d+\.\d{4,}/);
+    expect(ariaMutations).toBe(0);
+  });
+
+  it("updates the birthday accessible name only when its spoken minute changes", async () => {
+    vi.setSystemTime(new Date("2019-12-31T23:57:29.500Z"));
+    seed({
+      birth: "2000-01-01T00:00",
+      birthZone: "UTC",
+      mode: "birthday",
+    });
+    await boot();
+    const count = document.querySelector("#count");
+    const initialLabel = count.getAttribute("aria-label");
+    const initialSeconds = count.querySelectorAll(".cal-num")[3].textContent;
+
+    await vi.advanceTimersByTimeAsync(20000);
+    expect(count.querySelectorAll(".cal-num")[3].textContent).not.toBe(
+      initialSeconds,
+    );
+    expect(count.getAttribute("aria-label")).toBe(initialLabel);
+
+    await vi.advanceTimersByTimeAsync(11000);
+    expect(count.getAttribute("aria-label")).not.toBe(initialLabel);
+    expect(count.getAttribute("aria-label")).toContain("2 minutes");
   });
 });
 
 describe("settings routing and edits", () => {
   beforeEach(() => {
-    seed({ birth: "2000-01-01T00:00" });
+    seed({ birth: "2000-01-01T00:00", theme: PRESETS.Light });
   });
 
   it("opens settings from the gear and returns via done", async () => {
@@ -397,9 +446,13 @@ describe("settings routing and edits", () => {
     document.querySelector("#gear").click();
     expect(document.body.className).toBe("screen-settings");
     expect(document.querySelector("#expectancy")).not.toBeNull();
+    expect(document.activeElement).toBe(
+      document.querySelector("#settings-title"),
+    );
 
     document.querySelector("#done").click();
     expect(document.body.className).toBe("screen-counter");
+    expect(document.activeElement).toBe(document.querySelector("#gear"));
   });
 
   it("clamps and persists an edited life expectancy", async () => {
@@ -415,13 +468,34 @@ describe("settings routing and edits", () => {
     await boot();
     document.querySelector("#gear").click();
     const input = document.querySelector("#color-accent");
-    input.value = "#abcdef";
+    input.value = "#006080";
     input.dispatchEvent(new Event("input", { bubbles: true }));
 
-    expect(stored().theme.accent).toBe("#abcdef");
+    expect(stored().theme.accent).toBe("#006080");
     expect(document.documentElement.style.getPropertyValue("--accent")).toBe(
-      "#abcdef",
+      "#006080",
     );
+  });
+
+  it("surfaces malformed settings imports without leaving settings", async () => {
+    await boot();
+    document.querySelector("#gear").click();
+    document.querySelector("#import-data").click();
+    const input = document.querySelector('input[type="file"]');
+    Object.defineProperty(input, "files", {
+      configurable: true,
+      value: [{ text: async () => "not-json{" }],
+    });
+    input.dispatchEvent(new Event("change", { bubbles: true }));
+    await flush();
+
+    expect(document.body.className).toBe("screen-settings");
+    const status = document.querySelector("#import-status");
+    expect(status.hidden).toBe(false);
+    expect(status.textContent).toBe(
+      "Import failed. Choose a Mortality settings file.",
+    );
+    expect(document.activeElement).toBe(document.querySelector("#import-data"));
   });
 
   it("applies a preset, persisting the theme and setting CSS variables", async () => {
@@ -578,7 +652,7 @@ describe("settings: life-expectancy source, baseline, and sex", () => {
 
 describe("settings: display, reflection, and zone", () => {
   beforeEach(() => {
-    seed({ birth: "2000-01-01T00:00" });
+    seed({ birth: "2000-01-01T00:00", theme: PRESETS.Light });
   });
 
   it("activates a numeral typeface, persisting it and setting --num-font", async () => {
@@ -602,6 +676,9 @@ describe("settings: display, reflection, and zone", () => {
         .querySelector('[data-typeface="system"]')
         .getAttribute("aria-pressed"),
     ).toBe("false");
+    expect(document.activeElement).toBe(
+      document.querySelector('[data-typeface="mono"]'),
+    );
   });
 
   it("toggles the reflection line on and renders it on the counter", async () => {
@@ -637,8 +714,20 @@ describe("settings: display, reflection, and zone", () => {
   });
 });
 
-describe("reduced motion", () => {
-  it("skips the count fade animation when the user prefers reduced motion", async () => {
+describe("count transition and reduced motion", () => {
+  it("changes units without fading readable text", async () => {
+    const animateSpy = vi.spyOn(Element.prototype, "animate");
+    seed({ birth: "2000-01-01T00:00" });
+    await boot();
+
+    document.querySelector("#count").click();
+
+    expect(animateSpy).toHaveBeenCalledOnce();
+    const [keyframes] = animateSpy.mock.calls[0];
+    expect(keyframes.every((frame) => !("opacity" in frame))).toBe(true);
+  });
+
+  it("skips the count transition when the user prefers reduced motion", async () => {
     window.matchMedia = vi.fn((query) => ({
       matches: true,
       media: query,
@@ -667,6 +756,7 @@ describe("life in weeks", () => {
 
     document.querySelector('[aria-label="Life in weeks"]').click();
     expect(document.body.className).toBe("screen-weeks");
+    expect(document.activeElement).toBe(document.querySelector("#weeks-title"));
 
     const WEEK_MS = 7 * DAY_MS;
     const total = 80 * 52;
@@ -681,6 +771,7 @@ describe("life in weeks", () => {
 
     document.querySelector('[aria-label="Back"]').click();
     expect(document.body.className).toBe("screen-counter");
+    expect(document.activeElement).toBe(document.querySelector("#weeks-btn"));
   });
 });
 
@@ -692,26 +783,34 @@ describe("keyboard dismissal", () => {
     document.querySelector('[aria-label="Life in weeks"]').click();
     expect(document.body.className).toBe("screen-weeks");
 
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    document.activeElement.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
+    );
     expect(document.body.className).toBe("screen-counter");
+    expect(document.activeElement).toBe(document.querySelector("#weeks-btn"));
   });
 
   it("returns to the counter when Escape is pressed in settings", async () => {
-    seed({ birth: "2000-01-01T00:00" });
+    seed({ birth: "2000-01-01T00:00", theme: PRESETS.Light });
     await boot();
 
     document.querySelector('[aria-label="Settings"]').click();
     expect(document.body.className).toBe("screen-settings");
 
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    document.activeElement.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
+    );
     expect(document.body.className).toBe("screen-counter");
+    expect(document.activeElement).toBe(document.querySelector("#gear"));
   });
 
   it("ignores Escape on the setup screen, where there is no counter yet", async () => {
     await boot();
     expect(document.body.className).toBe("screen-setup");
 
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    document.activeElement.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
+    );
     expect(document.body.className).toBe("screen-setup");
   });
 });

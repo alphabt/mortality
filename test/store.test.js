@@ -14,6 +14,7 @@ import {
   applyTypeface,
   clampExpectancy,
   effectiveExpectancy,
+  normalizeTheme,
 } from "../src/store.js";
 
 // Independent WCAG contrast implementation, used to verify the PRESETS meet the
@@ -33,6 +34,8 @@ function contrast(a, b) {
   const lb = luminance(b);
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
 }
+
+const TAB_CSS = readFileSync(resolve(process.cwd(), "src/tab.css"), "utf8");
 
 describe("constants", () => {
   it("exposes the four themeable keys", () => {
@@ -83,8 +86,6 @@ describe("PRESETS accessibility invariants", () => {
 describe("Light and Dark presets mirror the stylesheet defaults", () => {
   // These two presets duplicate the tab.css defaults so the shipped light and
   // dark looks are selectable. This fails if either drifts out of sync.
-  const css = readFileSync(resolve(process.cwd(), "src/tab.css"), "utf8");
-
   function parseVars(body) {
     const vars = {};
     for (const m of body.matchAll(/--([\w-]+):\s*([^;]+);/g)) {
@@ -93,9 +94,9 @@ describe("Light and Dark presets mirror the stylesheet defaults", () => {
     return vars;
   }
 
-  const rootVars = parseVars(css.match(/:root\s*\{([^}]*)\}/)[1]);
+  const rootVars = parseVars(TAB_CSS.match(/:root\s*\{([^}]*)\}/)[1]);
   const darkVars = parseVars(
-    css.match(
+    TAB_CSS.match(
       /@media \(prefers-color-scheme: dark\)\s*\{\s*:root\s*\{([^}]*)\}/,
     )[1],
   );
@@ -113,6 +114,37 @@ describe("Light and Dark presets mirror the stylesheet defaults", () => {
         darkVars[key] ?? rootVars[key],
       );
     }
+  });
+});
+
+describe("stylesheet accessibility invariants", () => {
+  it("keeps interactive controls at least 44px in both dimensions", () => {
+    const sharedControls = TAB_CSS.match(/input,\s*button\s*\{([^}]*)\}/)[1];
+    const selects = TAB_CSS.match(/select\s*\{([^}]*)\}/)[1];
+    for (const rules of [sharedControls, selects]) {
+      expect(rules).toContain("min-width: 2.75rem");
+      expect(rules).toContain("min-height: 2.75rem");
+    }
+  });
+
+  it("does not fade readable text or introduce shadow elevation", () => {
+    const fraction = TAB_CSS.match(/\.count \.fraction\s*\{([^}]*)\}/)[1];
+    const reflection = TAB_CSS.match(/\.reflection\s*\{([^}]*)\}/)[1];
+    expect(fraction).toContain("color: var(--count)");
+    expect(reflection).toContain("color: var(--label)");
+    expect(TAB_CSS).not.toMatch(
+      /(?:-webkit-)?mask-image|box-shadow|\.count:hover\s*\{|filter:/,
+    );
+  });
+
+  it("keeps localized birthday quantities intact and centers the RTL switch", () => {
+    const quantity = TAB_CSS.match(/\.count \.cal-part\s*\{([^}]*)\}/)[1];
+    const birthday = TAB_CSS.match(/\.count\.birthday-count\s*\{([^}]*)\}/)[1];
+    const switchTrack = TAB_CSS.match(/\.switch::before\s*\{([^}]*)\}/)[1];
+    expect(quantity).toContain("white-space: nowrap");
+    expect(birthday).toContain("flex-wrap: wrap");
+    expect(switchTrack).toContain("left: 50%");
+    expect(switchTrack).not.toContain("inset-inline-start");
   });
 });
 
@@ -161,22 +193,71 @@ describe("applyTheme", () => {
     );
   });
 
-  it("only sets keys the theme actually provides", () => {
-    applyTheme({ accent: "#123456" });
-    const root = document.documentElement;
-    expect(root.style.getPropertyValue("--accent")).toBe("#123456");
-    expect(root.style.getPropertyValue("--bg")).toBe("");
+  it("uses the accessible accent as the focus color", () => {
+    applyTheme(PRESETS.Void);
+    expect(document.documentElement.style.getPropertyValue("--focus")).toBe(
+      PRESETS.Void.accent,
+    );
   });
 
-  it("clears all overrides when passed null and falls back to black accent", () => {
+  it("rejects a partial theme instead of applying unsafe overrides", () => {
+    applyTheme(PRESETS.Void);
+    applyTheme({ accent: "#123456" });
+    const root = document.documentElement;
+    for (const key of THEME_KEYS) {
+      expect(root.style.getPropertyValue(`--${key}`)).toBe("");
+    }
+    expect(root.style.getPropertyValue("--focus")).toBe("");
+  });
+
+  it("clears all overrides and focus when passed null", () => {
     applyTheme(PRESETS.Amber);
     applyTheme(null);
     const root = document.documentElement;
     for (const key of THEME_KEYS) {
       expect(root.style.getPropertyValue(`--${key}`)).toBe("");
     }
+    expect(root.style.getPropertyValue("--focus")).toBe("");
     // cssDefault('accent') is now "#000000", whose best ink is white.
     expect(root.style.getPropertyValue("--on-accent")).toBe("#ffffff");
+  });
+});
+
+describe("normalizeTheme", () => {
+  it("expands shorthand hex values in a complete accessible palette", () => {
+    expect(
+      normalizeTheme({
+        bg: "#111",
+        label: "#aaa",
+        count: "#fff",
+        accent: "#f00",
+      }),
+    ).toEqual({
+      bg: "#111111",
+      label: "#aaaaaa",
+      count: "#ffffff",
+      accent: "#ff0000",
+    });
+  });
+
+  it("rejects partial, malformed, and insufficient-contrast palettes", () => {
+    expect(normalizeTheme({ accent: "#007ea6" })).toBeNull();
+    expect(
+      normalizeTheme({
+        bg: "white",
+        label: "#111111",
+        count: "#111111",
+        accent: "#007ea6",
+      }),
+    ).toBeNull();
+    expect(
+      normalizeTheme({
+        bg: "#ffffff",
+        label: "#eeeeee",
+        count: "#111111",
+        accent: "#007ea6",
+      }),
+    ).toBeNull();
   });
 });
 
@@ -229,7 +310,7 @@ describe("save / load with the localStorage fallback", () => {
     });
   });
 
-  it("round-trips saved state", async () => {
+  it("normalizes a saved accessible theme on load", async () => {
     const state = {
       version: 1,
       birth: "2000-01-01T06:30",
@@ -244,7 +325,39 @@ describe("save / load with the localStorage fallback", () => {
       reflection: true,
     };
     await save(state);
-    await expect(load()).resolves.toEqual(state);
+    await expect(load()).resolves.toEqual({
+      ...state,
+      theme: {
+        bg: "#111111",
+        label: "#aaaaaa",
+        count: "#ffffff",
+        accent: "#ff0000",
+      },
+    });
+  });
+
+  it("falls back to the system theme for an invalid stored palette", async () => {
+    await save({
+      birth: "2000-01-01T00:00",
+      birthZone: "UTC",
+      theme: {
+        bg: "#ffffff",
+        label: "#eeeeee",
+        count: "#ffffff",
+        accent: "#eeeeee",
+      },
+    });
+    await expect(load()).resolves.toMatchObject({ theme: null });
+  });
+
+  it("clears malformed and future stored birthdays", async () => {
+    for (const birth of ["not-a-date", "2999-01-01T00:00"]) {
+      await save({ birth, birthZone: "UTC" });
+      await expect(load()).resolves.toMatchObject({
+        birth: null,
+        birthZone: null,
+      });
+    }
   });
 
   it("merges stored partial state over the defaults", async () => {
@@ -272,6 +385,19 @@ describe("save / load with the localStorage fallback", () => {
     const result = await load();
     expect(result.birthZone).toBe(detected);
     // The backfill is persisted, so it stays stable on subsequent loads.
+    await expect(load()).resolves.toMatchObject({ birthZone: detected });
+  });
+
+  it("replaces an invalid stored birth zone with one stable fallback", async () => {
+    const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    await save({
+      birth: "1990-05-15T00:00",
+      birthZone: "Mars/Olympus",
+    });
+    await expect(load()).resolves.toMatchObject({
+      birth: "1990-05-15T00:00",
+      birthZone: detected,
+    });
     await expect(load()).resolves.toMatchObject({ birthZone: detected });
   });
 
@@ -311,6 +437,27 @@ describe("save / load with the localStorage fallback", () => {
       reflection: false,
     });
   });
+
+  it.each(["corrupt-root", [], 42])(
+    "repairs a malformed persisted root: %j",
+    async (root) => {
+      await save(root);
+      await expect(load()).resolves.toMatchObject({
+        version: 1,
+        birth: null,
+        birthZone: null,
+        theme: null,
+        expectancySource: "estimate",
+      });
+      const repaired = JSON.parse(localStorage.getItem("mortality"));
+      expect(repaired).toMatchObject({
+        version: 1,
+        birth: null,
+        birthZone: null,
+      });
+      expect(Array.isArray(repaired)).toBe(false);
+    },
+  );
 
   it("swallows write failures (private mode / quota) without throwing", async () => {
     vi.spyOn(localStorage, "setItem").mockImplementation(() => {

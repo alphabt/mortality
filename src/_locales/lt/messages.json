@@ -319,6 +319,10 @@
     "message": "Importuoti…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Importuoti nepavyko. Pasirinkite Mortality nustatymų failą.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Keisti gimimo datą",
     "description": "Return to birthday setup button."

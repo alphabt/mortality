@@ -1,11 +1,7 @@
 name: "publish"
 
-# Reusable store-publish engine. Wraps scripts/publish.sh and owns the store
-# credential block in exactly one place, so both the automatic release pipeline
-# (release.yml) and the manual dispatcher (publish-stores.yml) share it.
-#
-# Callers must forward secrets with `secrets: inherit`. A store whose secrets are
-# absent is skipped by publish.sh, so stores can be rolled out one at a time.
+# Reusable store-publish engine. Each store runs in an isolated job that receives
+# only that store's credentials. Both release.yml and publish-stores.yml call it.
 
 on:
   workflow_call:
@@ -15,11 +11,7 @@ on:
         type: string
         default: "all"
       tag:
-        description: "Publish this release's uploaded asset (mutually exclusive with ref)"
-        type: string
-        default: ""
-      ref:
-        description: "Check out this ref and build a fresh zip from src/ (--source)"
+        description: "Release tag whose uploaded asset should be published"
         type: string
         default: ""
 
@@ -31,48 +23,238 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
-    name: "Publish to stores"
+  select:
+    name: "Validate request"
     runs-on: ubuntu-latest
+    outputs:
+      chrome: ${{ steps.select.outputs.chrome }}
+      edge: ${{ steps.select.outputs.edge }}
+      firefox: ${{ steps.select.outputs.firefox }}
+      explicit: ${{ steps.select.outputs.explicit }}
     steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: ${{ inputs.ref || inputs.tag || github.ref }}
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-
-      - name: Publish to the stores
+      - id: select
+        name: Validate stores and release tag
         env:
-          STORES: ${{ inputs.stores }}
-          TAG: ${{ inputs.tag }}
-          REF: ${{ inputs.ref }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Chrome Web Store
+          REQUESTED_STORES: ${{ inputs.stores }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          chrome=false
+          edge=false
+          firefox=false
+          explicit=true
+
+          if [ "$REQUESTED_STORES" = "all" ]; then
+            chrome=true
+            edge=true
+            firefox=true
+            explicit=false
+          else
+            read -r -a requested <<< "$REQUESTED_STORES"
+            [ "${#requested[@]}" -gt 0 ] || {
+              echo "::error::Choose 'all' or at least one store."
+              exit 1
+            }
+            for store in "${requested[@]}"; do
+              case "$store" in
+                chrome) chrome=true ;;
+                edge) edge=true ;;
+                firefox) firefox=true ;;
+                *)
+                  echo "::error::Unknown store '$store'. Choose from chrome, edge, and firefox."
+                  exit 1
+                  ;;
+              esac
+            done
+          fi
+
+          if [ -n "$RELEASE_TAG" ] \
+            && [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Release tag must use the form v1.2.3."
+            exit 1
+          fi
+
+          {
+            echo "chrome=$chrome"
+            echo "edge=$edge"
+            echo "firefox=$firefox"
+            echo "explicit=$explicit"
+          } >> "$GITHUB_OUTPUT"
+
+  chrome:
+    name: "Chrome Web Store"
+    needs: select
+    if: needs.select.outputs.chrome == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      configured: ${{ steps.credentials.outputs.configured }}
+    steps:
+      - id: credentials
+        name: Check Chrome credentials
+        env:
+          EXPLICIT: ${{ needs.select.outputs.explicit }}
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
           CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
           CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
           CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
           CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
-          # Microsoft Edge Add-ons
+        run: |
+          set -euo pipefail
+          missing=()
+          for name in CHROME_CLIENT_ID CHROME_CLIENT_SECRET CHROME_REFRESH_TOKEN \
+            CHROME_PUBLISHER_ID CHROME_EXTENSION_ID; do
+            [ -n "${!name:-}" ] || missing+=("$name")
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            [ "$EXPLICIT" = "false" ] || {
+              echo "::error::Missing required Chrome secret(s): ${missing[*]}"
+              exit 1
+            }
+            echo "::warning::Skipping Chrome because its credentials are not configured."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v7
+        if: steps.credentials.outputs.configured == 'true'
+
+      - name: Publish Chrome release
+        if: steps.credentials.outputs.configured == 'true'
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ github.token }}
+          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
+          CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+        run: |
+          args=(chrome)
+          [ -z "$RELEASE_TAG" ] || args+=(--tag "$RELEASE_TAG")
+          bash scripts/publish.sh "${args[@]}"
+
+  edge:
+    name: "Microsoft Edge Add-ons"
+    needs: select
+    if: needs.select.outputs.edge == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      configured: ${{ steps.credentials.outputs.configured }}
+    steps:
+      - id: credentials
+        name: Check Edge credentials
+        env:
+          EXPLICIT: ${{ needs.select.outputs.explicit }}
           EDGE_PRODUCT_ID: ${{ secrets.EDGE_PRODUCT_ID }}
           EDGE_CLIENT_ID: ${{ secrets.EDGE_CLIENT_ID }}
           EDGE_API_KEY: ${{ secrets.EDGE_API_KEY }}
-          # Firefox (addons.mozilla.org)
+        run: |
+          set -euo pipefail
+          missing=()
+          for name in EDGE_PRODUCT_ID EDGE_CLIENT_ID EDGE_API_KEY; do
+            [ -n "${!name:-}" ] || missing+=("$name")
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            [ "$EXPLICIT" = "false" ] || {
+              echo "::error::Missing required Edge secret(s): ${missing[*]}"
+              exit 1
+            }
+            echo "::warning::Skipping Edge because its credentials are not configured."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v7
+        if: steps.credentials.outputs.configured == 'true'
+
+      - name: Publish Edge release
+        if: steps.credentials.outputs.configured == 'true'
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ github.token }}
+          EDGE_PRODUCT_ID: ${{ secrets.EDGE_PRODUCT_ID }}
+          EDGE_CLIENT_ID: ${{ secrets.EDGE_CLIENT_ID }}
+          EDGE_API_KEY: ${{ secrets.EDGE_API_KEY }}
+        run: |
+          args=(edge)
+          [ -z "$RELEASE_TAG" ] || args+=(--tag "$RELEASE_TAG")
+          bash scripts/publish.sh "${args[@]}"
+
+  firefox:
+    name: "Firefox Add-ons"
+    needs: select
+    if: needs.select.outputs.firefox == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      configured: ${{ steps.credentials.outputs.configured }}
+    steps:
+      - id: credentials
+        name: Check Firefox credentials
+        env:
+          EXPLICIT: ${{ needs.select.outputs.explicit }}
           FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
           FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
           FIREFOX_ADDON_ID: ${{ secrets.FIREFOX_ADDON_ID }}
         run: |
-          stores="$STORES"
-          if [ "$stores" = "all" ]; then stores=""; fi
-          if [ -n "$TAG" ]; then
-            # Publish the exact asset attached to that release (identical bytes).
-            bash scripts/publish.sh $stores --tag "$TAG"
-          elif [ -n "$REF" ]; then
-            # Build a fresh zip from the checked-out ref.
-            bash scripts/publish.sh $stores --source
+          set -euo pipefail
+          missing=()
+          for name in FIREFOX_JWT_ISSUER FIREFOX_JWT_SECRET FIREFOX_ADDON_ID; do
+            [ -n "${!name:-}" ] || missing+=("$name")
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            [ "$EXPLICIT" = "false" ] || {
+              echo "::error::Missing required Firefox secret(s): ${missing[*]}"
+              exit 1
+            }
+            echo "::warning::Skipping Firefox because its credentials are not configured."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
           else
-            # No tag or ref given: publish the latest release's asset.
-            bash scripts/publish.sh $stores
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v7
+        if: steps.credentials.outputs.configured == 'true'
+
+      - uses: actions/setup-node@v6
+        if: steps.credentials.outputs.configured == 'true'
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install locked publishing tool
+        if: steps.credentials.outputs.configured == 'true'
+        run: npm ci --ignore-scripts
+
+      - name: Publish Firefox release
+        if: steps.credentials.outputs.configured == 'true'
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ github.token }}
+          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
+          FIREFOX_ADDON_ID: ${{ secrets.FIREFOX_ADDON_ID }}
+        run: |
+          args=(firefox)
+          [ -z "$RELEASE_TAG" ] || args+=(--tag "$RELEASE_TAG")
+          bash scripts/publish.sh "${args[@]}"
+
+  complete:
+    name: "Publishing request accepted"
+    needs: [chrome, edge, firefox]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require at least one configured store
+        env:
+          CHROME_CONFIGURED: ${{ needs.chrome.outputs.configured }}
+          EDGE_CONFIGURED: ${{ needs.edge.outputs.configured }}
+          FIREFOX_CONFIGURED: ${{ needs.firefox.outputs.configured }}
+        run: |
+          if [ "$CHROME_CONFIGURED" != "true" ] \
+            && [ "$EDGE_CONFIGURED" != "true" ] \
+            && [ "$FIREFOX_CONFIGURED" != "true" ]; then
+            echo "::error::None of the selected stores has complete credentials."
+            exit 1
           fi

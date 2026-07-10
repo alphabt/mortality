@@ -319,6 +319,10 @@
     "message": "导入…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "导入失败。请选择 Mortality 设置文件。",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "更改出生日期",
     "description": "Return to birthday setup button."

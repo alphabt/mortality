@@ -319,6 +319,10 @@
     "message": "インポート…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "インポートに失敗しました。Mortality の設定ファイルを選択してください。",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "生年月日を変更",
     "description": "Return to birthday setup button."

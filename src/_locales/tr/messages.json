@@ -319,6 +319,10 @@
     "message": "İçe aktar…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "İçe aktarma başarısız oldu. Mortality ayar dosyasını seçin.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Doğum tarihini değiştir",
     "description": "Return to birthday setup button."

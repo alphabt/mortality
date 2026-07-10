@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderSetup, renderCounter, renderSettings } from "../src/views.js";
 import { THEME_KEYS, PRESETS, cssDefault } from "../src/store.js";
 
@@ -7,6 +7,13 @@ beforeEach(() => {
   app = document.createElement("div");
   app.id = "app";
   document.body.appendChild(app);
+  for (const key of THEME_KEYS) {
+    document.documentElement.style.setProperty(`--${key}`, PRESETS.Light[key]);
+  }
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 function keydown(el, key) {
@@ -122,6 +129,38 @@ describe("renderSetup", () => {
     expect(app.querySelector("#birth-date").getAttribute("max")).toMatch(
       /^\d{4}-\d{2}-\d{2}$/,
     );
+  });
+
+  it("updates the maximum date for the selected birth zone", () => {
+    const now = vi
+      .spyOn(Date, "now")
+      .mockReturnValue(Date.parse("2024-01-01T00:30:00Z"));
+    renderSetup(app, { start: vi.fn() }, null, "Asia/Tokyo");
+    const date = app.querySelector("#birth-date");
+    const zone = app.querySelector("#birth-zone");
+    expect(date.max).toBe("2024-01-01");
+
+    zone.value = "America/Los_Angeles";
+    zone.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(date.max).toBe("2023-12-31");
+    now.mockRestore();
+  });
+
+  it("rejects a birth instant that is future in the selected zone", () => {
+    const now = vi
+      .spyOn(Date, "now")
+      .mockReturnValue(Date.parse("2024-01-01T00:30:00Z"));
+    const start = vi.fn();
+    renderSetup(app, { start }, null, "America/Los_Angeles");
+    app.querySelector("#birth-date").value = "2023-12-31";
+    app.querySelector("#birth-time").value = "23:45";
+    app
+      .querySelector("form")
+      .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+
+    expect(start).not.toHaveBeenCalled();
+    expect(app.querySelector("#birth-error").hidden).toBe(false);
+    now.mockRestore();
   });
 
   it("rejects a future birth date and surfaces an error", () => {
@@ -257,7 +296,7 @@ describe("renderCounter", () => {
 
 describe("renderSettings", () => {
   const actions = () => ({
-    setColor: vi.fn(),
+    setTheme: vi.fn(),
     applyPreset: vi.fn(),
     setExpectancy: vi.fn(),
     setExpectancySource: vi.fn(),
@@ -323,13 +362,38 @@ describe("renderSettings", () => {
     expect(app.querySelector("#expectancy").value).toBe("73");
   });
 
-  it("reports color edits with key and value", () => {
+  it("persists a complete palette when a color edit remains accessible", () => {
     const a = actions();
-    renderSettings(app, a, { theme: null, expectancy: 80 });
+    renderSettings(app, a, data({ theme: PRESETS.Light }));
     const input = app.querySelector("#color-accent");
-    input.value = "#abcdef";
+    input.value = "#006080";
     input.dispatchEvent(new Event("input", { bubbles: true }));
-    expect(a.setColor).toHaveBeenCalledWith("accent", "#abcdef");
+    expect(a.setTheme).toHaveBeenCalledWith({
+      ...PRESETS.Light,
+      accent: "#006080",
+    });
+  });
+
+  it("blocks an inaccessible color draft until its contrast is repaired", () => {
+    const a = actions();
+    renderSettings(app, a, data({ theme: PRESETS.Light }));
+    const input = app.querySelector("#color-count");
+    input.value = "#f2f2f2";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+
+    expect(a.setTheme).not.toHaveBeenCalled();
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+    expect(app.querySelector("#warn-count").hidden).toBe(false);
+    expect(app.querySelector("#done").disabled).toBe(true);
+
+    input.value = "#222222";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    expect(a.setTheme).toHaveBeenCalledWith({
+      ...PRESETS.Light,
+      count: "#222222",
+    });
+    expect(input.getAttribute("aria-invalid")).toBe("false");
+    expect(app.querySelector("#done").disabled).toBe(false);
   });
 
   it("applies a preset when its swatch is clicked", () => {
@@ -351,7 +415,7 @@ describe("renderSettings", () => {
 
   it("wires the reset and done buttons", () => {
     const a = actions();
-    renderSettings(app, a, { theme: null, expectancy: 80 });
+    renderSettings(app, a, data({ theme: PRESETS.Light }));
     app.querySelector("#reset-birthday").click();
     app.querySelector("#reset-colors").click();
     app.querySelector("#done").click();
@@ -441,6 +505,16 @@ describe("renderSettings", () => {
     app.querySelector("#import-data").click();
     expect(a.exportData).toHaveBeenCalledOnce();
     expect(a.importData).toHaveBeenCalledOnce();
+  });
+
+  it("provides a hidden live alert for import failures", () => {
+    renderSettings(app, actions(), data());
+    const status = app.querySelector("#import-status");
+    expect(status.hidden).toBe(true);
+    expect(status.getAttribute("role")).toBe("alert");
+    expect(
+      app.querySelector("#import-data").getAttribute("aria-describedby"),
+    ).toBe("import-status");
   });
 
   it("renders the expectancy source segment reflecting the current source", () => {

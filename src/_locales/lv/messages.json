@@ -319,6 +319,10 @@
     "message": "Importēt…",
     "description": "Import settings button."
   },
+  "importError": {
+    "message": "Importēšana neizdevās. Izvēlieties Mortality iestatījumu failu.",
+    "description": "Error shown when a settings file cannot be imported."
+  },
   "changeBirthday": {
     "message": "Mainīt dzimšanas datumu",
     "description": "Return to birthday setup button."
