@@ -783,7 +783,6 @@ footer {
   background: transparent;
   cursor: pointer;
   padding: 0;
-  filter: none;
 }
 
 .switch::before {
@@ -829,7 +828,11 @@ footer {
 }
 
 .switch:active::before {
-  filter: brightness(0.92);
+  border-color: var(--count);
+}
+
+.switch[aria-checked="true"]:active::before {
+  background: color-mix(in srgb, var(--accent) 85%, var(--count));
 }
 
 .switch:disabled {
@@ -839,7 +842,6 @@ footer {
 
 .switch:disabled::before {
   border-color: var(--border);
-  filter: none;
 }
 
 .sync-option {
