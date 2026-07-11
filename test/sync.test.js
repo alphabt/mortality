@@ -213,6 +213,17 @@ describe("sync payload helpers", () => {
       }),
     ).toThrow(/unknown or missing/);
     expect(() =>
+      sanitizePreferencePayload({
+        ...preferencePayload(LOCAL_STATE),
+        theme: {
+          bg: "#ffffff",
+          label: "#ffffff",
+          count: "#ffffff",
+          accent: "#ffffff",
+        },
+      }),
+    ).toThrow(/insufficient contrast/);
+    expect(() =>
       sanitizeProfilePayload({
         ...profilePayload(LOCAL_STATE),
         birthZone: "not/a-zone",

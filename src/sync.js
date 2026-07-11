@@ -1,7 +1,13 @@
 // Opt-in browser-account sync. Local storage remains the source of persistence;
 // this module only mirrors the explicitly enabled scopes through storage.sync.
 
-import { MODES, THEME_KEYS, TYPEFACES, clampExpectancy } from "./store.js";
+import {
+  MODES,
+  THEME_KEYS,
+  TYPEFACES,
+  clampExpectancy,
+  normalizeTheme,
+} from "./store.js";
 import { normalizeLanguage } from "./i18n.js";
 import { normalizeLifeTable } from "./lifetable.js";
 import { isValidZone, parseBirthParts } from "./time.js";
@@ -15,7 +21,6 @@ export const SYNC_METADATA_KEY = "mortality.sync.metadata";
 const CONFIG_SCHEMA = "mortality.sync.config";
 const PREFERENCE_SCHEMA = "mortality.sync.preferences";
 const PROFILE_SCHEMA = "mortality.sync.profile";
-const HEX_COLOR = /^#[0-9a-f]{6}$/i;
 const PREFERENCE_KEYS = ["theme", "mode", "typeface", "reflection", "language"];
 const PROFILE_KEYS = [
   "birth",
@@ -55,13 +60,9 @@ function validTheme(value) {
   if (!hasExactKeys(value, THEME_KEYS)) {
     validation("Synced theme has unknown or missing fields");
   }
-  const theme = {};
-  for (const key of THEME_KEYS) {
-    if (typeof value[key] !== "string" || !HEX_COLOR.test(value[key])) {
-      validation(`Synced theme field "${key}" is not a valid hex color`);
-    }
-    theme[key] = value[key].toLowerCase();
-  }
+  const theme = normalizeTheme(value);
+  if (!theme)
+    validation("Synced theme is invalid or has insufficient contrast");
   return theme;
 }
 
