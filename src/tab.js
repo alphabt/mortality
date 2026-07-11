@@ -75,10 +75,12 @@ let syncModel = {
 };
 
 function persistState() {
-  save(state).catch((error) => {
-    console.error("Mortality: local settings could not be saved", error);
-  });
-  syncManager?.stateChanged(state);
+  const snapshot = structuredClone(state);
+  save(snapshot)
+    .then(() => syncManager?.stateChanged(snapshot))
+    .catch((error) => {
+      console.error("Mortality: local settings could not be saved", error);
+    });
 }
 
 function stopTimer() {

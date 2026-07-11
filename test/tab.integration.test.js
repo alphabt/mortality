@@ -1100,6 +1100,36 @@ describe("device sync controller integration", () => {
     expect(document.body.className).toBe("screen-setup");
     expect(document.querySelector("#birth-date")).not.toBeNull();
   });
+
+  it("does not publish a local mutation when its local save fails", async () => {
+    const initial = { ...remote, mode: "years" };
+    const storage = extensionStorage(initial, {
+      [SYNC_CONFIG_KEY]: createConfigEnvelope(
+        { preferences: true, profile: false },
+        "remote-writer",
+      ),
+      [SYNC_PREFERENCES_KEY]: createSyncEnvelope(
+        "preferences",
+        preferencePayload(initial),
+        "remote-writer",
+      ),
+    });
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+    await boot();
+    storage.api.sync.set.mockClear();
+    storage.api.local.set.mockRejectedValueOnce(new Error("local save failed"));
+
+    document.querySelector("#count").click();
+    await flush();
+    await vi.advanceTimersByTimeAsync(1000);
+
+    expect(error).toHaveBeenCalledWith(
+      "Mortality: local settings could not be saved",
+      expect.any(Error),
+    );
+    expect(storage.api.sync.set).not.toHaveBeenCalled();
+    expect(storage.syncData[SYNC_PREFERENCES_KEY].data.mode).toBe("years");
+  });
 });
 
 describe("life in weeks", () => {
