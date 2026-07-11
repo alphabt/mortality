@@ -666,7 +666,7 @@ export function createSyncManager({
       const stale = [SYNC_PREFERENCES_KEY, SYNC_PROFILE_KEY].filter(
         (key) => supplied[key] !== undefined || records[key] !== undefined,
       );
-      if (stale.length) await syncStorage.remove(stale);
+      if (stale.length) await removeSync(stale);
       setStatus("off");
       return;
     }

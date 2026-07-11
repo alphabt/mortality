@@ -969,9 +969,10 @@ describe("sync manager events, coalescing, and failures", () => {
   });
 
   it("removes a newly delivered payload when configuration remains absent", async () => {
-    const storage = storageApi();
+    const storage = storageApi({ autoEvents: true });
     const { manager } = managerFor(storage);
     await manager.initialize(LOCAL_STATE);
+    storage.syncArea.get.mockClear();
     const profile = createSyncEnvelope(
       "profile",
       profilePayload(REMOTE_STATE),
@@ -982,6 +983,7 @@ describe("sync manager events, coalescing, and failures", () => {
     await settle();
 
     expect(storage.syncData[SYNC_PROFILE_KEY]).toBeUndefined();
+    expect(storage.syncArea.get).toHaveBeenCalledTimes(3);
     expect(manager.model().status).toBe("off");
   });
 
