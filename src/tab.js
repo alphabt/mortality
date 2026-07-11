@@ -75,7 +75,7 @@ let syncModel = {
 };
 
 function persistState() {
-  const snapshot = structuredClone(state);
+  const snapshot = JSON.parse(JSON.stringify(state));
   save(snapshot)
     .then(() => syncManager?.stateChanged(snapshot))
     .catch((error) => {
