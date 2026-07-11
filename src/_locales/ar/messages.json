@@ -451,6 +451,50 @@
     "message": "البحث في المناطق الزمنية",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "مزامنة الأجهزة",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "مزامنة التفضيلات بين الأجهزة",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "يزامن السمة ونمط الأرقام وسطر التأمل واللغة ووضع العدّاد من خلال حسابك في المتصفح.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "مزامنة تفاصيل تاريخ الميلاد ومتوسط العمر المتوقع أيضًا",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "يزامن أيضًا تاريخ ووقت ميلادك ومنطقتك الزمنية عند الميلاد والجنس عند الولادة ومصدر بيانات متوسط العمر المتوقع المحدد أو عدد السنوات المخصص. هذه المعلومات أكثر خصوصية.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "متوقفة",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "جارٍ التزامن…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "تمت المزامنة",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "تم الحفظ على هذا الجهاز. تعذر تحديث المزامنة.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "مزامنة الأجهزة غير متاحة في هذا المتصفح.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "إعادة محاولة المزامنة",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "لا توجد مناطق زمنية مطابقة",
     "description": "Empty result shown when no time zones match the search."

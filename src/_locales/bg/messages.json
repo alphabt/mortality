@@ -451,6 +451,50 @@
     "message": "Търсене на часови зони",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Синхронизиране между устройства",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Синхронизиране на предпочитанията между устройства",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Синхронизира темата, стила на цифрите, реда за размисъл, езика и режима на брояча чрез профила ви в браузъра.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Синхронизиране и на рождения ден и данните за очакваната продължителност на живота",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Синхронизира също датата и часа на раждане, часовата зона на раждане, пола при раждане и избрания източник на данни за очакваната продължителност на живота или персонализирания брой години. Тази информация е по-лична.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Изключено",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Синхронизиране…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Синхронизирано",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Запазено на това устройство. Синхронизирането не можа да се актуализира.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Синхронизирането между устройства не е налично в този браузър.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Повторен опит за синхронизиране",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Няма съвпадащи часови зони",
     "description": "Empty result shown when no time zones match the search."

@@ -451,6 +451,50 @@
     "message": "Cerca zones horàries",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Sincronització entre dispositius",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sincronitza les preferències entre dispositius",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Sincronitza el tema, l’estil dels números, la frase de reflexió, l’idioma i el mode del comptador mitjançant el compte del navegador.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sincronitza també les dades de l’aniversari i l’esperança de vida",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "També sincronitza la data i l’hora de naixement, el fus horari de naixement, el sexe en néixer i la font de dades d’esperança de vida seleccionada o els anys personalitzats. Aquesta informació és més personal.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Desactivada",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Sincronitzant…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sincronitzat",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "S’ha desat en aquest dispositiu. No s’ha pogut actualitzar la sincronització.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "La sincronització entre dispositius no està disponible en aquest navegador.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Torna a provar la sincronització",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "No hi ha cap zona horària coincident",
     "description": "Empty result shown when no time zones match the search."

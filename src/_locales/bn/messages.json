@@ -451,6 +451,50 @@
     "message": "সময় অঞ্চল খুঁজুন",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "ডিভাইস সিঙ্ক",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "ডিভাইসগুলোর মধ্যে পছন্দসমূহ সিঙ্ক করুন",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "আপনার ব্রাউজার অ্যাকাউন্টের মাধ্যমে থিম, সংখ্যার ধরন, প্রতিফলনের পঙ্‌ক্তি, ভাষা ও কাউন্টার মোড সিঙ্ক করে।",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "জন্মদিন ও প্রত্যাশিত আয়ুর বিবরণও সিঙ্ক করুন",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "আপনার জন্মতারিখ ও সময়, জন্মকালীন সময় অঞ্চল, জন্মের সময় নির্ধারিত লিঙ্গ এবং নির্বাচিত প্রত্যাশিত আয়ুর ডেটা উৎস বা নিজস্ব বছরের সংখ্যাও সিঙ্ক করে। এই তথ্য আরও ব্যক্তিগত।",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "বন্ধ",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "সিঙ্ক হচ্ছে…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "সিঙ্ক হয়েছে",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "এই ডিভাইসে সংরক্ষিত হয়েছে। সিঙ্ক আপডেট করা যায়নি।",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "এই ব্রাউজারে ডিভাইস সিঙ্ক পাওয়া যায় না।",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "আবার সিঙ্ক করার চেষ্টা করুন",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "কোনো মিলে যাওয়া সময় অঞ্চল নেই",
     "description": "Empty result shown when no time zones match the search."

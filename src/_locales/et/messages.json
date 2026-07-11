@@ -451,6 +451,50 @@
     "message": "Otsi ajavööndeid",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Seadmete sünkroonimine",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sünkrooni eelistused seadmete vahel",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Sünkroonib brauserikonto kaudu sinu kujunduse, numbristiili, mõtisklusrea, keele ja loenduri režiimi.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sünkrooni ka sünnipäeva ja eeldatava eluea andmed",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Sünkroonib ka sinu sünnikuupäeva ja -kellaaja, sünnikoha ajavööndi, sünnijärgse soo ning valitud eeldatava eluea andmeallika või kohandatud aastad. Need andmed on isiklikumad.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Väljas",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Sünkroonimine…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sünkroonitud",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Salvestatud sellesse seadmesse. Sünkroonimist ei saanud uuendada.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Seadmete sünkroonimine pole selles brauseris saadaval.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Proovi uuesti sünkroonida",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Sobivaid ajavööndeid ei leitud",
     "description": "Empty result shown when no time zones match the search."

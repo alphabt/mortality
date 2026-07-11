@@ -451,6 +451,50 @@
     "message": "Cerca fusi orari",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Sincronizzazione tra dispositivi",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sincronizza le preferenze tra dispositivi",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Sincronizza tema, stile dei numeri, frase di riflessione, lingua e modalità del contatore tramite il tuo account del browser.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sincronizza anche compleanno e dati sull’aspettativa di vita",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Sincronizza anche data e ora di nascita, fuso orario di nascita, sesso alla nascita e la fonte dati sull’aspettativa di vita selezionata o gli anni personalizzati. Queste informazioni sono più personali.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Disattivata",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Sincronizzazione…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sincronizzato",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Salvato su questo dispositivo. Impossibile aggiornare la sincronizzazione.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "La sincronizzazione tra dispositivi non è disponibile in questo browser.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Riprova la sincronizzazione",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Nessun fuso orario corrispondente",
     "description": "Empty result shown when no time zones match the search."

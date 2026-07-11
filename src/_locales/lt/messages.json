@@ -451,6 +451,50 @@
     "message": "Ieškoti laiko juostų",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Įrenginių sinchronizavimas",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sinchronizuoti nuostatas visuose įrenginiuose",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Per naršyklės paskyrą sinchronizuoja temą, skaitmenų stilių, apmąstymų eilutę, kalbą ir skaitiklio režimą.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Sinchronizuoti ir gimtadienio bei tikėtinos gyvenimo trukmės duomenis",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Taip pat sinchronizuoja gimimo datą ir laiką, gimimo laiko juostą, gimimo metu nustatytą lytį ir pasirinktą tikėtinos gyvenimo trukmės duomenų šaltinį arba pasirinktinį metų skaičių. Ši informacija yra asmeniškesnė.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Išjungta",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Sinchronizuojama…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Sinchronizuota",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Išsaugota šiame įrenginyje. Sinchronizavimo atnaujinti nepavyko.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Įrenginių sinchronizavimas šioje naršyklėje nepasiekiamas.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Bandyti sinchronizuoti dar kartą",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Atitinkančių laiko juostų nėra",
     "description": "Empty result shown when no time zones match the search."

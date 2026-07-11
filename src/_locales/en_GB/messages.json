@@ -451,6 +451,50 @@
     "message": "Search time zones",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Device sync",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Sync preferences across devices",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Syncs your theme, numeral style, reflection line, language, and counter mode through your browser account.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Also sync birthday and life-expectancy details",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Also syncs your birth date and time, birth time zone, sex at birth, and selected life-expectancy data source or custom years. This information is more personal.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Off",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Syncing…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Synced",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Saved on this device. Sync couldn't update.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Device sync isn't available in this browser.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Retry sync",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "No matching time zones",
     "description": "Empty result shown when no time zones match the search."

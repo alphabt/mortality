@@ -451,6 +451,50 @@
     "message": "సమయ మండలాలను వెతకండి",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "పరికర సమకాలీకరణ",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "పరికరాల మధ్య ప్రాధాన్యతలను సమకాలీకరించండి",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "మీ బ్రౌజర్ ఖాతా ద్వారా థీమ్, అంకెల శైలి, ఆలోచన పంక్తి, భాష మరియు కౌంటర్ విధానాన్ని సమకాలీకరిస్తుంది.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "పుట్టినరోజు మరియు అంచనా ఆయుర్దాయం వివరాలను కూడా సమకాలీకరించండి",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "మీ పుట్టిన తేదీ మరియు సమయం, పుట్టినప్పటి సమయ మండలం, పుట్టినప్పటి లింగం మరియు ఎంచుకున్న అంచనా ఆయుర్దాయం డేటా మూలం లేదా అనుకూల సంవత్సరాలను కూడా సమకాలీకరిస్తుంది. ఈ సమాచారం మరింత వ్యక్తిగతమైనది.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "ఆఫ్",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "సమకాలీకరిస్తోంది…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "సమకాలీకరించబడింది",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "ఈ పరికరంలో సేవ్ అయింది. సమకాలీకరణను నవీకరించలేకపోయింది.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "ఈ బ్రౌజర్‌లో పరికర సమకాలీకరణ అందుబాటులో లేదు.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "సమకాలీకరణను మళ్లీ ప్రయత్నించండి",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "సరిపోలే సమయ మండలాలు లేవు",
     "description": "Empty result shown when no time zones match the search."

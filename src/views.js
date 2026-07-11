@@ -423,6 +423,40 @@ export function renderCounter(
   return { label, count, progressFill, pct };
 }
 
+/** Update the inline sync controls without rebuilding Settings or stealing focus. */
+export function updateSyncSettings(app, sync) {
+  const preferenceSwitch = app.querySelector("#sync-preferences");
+  if (!preferenceSwitch) return;
+  const profileSwitch = app.querySelector("#sync-profile");
+  const status = app.querySelector("#sync-status");
+  const retry = app.querySelector("#retry-sync");
+  const busy = Boolean(sync.busy || sync.status === "syncing");
+  const preferencesDisabled = !sync.available || busy;
+  const profileDisabled = !sync.available || !sync.preferences || busy;
+
+  preferenceSwitch.setAttribute(
+    "aria-checked",
+    String(Boolean(sync.preferences)),
+  );
+  preferenceSwitch.setAttribute("aria-disabled", String(preferencesDisabled));
+  preferenceSwitch.disabled = preferencesDisabled;
+  profileSwitch.setAttribute("aria-checked", String(Boolean(sync.profile)));
+  profileSwitch.setAttribute("aria-disabled", String(profileDisabled));
+  profileSwitch.disabled = profileDisabled;
+
+  const statusKeys = {
+    off: "syncStatusOff",
+    syncing: "syncStatusSyncing",
+    synced: "syncStatusSynced",
+    error: "syncStatusError",
+    unavailable: "syncStatusUnavailable",
+  };
+  status.className = `sync-status is-${sync.status}`;
+  status.textContent = msg(statusKeys[sync.status] || "syncStatusOff");
+  retry.hidden = sync.status !== "error";
+  retry.disabled = busy;
+}
+
 /** Settings screen: presets + colour pickers + life expectancy + resets. */
 export function renderSettings(
   app,
@@ -439,6 +473,14 @@ export function renderSettings(
     birthZone,
     zoneError,
     language,
+    sync = {
+      available: false,
+      preferences: false,
+      profile: false,
+      status: "unavailable",
+      error: null,
+      busy: false,
+    },
   },
 ) {
   cleanupView(app);
@@ -644,6 +686,75 @@ export function renderSettings(
   exportBtn.addEventListener("click", actions.exportData);
   importBtn.addEventListener("click", actions.importData);
 
+  // Device sync stays inline with Data: one ordinary preference switch, then a
+  // dependent explicit opt-in for the more personal profile fields.
+  const syncBusy = Boolean(sync.busy || sync.status === "syncing");
+  const preferencesDisabled = !sync.available || syncBusy;
+  const profileDisabled = !sync.available || !sync.preferences || syncBusy;
+  const preferenceSwitch = el("button", {
+    type: "button",
+    class: "switch",
+    id: "sync-preferences",
+    role: "switch",
+    "aria-checked": String(Boolean(sync.preferences)),
+    "aria-describedby": "sync-preferences-hint",
+    "aria-disabled": String(preferencesDisabled),
+    disabled: preferencesDisabled,
+  });
+  const profileSwitch = el("button", {
+    type: "button",
+    class: "switch",
+    id: "sync-profile",
+    role: "switch",
+    "aria-checked": String(Boolean(sync.profile)),
+    "aria-describedby": "sync-profile-hint",
+    "aria-disabled": String(profileDisabled),
+    disabled: profileDisabled,
+  });
+  preferenceSwitch.addEventListener("click", () =>
+    actions.toggleSyncPreferences?.(
+      preferenceSwitch.getAttribute("aria-checked") !== "true",
+    ),
+  );
+  profileSwitch.addEventListener("click", () =>
+    actions.toggleSyncProfile?.(
+      profileSwitch.getAttribute("aria-checked") !== "true",
+    ),
+  );
+  const syncStatusKeys = {
+    off: "syncStatusOff",
+    syncing: "syncStatusSyncing",
+    synced: "syncStatusSynced",
+    error: "syncStatusError",
+    unavailable: "syncStatusUnavailable",
+  };
+  const syncStatus = el(
+    "p",
+    {
+      class: `sync-status is-${sync.status}`,
+      id: "sync-status",
+      role: "status",
+      "aria-live": "polite",
+    },
+    msg(syncStatusKeys[sync.status] || "syncStatusOff"),
+  );
+  const retrySyncBtn = el(
+    "button",
+    {
+      type: "button",
+      id: "retry-sync",
+      class: "btn-secondary",
+      hidden: sync.status !== "error",
+      disabled: syncBusy,
+    },
+    msg("retrySync"),
+  );
+  retrySyncBtn.addEventListener("click", actions.retrySync || (() => {}));
+  const syncStatusRow = el("div", { class: "sync-status-row" }, [
+    syncStatus,
+    retrySyncBtn,
+  ]);
+
   const resetBirthdayBtn = el(
     "button",
     { id: "reset-birthday", class: "btn-secondary" },
@@ -704,10 +815,35 @@ export function renderSettings(
     el("p", { class: "settings-label" }, msg("sectionData")),
     el("div", { class: "actions" }, [exportBtn, importBtn]),
     importStatus,
+    el("p", { class: "settings-label" }, msg("sectionDeviceSync")),
+    el("div", { class: "sync-option" }, [
+      el("div", { class: "row" }, [
+        el("label", { for: "sync-preferences" }, msg("syncPreferences")),
+        preferenceSwitch,
+      ]),
+      el(
+        "p",
+        { class: "settings-hint", id: "sync-preferences-hint" },
+        msg("syncPreferencesHint"),
+      ),
+    ]),
+    el("div", { class: "sync-option" }, [
+      el("div", { class: "row" }, [
+        el("label", { for: "sync-profile" }, msg("syncProfile")),
+        profileSwitch,
+      ]),
+      el(
+        "p",
+        { class: "settings-hint", id: "sync-profile-hint" },
+        msg("syncProfileHint"),
+      ),
+    ]),
+    syncStatusRow,
     el("div", { class: "actions" }, [resetBirthdayBtn, resetColorsBtn]),
     el("div", { class: "actions" }, [doneBtn]),
   ]);
   app.replaceChildren(settings);
+  updateSyncSettings(app, sync);
   viewCleanups.set(app, () => {
     zoneControl.destroy();
     lifeTableControl?.destroy();

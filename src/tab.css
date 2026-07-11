@@ -743,7 +743,7 @@ footer {
   border-color: var(--count);
 }
 
-/* Display section: segmented numeral-typeface control + a reflection toggle. */
+/* Display and sync sections share the same segmented and switch vocabulary. */
 .segment {
   display: inline-flex;
   border: 1px solid var(--border);
@@ -776,6 +776,7 @@ footer {
 
 .switch {
   position: relative;
+  flex: 0 0 2.75rem;
   width: 2.75rem;
   height: 2.75rem;
   border: 0;
@@ -824,6 +825,58 @@ footer {
 
 .switch[aria-checked="true"]::after {
   inset-inline-start: calc(100% - 1.31rem);
+}
+
+.switch:active::before {
+  border-color: var(--count);
+}
+
+.switch[aria-checked="true"]:active::before {
+  background: color-mix(in srgb, var(--accent) 85%, var(--count));
+}
+
+.switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.switch:disabled::before {
+  border-color: var(--border);
+}
+
+.sync-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sync-option .row {
+  min-height: 2.75rem;
+}
+
+.sync-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+}
+
+.sync-status {
+  margin: 0;
+  color: var(--label);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.sync-status.is-error {
+  color: var(--count);
+}
+
+#retry-sync {
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+  font-size: 0.9rem;
 }
 
 :dir(rtl) #weeks-back {

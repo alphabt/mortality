@@ -451,6 +451,50 @@
     "message": "Пошук часових поясів",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Синхронізація пристроїв",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Синхронізувати налаштування між пристроями",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Синхронізує тему, стиль цифр, рядок для роздумів, мову й режим лічильника через ваш обліковий запис браузера.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Також синхронізувати день народження й дані про очікувану тривалість життя",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Також синхронізує дату й час народження, часовий пояс місця народження, стать при народженні та вибране джерело даних про очікувану тривалість життя або власну кількість років. Ця інформація є більш особистою.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Вимкнено",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Синхронізація…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Синхронізовано",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Збережено на цьому пристрої. Не вдалося оновити синхронізацію.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Синхронізація пристроїв недоступна в цьому браузері.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Повторити синхронізацію",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Немає відповідних часових поясів",
     "description": "Empty result shown when no time zones match the search."

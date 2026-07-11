@@ -451,6 +451,50 @@
     "message": "የሰዓት ሰቅ ፈልግ",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "የመሣሪያ ማመሳሰል",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "ምርጫዎችን በመሣሪያዎች መካከል አመሳስል",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "ገጽታዎን፣ የቁጥር አጻጻፍዎን፣ የማሰላሰያ መስመርዎን፣ ቋንቋዎን እና የቆጣሪ ሁነታዎን በአሳሽ መለያዎ በኩል ያመሳስላል።",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "የልደት ቀን እና የሕይወት ዕድሜ ግምት ዝርዝሮችንም አመሳስል",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "የልደት ቀንዎን እና ሰዓትዎን፣ የትውልድ ጊዜ ሰቅዎን፣ በውልደት ጊዜ የነበረውን ጾታዎን፣ እንዲሁም የተመረጠውን የሕይወት ዕድሜ ግምት የውሂብ ምንጭ ወይም ብጁ ዓመታትንም ያመሳስላል። ይህ መረጃ የበለጠ ግላዊ ነው።",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "ጠፍቷል",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "በማመሳሰል ላይ…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "ተመሳስሏል",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "በዚህ መሣሪያ ላይ ተቀምጧል። ማመሳሰሉን ማዘመን አልተቻለም።",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "የመሣሪያ ማመሳሰል በዚህ አሳሽ ውስጥ አይገኝም።",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "ማመሳሰልን እንደገና ሞክር",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "የሚዛመድ የሰዓት ሰቅ የለም",
     "description": "Empty result shown when no time zones match the search."

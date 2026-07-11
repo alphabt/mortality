@@ -451,6 +451,50 @@
     "message": "Αναζήτηση ζωνών ώρας",
     "description": "Placeholder for the searchable time-zone field."
   },
+  "sectionDeviceSync": {
+    "message": "Συγχρονισμός συσκευών",
+    "description": "Settings section heading for device sync."
+  },
+  "syncPreferences": {
+    "message": "Συγχρονισμός προτιμήσεων μεταξύ συσκευών",
+    "description": "Label for preference sync switch."
+  },
+  "syncPreferencesHint": {
+    "message": "Συγχρονίζει το θέμα, το στυλ αριθμών, τη γραμμή στοχασμού, τη γλώσσα και τη λειτουργία μετρητή μέσω του λογαριασμού σας στο πρόγραμμα περιήγησης.",
+    "description": "Explains which preferences sync and that the browser account carries them."
+  },
+  "syncProfile": {
+    "message": "Συγχρονισμός και των στοιχείων γενεθλίων και προσδόκιμου ζωής",
+    "description": "Label for the additional personal profile sync switch."
+  },
+  "syncProfileHint": {
+    "message": "Συγχρονίζει επίσης την ημερομηνία και ώρα γέννησης, τη ζώνη ώρας γέννησης, το φύλο κατά τη γέννηση και την επιλεγμένη πηγή δεδομένων προσδόκιμου ζωής ή τα προσαρμοσμένα έτη. Αυτές οι πληροφορίες είναι πιο προσωπικές.",
+    "description": "Explains the personal profile fields included in optional sync."
+  },
+  "syncStatusOff": {
+    "message": "Ανενεργός",
+    "description": "Status when device sync is disabled."
+  },
+  "syncStatusSyncing": {
+    "message": "Συγχρονισμός…",
+    "description": "Status while device sync is reading or writing."
+  },
+  "syncStatusSynced": {
+    "message": "Συγχρονίστηκε",
+    "description": "Status after device sync succeeds."
+  },
+  "syncStatusError": {
+    "message": "Αποθηκεύτηκε σε αυτή τη συσκευή. Ο συγχρονισμός δεν μπόρεσε να ενημερωθεί.",
+    "description": "Status when local save succeeded but device sync failed."
+  },
+  "syncStatusUnavailable": {
+    "message": "Ο συγχρονισμός συσκευών δεν είναι διαθέσιμος σε αυτό το πρόγραμμα περιήγησης.",
+    "description": "Status when browser sync storage is unavailable."
+  },
+  "retrySync": {
+    "message": "Επανάληψη συγχρονισμού",
+    "description": "Button label to retry a failed sync operation."
+  },
   "noTimeZones": {
     "message": "Δεν βρέθηκαν ζώνες ώρας",
     "description": "Empty result shown when no time zones match the search."
