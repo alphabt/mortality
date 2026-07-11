@@ -87,6 +87,91 @@ request() {
 # ---------------------------------------------------------------------------
 # Chrome Web Store  (v2 REST API)
 # ---------------------------------------------------------------------------
+chrome_wait_cancelled() {
+  local status_url="$1" token="$2"
+  local i body state
+
+  for i in $(seq 1 12); do
+    request GET "$status_url" -H "Authorization: Bearer $token" \
+      || die "Chrome: submission status failed (HTTP $http_code): $response_body"
+    body="$response_body"
+    state="$(printf '%s' "$body" | jq -er \
+      '.submittedItemRevisionStatus.state // "" | select(type == "string")')" \
+      || die "Chrome: submission status response omitted state: $body"
+    [ "$state" != "PENDING_REVIEW" ] && return 0
+    [ "$i" -lt 12 ] || break
+    printf '    Chrome: cancellation pending...\n'
+    sleep 5
+  done
+
+  die "Chrome: timed out waiting for pending submission cancellation"
+}
+
+chrome_prepare_submission() {
+  local api="$1" item="$2" token="$3"
+  local body state pending_version version_order
+  local target_version="${VERSION#v}"
+  local status_url="$api/v2/$item:fetchStatus"
+
+  request GET "$status_url" -H "Authorization: Bearer $token" \
+    || die "Chrome: submission status failed (HTTP $http_code): $response_body"
+  body="$response_body"
+  state="$(printf '%s' "$body" | jq -er \
+    '.submittedItemRevisionStatus.state // "" | select(type == "string")')" \
+    || die "Chrome: submission status response omitted state: $body"
+  [ "$state" = "PENDING_REVIEW" ] || return 0
+
+  pending_version="$(printf '%s' "$body" | jq -er '
+    [
+      .submittedItemRevisionStatus.distributionChannels[]?.crxVersion
+      | select(type == "string" and length > 0)
+    ]
+    | unique
+    | if length == 1 then .[0] else empty end
+  ')" || die "Chrome: pending submission omitted a unique version: $body"
+
+  version_order="$(jq -enr --arg target "$target_version" --arg pending "$pending_version" '
+    def parts:
+      if test("^[0-9]+(\\.[0-9]+){0,3}$") then
+        (split(".") | map(tonumber) + [0, 0, 0, 0])[:4]
+      else
+        error("invalid extension version")
+      end;
+    ($target | parts) as $target_parts
+    | ($pending | parts) as $pending_parts
+    | if $target_parts == $pending_parts then 0
+      elif $target_parts > $pending_parts then 1
+      else -1
+      end
+  ')" || die "Chrome: could not compare versions '$VERSION' and '$pending_version'"
+
+  case "$version_order" in
+    0)
+      ok "Chrome: $VERSION is already pending review"
+      chrome_submission_action=skip
+      ;;
+    1)
+      if $DRY_RUN; then
+        warn "Chrome: --dry-run, would replace pending $pending_version with $VERSION"
+        chrome_submission_action=skip
+        return
+      fi
+      log "Chrome: cancelling pending $pending_version submission before $VERSION"
+      request POST "$api/v2/$item:cancelSubmission" \
+        -H "Authorization: Bearer $token" -H "Content-Length: 0" \
+        || die "Chrome: cancel submission failed (HTTP $http_code): $response_body"
+      chrome_wait_cancelled "$status_url" "$token"
+      ok "Chrome: cancelled pending $pending_version submission"
+      ;;
+    -1)
+      die "Chrome: pending version $pending_version is newer than target $VERSION"
+      ;;
+    *)
+      die "Chrome: unexpected version comparison result '$version_order'"
+      ;;
+  esac
+}
+
 publish_chrome() {
   require_env "${chrome_vars[@]}"
   log "${c_bold}Chrome Web Store${c_reset}"
@@ -105,6 +190,10 @@ publish_chrome() {
 
   local api="https://chromewebstore.googleapis.com"
   local item="publishers/$CHROME_PUBLISHER_ID/items/$CHROME_EXTENSION_ID"
+
+  chrome_submission_action=upload
+  chrome_prepare_submission "$api" "$item" "$token"
+  [ "$chrome_submission_action" = "upload" ] || return 0
 
   log "Chrome: uploading package"
   request POST "$api/upload/v2/$item:upload" \

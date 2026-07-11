@@ -57,7 +57,7 @@ function runPublisher(store, responses, { dryRun = false } = {}) {
 
   const queue = join(temp, "responses.json");
   const index = join(temp, "curl-index");
-  const zip = join(temp, "mortality-9.9.9.zip");
+  const zip = join(temp, "mortality-v9.9.9.zip");
   writeFileSync(queue, JSON.stringify(responses));
   writeFileSync(zip, "fixture");
 
@@ -96,6 +96,14 @@ function tokenResponse(code = 200) {
   };
 }
 
+function chromeStatusResponse(status = {}) {
+  return {
+    code: 200,
+    body: JSON.stringify(status),
+    expect: [":fetchStatus", "-X GET"],
+  };
+}
+
 beforeEach(() => {
   temp = mkdtempSync(join(tmpdir(), "mortality-publish-"));
 });
@@ -108,6 +116,7 @@ describe("Chrome publishing", () => {
   it("polls asynchronous uploads before publishing and reports the API state", () => {
     const result = runPublisher("chrome", [
       tokenResponse(),
+      chromeStatusResponse(),
       {
         code: 200,
         body: '{"uploadState":"IN_PROGRESS"}',
@@ -131,7 +140,7 @@ describe("Chrome publishing", () => {
     ]);
 
     expect(result.status, result.output).toBe(0);
-    expect(result.calls).toBe(5);
+    expect(result.calls).toBe(6);
     expect(result.output).toContain("Chrome: package accepted");
     expect(result.output).toContain("state=PENDING_REVIEW");
     expect(result.output).not.toContain("Publishing to: chrome (dry-run)");
@@ -140,12 +149,16 @@ describe("Chrome publishing", () => {
   it("labels dry runs accurately and stops after a successful upload", () => {
     const result = runPublisher(
       "chrome",
-      [tokenResponse(), { code: 200, body: '{"uploadState":"SUCCEEDED"}' }],
+      [
+        tokenResponse(),
+        chromeStatusResponse(),
+        { code: 200, body: '{"uploadState":"SUCCEEDED"}' },
+      ],
       { dryRun: true },
     );
 
     expect(result.status, result.output).toBe(0);
-    expect(result.calls).toBe(2);
+    expect(result.calls).toBe(3);
     expect(result.output).toContain("Publishing to: chrome (dry-run)");
     expect(result.output).toContain("--dry-run, not publishing");
   });
@@ -169,6 +182,7 @@ describe("Chrome publishing", () => {
     (state) => {
       const result = runPublisher("chrome", [
         tokenResponse(),
+        chromeStatusResponse(),
         { code: 200, body: JSON.stringify({ uploadState: state }) },
       ]);
       expect(result.status).not.toBe(0);
@@ -190,6 +204,7 @@ describe("Chrome publishing", () => {
   ])("rejects the non-public publish state %s", (state) => {
     const result = runPublisher("chrome", [
       tokenResponse(),
+      chromeStatusResponse(),
       { code: 200, body: '{"uploadState":"SUCCEEDED"}' },
       { code: 200, body: JSON.stringify({ state }) },
     ]);
@@ -202,11 +217,80 @@ describe("Chrome publishing", () => {
   it("accepts an immediately published response", () => {
     const result = runPublisher("chrome", [
       tokenResponse(),
+      chromeStatusResponse(),
       { code: 200, body: '{"uploadState":"SUCCEEDED"}' },
       { code: 200, body: '{"state":"PUBLISHED"}' },
     ]);
     expect(result.status, result.output).toBe(0);
     expect(result.output).toContain("state=PUBLISHED");
+  });
+
+  it("replaces an older pending review before uploading the new release", () => {
+    const pending = {
+      submittedItemRevisionStatus: {
+        state: "PENDING_REVIEW",
+        distributionChannels: [{ crxVersion: "9.9.8" }],
+      },
+    };
+    const result = runPublisher("chrome", [
+      tokenResponse(),
+      chromeStatusResponse(pending),
+      {
+        code: 200,
+        body: "{}",
+        expect: [":cancelSubmission", "-X POST"],
+      },
+      chromeStatusResponse({
+        submittedItemRevisionStatus: { state: "CANCELLED" },
+      }),
+      { code: 200, body: '{"uploadState":"SUCCEEDED"}' },
+      { code: 200, body: '{"state":"PENDING_REVIEW"}' },
+    ]);
+
+    expect(result.status, result.output).toBe(0);
+    expect(result.calls).toBe(6);
+    expect(result.output).toContain(
+      "cancelling pending 9.9.8 submission before v9.9.9",
+    );
+    expect(result.output).toContain("submitted v9.9.9");
+  });
+
+  it("treats the requested version already pending review as success", () => {
+    const result = runPublisher("chrome", [
+      tokenResponse(),
+      chromeStatusResponse({
+        submittedItemRevisionStatus: {
+          state: "PENDING_REVIEW",
+          distributionChannels: [{ crxVersion: "9.9.9" }],
+        },
+      }),
+    ]);
+
+    expect(result.status, result.output).toBe(0);
+    expect(result.calls).toBe(2);
+    expect(result.output).toContain("v9.9.9 is already pending review");
+  });
+
+  it("does not replace a pending review during a dry run", () => {
+    const result = runPublisher(
+      "chrome",
+      [
+        tokenResponse(),
+        chromeStatusResponse({
+          submittedItemRevisionStatus: {
+            state: "PENDING_REVIEW",
+            distributionChannels: [{ crxVersion: "9.9.8" }],
+          },
+        }),
+      ],
+      { dryRun: true },
+    );
+
+    expect(result.status, result.output).toBe(0);
+    expect(result.calls).toBe(2);
+    expect(result.output).toContain(
+      "--dry-run, would replace pending 9.9.8 with v9.9.9",
+    );
   });
 });
 
@@ -244,7 +328,7 @@ describe("Edge publishing", () => {
 
     expect(result.status, result.output).toBe(0);
     expect(result.calls).toBe(5);
-    expect(result.output).toContain("Edge: published 9.9.9");
+    expect(result.output).toContain("Edge: published v9.9.9");
   });
 });
 

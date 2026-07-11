@@ -23,8 +23,8 @@ Ships a tagged release to all three extension stores. All credentials live in
 
 ## How publishing works
 
-- **Chrome** — Web Store API v2: refresh an access token, upload the package,
-  then `:publish`.
+- **Chrome** — Web Store API v2: refresh an access token, replace an older
+  pending review when necessary, upload the package, then `:publish`.
 - **Edge** — Add-ons API v1.1: upload the package, poll, publish the draft,
   poll again.
 - **Firefox** — the exact `web-ext` version locked in `package-lock.json` runs
