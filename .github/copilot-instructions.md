@@ -33,8 +33,7 @@ To iterate visually, run `/impeccable live` (pre-configured for `src/tab.html`).
 
 - **UI changes:** always open the integrated browser (preview `src/tab.html`, or the dev
   server) so the change can be tried out live before it's finalized.
-- **Pull requests:** describe UI changes in words in the PR description — do **not** embed
-  screenshots. GitHub's attachment CDN can't be reached from the CLI, so screenshots would
-  otherwise require committing image files or parking them on a throwaway asset branch;
-  never do that. If a reviewer wants visual proof, attach it by hand via drag-and-drop in
-  the browser.
+- **Pull requests:** describe UI changes in words in the PR description — do **not** commit
+  image files or park them on a throwaway asset branch just to embed screenshots from the
+  CLI; never do that. If a reviewer wants visual proof, attach screenshots by hand via
+  drag-and-drop in the GitHub web UI.
