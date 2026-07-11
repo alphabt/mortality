@@ -19,6 +19,8 @@ import {
 } from "../src/sync.js";
 import { UN_LOCATIONS } from "../src/un-life-tables.js";
 
+const managers = new Set();
+
 const LOCAL_STATE = {
   version: 1,
   birth: "1990-06-15T09:30",
@@ -142,14 +144,21 @@ function managerFor(storage, options = {}) {
   const persistLocal = vi.fn(async () => {});
   const onRemoteState = vi.fn(async () => {});
   const statuses = [];
-  const manager = createSyncManager({
-    api: storage.api,
-    persistLocal,
-    onRemoteState,
-    onStatus: (model) => statuses.push(model),
-    ...options,
-  });
+  const manager = trackManager(
+    createSyncManager({
+      api: storage.api,
+      persistLocal,
+      onRemoteState,
+      onStatus: (model) => statuses.push(model),
+      ...options,
+    }),
+  );
   return { manager, persistLocal, onRemoteState, statuses };
+}
+
+function trackManager(manager) {
+  managers.add(manager);
+  return manager;
 }
 
 beforeEach(() => {
@@ -157,6 +166,8 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  for (const manager of managers) manager.destroy();
+  managers.clear();
   vi.useRealTimers();
 });
 
@@ -596,6 +607,43 @@ describe("sync manager events, coalescing, and failures", () => {
     );
   });
 
+  it("ignores its own profile-removal event without reconciling it again", async () => {
+    const storage = storageApi({
+      autoEvents: true,
+      sync: {
+        [SYNC_CONFIG_KEY]: createConfigEnvelope(
+          { preferences: true, profile: true },
+          "remote",
+        ),
+        [SYNC_PREFERENCES_KEY]: createSyncEnvelope(
+          "preferences",
+          preferencePayload(LOCAL_STATE),
+          "remote",
+        ),
+        [SYNC_PROFILE_KEY]: createSyncEnvelope(
+          "profile",
+          profilePayload(LOCAL_STATE),
+          "remote",
+        ),
+      },
+    });
+    const { manager } = managerFor(storage);
+    await manager.initialize(LOCAL_STATE);
+    storage.syncArea.get.mockClear();
+
+    await manager.toggleProfile(false);
+    await settle();
+
+    expect(storage.syncArea.get).toHaveBeenCalledOnce();
+    expect(storage.syncArea.get).toHaveBeenCalledWith([SYNC_PROFILE_KEY]);
+    expect(manager.model()).toMatchObject({
+      preferences: true,
+      profile: false,
+      status: "synced",
+      busy: false,
+    });
+  });
+
   it("keeps the actual last write authoritative when live-tab writes finish out of order", async () => {
     const storage = storageApi({
       sync: {
@@ -779,12 +827,14 @@ describe("sync manager events, coalescing, and failures", () => {
       () => new Promise((resolve) => (release = resolve)),
     );
     const onRemoteState = vi.fn(async () => {});
-    const manager = createSyncManager({
-      api: storage.api,
-      persistLocal,
-      onRemoteState,
-      debounceMs: 750,
-    });
+    const manager = trackManager(
+      createSyncManager({
+        api: storage.api,
+        persistLocal,
+        onRemoteState,
+        debounceMs: 750,
+      }),
+    );
     await manager.initialize(LOCAL_STATE);
     storage.syncArea.set.mockClear();
 
@@ -868,10 +918,12 @@ describe("sync manager events, coalescing, and failures", () => {
         () => new Promise((resolve) => (release = resolve)),
       )
       .mockResolvedValue(undefined);
-    const manager = createSyncManager({
-      api: storage.api,
-      persistLocal,
-    });
+    const manager = trackManager(
+      createSyncManager({
+        api: storage.api,
+        persistLocal,
+      }),
+    );
 
     const initializing = manager.initialize(LOCAL_STATE);
     await settle();
@@ -1017,11 +1069,13 @@ describe("sync manager events, coalescing, and failures", () => {
       .mockRejectedValueOnce(new Error("local write failed"))
       .mockResolvedValue(undefined);
     const onRemoteState = vi.fn(async () => {});
-    const manager = createSyncManager({
-      api: storage.api,
-      persistLocal,
-      onRemoteState,
-    });
+    const manager = trackManager(
+      createSyncManager({
+        api: storage.api,
+        persistLocal,
+        onRemoteState,
+      }),
+    );
     await manager.initialize(LOCAL_STATE);
     expect(manager.model().status).toBe("error");
 
@@ -1166,10 +1220,12 @@ describe("sync manager events, coalescing, and failures", () => {
 
   it("reports unavailable without touching local behavior", async () => {
     const persistLocal = vi.fn();
-    const manager = createSyncManager({
-      api: undefined,
-      persistLocal,
-    });
+    const manager = trackManager(
+      createSyncManager({
+        api: undefined,
+        persistLocal,
+      }),
+    );
     await expect(manager.initialize(LOCAL_STATE)).resolves.toBe(LOCAL_STATE);
     manager.stateChanged({ ...LOCAL_STATE, language: "de" });
     expect(manager.model()).toMatchObject({
