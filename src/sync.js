@@ -45,9 +45,10 @@ function isRecord(value) {
 function hasExactKeys(value, expected) {
   if (!isRecord(value)) return false;
   const actual = Object.keys(value).sort();
+  const sortedExpected = [...expected].sort();
   return (
-    actual.length === expected.length &&
-    actual.every((key, index) => key === [...expected].sort()[index])
+    actual.length === sortedExpected.length &&
+    actual.every((key, index) => key === sortedExpected[index])
   );
 }
 
@@ -569,12 +570,7 @@ export function createSyncManager({
 
     const missing = [];
     if (!(SYNC_PREFERENCES_KEY in supplied)) missing.push(SYNC_PREFERENCES_KEY);
-    if (currentConfig.profile && !(SYNC_PROFILE_KEY in supplied)) {
-      missing.push(SYNC_PROFILE_KEY);
-    }
-    if (!currentConfig.profile && !(SYNC_PROFILE_KEY in supplied)) {
-      missing.push(SYNC_PROFILE_KEY);
-    }
+    if (!(SYNC_PROFILE_KEY in supplied)) missing.push(SYNC_PROFILE_KEY);
     const fetched = missing.length ? await syncStorage.get(missing) : {};
     const records = { ...fetched, ...supplied };
     const writes = {};
