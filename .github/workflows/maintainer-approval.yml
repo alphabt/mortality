@@ -1,0 +1,134 @@
+name: "maintainer approval"
+
+# This workflow always runs from the trusted default branch. It never checks out
+# or executes pull request code.
+on:
+  pull_request_target:
+    branches: [main]
+    types:
+      [
+        opened,
+        edited,
+        reopened,
+        synchronize,
+        converted_to_draft,
+        ready_for_review,
+      ]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  contents: read
+  pull-requests: read
+  statuses: write
+
+concurrency:
+  group: maintainer-approval-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  approval:
+    name: "Evaluate approval policy"
+    if: github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluate author trust and maintainer approval
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        env:
+          APPROVAL_CONTEXT: "Maintainer approval"
+          REQUIRED_MAINTAINER: "alphabt"
+          TRUSTED_BOT: "Copilot"
+        with:
+          script: |
+            const pull = context.payload.pull_request;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const sha = pull.head.sha;
+            const status = {
+              owner,
+              repo,
+              sha,
+              context: process.env.APPROVAL_CONTEXT,
+              target_url: `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`,
+            };
+
+            await github.rest.repos.createCommitStatus({
+              ...status,
+              state: "pending",
+              description: "Evaluating pull request approval policy",
+            });
+
+            try {
+              const author = pull.user.login;
+              const trustedBot =
+                author.toLowerCase() === process.env.TRUSTED_BOT.toLowerCase() &&
+                pull.head.repo?.full_name === pull.base.repo.full_name;
+
+              let permission = "none";
+              try {
+                const response =
+                  await github.rest.repos.getCollaboratorPermissionLevel({
+                    owner,
+                    repo,
+                    username: author,
+                  });
+                permission = response.data.user.permissions.admin
+                  ? "admin"
+                  : response.data.user.permissions.maintain
+                    ? "maintain"
+                    : response.data.permission;
+              } catch (error) {
+                if (error.status !== 404) throw error;
+              }
+
+              if (trustedBot || permission === "admin" || permission === "maintain") {
+                const reason = trustedBot
+                  ? `Trusted automation: @${author}`
+                  : `Trusted repository role: ${permission}`;
+                await github.rest.repos.createCommitStatus({
+                  ...status,
+                  state: "success",
+                  description: reason,
+                });
+                return;
+              }
+
+              const reviews = await github.paginate(
+                github.rest.pulls.listReviews,
+                {
+                  owner,
+                  repo,
+                  pull_number: pull.number,
+                  per_page: 100,
+                },
+              );
+              const maintainer = process.env.REQUIRED_MAINTAINER.toLowerCase();
+              const decisiveReviews = reviews
+                .filter(
+                  (review) =>
+                    review.user?.login.toLowerCase() === maintainer &&
+                    ["APPROVED", "CHANGES_REQUESTED", "DISMISSED"].includes(
+                      review.state,
+                    ),
+                )
+                .sort((left, right) => left.id - right.id);
+              const latestReview = decisiveReviews.at(-1);
+              const approved =
+                latestReview?.state === "APPROVED" &&
+                latestReview.commit_id === sha;
+
+              await github.rest.repos.createCommitStatus({
+                ...status,
+                state: approved ? "success" : "failure",
+                description: approved
+                  ? `Approved by @${process.env.REQUIRED_MAINTAINER} for ${sha.slice(0, 7)}`
+                  : `Approval from @${process.env.REQUIRED_MAINTAINER} is required for this commit`,
+              });
+            } catch (error) {
+              await github.rest.repos.createCommitStatus({
+                ...status,
+                state: "error",
+                description: "Could not evaluate maintainer approval",
+              });
+              throw error;
+            }
