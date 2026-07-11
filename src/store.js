@@ -334,6 +334,7 @@ export function save(state) {
   if (!hasExtStorage) return write();
   const operation = saveQueue ? saveQueue.catch(() => {}).then(write) : write();
   saveQueue = operation;
+  operation.catch(() => {});
   operation
     .finally(() => {
       if (saveQueue === operation) saveQueue = null;

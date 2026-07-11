@@ -690,6 +690,14 @@ describe("save / load against extension storage", () => {
     expect(storageMock.set).toHaveBeenCalledWith({ mortality: state });
   });
 
+  it("keeps write failures observable while handling unawaited rejections", async () => {
+    const failure = new Error("storage unavailable");
+    storageMock.set.mockRejectedValueOnce(failure);
+    const store = await importFreshStore();
+
+    await expect(store.save({ mode: "years" })).rejects.toBe(failure);
+  });
+
   it("serializes unawaited extension writes so an older save cannot finish last", async () => {
     const releases = [];
     storageMock.set.mockImplementation(
