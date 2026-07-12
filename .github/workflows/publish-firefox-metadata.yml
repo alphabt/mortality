@@ -1,0 +1,66 @@
+name: "publish-firefox-metadata"
+
+# Listing metadata stays separate from release/package publishing so an AMO
+# update cannot silently drift ahead of the manual Chrome and Edge listings.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Print the payload, or publish it to the Firefox listing"
+        type: choice
+        options:
+          - dry-run
+          - apply
+        default: dry-run
+        required: true
+      confirmation:
+        description: "For apply mode only, type PUBLISH FIREFOX METADATA"
+        type: string
+        default: ""
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-firefox-metadata
+  cancel-in-progress: false
+
+jobs:
+  dry-run:
+    name: "Show AMO metadata payload"
+    if: inputs.mode == 'dry-run'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+      - run: npm run --silent store:publish:firefox-metadata
+
+  apply:
+    name: "Publish AMO metadata"
+    if: inputs.mode == 'apply'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require explicit confirmation
+        env:
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          if [ "$CONFIRMATION" != "PUBLISH FIREFOX METADATA" ]; then
+            echo "::error::Type PUBLISH FIREFOX METADATA to confirm apply mode."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+
+      - name: Publish supported listing fields
+        env:
+          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
+          FIREFOX_ADDON_ID: ${{ secrets.FIREFOX_ADDON_ID }}
+        run: npm run store:publish:firefox-metadata -- --apply
