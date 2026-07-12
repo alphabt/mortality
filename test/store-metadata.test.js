@@ -64,6 +64,7 @@ describe("canonical store listing metadata", () => {
   it("enforces description and Edge search-term limits", () => {
     const invalid = cloneMetadata();
     invalid.locales.en.fullDescription = ["Too short for a store listing."];
+    invalid.locales.fr.fullDescription[0] += " ";
     invalid.locales.de.edgeSearchTerms = [
       "eins",
       "zwei",
@@ -82,6 +83,7 @@ describe("canonical store listing metadata", () => {
       "\n",
     );
     expect(errors).toContain("250-character minimum");
+    expect(errors).toContain("trimmed, non-empty paragraphs");
     expect(errors).toContain("7-term maximum");
     expect(errors).toContain("30-character maximum");
     expect(errors).toContain("21-word maximum");

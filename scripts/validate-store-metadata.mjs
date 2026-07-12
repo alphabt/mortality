@@ -326,11 +326,13 @@ export function validateStoreMetadata(metadata, { root = ROOT } = {}) {
         localeMetadata.fullDescription.length === 0 ||
         localeMetadata.fullDescription.some(
           (paragraph) =>
-            typeof paragraph !== "string" || paragraph.trim() === "",
+            typeof paragraph !== "string" ||
+            paragraph === "" ||
+            paragraph.trim() !== paragraph,
         )
       ) {
         errors.push(
-          `${label}.fullDescription must be an array of non-empty paragraphs`,
+          `${label}.fullDescription must be an array of trimmed, non-empty paragraphs`,
         );
       } else {
         const description = renderFullDescription(localeMetadata);
@@ -374,7 +376,7 @@ export function validateStoreMetadata(metadata, { root = ROOT } = {}) {
             errors.push(`${termLabel} exceeds Edge's 30-character maximum`);
           }
           words += term.split(/\s+/u).length;
-          const normalized = term.normalize("NFKC").toLocaleLowerCase();
+          const normalized = term.normalize("NFKC").toLowerCase();
           if (seen.has(normalized)) errors.push(`${termLabel} is duplicated`);
           seen.add(normalized);
         }
