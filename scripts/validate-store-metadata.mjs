@@ -512,10 +512,17 @@ function printLocale(metadata, summaries, locale) {
   );
 }
 
-function runCli() {
-  const metadata = readJson(METADATA_PATH, [], "store-listing/metadata.json");
+export function runCli(metadataPath = METADATA_PATH) {
+  const readErrors = [];
+  const metadata = readJson(
+    metadataPath,
+    readErrors,
+    "store-listing/metadata.json",
+  );
   if (!metadata) {
-    console.error("Unable to read store-listing/metadata.json");
+    console.error(
+      readErrors.join("\n") || "Unable to read store-listing/metadata.json",
+    );
     process.exitCode = 1;
     return;
   }

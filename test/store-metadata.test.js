@@ -1,12 +1,14 @@
 import { spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   PRIORITY_LOCALES,
   loadStoreMetadata,
   renderFullDescription,
+  runCli,
   validateStoreMetadata,
 } from "../scripts/validate-store-metadata.mjs";
 
@@ -138,5 +140,30 @@ describe("canonical store listing metadata", () => {
     expect(result.stdout).toContain(
       "https://alphabt.github.io/mortality/privacy.html",
     );
+  });
+
+  it("prints the underlying metadata read error", () => {
+    const temp = mkdtempSync(join(tmpdir(), "mortality-store-metadata-"));
+    const malformed = join(temp, "metadata.json");
+    writeFileSync(malformed, "{");
+    const consoleError = vi
+      .spyOn(console, "error")
+      .mockImplementation(() => undefined);
+    const previousExitCode = process.exitCode;
+
+    try {
+      process.exitCode = undefined;
+      runCli(malformed);
+      expect(consoleError).toHaveBeenCalledWith(
+        expect.stringContaining(
+          "store-listing/metadata.json is not readable JSON",
+        ),
+      );
+      expect(process.exitCode).toBe(1);
+    } finally {
+      process.exitCode = previousExitCode;
+      consoleError.mockRestore();
+      rmSync(temp, { recursive: true, force: true });
+    }
   });
 });
