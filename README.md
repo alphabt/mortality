@@ -95,9 +95,18 @@ npm run test:watch    # re-run on change
 npm run test:coverage # run with a coverage report
 ```
 
-CI runs formatting, the test suite, and a packaging smoke test on every pull
-request via the [`ci`](.github/workflows/ci.yml) workflow, which the release
-pipelines reuse so nothing ships without a green run.
+The real-browser smoke test loads `src/` as an unpacked extension in Playwright's
+pinned Chromium. Install that browser once, then run the test:
+
+```
+npx playwright install chromium
+npm run test:chromium
+```
+
+CI runs formatting, the Vitest suite, the Chromium extension smoke test, and a
+packaging smoke test on every pull request via the
+[`ci`](.github/workflows/ci.yml) workflow, which the release pipelines reuse so
+nothing ships without a green run.
 
 ### Package for the stores
 

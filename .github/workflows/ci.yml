@@ -37,6 +37,19 @@ jobs:
       - run: npm ci
       - run: npm test
 
+  chromium:
+    name: "Chromium extension smoke"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:chromium
+
   pack:
     name: "Pack"
     runs-on: ubuntu-latest
