@@ -1,0 +1,68 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="440"
+  height="280"
+  viewBox="0 0 440 280"
+  role="img"
+  aria-label="Mortality counter and life ring"
+>
+  <defs>
+    <radialGradient id="ambient" cx="82%" cy="18%" r="92%">
+      <stop offset="0" stop-color="#16435a" stop-opacity="0.82" />
+      <stop offset="0.5" stop-color="#10283a" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#0e1b2a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="440" height="280" fill="#0e1b2a" />
+  <rect width="440" height="280" fill="url(#ambient)" />
+
+  <g fill="none" transform="rotate(-90 346 140)">
+    <circle
+      cx="346"
+      cy="140"
+      r="91"
+      stroke="#294256"
+      stroke-width="12"
+    />
+    <circle
+      cx="346"
+      cy="140"
+      r="91"
+      stroke="#8398ad"
+      stroke-opacity="0.48"
+      stroke-width="12"
+      stroke-dasharray="257.3 571.8"
+    />
+  </g>
+
+  <text
+    x="25"
+    y="214"
+    fill="#e6ecf2"
+    font-family="Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="174"
+    font-weight="600"
+    font-variant-numeric="tabular-nums"
+  >36</text>
+  <circle cx="215" cy="198" r="7" fill="#007ea6" />
+  <text
+    x="230"
+    y="139"
+    fill="#8398ad"
+    font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+    font-size="31"
+    font-weight="500"
+    letter-spacing="1"
+    font-variant-numeric="tabular-nums"
+  >234</text>
+
+  <rect
+    x="0.5"
+    y="0.5"
+    width="439"
+    height="279"
+    fill="none"
+    stroke="#315066"
+  />
+</svg>

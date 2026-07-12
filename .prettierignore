@@ -1,6 +1,8 @@
 artifacts/
 images/
 src/icons/
+store-assets/source/*.svg
+store-assets/final/
 coverage/
 package-lock.json
 *.zip

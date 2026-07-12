@@ -1,0 +1,112 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1400"
+  height="560"
+  viewBox="0 0 1400 560"
+  role="img"
+  aria-label="Mortality counter and life ring"
+>
+  <defs>
+    <radialGradient id="ambient" cx="80%" cy="25%" r="75%">
+      <stop offset="0" stop-color="#17455d" stop-opacity="0.9" />
+      <stop offset="0.48" stop-color="#102b3e" stop-opacity="0.46" />
+      <stop offset="1" stop-color="#0e1b2a" stop-opacity="0" />
+    </radialGradient>
+    <line
+      id="tick"
+      x1="1120"
+      y1="58"
+      x2="1120"
+      y2="72"
+      stroke="#8398ad"
+      stroke-opacity="0.42"
+      stroke-width="2"
+    />
+  </defs>
+
+  <rect width="1400" height="560" fill="#0e1b2a" />
+  <rect width="1400" height="560" fill="url(#ambient)" />
+
+  <g fill="none" transform="rotate(-90 1120 280)">
+    <circle
+      cx="1120"
+      cy="280"
+      r="190"
+      stroke="#294256"
+      stroke-width="20"
+    />
+    <circle
+      cx="1120"
+      cy="280"
+      r="190"
+      stroke="#8398ad"
+      stroke-opacity="0.5"
+      stroke-width="20"
+      stroke-dasharray="537.2 1193.8"
+    />
+  </g>
+
+  <g>
+    <use href="#tick" />
+    <use href="#tick" transform="rotate(30 1120 280)" />
+    <use href="#tick" transform="rotate(60 1120 280)" />
+    <use href="#tick" transform="rotate(90 1120 280)" />
+    <use href="#tick" transform="rotate(120 1120 280)" />
+    <use href="#tick" transform="rotate(150 1120 280)" />
+    <use href="#tick" transform="rotate(180 1120 280)" />
+    <use href="#tick" transform="rotate(210 1120 280)" />
+    <use href="#tick" transform="rotate(240 1120 280)" />
+    <use href="#tick" transform="rotate(270 1120 280)" />
+    <use href="#tick" transform="rotate(300 1120 280)" />
+    <use href="#tick" transform="rotate(330 1120 280)" />
+  </g>
+
+  <text
+    x="68"
+    y="435"
+    fill="#e6ecf2"
+    font-family="Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="370"
+    font-weight="600"
+    font-variant-numeric="tabular-nums"
+  >36</text>
+  <circle cx="472" cy="402" r="11" fill="#007ea6" />
+  <text
+    x="500"
+    y="280"
+    fill="#8398ad"
+    font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+    font-size="62"
+    font-weight="500"
+    letter-spacing="2"
+    font-variant-numeric="tabular-nums"
+  >234271</text>
+
+  <line
+    x1="80"
+    y1="490"
+    x2="790"
+    y2="490"
+    stroke="#8398ad"
+    stroke-opacity="0.24"
+    stroke-width="2"
+  />
+  <line
+    x1="80"
+    y1="490"
+    x2="400"
+    y2="490"
+    stroke="#8398ad"
+    stroke-opacity="0.68"
+    stroke-width="2"
+  />
+
+  <rect
+    x="0.5"
+    y="0.5"
+    width="1399"
+    height="559"
+    fill="none"
+    stroke="#315066"
+  />
+</svg>
