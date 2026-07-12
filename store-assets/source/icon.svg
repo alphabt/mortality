@@ -6,7 +6,7 @@
     lived, and the brightest dot is the "now" — the counter's signature
     accent point. Rasterize to the sizes in src/icons/ (16/32/48/128 for the
     manifest) and store-assets/final/ (64/300 for listings). No background box.
-    Colors derive from the redesign's --accent (#007ea6).
+    Colors derive from the redesign's accent color (#007ea6).
   -->
   <circle cx="64" cy="64" r="44.8" fill="none" stroke="#0b83ab" stroke-width="17.28" />
   <path d="M 64 19.2 A 44.8 44.8 0 0 1 85.58 103.26" fill="none" stroke="#39afdd" stroke-width="17.28" />
