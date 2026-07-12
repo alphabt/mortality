@@ -209,8 +209,14 @@ async function findBrowser() {
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
     "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
+    "/opt/google/chrome/chrome",
     "/usr/bin/chromium",
     "/usr/bin/chromium-browser",
+    "/snap/bin/chromium",
+    "/usr/bin/microsoft-edge",
+    "/usr/bin/microsoft-edge-stable",
+    "/opt/microsoft/msedge/msedge",
   ].filter(Boolean);
 
   for (const candidate of candidates) {
@@ -226,11 +232,11 @@ async function findBrowser() {
   );
 }
 
-async function waitForDevTools(profileDir, process, stderr) {
+async function waitForDevTools(profileDir, child, stderr) {
   const activePortFile = join(profileDir, "DevToolsActivePort");
   const deadline = Date.now() + 10_000;
   while (Date.now() < deadline) {
-    if (process.exitCode !== null) {
+    if (child.exitCode !== null || child.signalCode !== null) {
       throw new Error(
         `Chrome exited before DevTools was ready.\n${stderr.value.trim()}`,
       );
@@ -248,35 +254,106 @@ async function waitForDevTools(profileDir, process, stderr) {
   throw new Error("Chrome DevTools did not become ready");
 }
 
+function waitForSpawn(child) {
+  return withTimeout(
+    new Promise((resolveSpawn, rejectSpawn) => {
+      child.once("spawn", resolveSpawn);
+      child.once("error", rejectSpawn);
+    }),
+    5000,
+    "Chrome process startup",
+  );
+}
+
+function waitForExit(child) {
+  if (child.exitCode !== null || child.signalCode !== null) {
+    return Promise.resolve();
+  }
+  return new Promise((resolveExit, rejectExit) => {
+    child.once("exit", resolveExit);
+    child.once("error", rejectExit);
+  });
+}
+
+async function stopChrome(child) {
+  if (!child?.pid || child.exitCode !== null || child.signalCode !== null) {
+    return;
+  }
+
+  child.kill("SIGTERM");
+  try {
+    await withTimeout(waitForExit(child), 5000, "Chrome shutdown");
+  } catch (shutdownError) {
+    if (child.exitCode === null && child.signalCode === null) {
+      child.kill("SIGKILL");
+      await withTimeout(waitForExit(child), 5000, "Chrome forced shutdown");
+    }
+    throw shutdownError;
+  }
+}
+
+async function cleanupChrome(child, profileDir) {
+  const errors = [];
+  try {
+    await stopChrome(child);
+  } catch (error) {
+    errors.push(error);
+  }
+  try {
+    await rm(profileDir, { recursive: true, force: true });
+  } catch (error) {
+    errors.push(error);
+  }
+
+  if (errors.length === 1) throw errors[0];
+  if (errors.length > 1) {
+    throw new AggregateError(errors, "Chrome cleanup failed");
+  }
+}
+
 async function launchChrome() {
   const executable = await findBrowser();
   const profileDir = await mkdtemp(join(tmpdir(), "mortality-store-artwork-"));
   const stderr = { value: "" };
-  const child = spawn(
-    executable,
-    [
-      "--headless=new",
-      "--remote-debugging-port=0",
-      `--user-data-dir=${profileDir}`,
-      "--disable-background-networking",
-      "--disable-component-update",
-      "--disable-default-apps",
-      "--disable-extensions",
-      "--disable-sync",
-      "--force-device-scale-factor=1",
-      "--no-default-browser-check",
-      "--no-first-run",
-      "about:blank",
-    ],
-    { stdio: ["ignore", "ignore", "pipe"] },
-  );
-  child.stderr.setEncoding("utf8");
-  child.stderr.on("data", (chunk) => {
-    stderr.value += chunk;
-  });
+  let child;
+  try {
+    child = spawn(
+      executable,
+      [
+        "--headless=new",
+        "--remote-debugging-port=0",
+        `--user-data-dir=${profileDir}`,
+        "--disable-background-networking",
+        "--disable-component-update",
+        "--disable-default-apps",
+        "--disable-extensions",
+        "--disable-sync",
+        "--force-device-scale-factor=1",
+        "--no-default-browser-check",
+        "--no-first-run",
+        "about:blank",
+      ],
+      { stdio: ["ignore", "ignore", "pipe"] },
+    );
+    child.stderr.setEncoding("utf8");
+    child.stderr.on("data", (chunk) => {
+      stderr.value += chunk;
+    });
 
-  const port = await waitForDevTools(profileDir, child, stderr);
-  return { child, port, profileDir };
+    await waitForSpawn(child);
+    const port = await waitForDevTools(profileDir, child, stderr);
+    return { child, port, profileDir };
+  } catch (startupError) {
+    try {
+      await cleanupChrome(child, profileDir);
+    } catch (cleanupError) {
+      throw new AggregateError(
+        [startupError, cleanupError],
+        "Chrome startup and cleanup failed",
+      );
+    }
+    throw startupError;
+  }
 }
 
 async function createTarget(port) {
@@ -520,9 +597,18 @@ function verifyPalette() {
       `${name} accent contrast is below 3:1`,
     );
   }
-  assert.ok(contrast("#e6ecf2", "#0e1b2a") >= 4.5);
-  assert.ok(contrast("#8398ad", "#0e1b2a") >= 4.5);
-  assert.ok(contrast("#007ea6", "#0e1b2a") >= 3);
+  assert.ok(
+    contrast("#e6ecf2", "#0e1b2a") >= 4.5,
+    "Promo counter contrast is below 4.5:1",
+  );
+  assert.ok(
+    contrast("#8398ad", "#0e1b2a") >= 4.5,
+    "Promo secondary-mark contrast is below 4.5:1",
+  );
+  assert.ok(
+    contrast("#007ea6", "#0e1b2a") >= 3,
+    "Promo live-point contrast is below 3:1",
+  );
 }
 
 async function verifyPreview() {
@@ -580,17 +666,11 @@ async function render() {
       console.log(`Created ${promo.output}`);
     }
   } finally {
-    client?.close();
-    if (chrome.child.exitCode === null) chrome.child.kill("SIGTERM");
-    await withTimeout(
-      new Promise((resolveExit) => {
-        if (chrome.child.exitCode !== null) resolveExit();
-        else chrome.child.once("exit", resolveExit);
-      }),
-      5000,
-      "Chrome shutdown",
-    );
-    await rm(chrome.profileDir, { recursive: true, force: true });
+    try {
+      client?.close();
+    } finally {
+      await cleanupChrome(chrome.child, chrome.profileDir);
+    }
   }
 }
 

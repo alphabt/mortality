@@ -45,9 +45,10 @@ local preview. The deterministic clock keeps every regeneration identical.
 
 ## Regenerate
 
-1. Run `npm ci`.
-2. Start the real extension preview with `npm run dev`.
-3. In another terminal, run `node scripts/generate-store-artwork.mjs`.
+1. Install Chrome, Edge, or Chromium, or set `CHROME_BIN` to its executable.
+2. Run `npm ci`.
+3. Start the real extension preview with `npm run dev`.
+4. In another terminal, run `node scripts/generate-store-artwork.mjs`.
 
 Set `PREVIEW_URL` if the preview selects another port, or `CHROME_BIN` to use a specific
 Chrome/Edge executable. The generator captures at device scale 1, performs no resizing,
