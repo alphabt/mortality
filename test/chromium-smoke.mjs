@@ -39,6 +39,37 @@ async function assertLiveCounter(page) {
   assert.match((await count.innerText()).trim(), /\d/);
 }
 
+async function assertUniformLifeGrid(page) {
+  await page.locator("#weeks-btn").click();
+  await page.locator("body.screen-weeks").waitFor({ state: "visible" });
+  const malformedRow = await page
+    .locator(".weeks-band")
+    .evaluateAll((bands) => {
+      for (const band of bands) {
+        const heights = [...band.children].map(
+          (cell) => cell.getBoundingClientRect().height,
+        );
+        if (Math.max(...heights) - Math.min(...heights) > 0.001) {
+          return {
+            age: band.parentElement.dataset.age,
+            minHeight: Math.min(...heights),
+            maxHeight: Math.max(...heights),
+          };
+        }
+      }
+      return null;
+    });
+  assert.equal(
+    malformedRow,
+    null,
+    malformedRow
+      ? `Life-grid age ${malformedRow.age} has cell heights from ${malformedRow.minHeight}px to ${malformedRow.maxHeight}px`
+      : undefined,
+  );
+  await page.locator("#weeks-back").click();
+  await assertLiveCounter(page);
+}
+
 async function runSmoke(context) {
   const initialPage = context.pages()[0] ?? (await context.newPage());
   const page = await openNewTab(context, initialPage);
@@ -49,6 +80,7 @@ async function runSmoke(context) {
   await birthDate.fill(BIRTH_DATE);
   await birthDate.press("Enter");
   await assertLiveCounter(page);
+  await assertUniformLifeGrid(page);
 
   await page.locator("#gear").click();
   await page.locator("body.screen-settings").waitFor({ state: "visible" });
