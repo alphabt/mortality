@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Aizstāj jaunas cilnes lapu ar jūsu vecuma skaitītāju",
+    "message": "Pārvērtiet katru jaunu cilni par sava vecuma skaitītāju reāllaikā — klusu atgādinājumu, ka laiks rit.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

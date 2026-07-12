@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "將新分頁頁面替換為你的年齡計數器",
+    "message": "讓每個新分頁都成為即時顯示你年齡的計數器——安靜地提醒你，時間正在流逝。",
     "description": "Short extension-store description."
   },
   "pageTitle": {

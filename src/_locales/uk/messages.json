@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Замінює сторінку нової вкладки на рахунок вашого віку",
+    "message": "Перетворіть кожну нову вкладку на лічильник вашого віку в реальному часі — тихе нагадування, що час минає.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

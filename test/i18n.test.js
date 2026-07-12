@@ -29,6 +29,7 @@ import { renderSetup } from "../src/views.js";
 import { formatBorn } from "../src/tab.js";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
+const STORE_SUMMARY_MAX_LENGTH = 132;
 const LOCALES = [
   "ar",
   "am",
@@ -145,6 +146,10 @@ describe("locale catalogs", () => {
       expect(Object.keys(translated).sort()).toEqual(englishKeys);
       expect(translated.extName.message).toBe("Mortality");
       expect(translated.extDescription.message.trim()).not.toBe("");
+      expect(
+        [...translated.extDescription.message].length,
+        `${locale}.extDescription exceeds the store summary limit`,
+      ).toBeLessThanOrEqual(STORE_SUMMARY_MAX_LENGTH);
 
       for (const key of englishKeys) {
         expect(translated[key].message.trim(), `${locale}.${key}`).not.toBe("");

@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Înlocuiește pagina filei noi cu un contor al vârstei tale",
+    "message": "Transformă fiecare filă nouă într-un contor live al vârstei tale — o amintire calmă că timpul trece.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

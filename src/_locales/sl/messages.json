@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Nadomesti stran novega zavihka s števcem vaše starosti",
+    "message": "Spremenite vsak nov zavihek v števec svoje starosti v živo — tih opomnik, da čas teče.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

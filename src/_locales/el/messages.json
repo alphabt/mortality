@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Αντικαθιστά τη σελίδα νέας καρτέλας με έναν μετρητή της ηλικίας σου",
+    "message": "Μετέτρεψε κάθε νέα καρτέλα σε ζωντανό μετρητή της ηλικίας σου — μια ήρεμη υπενθύμιση ότι ο χρόνος περνά.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

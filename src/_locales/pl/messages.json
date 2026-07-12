@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Zamienia stronę nowej karty na licznik Twojego wieku",
+    "message": "Zmień każdą nową kartę w licznik wieku działający na żywo — spokojne przypomnienie, że czas płynie.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

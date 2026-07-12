@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "പുതിയ ടാബ് പേജിനെ നിങ്ങളുടെ പ്രായത്തിന്റെ ഒരു കൗണ്ടർ കൊണ്ട് മാറ്റുന്നു",
+    "message": "ഓരോ പുതിയ ടാബും നിങ്ങളുടെ പ്രായം തത്സമയം എണ്ണുന്ന കൗണ്ടറാക്കൂ — സമയം കടന്നുപോകുന്നുവെന്ന ശാന്തമായ ഓർമ്മപ്പെടുത്തൽ.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

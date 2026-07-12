@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Reemplaza la página de pestaña nueva con un contador de tu edad",
+    "message": "Convierte cada pestaña nueva en un contador en vivo de tu edad — un recordatorio tranquilo de que el tiempo pasa.",
     "description": "Short extension-store description."
   },
   "pageTitle": {
