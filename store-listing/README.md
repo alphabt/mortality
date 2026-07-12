@@ -1,8 +1,8 @@
 # Store listing metadata
 
 [`metadata.json`](metadata.json) is the source of truth for content managed in
-the Chrome Web Store, Microsoft Edge Add-ons, and Firefox Add-ons dashboards.
-It owns:
+the Chrome Web Store, Microsoft Edge Add-ons, and Firefox Add-ons listings. It
+owns:
 
 - the shared website, support, and privacy URLs;
 - the Chrome category;
@@ -15,7 +15,7 @@ metadata file. They resolve from `extName` and `extDescription` in
 `src/_locales/*/messages.json`, as referenced by `src/manifest.json`. This keeps
 all 55 package summaries in one place.
 
-Run the validator before editing a dashboard:
+Run the validator before publishing metadata or editing a dashboard:
 
 ```sh
 npm run store:validate
@@ -108,43 +108,88 @@ term, and maximum of 21 words across all terms.
 Official reference:
 [Publish a Microsoft Edge extension](https://learn.microsoft.com/en-us/microsoft-edge/extensions/publish/publish-extension).
 
-## Apply to Firefox Add-ons
+## Publish supported Firefox Add-ons fields
+
+AMO's authenticated v5 Edit endpoint supports the localized name, summary,
+description, and homepage plus global tags. The dependency-free publisher
+validates all canonical metadata before building that exact payload. It does not
+upload an extension package or include categories, screenshots, support URL, or
+privacy policy.
+
+Dry-run is the default and does not require credentials:
+
+```sh
+npm run --silent store:publish:firefox-metadata
+```
+
+The command prints the exact JSON `PATCH` payload. Repository locales map to AMO
+as follows: `en` → `en-US`, `de` → `de`, `es` → `es`, `fr` → `fr`, `ja` →
+`ja`, `pt_BR` → `pt-BR`, `zh_CN` → `zh-CN`, `zh_TW` → `zh-TW`, and `ko` →
+`ko`.
+
+Publishing requires an explicit flag and the same account-wide AMO credentials
+already used for Firefox package publishing:
+
+```sh
+FIREFOX_JWT_ISSUER=... \
+FIREFOX_JWT_SECRET=... \
+FIREFOX_ADDON_ID=... \
+npm run store:publish:firefox-metadata -- --apply
+```
+
+The manually dispatched `publish-firefox-metadata` Actions workflow also
+defaults to dry-run. Its apply mode only runs from the repository default branch
+and requires typing `PUBLISH FIREFOX METADATA`; only the apply job receives the
+existing Firefox secrets. This workflow is intentionally separate from release
+publishing because Chrome and Edge listing updates remain manual.
+
+**Translation review before production:** the eight non-English detailed
+descriptions and search-term sets are high-quality drafts, but they have not had
+native-speaker review. Native review is recommended before using either the
+apply command/workflow or entering this copy in any store dashboard.
+
+The publisher creates a short-lived HS256 JWT, URL-encodes the add-on ID, and
+sends one authenticated `PATCH` to
+`https://addons.mozilla.org/api/v5/addons/addon/{id}/`. It fails on any non-2xx
+response and redacts credentials and tokens from reported errors.
+
+## Complete the Firefox listing in the dashboard
 
 1. Run `npm run store:validate`, then open Mortality in the
    [Add-ons Developer Hub](https://addons.mozilla.org/developers/).
-2. Open the add-on's product-page editor. For each priority locale, keep the
-   name as `Mortality`, copy **PACKAGE SUMMARY** to the localized summary, and
-   copy **FULL DESCRIPTION** to the localized description.
-3. Set **Homepage** to the canonical website, **Support site** to the canonical
-   support URL, and **Privacy policy** to the canonical privacy URL.
-4. Set the global tags to the **FIREFOX TAGS (GLOBAL)** values printed by
-   `store:show`. AMO tags are simple unlocalized strings, so do not translate
-   them per locale.
-5. Save the product-page changes and inspect the public localized pages.
+2. Publish the API-supported fields with the command or manual workflow above,
+   then inspect the localized name, summary, description, homepage, and global
+   tags on the product-page editor.
+3. Set **Support site** to the canonical support URL and **Privacy policy** to
+   the canonical privacy URL. AMO's documented Edit payload does not expose
+   either field, so these remain dashboard updates.
+4. Save any dashboard changes and inspect the public localized pages.
 
 Official references:
 [Create an appealing listing](https://extensionworkshop.com/documentation/develop/create-an-appealing-listing/)
 and [AMO tag API](https://mozilla.github.io/addons-server/topics/api/tags.html).
 
-## Why listing updates remain manual
+## Automation boundaries
 
-The release workflow remains responsible only for immutable extension
-packages:
+Chrome and Edge listing metadata remains manual:
 
 - Chrome Web Store API v2 uploads, checks, and publishes package revisions.
   Google notes that additional metadata still has to be supplied in the
   Developer Dashboard.
 - The Edge Update REST API explicitly has no endpoint for product metadata such
   as descriptions; those edits require Partner Center.
-- AMO documents an authenticated add-on metadata `PATCH`, but also states that
-  the API is not frozen and may change without warning. Its API key can act on
-  behalf of the developer account, and the documented edit payload does not
-  cover every required support/privacy field.
 
-Adding partial AMO-only automation would therefore expand secret scope while
-leaving the other stores and some AMO fields manual. Keep
-`.github/workflows/publish.yml` and `scripts/publish.sh` package-only, and apply
-this metadata through the dashboards.
+AMO documents the authenticated metadata `PATCH` used by this tool, but the v5
+API is not frozen and may change without warning. AMO API credentials act on
+behalf of the developer account; this repository already stores the same
+account-wide issuer and secret for package publishing, so the metadata tool does
+not add credentials or expand secret availability. It does add another
+explicit, manual use of those credentials.
+
+Keep `.github/workflows/publish.yml` and `scripts/publish.sh` package-only.
+Firefox support and privacy URLs remain manual, and AMO metadata publishing must
+not be added to the automatic release path while the equivalent Chrome and Edge
+updates require dashboards.
 
 Official API references:
 [Chrome Web Store API v2](https://developer.chrome.com/blog/cws-api-v2),
