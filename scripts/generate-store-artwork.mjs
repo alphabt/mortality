@@ -96,6 +96,12 @@ const SCREENSHOTS = [
   },
 ];
 
+const STORE_ICONS = [128, 300].map((size) => ({
+  source: "store-assets/source/icon.svg",
+  output: `store-assets/final/icon-${size}.png`,
+  size,
+}));
+
 const PROMOS = [
   {
     source: "store-assets/source/small-promo.svg",
@@ -535,6 +541,31 @@ async function prepareScreenshot(client, spec) {
   );
 }
 
+async function prepareStoreIcon(client, spec) {
+  await setViewport(client, spec.size, spec.size);
+  await navigate(client, pathToFileURL(resolve(ROOT, spec.source)).href);
+  await waitFor(client, `document.readyState === "complete"`, spec.source);
+  const resized = await evaluate(
+    client,
+    `(() => {
+      const icon = document.documentElement;
+      if (icon.localName !== "svg") return false;
+      icon.setAttribute("width", "${spec.size}");
+      icon.setAttribute("height", "${spec.size}");
+      icon.style.display = "block";
+      return true;
+    })()`,
+  );
+  assert.equal(resized, true, `${spec.source} is not an SVG document`);
+  await evaluate(
+    client,
+    `new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)))
+    )`,
+    true,
+  );
+}
+
 async function capture(client, output, width, height) {
   const { data } = await client.send("Page.captureScreenshot", {
     format: "png",
@@ -664,6 +695,15 @@ async function render() {
       await waitFor(client, `document.readyState === "complete"`, promo.source);
       await capture(client, promo.output, promo.width, promo.height);
       console.log(`Created ${promo.output}`);
+    }
+
+    await client.send("Emulation.setDefaultBackgroundColorOverride", {
+      color: { r: 0, g: 0, b: 0, a: 0 },
+    });
+    for (const icon of STORE_ICONS) {
+      await prepareStoreIcon(client, icon);
+      await capture(client, icon.output, icon.size, icon.size);
+      console.log(`Created ${icon.output}`);
     }
   } finally {
     try {
