@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "productName": "Mortality",
+  "summary": {
+    "catalogDirectory": "src/_locales",
+    "nameMessageKey": "extName",
+    "descriptionMessageKey": "extDescription"
+  },
+  "urls": {
+    "website": "https://alphabt.github.io/mortality/",
+    "support": "https://github.com/alphabt/mortality/issues",
+    "privacy": "https://alphabt.github.io/mortality/privacy.html"
+  },
+  "chrome": {
+    "category": "Well-being"
+  },
+  "firefox": {
+    "tags": ["dark mode", "privacy"]
+  },
+  "locales": {
+    "en": {
+      "storeLocales": {
+        "chrome": "en",
+        "edge": "en-US",
+        "firefox": "en-US"
+      },
+      "fullDescription": [
+        "Mortality replaces every new tab with a live counter of your age—a quiet memento mori designed to be read at a glance. It keeps time visible without turning it into a score, a streak, or an alarm.",
+        "Choose the view that feels useful:\n- fractional or calendar age\n- countdown to your next birthday\n- days or weeks lived\n- estimated years, days, or weeks remaining\n- lifetime progress and a life-in-weeks view",
+        "Make the page your own with carefully designed themes, custom colors, and numeral styles. The interface is available in 55 languages and supports keyboard use, screen readers, reduced motion, and contrast-checked themes.",
+        "Remaining-life views are actuarial estimates, not predictions. Use United Nations 2023 country-and-sex life tables, United States Social Security Administration 2023 data, or set a custom life expectancy.",
+        "Your birth details and preferences stay in browser storage by default. Browser-account sync is optional and only turns on when you explicitly enable it. Mortality requires no account and has no ads, analytics, tracking, or backend service.",
+        "Open a tab. See the number. Return to what matters."
+      ],
+      "edgeSearchTerms": [
+        "age counter",
+        "new tab",
+        "memento mori",
+        "life in weeks",
+        "life expectancy",
+        "mindfulness",
+        "birthday countdown"
+      ]
+    },
+    "de": {
+      "storeLocales": {
+        "chrome": "de",
+        "edge": "de-DE",
+        "firefox": "de"
+      },
+      "fullDescription": [
+        "Mortality verwandelt jeden neuen Tab in einen live mitlaufenden Zähler deines Alters – ein stilles Memento mori, das du auf einen Blick erfassen kannst. Es hält die Zeit sichtbar, ohne daraus einen Punktestand, eine Serie oder einen Alarm zu machen.",
+        "Wähle die Ansicht, die für dich sinnvoll ist:\n- Alter als Dezimalzahl oder im Kalenderformat\n- Countdown bis zu deinem nächsten Geburtstag\n- gelebte Tage oder Wochen\n- geschätzte verbleibende Jahre, Tage oder Wochen\n- Lebensfortschritt und eine Ansicht „Leben in Wochen“",
+        "Gestalte die Seite mit sorgfältig entworfenen Themes, individuellen Farben und Ziffernstilen ganz nach deinen Vorstellungen. Die Oberfläche ist in 55 Sprachen verfügbar und unterstützt Tastaturbedienung, Screenreader, reduzierte Bewegung und kontrastgeprüfte Themes.",
+        "Ansichten zur verbleibenden Lebenszeit sind versicherungsmathematische Schätzungen, keine Vorhersagen. Verwende die Sterbetafeln der Vereinten Nationen von 2023 nach Land und Geschlecht, die Daten der US-amerikanischen Sozialversicherungsbehörde (SSA) von 2023 oder eine selbst festgelegte Lebenserwartung.",
+        "Deine Geburtsdaten und Einstellungen bleiben standardmäßig lokal im Browserspeicher. Die Synchronisierung über dein Browserkonto ist optional und wird nur aktiviert, wenn du sie ausdrücklich einschaltest. Mortality benötigt kein Konto und kommt ohne Werbung, Analysen, Tracking oder Backend-Dienst aus.",
+        "Öffne einen Tab. Sieh die Zahl. Kehre zu dem zurück, was zählt."
+      ],
+      "edgeSearchTerms": [
+        "Alterszähler",
+        "Neuer Tab",
+        "Memento mori",
+        "Leben in Wochen",
+        "Lebenserwartung",
+        "Achtsamkeit",
+        "Geburtstags-Countdown"
+      ]
+    },
+    "es": {
+      "storeLocales": {
+        "chrome": "es",
+        "edge": "es-ES",
+        "firefox": "es"
+      },
+      "fullDescription": [
+        "Mortality convierte cada pestaña nueva en un contador en vivo de tu edad, un memento mori discreto pensado para leerse de un vistazo. Mantiene el tiempo visible sin convertirlo en una puntuación, una racha o una alarma.",
+        "Elige la vista que te resulte útil:\n- edad fraccionaria o por calendario\n- cuenta atrás hasta tu próximo cumpleaños\n- días o semanas vividos\n- años, días o semanas restantes estimados\n- progreso vital y una vista de la vida en semanas",
+        "Personaliza la página con temas cuidadosamente diseñados, colores personalizados y estilos numéricos. La interfaz está disponible en 55 idiomas y admite el uso con teclado, lectores de pantalla, movimiento reducido y temas con contraste verificado.",
+        "Las vistas de vida restante son estimaciones actuariales, no predicciones. Utiliza las tablas de vida de Naciones Unidas de 2023 por país y sexo, los datos de 2023 de la Administración del Seguro Social de EE. UU. (SSA), o define una esperanza de vida personalizada.",
+        "Tus datos de nacimiento y preferencias permanecen, por defecto, en el almacenamiento local del navegador. La sincronización mediante la cuenta del navegador es opcional y solo se activa si la habilitas expresamente. Mortality no requiere cuenta y no tiene anuncios, análisis, rastreo ni servicios de backend.",
+        "Abre una pestaña. Mira el número. Vuelve a lo que importa."
+      ],
+      "edgeSearchTerms": [
+        "contador de edad",
+        "nueva pestaña",
+        "memento mori",
+        "vida en semanas",
+        "esperanza de vida",
+        "atención plena",
+        "cuenta atrás cumpleaños"
+      ]
+    },
+    "fr": {
+      "storeLocales": {
+        "chrome": "fr",
+        "edge": "fr-FR",
+        "firefox": "fr"
+      },
+      "fullDescription": [
+        "Mortality transforme chaque nouvel onglet en un compteur d’âge en temps réel, un discret memento mori conçu pour se lire d’un coup d’œil. Il garde le temps visible sans en faire un score, une série ou une alarme.",
+        "Choisissez la vue qui vous convient :\n- âge fractionnaire ou calendaire\n- compte à rebours jusqu’à votre prochain anniversaire\n- jours ou semaines vécus\n- années, jours ou semaines restants estimés\n- progression de vie et une vue « vie en semaines »",
+        "Personnalisez la page avec des thèmes soigneusement conçus, des couleurs personnalisées et des styles de chiffres. L’interface est disponible en 55 langues et prend en charge la navigation au clavier, les lecteurs d’écran, la réduction des animations et des thèmes au contraste vérifié.",
+        "Les vues de vie restante sont des estimations actuarielles, pas des prédictions. Elles s’appuient sur les tables de mortalité des Nations unies 2023 par pays et par sexe, sur les données 2023 de la Social Security Administration américaine, ou sur une espérance de vie personnalisée que vous définissez.",
+        "Vos informations de naissance et vos préférences restent, par défaut, dans le stockage local du navigateur. La synchronisation via un compte navigateur est facultative et ne s’active que si vous la choisissez explicitement. Mortality ne nécessite aucun compte et fonctionne sans publicité, analyse d’usage, suivi ni service backend.",
+        "Ouvrez un onglet. Regardez le nombre. Revenez à l’essentiel."
+      ],
+      "edgeSearchTerms": [
+        "compteur d’âge",
+        "nouvel onglet",
+        "memento mori",
+        "vie en semaines",
+        "espérance de vie",
+        "pleine conscience",
+        "compte à rebours anniversaire"
+      ]
+    },
+    "ja": {
+      "storeLocales": {
+        "chrome": "ja",
+        "edge": "ja-JP",
+        "firefox": "ja"
+      },
+      "fullDescription": [
+        "Mortalityは、新しいタブを開くたびにあなたの年齢をリアルタイムで刻むカウンターに変えます。一目で読み取れるように設計された、静かなメメント・モリです。時間の経過を見える形にしながらも、得点や連続記録、警告には変えません。",
+        "役に立つと感じる表示を選べます：\n- 小数または年月日で表す年齢\n- 次の誕生日までのカウントダウン\n- これまで生きた日数・週数\n- 推定される残りの年数・日数・週数\n- 生涯の進捗率と「人生を週で見る」表示",
+        "丁寧に作られたテーマ、カスタムカラー、数字スタイルで、ページを自分好みに仕立てられます。インターフェースは55言語に対応し、キーボード操作、スクリーンリーダー、モーション低減設定、コントラスト検証済みのテーマもサポートしています。",
+        "残りの人生に関する表示は、予測ではなく保険数理上の推定値です。国連の2023年版・国と性別ごとの生命表、米国社会保障局（SSA）の2023年データ、または自分で設定した平均寿命を使用できます。",
+        "生年月日の情報や設定は、初期状態ではブラウザ内にローカル保存されます。ブラウザアカウントによる同期は任意で、明示的に有効にした場合のみ機能します。Mortalityにはアカウントは不要で、広告、アナリティクス、トラッキング、バックエンドサービスはありません。",
+        "タブを開く。数字を見る。大切なことに戻る。"
+      ],
+      "edgeSearchTerms": [
+        "年齢カウンター",
+        "新しいタブ",
+        "メメント・モリ",
+        "人生を週で表示",
+        "平均寿命",
+        "マインドフルネス",
+        "誕生日カウントダウン"
+      ]
+    },
+    "pt_BR": {
+      "storeLocales": {
+        "chrome": "pt_BR",
+        "edge": "pt-BR",
+        "firefox": "pt-BR"
+      },
+      "fullDescription": [
+        "O Mortality transforma cada nova guia em um contador da sua idade em tempo real — um memento mori discreto, pensado para ser lido num piscar de olhos. Ele mantém o tempo visível sem transformá-lo em pontuação, sequência ou alarme.",
+        "Escolha a visualização que fizer mais sentido para você:\n- idade fracionária ou por calendário\n- contagem regressiva até seu próximo aniversário\n- dias ou semanas vividos\n- anos, dias ou semanas restantes estimados\n- progresso de vida e uma visualização da vida em semanas",
+        "Personalize a página com temas cuidadosamente elaborados, cores personalizadas e estilos numéricos. A interface está disponível em 55 idiomas e é compatível com uso pelo teclado, leitores de tela, redução de movimento e temas com contraste verificado.",
+        "As visualizações de vida restante são estimativas atuariais, não previsões. Elas usam as tábuas de mortalidade da ONU de 2023 por país e sexo, os dados de 2023 da Social Security Administration dos EUA ou uma expectativa de vida personalizada definida por você.",
+        "Seus dados de nascimento e preferências ficam, por padrão, no armazenamento local do navegador. A sincronização pela conta do navegador é opcional e só é ativada quando você a habilita explicitamente. O Mortality não exige conta e não tem anúncios, análise de uso, rastreamento ou serviço de backend.",
+        "Abra uma guia. Veja o número. Volte para o que importa."
+      ],
+      "edgeSearchTerms": [
+        "contador de idade",
+        "nova guia",
+        "memento mori",
+        "vida em semanas",
+        "expectativa de vida",
+        "atenção plena",
+        "contagem para aniversário"
+      ]
+    },
+    "zh_CN": {
+      "storeLocales": {
+        "chrome": "zh_CN",
+        "edge": "zh-CN",
+        "firefox": "zh-CN"
+      },
+      "fullDescription": [
+        "Mortality 会把每个新标签页变成实时显示你年龄的计数器——一份一眼就能读懂的安静生命提醒。它让时间清晰可见，却不会把时间变成分数、连续打卡或警报。",
+        "选择对你有用的视图：\n- 小数年龄或日历年龄\n- 下一个生日倒计时\n- 已度过的天数或周数\n- 预计剩余的年数、天数或周数\n- 一生进度和“人生周历”视图",
+        "用精心设计的主题、自定义颜色和数字字体风格，让页面更符合你的喜好。界面支持55种语言，并兼容键盘操作、屏幕阅读器、减弱动效以及经过对比度检验的主题。",
+        "剩余寿命视图只是精算估计，并非预测。你可以使用联合国2023年按国家和性别划分的生命表、美国社会保障局（SSA）2023年数据，或者自行设置预期寿命。",
+        "你的出生信息和偏好设置默认只保存在浏览器本地存储中。浏览器账户同步是可选功能，只有在你明确开启后才会启用。Mortality 不需要账户，也没有广告、数据分析、跟踪或后端服务。",
+        "打开一个标签页。看一眼数字。回到真正重要的事。"
+      ],
+      "edgeSearchTerms": [
+        "年龄计数器",
+        "新标签页",
+        "生命提醒",
+        "人生周历",
+        "预期寿命",
+        "正念",
+        "生日倒计时"
+      ]
+    },
+    "zh_TW": {
+      "storeLocales": {
+        "chrome": "zh_TW",
+        "edge": "zh-TW",
+        "firefox": "zh-TW"
+      },
+      "fullDescription": [
+        "Mortality 會把每個新分頁變成即時顯示你年齡的計數器——一份一眼就能讀懂的安靜生命提醒。它讓時間清楚可見，卻不會把時間變成分數、連續紀錄或警示。",
+        "選擇對你有用的檢視方式：\n- 小數年齡或日曆年齡\n- 距下一個生日的倒數計時\n- 已經度過的天數或週數\n- 預估剩餘的年數、天數或週數\n- 一生進度和「人生週曆」檢視",
+        "透過精心設計的主題、自訂顏色與數字字型樣式，讓頁面更貼近你的喜好。介面支援55種語言，並相容鍵盤操作、螢幕閱讀器、減少動態效果，以及經過對比度檢核的主題。",
+        "剩餘壽命檢視只是精算估計，並非預測。你可以選用聯合國2023年依國家與性別劃分的生命表、美國社會安全局（SSA）2023年資料，或自行設定預期壽命。",
+        "你的出生資訊與偏好設定，預設只會保存在瀏覽器的本機儲存空間中。瀏覽器帳號同步是選用功能，僅在你明確啟用後才會生效。Mortality 不需要帳號，也沒有廣告、分析、追蹤或後端服務。",
+        "打開一個分頁。看一眼數字。回到真正重要的事。"
+      ],
+      "edgeSearchTerms": [
+        "年齡計數器",
+        "新分頁",
+        "生命提醒",
+        "人生週曆",
+        "預期壽命",
+        "正念",
+        "生日倒數"
+      ]
+    },
+    "ko": {
+      "storeLocales": {
+        "chrome": "ko",
+        "edge": "ko-KR",
+        "firefox": "ko"
+      },
+      "fullDescription": [
+        "Mortality는 새 탭을 열 때마다 나이를 실시간으로 보여주는 카운터로 바꿉니다. 한눈에 읽히도록 설계된 조용한 메멘토 모리입니다. 시간을 점수나 연속 기록, 경고로 만들지 않으면서도 눈에 보이게 합니다.",
+        "필요에 맞는 보기를 선택하세요:\n- 소수 또는 달력 기준으로 표시한 나이\n- 다음 생일까지 남은 시간 카운트다운\n- 지금까지 살아온 일수 또는 주 수\n- 남은 것으로 추정되는 연수, 일수 또는 주 수\n- 생애 진행률과 ‘주 단위로 보는 인생’ 보기",
+        "정성껏 디자인한 테마, 사용자 지정 색상, 숫자 스타일로 화면을 원하는 모습으로 꾸밀 수 있습니다. 인터페이스는 55개 언어를 지원하며, 키보드 사용, 스크린 리더, 동작 축소, 대비를 검증한 테마도 지원합니다.",
+        "남은 삶에 관한 보기는 예측이 아니라 보험계리학적 추정치입니다. 유엔의 2023년 국가·성별 생명표, 미국 사회보장국(SSA)의 2023년 데이터 또는 직접 설정한 기대 수명을 사용할 수 있습니다.",
+        "생년월일 정보와 설정값은 기본적으로 브라우저 저장소에만 남습니다. 브라우저 계정 동기화는 선택 사항이며, 사용자가 명시적으로 켰을 때만 작동합니다. Mortality는 계정이 필요 없으며 광고, 분석, 추적 또는 백엔드 서비스가 없습니다.",
+        "탭을 엽니다. 숫자를 봅니다. 중요한 것으로 돌아갑니다."
+      ],
+      "edgeSearchTerms": [
+        "나이 카운터",
+        "새 탭",
+        "메멘토 모리",
+        "인생 주간 보기",
+        "기대 수명",
+        "마음챙김",
+        "생일 카운트다운"
+      ]
+    }
+  }
+}
