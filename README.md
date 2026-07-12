@@ -2,6 +2,11 @@
 
 A browser extension that replaces your new tab page with a live counter of your age — a quiet, recurring reminder that time is passing.
 
+[**Try Mortality online**](https://alphabt.github.io/mortality/)
+
+The online demo saves settings in this browser's local storage. Install the extension
+from a browser store below to use Mortality as your new tab page.
+
 ![Screenshot Light Theme](/images/screenshot_light.png?raw=true)
 
 ![Screenshot Dark Theme](/images/screenshot_dark.png?raw=true)
