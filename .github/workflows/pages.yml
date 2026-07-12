@@ -31,8 +31,13 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: actions/configure-pages@v6
+      - run: |
+          mkdir public
+          cp -R src/. public/
+          cp public/tab.html public/index.html
+          touch public/.nojekyll
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: src
+          path: public
       - id: deployment
         uses: actions/deploy-pages@v5
