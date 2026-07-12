@@ -5,7 +5,8 @@
     (dark enough to hold on light chrome), the brighter arc is the years
     lived, and the brightest dot is the "now" — the counter's signature
     accent point. Rasterize to the sizes in src/icons/ (16/32/48/128 for the
-    manifest) and store-assets/final/ (64/300 for listings). No background box.
+    manifest) and store-assets/final/ (128/300 for listings and the README).
+    No background box.
     Colors derive from the redesign's accent color (#007ea6).
   -->
   <circle cx="64" cy="64" r="44.8" fill="none" stroke="#0b83ab" stroke-width="17.28" />

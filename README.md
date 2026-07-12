@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./store-assets/final/icon-64.png" alt="" width="64" height="64" />
+  <img src="./store-assets/final/icon-128.png" alt="" width="64" height="64" />
   <h1>Mortality</h1>
   <p>
     Your age, counting up live on every new tab.<br />

@@ -1,17 +1,20 @@
-# Chrome and Edge store artwork
+# Browser store artwork
 
 Production PNGs are in [`final/`](final/). Editable masters are in [`source/`](source/);
-the screenshots are generated from the unmodified v1.6.0 UI by
+the screenshots and icon exports are generated from the unmodified v1.6.0 UI and SVG by
 [`scripts/generate-store-artwork.mjs`](../scripts/generate-store-artwork.mjs). The root
 `images/` directory remains reserved for README screenshots and browser-store badges.
 
 ## Store icons
 
-| File                 | Dimensions     | Use                                  |
-| -------------------- | -------------- | ------------------------------------ |
-| `source/icon.svg`    | 128x128 vector | Editable icon master                 |
-| `final/icon-64.png`  | 64x64          | Small listing and README header mark |
-| `final/icon-300.png` | 300x300        | Large listing icon                   |
+| Store          | File                 | Dimensions | Use                     |
+| -------------- | -------------------- | ---------: | ----------------------- |
+| Chrome         | `final/icon-128.png` |    128x128 | Required extension icon |
+| Firefox        | `final/icon-128.png` |    128x128 | Add-on listing icon     |
+| Microsoft Edge | `final/icon-300.png` |    300x300 | Recommended store logo  |
+
+[`source/icon.svg`](source/icon.svg) is the editable vector master. The README renders the
+shared 128x128 asset at a smaller display size.
 
 ## Dashboard upload order
 
@@ -51,6 +54,7 @@ local preview. The deterministic clock keeps every regeneration identical.
 4. In another terminal, run `node scripts/generate-store-artwork.mjs`.
 
 Set `PREVIEW_URL` if the preview selects another port, or `CHROME_BIN` to use a specific
-Chrome/Edge executable. The generator captures at device scale 1, performs no resizing,
-asserts each PNG's exact dimensions, and checks the screenshot and promo palettes against
-the WCAG contrast thresholds in `DESIGN.md`.
+Chrome/Edge executable. The generator captures screenshots at device scale 1 without
+resizing, rasterizes the SVG icon at each target size, asserts every PNG's exact
+dimensions, and checks the screenshot and promo palettes against the WCAG contrast
+thresholds in `DESIGN.md`.
