@@ -1,8 +1,17 @@
 # Chrome and Edge store artwork
 
-Production PNGs are in [`final/`](final/). Editable promotional masters are in
-[`source/`](source/); the screenshots are generated from the unmodified v1.6.0 UI by
-[`scripts/generate-store-artwork.mjs`](../scripts/generate-store-artwork.mjs).
+Production PNGs are in [`final/`](final/). Editable masters are in [`source/`](source/);
+the screenshots are generated from the unmodified v1.6.0 UI by
+[`scripts/generate-store-artwork.mjs`](../scripts/generate-store-artwork.mjs). The root
+`images/` directory remains reserved for README screenshots and browser-store badges.
+
+## Store icons
+
+| File                 | Dimensions     | Use                                 |
+| -------------------- | -------------- | ----------------------------------- |
+| `source/icon.svg`    | 128x128 vector | Editable icon master                |
+| `final/icon-64.png`  | 64x64          | Small listing and README title icon |
+| `final/icon-300.png` | 300x300        | Large listing icon                  |
 
 ## Dashboard upload order
 

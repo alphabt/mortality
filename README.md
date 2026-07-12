@@ -1,4 +1,7 @@
-# Mortality
+<h1>
+  <img src="./store-assets/final/icon-64.png" alt="" width="48" height="48" align="absmiddle" />
+  Mortality
+</h1>
 
 A browser extension that replaces your new tab page with a live counter of your age — a quiet, recurring reminder that time is passing.
 
