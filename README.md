@@ -1,5 +1,5 @@
 <h1>
-  <img src="./store-assets/final/icon-64.png" alt="" width="40" height="40" align="absmiddle" />
+  <img src="./store-assets/final/icon-64.png" alt="" width="36" height="36" align="absmiddle" />
   Mortality
 </h1>
 
