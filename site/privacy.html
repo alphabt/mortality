@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="How Mortality stores, syncs, exports, and removes your settings."
+    />
+    <link
+      rel="canonical"
+      href="https://alphabt.github.io/mortality/privacy.html"
+    />
+    <title>Privacy — Mortality</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --ink: #494949;
+        --muted: #6f747a;
+        --accent: #007ea6;
+        --focus: #005f80;
+        --rule: #d7dadd;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #222222;
+          --ink: #b0b5b9;
+          --muted: #898f97;
+          --accent: #5cc2ea;
+          --focus: #5cc2ea;
+          --rule: #4a4e52;
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .skip-link {
+        position: absolute;
+        inset-block-start: 0.75rem;
+        inset-inline-start: 0.75rem;
+        z-index: 1;
+        padding: 0.45rem 0.7rem;
+        background: var(--bg);
+        color: var(--ink);
+        transform: translateY(-200%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .page {
+        width: min(calc(100% - 2.5rem), 46rem);
+        margin-inline: auto;
+        padding-block: 2.5rem 4rem;
+      }
+
+      .site-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block-end: 1.5rem;
+        border-block-end: 1px solid var(--rule);
+      }
+
+      .brand {
+        color: var(--ink);
+        font-size: 1.05rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .site-header span,
+      .updated {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .intro {
+        padding-block: 3rem 0.25rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: var(--ink);
+        line-height: 1.2;
+        text-wrap: balance;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 600;
+      }
+
+      h2 {
+        margin: 0 0 0.85rem;
+        font-size: 1.35rem;
+        font-weight: 600;
+      }
+
+      h3 {
+        margin: 1.5rem 0 0.35rem;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+
+      p,
+      ul {
+        max-width: 70ch;
+        margin-block: 0.75rem;
+        text-wrap: pretty;
+      }
+
+      .lede {
+        max-width: 58ch;
+        margin-block: 0.8rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
+      }
+
+      .updated {
+        margin-block-start: 1.25rem;
+      }
+
+      section {
+        margin-block-start: 2.5rem;
+        padding-block-start: 2.5rem;
+        border-block-start: 1px solid var(--rule);
+      }
+
+      ul {
+        padding-inline-start: 1.25rem;
+      }
+
+      li + li {
+        margin-block-start: 0.45rem;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+
+      a:hover {
+        text-decoration-thickness: 0.13em;
+      }
+
+      a:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      footer {
+        margin-block-start: 3rem;
+        padding-block-start: 1.5rem;
+        border-block-start: 1px solid var(--rule);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 32rem) {
+        .page {
+          width: min(calc(100% - 2rem), 46rem);
+          padding-block-start: 1.5rem;
+        }
+
+        .site-header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 0.2rem;
+        }
+
+        .intro {
+          padding-block-start: 2.25rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+
+      @media print {
+        .skip-link {
+          display: none;
+        }
+
+        .page {
+          width: 100%;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="./">Mortality</a>
+        <span>Privacy policy</span>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <header class="intro">
+          <h1>Privacy</h1>
+          <p class="lede">
+            Mortality keeps your information on your device unless you choose to
+            sync it through your browser account.
+          </p>
+          <p class="updated">
+            Last updated <time datetime="2026-07-12">12 July 2026</time>
+          </p>
+        </header>
+
+        <section aria-labelledby="local">
+          <h2 id="local">Local by default</h2>
+          <p>
+            The installed extension saves your birthday and related settings in
+            your browser extension’s local storage. This includes your birth
+            date and time, birth time zone, optional sex-at-birth value,
+            life-expectancy choice, theme, counter mode, numeral style,
+            reflection setting, and language.
+          </p>
+          <p>
+            The online demo uses this browser’s local storage instead. Nothing
+            is synced unless you turn sync on in <strong>Settings</strong>.
+          </p>
+        </section>
+
+        <section aria-labelledby="optional-sync">
+          <h2 id="optional-sync">Optional browser sync</h2>
+          <p>
+            Sync has two separate opt-ins. The second is available only after
+            you enable the first.
+          </p>
+
+          <h3>Preferences</h3>
+          <p>
+            <strong>Sync preferences across devices</strong> syncs only your
+            theme and custom colors, counter mode, numeral style, reflection
+            setting, and language.
+          </p>
+
+          <h3>Personal profile</h3>
+          <p>
+            <strong>Also sync birthday and life-expectancy details</strong>
+            additionally syncs your birth date and time, birth time zone,
+            optional sex-at-birth value, and selected life-expectancy data
+            source or custom number of years.
+          </p>
+
+          <p>
+            When enabled, Mortality writes these fields to your browser vendor’s
+            account and sync-storage service. Google, Mozilla, or Microsoft
+            provides that service, depending on your browser. Mortality also
+            stores limited technical sync metadata: enabled scopes, a random
+            writer ID, schema version, and update time. These records let
+            devices reconcile changes; they are not sent to Mortality.
+          </p>
+        </section>
+
+        <section aria-labelledby="access">
+          <h2 id="access">No Mortality account or backend</h2>
+          <p>
+            Mortality has no account system, app backend, analytics,
+            advertising, or developer access to your local or synced settings.
+            The extension does not send those settings to Mortality’s developer.
+          </p>
+          <p>
+            This policy page and the online demo are hosted by GitHub Pages.
+            Mortality adds no analytics, advertising, or tracking scripts to
+            them.
+          </p>
+        </section>
+
+        <section aria-labelledby="control">
+          <h2 id="control">Disable sync and remove synced data</h2>
+          <p>Open <strong>Settings → Device sync</strong>:</p>
+          <ul>
+            <li>
+              Turn off
+              <strong>Also sync birthday and life-expectancy details</strong>
+              to remove the personal-profile payload from browser sync storage
+              while keeping preference sync on.
+            </li>
+            <li>
+              Turn off <strong>Sync preferences across devices</strong> to
+              disable both scopes and remove both preference and personal
+              payloads from browser sync storage.
+            </li>
+          </ul>
+          <p>
+            Disabling sync does not delete the settings saved on your current
+            device. A small configuration record indicating that sync is off may
+            remain so other devices can respect that choice. For browser-managed
+            records beyond these payloads, use your browser vendor’s sync-data
+            controls.
+          </p>
+        </section>
+
+        <section aria-labelledby="portability">
+          <h2 id="portability">Export and import</h2>
+          <p>
+            <strong>Settings → Data → Export</strong> downloads
+            <code>mortality-settings.json</code> with your current Mortality
+            settings. Import reads a settings file on your device and applies
+            its recognized values to the local settings. The file is not
+            uploaded to Mortality.
+          </p>
+          <p>
+            If browser sync is enabled when you import, fields covered by your
+            enabled sync scopes are then mirrored through the browser vendor’s
+            sync service.
+          </p>
+        </section>
+
+        <section aria-labelledby="support">
+          <h2 id="support">Contact and support</h2>
+          <p>
+            For privacy questions or support, open an issue in the
+            <a href="https://github.com/alphabt/mortality/issues"
+              >Mortality support tracker</a
+            >. Issues are public, so do not include your birthday or other
+            personal information.
+          </p>
+          <p>
+            Mortality’s
+            <a href="https://github.com/alphabt/mortality">source code</a> is
+            public.
+          </p>
+        </section>
+      </main>
+
+      <footer>Mortality · A quiet measure of time.</footer>
+    </div>
+  </body>
+</html>

@@ -40,13 +40,20 @@ every
 
 ## Privacy
 
-Mortality has no accounts, servers, or analytics. It requests a single permission —
-`storage` — to save your settings locally, and collects no data. Everything stays in
-your browser.
+Mortality stores settings locally by default and requests only the `storage` permission.
+It has no Mortality account or app backend, no analytics or ads, and its developer cannot
+access your settings.
+
+Browser-account sync is off until you enable it. One opt-in syncs your theme, counter
+mode, numeral style, reflection setting, and language; a second opt-in can also sync your
+birth date and time, birth time zone, sex at birth, and selected life-expectancy data
+source or custom years through your browser vendor's sync service. Read the
+[privacy policy](https://alphabt.github.io/mortality/privacy.html) for data controls,
+export/import details, and support.
 
 ## Install
 
-<a href="https://chrome.google.com/webstore/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="./images/chrome_logo.svg" width="50px"/> Add to Chrome</a>
+<a href="https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/206x58-chrome-web-043497a3d766e.png" alt="Available in the Chrome Web Store" width="206" height="58"/></a>
 
 <a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_logo.svg" width="50px"/> Add to Firefox</a>
 
@@ -130,7 +137,7 @@ list, and manual runs are documented in the
 
 ## Credits
 
-- Inspired by [Motivation Chrome extension](https://chrome.google.com/webstore/detail/motivation/ofdgfpchbidcgncgfpdlpclnpaemakoj)
+- Inspired by [Motivation Chrome extension](https://chromewebstore.google.com/detail/motivation/ofdgfpchbidcgncgfpdlpclnpaemakoj)
 - Icon: original mark — a life-elapsed gauge closing on the counter's signature accent dot
 
 ## License
