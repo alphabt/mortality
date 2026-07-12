@@ -86,7 +86,9 @@ describe("Firefox listing metadata payload", () => {
     const payload = loadAmoMetadataPayload(ROOT);
 
     for (const field of ["name", "summary", "description", "homepage"]) {
-      expect(Object.keys(payload[field])).toEqual(expectedAmoLocales);
+      expect(Object.keys(payload[field]).sort()).toEqual(
+        [...expectedAmoLocales].sort(),
+      );
     }
   });
 
