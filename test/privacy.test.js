@@ -5,6 +5,12 @@ import { describe, expect, it } from "vitest";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const read = (...parts) => readFileSync(join(ROOT, ...parts), "utf8");
+const pngDimensions = (...parts) => {
+  const png = readFileSync(join(ROOT, ...parts));
+  expect(png.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+  expect(png.subarray(12, 16).toString("ascii")).toBe("IHDR");
+  return [png.readUInt32BE(16), png.readUInt32BE(20)];
+};
 
 describe("privacy and trust surfaces", () => {
   it("deploys a stable site-only policy page", () => {
@@ -56,17 +62,48 @@ describe("privacy and trust surfaces", () => {
     }
   });
 
-  it("uses Google's official badge and canonical Chrome listing", () => {
+  it("uses official store badges and canonical listing links", () => {
     const readme = read("README.md");
+    const install = readme.slice(
+      readme.indexOf("## Install"),
+      readme.indexOf("## Development"),
+    );
+    const badges = [
+      {
+        file: "chrome_web_store_badge.png",
+        dimensions: [206, 58],
+        alt: "Available in the Chrome Web Store",
+        listing:
+          "https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh",
+      },
+      {
+        file: "edge_addons_badge.png",
+        dimensions: [1178, 312],
+        alt: "Get Mortality from Microsoft Edge",
+        listing:
+          "https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom",
+      },
+      {
+        file: "firefox_addons_badge.png",
+        dimensions: [172, 60],
+        alt: "Get the Mortality add-on for Firefox",
+        listing: "https://addons.mozilla.org/firefox/addon/mortality/",
+      },
+    ];
 
-    expect(readme).toContain(
-      "https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh",
-    );
-    expect(readme).toContain(
-      "https://developer.chrome.com/static/docs/webstore/branding/image/206x58-chrome-web-043497a3d766e.png",
-    );
-    expect(readme).toContain('width="206" height="58"');
-    expect(readme).not.toContain("chrome_logo.svg");
+    let previousPosition = -1;
+    for (const { file, dimensions, alt, listing } of badges) {
+      expect(pngDimensions("images", file)).toEqual(dimensions);
+      expect(install).toContain(`href="${listing}"`);
+      expect(install).toContain(
+        `src="./images/${file}" alt="${alt}" height="58"`,
+      );
+      const position = install.indexOf(`src="./images/${file}"`);
+      expect(position).toBeGreaterThan(previousPosition);
+      previousPosition = position;
+    }
+    expect(install).not.toContain("width=");
+    expect(install).not.toMatch(/(?:chrome|firefox|edge)_logo\.svg/);
     expect(readme).not.toContain("chrome.google.com/webstore");
   });
 });

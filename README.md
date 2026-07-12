@@ -56,11 +56,11 @@ export/import details, and support.
 
 ## Install
 
-<a href="https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/206x58-chrome-web-043497a3d766e.png" alt="Available in the Chrome Web Store" width="206" height="58"/></a>
-
-<a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_logo.svg" width="50px"/> Add to Firefox</a>
-
-<a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="./images/edge_logo.svg" width="50px"/> Add to Edge</a>
+<p>
+  <a href="https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="./images/chrome_web_store_badge.png" alt="Available in the Chrome Web Store" height="58"/></a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="./images/edge_addons_badge.png" alt="Get Mortality from Microsoft Edge" height="58"/></a>
+  <a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_addons_badge.png" alt="Get the Mortality add-on for Firefox" height="58"/></a>
+</p>
 
 ## Development
 
