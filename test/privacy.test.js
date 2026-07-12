@@ -8,6 +8,7 @@ const read = (...parts) => readFileSync(join(ROOT, ...parts), "utf8");
 const pngDimensions = (...parts) => {
   const png = readFileSync(join(ROOT, ...parts));
   expect(png.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+  expect(png.subarray(12, 16).toString("ascii")).toBe("IHDR");
   return [png.readUInt32BE(16), png.readUInt32BE(20)];
 };
 
