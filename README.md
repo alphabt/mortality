@@ -8,142 +8,176 @@
   <p><a href="https://alphabt.github.io/mortality/"><strong>Try Mortality online</strong></a></p>
 </div>
 
-The online demo saves settings in this browser's local storage. Install the extension
-from a browser store below to use Mortality as your new tab page.
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#privacy">Privacy</a> ·
+  <a href="#languages">Languages</a> ·
+  <a href="#development">Development</a> ·
+  <a href="#support">Support</a>
+</p>
 
-![Screenshot Light Theme](/images/screenshot_light.png?raw=true)
+![Mortality's light new-tab view showing a live age of 36.234148475, a life-elapsed bar, a birth date of April 18, 1990, and 44% of 82 years lived](./store-assets/final/01-light-counter.png)
 
-![Screenshot Dark Theme](/images/screenshot_dark.png?raw=true)
-
-## Features
-
-- **Live age counter** — ticks in real time, down to fractional years.
-- **Multiple units** — switch between age, calendar age, a live next-birthday
-  countdown, days or weeks lived, time left, and percent of an expected lifetime
-  elapsed.
-- **Actuarial estimate** — conditions expected lifespan on your current age, using an
-  explicitly selected World (UN 2023) or United States (SSA 2023) baseline.
-- **Personalization** — light and dark themes that follow your system, color presets
-  and custom colors, plus a fully custom life expectancy.
-- **Language choice** — follows your browser by default, with a manual choice from all
-  55 official Chrome WebExtension locales.
-- **Accessible and calm** — WCAG 2.1 AA, a `prefers-reduced-motion` path, and full
-  keyboard support.
-
-## Languages
-
-Mortality follows the browser/OS locale by default and falls back to English. You can
-choose a different language during setup or later under **Settings → Display**. It ships
-every
-[Chrome-supported extension locale](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales):
-`ar`, `am`, `bg`, `bn`, `ca`, `cs`, `da`, `de`, `el`, `en`, `en_AU`, `en_GB`,
-`en_US`, `es`, `es_419`, `et`, `fa`, `fi`, `fil`, `fr`, `gu`, `he`, `hi`, `hr`,
-`hu`, `id`, `it`, `ja`, `kn`, `ko`, `lt`, `lv`, `ml`, `mr`, `ms`, `nl`, `no`,
-`pl`, `pt_BR`, `pt_PT`, `ro`, `ru`, `sk`, `sl`, `sr`, `sv`, `sw`, `ta`, `te`,
-`th`, `tr`, `uk`, `vi`, `zh_CN`, and `zh_TW`.
-
-## Privacy
-
-Mortality stores settings locally by default and requests only the `storage` permission.
-It has no Mortality account or app backend, no analytics or ads, and its developer cannot
-access your settings.
-
-Browser-account sync is off until you enable it. One opt-in syncs your theme, counter
-mode, numeral style, reflection setting, and language; a second opt-in can also sync your
-birth date and time, birth time zone, sex at birth, and selected life-expectancy data
-source or custom years through your browser vendor's sync service. Read the
-[privacy policy](https://alphabt.github.io/mortality/privacy.html) for data controls,
-export/import details, and support.
+<p align="center"><em>One live reading, its context, and room to breathe.</em></p>
 
 ## Install
 
-<p>
-  <a href="https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="./images/chrome_web_store_badge.png" alt="Available in the Chrome Web Store" height="58"/></a>
-  <a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="./images/edge_addons_badge.png" alt="Get Mortality from Microsoft Edge" height="58"/></a>
-  <a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_addons_badge.png" alt="Get the Mortality add-on for Firefox" height="58"/></a>
+Choose your browser. The store versions replace the new tab page; the
+[online demo](https://alphabt.github.io/mortality/) runs as an ordinary web page.
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="./images/chrome_web_store_badge.png" alt="Install Mortality from the Chrome Web Store" height="58" /></a>
+  &ensp;<wbr />&ensp;
+  <a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="./images/edge_addons_badge.png" alt="Install Mortality from Microsoft Edge Add-ons" height="58" /></a>
+  &ensp;<wbr />&ensp;
+  <a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_addons_badge.png" alt="Install Mortality from Firefox Browser Add-ons" height="58" /></a>
 </p>
+
+Demo settings stay in this browser's local storage. Only the installed extension
+becomes your new tab page.
+
+## One number, several perspectives
+
+Mortality starts with fractional age, ticking in real time. Switch to calendar
+age, a live next-birthday countdown, days or weeks lived, estimated time left,
+lifetime progress, or a life-in-weeks view.
+
+- **Estimates, not predictions.** Remaining-life views condition expected
+  lifespan on your current age, using an explicitly selected World (UN 2023) or
+  United States (SSA 2023) baseline. You can also set a custom life expectancy.
+- **Personal, not busy.** Follow the system light or dark theme, choose a
+  contrast-checked preset, set custom colors, change the numeral style, or add a
+  quiet reflection line beneath the counter.
+- **Accessible by design.** Mortality supports keyboard use and screen readers,
+  meets WCAG 2.1 AA, and provides a `prefers-reduced-motion` path.
+
+![Mortality's dark life-in-weeks view showing 1,890 lived weeks in light cells, the current week in blue, and 2,374 future weeks in dark cells through an 82-year life expectancy](./store-assets/final/02-life-in-weeks.png)
+
+<p align="center"><em>Life in weeks shows lived time, the present week, and what may remain.</em></p>
+
+## Privacy
+
+Mortality requests only the browser's `storage` permission. Birth details and
+preferences stay in extension-local storage unless you explicitly enable
+browser-account sync.
+
+- **No Mortality account or app backend.** There are no analytics or ads, and
+  the developer cannot access your settings.
+- **Sync is optional and scoped.** One opt-in syncs your theme, counter mode,
+  numeral style, reflection setting, and language. A second can also sync your
+  birth date and time, birth time zone, sex at birth, and selected
+  life-expectancy source or custom years through your browser vendor's sync
+  service.
+- **You keep control.** The
+  [privacy policy](https://alphabt.github.io/mortality/privacy.html) explains
+  data controls, export and import, and how to remove synced data.
+
+## Languages
+
+Mortality follows the browser or operating-system locale by default and falls
+back to English. You can choose another language during setup or under
+**Settings → Display**. It ships all 55
+[Chrome-supported extension locales](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales).
+
+<details>
+<summary>View all 55 locale codes</summary>
+
+<p>
+  <code>ar</code>, <code>am</code>, <code>bg</code>, <code>bn</code>,
+  <code>ca</code>, <code>cs</code>, <code>da</code>, <code>de</code>,
+  <code>el</code>, <code>en</code>, <code>en_AU</code>, <code>en_GB</code>,
+  <code>en_US</code>, <code>es</code>, <code>es_419</code>, <code>et</code>,
+  <code>fa</code>, <code>fi</code>, <code>fil</code>, <code>fr</code>,
+  <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>,
+  <code>hu</code>, <code>id</code>, <code>it</code>, <code>ja</code>,
+  <code>kn</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>,
+  <code>ml</code>, <code>mr</code>, <code>ms</code>, <code>nl</code>,
+  <code>no</code>, <code>pl</code>, <code>pt_BR</code>, <code>pt_PT</code>,
+  <code>ro</code>, <code>ru</code>, <code>sk</code>, <code>sl</code>,
+  <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>,
+  <code>te</code>, <code>th</code>, <code>tr</code>, <code>uk</code>,
+  <code>vi</code>, <code>zh_CN</code>, and <code>zh_TW</code>.
+</p>
+
+</details>
+
+---
 
 ## Development
 
-The shipped extension has **no build step and no runtime dependencies** — the
-files in [`src/`](src/) _are_ the extension. Development tooling (formatting and
-tests) runs through npm and never ships; `npm run zip` only packages `src/`.
+The shipped extension has **no build step and no runtime dependencies**. The
+files in [`src/`](src/) _are_ the extension; npm tooling is for development only,
+and `npm run zip` packages only `src/`.
 
-### Preview in the Copilot app
+### Start the preview
 
-Click **Run** to start the local preview and open it in the integrated browser.
-The preview serves `src/tab.html`, starting at `http://127.0.0.1:4173/` and
-automatically choosing the next available port when another session is running.
-Settings use the same local-storage fallback as any ordinary HTTP preview.
+Install the development dependencies once, then start the local preview:
 
-To start it from a terminal instead:
-
-```
+```sh
+npm install
 npm run dev
 ```
 
-### Run it locally
+In the Copilot app, **Run** does the same thing and opens the preview in the
+integrated browser. It starts at `http://127.0.0.1:4173/`, chooses the next
+available port when needed, and uses the same local-storage fallback as an
+ordinary HTTP preview.
 
-Load the `src/` folder as an unpacked extension:
+### Load the extension
 
-- **Chrome / Edge:** open `chrome://extensions`, enable _Developer mode_, click
-  _Load unpacked_, and select the `src/` folder.
+Use a real browser to test new-tab behavior:
+
+- **Chrome / Edge:** open `chrome://extensions`, enable _Developer mode_, select
+  _Load unpacked_, and choose the `src/` folder.
 - **Firefox:** open `about:debugging` → _This Firefox_ → _Load Temporary Add-on_
-  and pick `src/manifest.json`.
+  and choose `src/manifest.json`.
 
 Edit a file, then reload the extension to see the change.
 
-### Tests
+### Check and package
 
-The `src/` modules are covered by a [Vitest](https://vitest.dev/) suite that runs
-against a jsdom DOM (unit tests for storage/theming and the view renderers, plus
-integration tests that drive the full setup → counter → settings flow). Install
-the dev dependencies once with `npm install`, then:
+| Task                        | Command                 |
+| --------------------------- | ----------------------- |
+| Check formatting            | `npm run format:check`  |
+| Run the Vitest suite        | `npm test`              |
+| Re-run tests on change      | `npm run test:watch`    |
+| Generate a coverage report  | `npm run test:coverage` |
+| Run the Chromium smoke test | `npm run test:chromium` |
+| Package the extension       | `npm run zip`           |
 
-```
-npm test              # run the suite once
-npm run test:watch    # re-run on change
-npm run test:coverage # run with a coverage report
-```
+Vitest runs against jsdom, covering storage and theming, view renderers, and the
+full setup → counter → settings flow. Before the real-browser smoke test, install
+Playwright's pinned Chromium once:
 
-The real-browser smoke test loads `src/` as an unpacked extension in Playwright's
-pinned Chromium. Install that browser once, then run the test:
-
-```
+```sh
 npx playwright install chromium
 npm run test:chromium
 ```
 
-CI runs formatting, the Vitest suite, the Chromium extension smoke test, and a
-packaging smoke test on every pull request via the
-[`ci`](.github/workflows/ci.yml) workflow, which the release pipelines reuse so
-nothing ships without a green run.
+Packaging produces `artifacts/mortality-v<version>.zip`, with the version read
+from `src/manifest.json`. CI checks formatting, Vitest, the Chromium extension
+smoke test, and packaging on every pull request through the
+[`ci`](.github/workflows/ci.yml) workflow.
 
-### Package for the stores
+### Release and publish
 
-```
-npm run zip
-```
+Pushing a `v*` tag runs the [`release`](.github/workflows/release.yml) workflow.
+It reuses the CI gate, packages the extension once, publishes a GitHub Release,
+and submits that exact asset to the Chrome, Edge, and Firefox stores using
+scoped store API keys held in repository secrets, never an interactive store
+login.
 
-Produces `artifacts/mortality-v<version>.zip`, with the version read from
-`src/manifest.json`.
-
-### Publish to the stores
-
-Pushing a `v*` tag runs the [`release`](.github/workflows/release.yml) workflow:
-it runs the CI gate, packages the extension once, publishes a GitHub Release, and
-submits that exact asset to the Chrome, Edge, and Firefox stores. It authenticates
-entirely with scoped store **API keys** kept in repo secrets — never a login.
-Manual and subset publishes go through
-[`publish-stores`](.github/workflows/publish-stores.yml). Setup, the full secret
-list, and manual runs are documented in the
+Manual or subset publishes use
+[`publish-stores`](.github/workflows/publish-stores.yml). Setup, required
+secrets, and manual runs are documented in the
 [publish-to-stores skill](.github/skills/publish-to-stores/SKILL.md).
 
-## Credits
+## Support
 
-- Inspired by [Motivation Chrome extension](https://chromewebstore.google.com/detail/motivation/ofdgfpchbidcgncgfpdlpclnpaemakoj)
-- Icon: original mark — a life-elapsed gauge closing on the counter's signature accent dot
+For bugs, questions, or privacy support, open an issue in the
+[public Mortality support tracker](https://github.com/alphabt/mortality/issues).
+Issues are public, so do not include your birthday or other personal information.
 
 ## License
 
-[MIT](LICENSE) © alphabt
+Mortality is available under the [MIT License](LICENSE) © alphabt.
