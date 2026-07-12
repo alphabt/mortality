@@ -55,8 +55,8 @@ export/import details, and support.
 
 <p>
   <a href="https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh"><img src="./images/chrome_web_store_badge.png" alt="Available in the Chrome Web Store" height="58"/></a>
-  <a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_addons_badge.png" alt="Get the Mortality add-on for Firefox" height="58"/></a>
   <a href="https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom"><img src="./images/edge_addons_badge.png" alt="Get Mortality from Microsoft Edge" height="58"/></a>
+  <a href="https://addons.mozilla.org/firefox/addon/mortality/"><img src="./images/firefox_addons_badge.png" alt="Get the Mortality add-on for Firefox" height="58"/></a>
 </p>
 
 ## Development

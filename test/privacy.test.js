@@ -76,26 +76,30 @@ describe("privacy and trust surfaces", () => {
           "https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh",
       },
       {
-        file: "firefox_addons_badge.png",
-        dimensions: [172, 60],
-        alt: "Get the Mortality add-on for Firefox",
-        listing: "https://addons.mozilla.org/firefox/addon/mortality/",
-      },
-      {
         file: "edge_addons_badge.png",
         dimensions: [1178, 312],
         alt: "Get Mortality from Microsoft Edge",
         listing:
           "https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom",
       },
+      {
+        file: "firefox_addons_badge.png",
+        dimensions: [172, 60],
+        alt: "Get the Mortality add-on for Firefox",
+        listing: "https://addons.mozilla.org/firefox/addon/mortality/",
+      },
     ];
 
+    let previousPosition = -1;
     for (const { file, dimensions, alt, listing } of badges) {
       expect(pngDimensions("images", file)).toEqual(dimensions);
       expect(install).toContain(`href="${listing}"`);
       expect(install).toContain(
         `src="./images/${file}" alt="${alt}" height="58"`,
       );
+      const position = install.indexOf(`src="./images/${file}"`);
+      expect(position).toBeGreaterThan(previousPosition);
+      previousPosition = position;
     }
     expect(install).not.toContain("width=");
     expect(install).not.toMatch(/(?:chrome|firefox|edge)_logo\.svg/);
