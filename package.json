@@ -13,7 +13,10 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "store:validate": "node scripts/validate-store-metadata.mjs",
+    "store:show": "node scripts/validate-store-metadata.mjs --locale",
+    "store:publish:firefox-metadata": "node scripts/publish-firefox-metadata.mjs"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.10",
