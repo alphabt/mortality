@@ -1,11 +1,12 @@
-<h1>
-  <img src="./store-assets/final/icon-64.png" alt="" width="36" height="36" align="absmiddle" />
-  Mortality
-</h1>
-
-A browser extension that replaces your new tab page with a live counter of your age — a quiet, recurring reminder that time is passing.
-
-[**Try Mortality online**](https://alphabt.github.io/mortality/)
+<div align="center">
+  <img src="./store-assets/final/icon-64.png" alt="" width="64" height="64" />
+  <h1>Mortality</h1>
+  <p>
+    Your age, counting up live on every new tab.<br />
+    A quiet, recurring reminder that time is passing.
+  </p>
+  <p><a href="https://alphabt.github.io/mortality/"><strong>Try Mortality online</strong></a></p>
+</div>
 
 The online demo saves settings in this browser's local storage. Install the extension
 from a browser store below to use Mortality as your new tab page.
