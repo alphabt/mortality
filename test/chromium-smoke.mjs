@@ -42,23 +42,23 @@ async function assertLiveCounter(page) {
 async function assertUniformLifeGrid(page) {
   await page.locator("#weeks-btn").click();
   await page.locator("body.screen-weeks").waitFor({ state: "visible" });
-  const malformedRow = await page
-    .locator(".weeks-band")
-    .evaluateAll((bands) => {
-      for (const band of bands) {
-        const heights = [...band.children].map(
-          (cell) => cell.getBoundingClientRect().height,
-        );
-        if (Math.max(...heights) - Math.min(...heights) > 0.001) {
-          return {
-            age: band.parentElement.dataset.age,
-            minHeight: Math.min(...heights),
-            maxHeight: Math.max(...heights),
-          };
-        }
+  const weeksBands = page.locator(".weeks-band");
+  await weeksBands.first().waitFor({ state: "visible" });
+  const malformedRow = await weeksBands.evaluateAll((bands) => {
+    for (const band of bands) {
+      const heights = [...band.children].map(
+        (cell) => cell.getBoundingClientRect().height,
+      );
+      if (Math.max(...heights) - Math.min(...heights) > 0.001) {
+        return {
+          age: band.parentElement.dataset.age,
+          minHeight: Math.min(...heights),
+          maxHeight: Math.max(...heights),
+        };
       }
-      return null;
-    });
+    }
+    return null;
+  });
   assert.equal(
     malformedRow,
     null,
