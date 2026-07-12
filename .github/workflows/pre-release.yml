@@ -1,4 +1,4 @@
-name: "pre-release"
+name: "Pre-release"
 
 # Rolling development build. Every push to main runs the full quality gate and,
 # if green, refreshes the single "latest" pre-release with the freshly packaged

@@ -1,4 +1,4 @@
-name: "release"
+name: "Release"
 
 # The automatic release pipeline. Pushing a v* tag runs the full quality gate,
 # packages the extension exactly once, publishes a GitHub Release, then ships that
