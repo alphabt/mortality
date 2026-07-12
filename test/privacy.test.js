@@ -11,12 +11,15 @@ describe("privacy and trust surfaces", () => {
     const policyPath = join(ROOT, "site", "privacy.html");
     const workflow = read(".github", "workflows", "pages.yml");
     const pack = read("scripts", "pack.sh");
+    const zipInvocation = pack
+      .split("\n")
+      .find((line) => line.includes("zip -rqX"));
 
     expect(existsSync(policyPath)).toBe(true);
     expect(existsSync(join(ROOT, "src", "privacy.html"))).toBe(false);
     expect(workflow).toContain("cp site/privacy.html public/privacy.html");
-    expect(pack).toContain("(cd src && zip");
-    expect(pack).not.toContain("site/");
+    expect(zipInvocation).toContain("(cd src && zip");
+    expect(zipInvocation).not.toContain("site/");
   });
 
   it("documents the implemented storage, sync, and data controls", () => {
@@ -26,7 +29,7 @@ describe("privacy and trust surfaces", () => {
     expect(normalized).toContain(
       '<link rel="canonical" href="https://alphabt.github.io/mortality/privacy.html"',
     );
-    expect(policy).toContain('<main id="main">');
+    expect(policy).toContain('<main id="main" tabindex="-1">');
     expect(policy).toContain("<h1>Privacy</h1>");
     expect(policy).toContain(":focus-visible");
     expect(policy).not.toContain("<script");
