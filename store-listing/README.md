@@ -137,16 +137,21 @@ FIREFOX_ADDON_ID=... \
 npm run store:publish:firefox-metadata -- --apply
 ```
 
+The manually dispatched `publish-firefox-metadata` Actions workflow also
+defaults to dry-run. Its apply mode only runs from the repository default branch
+and requires typing `PUBLISH FIREFOX METADATA`; only the apply job receives the
+existing Firefox secrets. This workflow is intentionally separate from release
+publishing because Chrome and Edge listing updates remain manual.
+
+**Translation review before production:** the eight non-English detailed
+descriptions and search-term sets are high-quality drafts, but they have not had
+native-speaker review. Native review is recommended before using either the
+apply command/workflow or entering this copy in any store dashboard.
+
 The publisher creates a short-lived HS256 JWT, URL-encodes the add-on ID, and
 sends one authenticated `PATCH` to
 `https://addons.mozilla.org/api/v5/addons/addon/{id}/`. It fails on any non-2xx
 response and redacts credentials and tokens from reported errors.
-
-The manually dispatched `publish-firefox-metadata` Actions workflow also
-defaults to dry-run. Its apply mode requires typing `PUBLISH FIREFOX METADATA`;
-only the apply job receives the existing Firefox secrets. This workflow is
-intentionally separate from release publishing because Chrome and Edge listing
-updates remain manual.
 
 ## Complete the Firefox listing in the dashboard
 

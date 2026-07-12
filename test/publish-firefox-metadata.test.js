@@ -1,5 +1,6 @@
 import { createHmac } from "node:crypto";
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it, vi } from "vitest";
@@ -18,6 +19,10 @@ import {
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const SCRIPT = join(ROOT, "scripts", "publish-firefox-metadata.mjs");
+const WORKFLOW = readFileSync(
+  join(ROOT, ".github", "workflows", "publish-firefox-metadata.yml"),
+  "utf8",
+);
 const metadata = loadStoreMetadata(ROOT);
 const validation = validateStoreMetadata(metadata, { root: ROOT });
 const expectedAmoLocales = [
@@ -228,5 +233,30 @@ describe("AMO authentication and request safety", () => {
         fetchImpl,
       }),
     ).rejects.toThrow("AMO metadata request failed: failure: [REDACTED]");
+  });
+});
+
+describe("Firefox metadata workflow safety", () => {
+  it("keeps dry-run ref-independent and blocks apply outside the default branch", () => {
+    const dryRunJob = WORKFLOW.slice(
+      WORKFLOW.indexOf("  dry-run:\n"),
+      WORKFLOW.indexOf("  apply:\n"),
+    );
+    const applyJob = WORKFLOW.slice(WORKFLOW.indexOf("  apply:\n"));
+
+    expect(dryRunJob).not.toContain("github.ref_name");
+    expect(dryRunJob).not.toContain("default_branch");
+    expect(dryRunJob).not.toContain("secrets.FIREFOX_");
+
+    expect(applyJob).toContain("SELECTED_REF: ${{ github.ref_name }}");
+    expect(applyJob).toContain(
+      "DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}",
+    );
+    expect(applyJob).toContain(
+      'if [ "$SELECTED_REF" != "$DEFAULT_BRANCH" ]; then',
+    );
+    expect(
+      applyJob.indexOf("github.event.repository.default_branch"),
+    ).toBeLessThan(applyJob.indexOf("secrets.FIREFOX_JWT_ISSUER"));
   });
 });
