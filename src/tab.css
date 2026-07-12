@@ -1004,6 +1004,7 @@ body.screen-weeks {
 .weeks-band {
   display: grid;
   grid-template-columns: repeat(52, minmax(0, 1fr));
+  align-items: stretch;
   gap: clamp(1px, 0.3vw, 2px);
   min-width: 0;
 }
