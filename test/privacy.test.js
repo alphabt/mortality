@@ -72,21 +72,21 @@ describe("privacy and trust surfaces", () => {
       {
         file: "chrome_web_store_badge.png",
         dimensions: [206, 58],
-        alt: "Available in the Chrome Web Store",
+        alt: "Install Mortality from the Chrome Web Store",
         listing:
           "https://chromewebstore.google.com/detail/mortality/dmcopoldcoemapdejndbdnfmbofbkmbh",
       },
       {
         file: "edge_addons_badge.png",
         dimensions: [1178, 312],
-        alt: "Get Mortality from Microsoft Edge",
+        alt: "Install Mortality from Microsoft Edge Add-ons",
         listing:
           "https://microsoftedge.microsoft.com/addons/detail/dljbhjjkfdabmfijhmcoodklndhminom",
       },
       {
         file: "firefox_addons_badge.png",
         dimensions: [172, 60],
-        alt: "Get the Mortality add-on for Firefox",
+        alt: "Install Mortality from Firefox Browser Add-ons",
         listing: "https://addons.mozilla.org/firefox/addon/mortality/",
       },
     ];
