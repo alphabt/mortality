@@ -1,4 +1,4 @@
-name: "publish"
+name: "Publish"
 
 # Reusable store-publish engine. Each store runs in an isolated job that receives
 # only that store's credentials. Both release.yml and publish-stores.yml call it.

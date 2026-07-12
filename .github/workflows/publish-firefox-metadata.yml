@@ -1,4 +1,4 @@
-name: "publish-firefox-metadata"
+name: "Publish Firefox Metadata"
 
 # Listing metadata stays separate from release/package publishing so an AMO
 # update cannot silently drift ahead of the manual Chrome and Edge listings.

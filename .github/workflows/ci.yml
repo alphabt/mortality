@@ -1,4 +1,4 @@
-name: "ci"
+name: "CI"
 
 # The quality gate. Runs on every pull request, and is reused (workflow_call) by
 # pre-release.yml and release.yml so nothing is packaged, released, or published

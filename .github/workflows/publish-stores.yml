@@ -1,4 +1,4 @@
-name: "publish-stores"
+name: "Publish Stores"
 
 # Manual store publishing: re-publish a released tag, ship a subset of stores,
 # or recover a single store that failed mid-release. It only accepts an existing
