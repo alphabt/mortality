@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "አዲሱን ትር ገፅ በዕድሜ ቆጣሪ ይተካል",
+    "message": "እያንዳንዱን አዲስ ትር ዕድሜዎን በቀጥታ ወደሚቆጥር ቆጣሪ ይቀይሩት — ጊዜ እያለፈ መሆኑን የሚያስታውስ ጸጥ ያለ ማስታወሻ።",
     "description": "Short extension-store description."
   },
   "pageTitle": {

@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Zamjenjuje stranicu nove kartice brojačem vaše dobi",
+    "message": "Pretvorite svaku novu karticu u brojač svoje dobi uživo — tihi podsjetnik da vrijeme prolazi.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

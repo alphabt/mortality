@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "కొత్త ట్యాబ్ పేజీని మీ వయసు కౌంటర్‌తో భర్తీ చేస్తుంది",
+    "message": "ప్రతి కొత్త ట్యాబ్‌ను మీ వయసును ప్రత్యక్షంగా లెక్కించే కౌంటర్‌గా మార్చండి — సమయం గడుస్తోందని నిశ్శబ్దంగా గుర్తుచేస్తుంది.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

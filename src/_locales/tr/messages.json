@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Yeni sekme sayfasını yaşınızın sayacıyla değiştirir",
+    "message": "Her yeni sekmeyi yaşınızı canlı gösteren bir sayaca dönüştürün — zamanın geçtiğini hatırlatan sakin bir anımsatıcı.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

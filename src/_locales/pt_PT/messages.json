@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Substitui a página de novo separador por um contador da tua idade",
+    "message": "Transforma cada novo separador num contador da tua idade em tempo real — um lembrete sereno de que o tempo passa.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

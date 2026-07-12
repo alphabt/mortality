@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Az új lap oldalát az életkorod számlálójával helyettesíti",
+    "message": "Változtass minden új lapot életkorod élő számlálójává — csendes emlékeztetőül arra, hogy múlik az idő.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

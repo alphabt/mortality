@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Заменя страницата на новия раздел с брояч на вашата възраст",
+    "message": "Превърнете всеки нов раздел в брояч на възрастта ви в реално време — тихо напомняне, че времето минава.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

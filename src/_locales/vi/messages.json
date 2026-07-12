@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Thay thế trang tab mới bằng bộ đếm tuổi của bạn",
+    "message": "Biến mỗi tab mới thành bộ đếm tuổi theo thời gian thực — lời nhắc nhẹ nhàng rằng thời gian đang trôi.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

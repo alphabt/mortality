@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Nahradí stránku nová karta počítadlom vášho veku",
+    "message": "Premeňte každú novú kartu na živé počítadlo svojho veku — tichú pripomienku, že čas plynie.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

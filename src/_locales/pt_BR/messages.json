@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Substitui a página de nova guia por um contador da sua idade",
+    "message": "Transforme cada nova guia em um contador da sua idade em tempo real — um lembrete sereno de que o tempo passa.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

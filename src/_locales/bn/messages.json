@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "নতুন ট্যাব পেজটিকে আপনার বয়সের একটি কাউন্টার দিয়ে প্রতিস্থাপন করে",
+    "message": "প্রতিটি নতুন ট্যাবকে আপনার বয়সের সরাসরি কাউন্টারে পরিণত করুন — সময় বয়ে যাচ্ছে, তার এক নীরব স্মারক।",
     "description": "Short extension-store description."
   },
   "pageTitle": {

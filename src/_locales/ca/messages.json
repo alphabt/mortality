@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Substitueix la pàgina de pestanya nova pel comptador de la teva edat",
+    "message": "Converteix cada pestanya nova en un comptador en directe de la teva edat — un recordatori discret que el temps passa.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

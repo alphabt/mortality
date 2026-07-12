@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "صفحه‌ی برگه‌ی جدید را با شمارنده‌ی سن شما جایگزین می‌کند",
+    "message": "هر برگهٔ جدید را به شمارندهٔ زندهٔ سن خود تبدیل کنید — یادآوری آرامی که زمان در گذر است.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

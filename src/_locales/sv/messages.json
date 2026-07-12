@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Ersätter sidan för nya flikar med en räknare för din ålder",
+    "message": "Gör varje ny flik till en liveräknare för din ålder — en stillsam påminnelse om att tiden går.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

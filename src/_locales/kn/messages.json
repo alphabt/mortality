@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "ಹೊಸ ಟ್ಯಾಬ್ ಪುಟವನ್ನು ನಿಮ್ಮ ವಯಸ್ಸಿನ ಕೌಂಟರ್‌ನೊಂದಿಗೆ ಬದಲಾಯಿಸುತ್ತದೆ",
+    "message": "ಪ್ರತಿ ಹೊಸ ಟ್ಯಾಬ್ ಅನ್ನು ನಿಮ್ಮ ವಯಸ್ಸಿನ ಲೈವ್ ಕೌಂಟರ್ ಆಗಿ ಬದಲಿಸಿ — ಸಮಯ ಸಾಗುತ್ತಿದೆ ಎಂಬ ಶಾಂತ ನೆನಪು.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

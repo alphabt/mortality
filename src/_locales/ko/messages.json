@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "새 탭 페이지를 나이 카운터로 대체합니다",
+    "message": "새 탭을 열 때마다 나이를 실시간으로 세는 카운터로 바꾸세요. 시간이 흐르고 있음을 조용히 일깨워 줍니다.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

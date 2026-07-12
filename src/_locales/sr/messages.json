@@ -4,7 +4,7 @@
     "description": "Extension name. Keep the product name unchanged."
   },
   "extDescription": {
-    "message": "Замењује страницу новог језичка бројачем ваших година",
+    "message": "Претворите сваки нови језичак у бројач својих година уживо — тихи подсетник да време пролази.",
     "description": "Short extension-store description."
   },
   "pageTitle": {

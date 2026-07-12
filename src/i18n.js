@@ -2,7 +2,8 @@
 
 export const EN_MESSAGES = {
   extName: "Mortality",
-  extDescription: "Replace new tab page with a counter of your age",
+  extDescription:
+    "Turn every new tab into a live counter of your age — a quiet reminder that time is passing.",
   pageTitle: "Mortality — New Tab",
   setupTitle: "When were you born?",
   setupSubtitle: "Your age, counting up live on every new tab.",
