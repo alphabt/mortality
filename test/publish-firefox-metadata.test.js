@@ -9,6 +9,7 @@ import {
   createAmoJwt,
   loadAmoMetadataPayload,
   publishAmoMetadata,
+  requireAmoCredentials,
   validateAndBuildAmoPayload,
 } from "../scripts/publish-firefox-metadata.mjs";
 import {
@@ -122,6 +123,20 @@ describe("Firefox listing metadata payload", () => {
     expect(result.stderr).toContain(
       "--apply requires the following environment variables: FIREFOX_JWT_ISSUER, FIREFOX_JWT_SECRET, FIREFOX_ADDON_ID",
     );
+  });
+
+  it("trims validated credentials before using them", () => {
+    expect(
+      requireAmoCredentials({
+        FIREFOX_JWT_ISSUER: "  user:123:456\n",
+        FIREFOX_JWT_SECRET: "\tapi-secret  ",
+        FIREFOX_ADDON_ID: " mortality@example.com\n",
+      }),
+    ).toEqual({
+      issuer: "user:123:456",
+      secret: "api-secret",
+      addonId: "mortality@example.com",
+    });
   });
 });
 

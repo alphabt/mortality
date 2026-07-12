@@ -124,8 +124,8 @@ export function requireAmoCredentials(environment) {
   }
 
   return {
-    issuer: environment.FIREFOX_JWT_ISSUER,
-    secret: environment.FIREFOX_JWT_SECRET,
+    issuer: environment.FIREFOX_JWT_ISSUER.trim(),
+    secret: environment.FIREFOX_JWT_SECRET.trim(),
     addonId: environment.FIREFOX_ADDON_ID.trim(),
   };
 }
