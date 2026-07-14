@@ -115,6 +115,12 @@ const PROMOS = [
     width: 1400,
     height: 560,
   },
+  {
+    source: "store-assets/source/social-preview.svg",
+    output: "store-assets/final/social-preview-1200x630.png",
+    width: 1200,
+    height: 630,
+  },
 ];
 
 class CdpClient {
