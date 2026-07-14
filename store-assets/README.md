@@ -31,13 +31,14 @@ localized captions. They keep captions aligned with the extension's shipped term
 
 ## Promotional images
 
-| File                      | Dimensions | Use                                           |
-| ------------------------- | ---------: | --------------------------------------------- |
-| `small-promo-440x280.png` |    440x280 | Chrome Web Store small promo tile             |
-| `marquee-1400x560.png`    |   1400x560 | Chrome Web Store marquee / featured placement |
+| File                          | Dimensions | Use                                           |
+| ----------------------------- | ---------: | --------------------------------------------- |
+| `small-promo-440x280.png`     |    440x280 | Chrome Web Store small promo tile             |
+| `marquee-1400x560.png`        |   1400x560 | Chrome Web Store marquee / featured placement |
+| `social-preview-1200x630.png` |   1200x630 | GitHub Pages Open Graph and social share card |
 
-Both are full-bleed Blueprint compositions. The counter remains the primary mark, the
-life ring stays subordinate, and `#007ea6` is reserved for the single live point.
+All three are full-bleed Blueprint compositions. The counter remains the primary mark,
+the life ring stays subordinate, and `#007ea6` is reserved for the single live point.
 
 ## Synthetic capture profile
 

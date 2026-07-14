@@ -35,6 +35,7 @@ jobs:
           mkdir public
           cp -R src/. public/
           cp site/privacy.html public/privacy.html
+          cp store-assets/final/social-preview-1200x630.png public/social-preview.png
           cp public/tab.html public/index.html
           touch public/.nojekyll
       - uses: actions/upload-pages-artifact@v5
