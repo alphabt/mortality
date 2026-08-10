@@ -28,7 +28,15 @@ jobs:
   auto-merge:
     name: "Enable auto-merge"
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]' && github.event.pull_request.user.login == 'dependabot[bot]'
+    # Both actor and author must be Dependabot, the head branch must live in this
+    # repo rather than a fork, and the PR must not be a draft — GitHub refuses
+    # auto-merge on a draft, and the `ready_for_review` trigger above brings the PR
+    # back here the moment that changes.
+    if: >-
+      github.actor == 'dependabot[bot]' &&
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.draft == false
     steps:
       - name: Fetch Dependabot metadata
         id: metadata
