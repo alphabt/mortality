@@ -21,9 +21,9 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.10",
     "jsdom": "^30.0.1",
-    "playwright": "1.62.0",
+    "playwright": "1.62.1",
     "prettier": "3.9.6",
     "vitest": "^4.1.10",
-    "web-ext": "10.5.0"
+    "web-ext": "10.6.0"
   }
 }
