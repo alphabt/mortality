@@ -1,0 +1,58 @@
+name: "Dependabot auto-merge"
+
+# Routine toolchain bumps shouldn't cost a review. Nothing in package.json ships —
+# the extension has no runtime dependencies, so devDependencies are only build and
+# test tooling — which makes a green CI run the whole signal for a vitest, prettier,
+# or playwright bump. This just switches on GitHub's auto-merge; the branch ruleset
+# still holds the PR until Prettier, Vitest, and Pack pass, so nothing lands
+# unverified. Major bumps and anything touching a production dependency are left
+# alone on purpose: those deserve a human reading the changelog.
+#
+# Dependabot's own `pull_request` runs get a read-only token, which cannot enable
+# auto-merge, hence `pull_request_target` — it runs from the base branch with a
+# writable token. That token must never meet untrusted code, so this workflow does
+# not check the PR out, installs nothing, and runs no repo scripts. Testing the
+# proposed code is ci.yml's job, and that runs in the ordinary read-only
+# `pull_request` context.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    name: "Enable auto-merge"
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' && github.event.pull_request.user.login == 'dependabot[bot]'
+    steps:
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+
+      # Both dependabot.yml ecosystems are grouped, so a PR usually carries several
+      # updates. These outputs report the worst case across the group — the highest
+      # semver bump and the most production-facing dependency type — so one major or
+      # one production dependency anywhere in the group sends the whole PR to a human.
+      #
+      # `indirect` is safe to include because this repo declares no production
+      # dependencies at all: a transitive bump can only come from the dev toolchain.
+      # `package-ecosystem` is read off the branch name, so the Actions ecosystem
+      # reports as `github_actions` rather than the `github-actions` spelling used in
+      # dependabot.yml. It needs its own clause because Dependabot labels actions as
+      # production dependencies.
+      - name: Enable auto-merge
+        if: >-
+          (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor') &&
+          (steps.metadata.outputs.dependency-type == 'direct:development' ||
+          steps.metadata.outputs.dependency-type == 'indirect' ||
+          steps.metadata.outputs.package-ecosystem == 'github_actions')
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
