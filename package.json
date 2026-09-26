@@ -19,11 +19,11 @@
     "store:publish:firefox-metadata": "node scripts/publish-firefox-metadata.mjs"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "^4.1.11",
-    "jsdom": "^30.0.1",
-    "playwright": "1.62.1",
-    "prettier": "3.9.6",
-    "vitest": "^4.1.10",
-    "web-ext": "10.6.0"
+    "@vitest/coverage-v8": "^5.0.1",
+    "jsdom": "^30.1.1",
+    "playwright": "1.63.0",
+    "prettier": "3.9.9",
+    "vitest": "^5.0.1",
+    "web-ext": "10.7.0"
   }
 }
